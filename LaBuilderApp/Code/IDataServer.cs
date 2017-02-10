@@ -5,7 +5,6 @@ namespace LaBuilderApp
 {
 	public class IDataServer
 	{
-		public event JobDone JobDone;
 		public event JobDone DataRefresh;
 
 		public bool IgnoreLocalData = false;
@@ -38,7 +37,7 @@ namespace LaBuilderApp
 			if (status) {
 				await Global.Files.SaveFile (fileName, result);
 			}
-			JobDone (status, result);
+			DataRefresh (status, result);
 		}
 
 		private bool isExit = false;

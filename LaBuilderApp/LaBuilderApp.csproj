@@ -45,6 +45,7 @@
     <Compile Include="Code\DataServer.cs" />
     <Compile Include="Code\EventsManager.cs" />
     <Compile Include="Code\Exhibition.cs" />
+    <Compile Include="Code\CModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="project.json" />

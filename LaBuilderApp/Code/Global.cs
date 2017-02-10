@@ -1,5 +1,7 @@
 ﻿using System;
 using Xamarin.Forms;
+using System.Net;
+using System.Globalization;
 
 namespace LaBuilderApp
 {
@@ -10,6 +12,7 @@ namespace LaBuilderApp
 	public static class Global
 	{
 		public static string BaseUrl = "http://r2builders.fr/";
+		public static CultureInfo CultureFrench = new CultureInfo ("fr-FR");
 
 		public static IFiles Files = null;
 
@@ -25,12 +28,11 @@ namespace LaBuilderApp
 			Random = new Random (DateTime.Now.Millisecond);
 
 			IDataServer events = new IDataServer ("events");
-			events.JobDone += (status, result) => {
-				Tools.Trace ("JobDone: " + result);
-			};
+			//events.IgnoreLocalData = true;
 			events.DataRefresh += (status, result) => {
 				Tools.Trace ("DataRefresh: " + result);
-				EventsManager.TheData (result);
+				Exhibition.All = Exhibition.LoadData (result);
+				//Exhibition.LoadData (result);
 			};
 			DataServer.AddToDo (events);
 

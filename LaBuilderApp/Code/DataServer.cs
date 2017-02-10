@@ -10,7 +10,7 @@ namespace LaBuilderApp
 		private static bool inProgress = false;
 		private static IDataServer current = null;
 		private static int count = 0;
-		private static IDataServer temp = null;
+		//private static IDataServer temp = null;
 
 		public static async Task AddToDo (IDataServer element)
 		{
@@ -43,14 +43,14 @@ namespace LaBuilderApp
 			inProgress = true;
 			current = toDo [0];
 			Tools.Trace ("Processing: " + current.FileName);
-			current.JobDone += Current_JobDone;
+			current.DataRefresh += Current_JobDone;
 			current.DoDownload ();
 		}
 
 		static void Current_JobDone (bool status, string result)
 		{
 			Tools.Trace ("Job done: " + current.FileName);
-			current.JobDone -= Current_JobDone;
+			current.DataRefresh -= Current_JobDone;
 			current.TriggerData (status, result);
 			current = null;
 			if (!status) {

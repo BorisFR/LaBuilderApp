@@ -10,6 +10,8 @@ namespace LaBuilderApp
 		{
 			InitializeComponent ();
 			LoadInfo ();
+			//lvTest.BindingContext = EventsManager.AllEvents;
+			//lvTest.ItemsSource = Exhibition.AllEvents;
 		}
 
 		private void LoadInfo ()
