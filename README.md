@@ -11,6 +11,9 @@ Device Info, to display informations of the runing device [1].
 Media, to take pictures [2].  
 App info, to display informations of the current app [3].  
 
+à voir  
+https://github.com/jamesmontemagno/SettingsPlugin  
+https://github.com/XAM-Consulting/Xam.Plugins.ImageCropper  
 
 
 [1]: https://github.com/jamesmontemagno/DeviceInfoPlugin
