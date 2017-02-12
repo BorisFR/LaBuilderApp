@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="LaBuilderApp.MenuPage" 
+	  xmlns:local="clr-namespace:LaBuilderApp" Padding="{x:Static local:Global.PagePadding}" Title="Menu" BackgroundColor="Transparent">
+	<ContentPage.Content>
+		<StackLayout Orientation="Vertical" VerticalOptions="Fill" HorizontalOptions="Start">
+
+     	 	<Image Source="{local:ImageResource R2BuildersLogo.png}" Aspect="AspectFill" />
+
+			<ListView x:Name="theList" ItemsSource="{x:Static local:MenuManager.All}" HasUnevenRows="true" IsGroupingEnabled="true" SeparatorVisibility="None" VerticalOptions="Fill" BackgroundColor="Black" Margin="0,0,12,0">
+				<ListView.GroupHeaderTemplate>
+					<DataTemplate>
+						<ViewCell Height="17">
+							<StackLayout Orientation="Vertical" Spacing="0" BackgroundColor="Black" Padding="0,0,0,0">
+								<Label Text="{Binding Title}" Font="Bold" FontSize="17" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" />
+							</StackLayout>
+						</ViewCell>
+					</DataTemplate>
+				</ListView.GroupHeaderTemplate>
+		        <ListView.ItemTemplate>
+			        <DataTemplate>
+			        	<ViewCell Height="54">
+			        		<Grid HorizontalOptions="Fill" ColumnSpacing="6" RowSpacing="0" Padding="6,0,6,0" BackgroundColor="Gray">
+    					        <Grid.ColumnDefinitions>
+						            <ColumnDefinition Width="50"/>
+						            <ColumnDefinition Width="*"/>
+						        </Grid.ColumnDefinitions>
+						        <Grid.RowDefinitions>
+						        	<RowDefinition Height="30" />
+						        	<RowDefinition Height="20" />
+						        </Grid.RowDefinitions>
+						        <Image Source="{Binding Image}" WidthRequest="50" Grid.RowSpan="2" />
+						        <Label Text="{Binding Title}" Font="Bold" FontSize="17" TextColor="White" Grid.Column="1" />
+						        <Label Text="{Binding Detail}" FontSize="14" TextColor="White" Grid.Column="1" Grid.Row="1" />
+			        		</Grid>
+			        	</ViewCell>
+			        </DataTemplate>
+		        </ListView.ItemTemplate>
+	        </ListView>
+
+		</StackLayout>		
+	</ContentPage.Content>
+</ContentPage>

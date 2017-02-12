@@ -8,7 +8,8 @@ namespace LaBuilderApp
 		{
 			InitializeComponent ();
 			Global.DoInit ("App");
-			MainPage = new LaBuilderAppPage ();
+			//MainPage = new LaBuilderAppPage ();
+			MainPage = new MainAppPage ();
 		}
 
 		protected override void OnStart ()

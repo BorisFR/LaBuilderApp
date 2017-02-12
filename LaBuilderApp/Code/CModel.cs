@@ -18,17 +18,18 @@ namespace LaBuilderApp
 			}
 		}
 
-
-		public static IEnumerable<T> LoadData (string data)
+		public static List<T> Whole = new List<T> ();
+		public static void LoadData (string data)
 		{
 			List<T> all = null;
 			try {
 				all = JsonConvert.DeserializeObject<List<T>> (data.Replace ("&amp;", "&"));
+				all.TrimExcess ();
 			} catch (Exception err) {
 				Tools.Trace ("LoadData-Error: " + err.Message);
 			}
-			all.TrimExcess ();
-			return all;
+			Whole = all;
+			//return all;
 		}
 
 	}

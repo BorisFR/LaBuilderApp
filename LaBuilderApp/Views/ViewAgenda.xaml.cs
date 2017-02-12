@@ -1,15 +1,17 @@
-﻿using Plugin.AppInfo;
+﻿using System;
+using System.Collections.Generic;
+using Plugin.AppInfo;
 using Plugin.DeviceInfo;
 using Xamarin.Forms;
 
 namespace LaBuilderApp
 {
-	public partial class LaBuilderAppPage : ContentPage
+	public partial class ViewAgenda : ContentView
 	{
-		public LaBuilderAppPage ()
+		public ViewAgenda ()
 		{
 			InitializeComponent ();
-			//lvExhibition.ItemsSource = Exhibition.All;
+			lvExhibition.ItemsSource = Exhibition.All;
 			LoadInfo ();
 
 			btPreviousYear.Clicked += (sender, e) => {

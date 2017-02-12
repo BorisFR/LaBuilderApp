@@ -5,12 +5,36 @@ using System.Globalization;
 
 namespace LaBuilderApp
 {
+	public enum MyPage
+	{
+		None,
+		FirstLoading,
+		Home,
+		Builders,
+		Exhibitions,
+		Account,
+		MyBuilder,
+		AdminUsers,
+		AdminBuilders,
+		MyExhibitions,
+		About
+	}
 
 	public delegate void JobDone (bool status, string result);
 
 
 	public static class Global
 	{
+		public static MenuPage MenuPage;
+		public static DetailPage DetailPage;
+		public static MainAppPage MainAppPage;
+		public static MenuManager Menus = new MenuManager ();
+		public static readonly Thickness PagePadding = new Thickness (Device.OnPlatform (0, 0, 0), Device.OnPlatform (20, 0, 0), Device.OnPlatform (0, 0, 0), Device.OnPlatform (0, 0, 0));
+
+		public static bool IsConnected = false;
+		//public static User ConnectedUser = null;
+
+
 		public static string BaseUrl = "http://r2builders.fr/";
 		public static CultureInfo CultureFrench = new CultureInfo ("fr-FR");
 
@@ -31,13 +55,21 @@ namespace LaBuilderApp
 			//events.IgnoreLocalData = true;
 			events.DataRefresh += (status, result) => {
 				Tools.Trace ("DataRefresh: " + result);
-				Exhibition.All = Exhibition.LoadData (result);
-				//Exhibition.LoadData (result);
+				//Exhibition.All = Exhibition.LoadData (result);
+				Exhibition.LoadData (result);
+				Exhibition.PopulateData ();
 			};
 			DataServer.AddToDo (events);
 
 			DataServer.Launch ();
+			MenuManager.Refresh ();
 			Tools.Trace ($"> {from}: Global.DoInit() done.");
+		}
+
+		public static void GotoPage (MyPage page)
+		{
+			//AwesomeWrappanel.CleanAll ();
+			DetailPage.ShowPage (page);
 		}
 
 	}

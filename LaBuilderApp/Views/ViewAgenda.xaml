@@ -1,7 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:LaBuilderApp" x:Class="LaBuilderApp.LaBuilderAppPage">
-	<StackLayout Orientation="Vertical" Margin="0,30,0,0">
-		<Label Text="Hello world! ;)" VerticalOptions="Center" HorizontalOptions="Center" />
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="LaBuilderApp.ViewAgenda" 
+	 xmlns:local="clr-namespace:LaBuilderApp">
+	<ContentView.Content>
+	<StackLayout Orientation="Vertical">
 		<StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" HeightRequest="24">
 			<Button x:Name="btPreviousYear" Text="&lt;" FontSize="20" FontAttributes="Bold" Margin="0" />
 			<StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
@@ -28,5 +29,6 @@
 				</DataTemplate>
 			</ListView.ItemTemplate>
 		</ListView>
-	</StackLayout>
-</ContentPage>
+	</StackLayout>		
+	</ContentView.Content>
+</ContentView>

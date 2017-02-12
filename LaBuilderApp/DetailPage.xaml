@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="LaBuilderApp.DetailPage" 
+	  xmlns:local="clr-namespace:LaBuilderApp" Padding="{x:Static local:Global.PagePadding}" BackgroundColor="Aqua">
+	<ContentPage.Content>
+		<RelativeLayout>
+		<BoxView Color="Green"
+             RelativeLayout.XConstraint= "{ConstraintExpression Type=Constant, Constant=0}"
+             RelativeLayout.YConstraint= "{ConstraintExpression Type=Constant, Constant=0}"
+             RelativeLayout.WidthConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Width, Constant=1}"
+             RelativeLayout.HeightConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Height, Constant=1}" />
+
+		<RelativeLayout x:Name="theAnimation" BackgroundColor="Transparent"
+             RelativeLayout.XConstraint= "{ConstraintExpression Type=Constant, Constant=0}"
+             RelativeLayout.YConstraint= "{ConstraintExpression Type=Constant, Constant=0}"
+             RelativeLayout.WidthConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Width, Constant=1}"
+             RelativeLayout.HeightConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Height, Constant=1}" />
+
+		<ContentView x:Name="theFrame" BackgroundColor="Transparent"
+             RelativeLayout.WidthConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Width, Constant=1}"
+             RelativeLayout.HeightConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Height, Constant=1}" />
+		</RelativeLayout>		
+	</ContentPage.Content>
+</ContentPage>
