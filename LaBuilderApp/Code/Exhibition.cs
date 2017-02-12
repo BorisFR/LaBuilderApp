@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Xamarin.Forms;
 using System.Linq;
 using System.Collections.ObjectModel;
+using Plugin.AppInfo;
 
 namespace LaBuilderApp
 {
@@ -149,9 +150,6 @@ namespace LaBuilderApp
 		// GLOBAL STATIC functions
 		// ***********************
 
-		private static ObservableCollection<Exhibition> toto = new ObservableCollection<Exhibition> ();
-		public static ObservableCollection<Exhibition> All { get { return toto; } set { toto = value; } }
-
 		private static int currentYear = 0;
 		public static int CurrentYear { get { return currentYear; } }
 
@@ -178,7 +176,7 @@ namespace LaBuilderApp
 
 		public static void PopulateData ()
 		{
-			Tools.Trace ("PopulateData");
+			Tools.Trace ("Exhibition PopulateData");
 			if (currentYear == 0)
 				ChangeToYear (DateTime.Now.Year);
 			else {
@@ -187,11 +185,10 @@ namespace LaBuilderApp
 			}
 		}
 
-		static IEnumerable<Exhibition> DesignData { get; set; }
-
 		static Exhibition ()
 		{
-			Tools.Trace ("Exhibition");
+			if (!CrossAppInfo.Current.DisplayName.Equals ("XamarinFormsPreviewer")) return;
+			Tools.Trace ("Exhibition class");
 			//All = new ObservableCollection<Exhibition> ();
 			//try {
 			// DATA de démo pour la conception.
@@ -227,6 +224,9 @@ namespace LaBuilderApp
 			//	Tools.Trace ("Exhibition-Error: " + err.Message);
 			//}
 		}
+
+		public static IEnumerable<Exhibition> DesignData { get; set; }
+
 
 	}
 }

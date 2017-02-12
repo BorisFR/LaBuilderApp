@@ -32,7 +32,7 @@ namespace LaBuilderApp
 		}
 
 
-		public static async Task DoDownload (string fileName)
+		public static async Task DoDownload (object sender, string fileName)
 		{
 			string result = string.Empty;
 			bool status = false;
@@ -45,9 +45,9 @@ namespace LaBuilderApp
 				Trace ("ERROR: " + err.Message);
 			}
 			if (JobDone != null)
-				JobDone (status, result);
+				JobDone (sender, status, result);
 			if (DoneBatch != null)
-				DoneBatch (status, result);
+				DoneBatch (sender, status, result);
 		}
 
 		public static void test ()

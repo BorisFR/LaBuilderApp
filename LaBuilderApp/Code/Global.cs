@@ -9,9 +9,9 @@ namespace LaBuilderApp
 	{
 		None,
 		FirstLoading,
-		Home,
+		News,
 		Builders,
-		Exhibitions,
+		Events,
 		Account,
 		MyBuilder,
 		AdminUsers,
@@ -20,7 +20,8 @@ namespace LaBuilderApp
 		About
 	}
 
-	public delegate void JobDone (bool status, string result);
+	public delegate void Trigger ();
+	public delegate void JobDone (object sender, bool status, string result);
 
 
 	public static class Global
@@ -50,7 +51,7 @@ namespace LaBuilderApp
 			}
 			Files = DependencyService.Get<IFiles> ();
 			Random = new Random (DateTime.Now.Millisecond);
-
+			/*
 			IDataServer events = new IDataServer ("events");
 			//events.IgnoreLocalData = true;
 			events.DataRefresh += (status, result) => {
@@ -61,7 +62,7 @@ namespace LaBuilderApp
 			};
 			DataServer.AddToDo (events);
 
-			DataServer.Launch ();
+			DataServer.Launch ();*/
 			MenuManager.Refresh ();
 			Tools.Trace ($"> {from}: Global.DoInit() done.");
 		}

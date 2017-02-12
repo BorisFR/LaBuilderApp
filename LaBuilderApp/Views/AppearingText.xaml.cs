@@ -11,11 +11,14 @@ namespace LaBuilderApp
 		Appear,
 		Disappear,
 		AppearAurekBesh,
-		DisappearAurekBesh
+		DisappearAurekBesh,
+		AppearAndStop
 	}
 
 	public partial class AppearingText : ContentView
 	{
+
+		public Trigger AppearDone;
 
 		private string theText = string.Empty;
 
@@ -27,13 +30,15 @@ namespace LaBuilderApp
 			}
 		}
 
+		private TextAnimation currentAnimation = TextAnimation.Appear;
+		public TextAnimation Animation { get { return currentAnimation; } set { currentAnimation = value; } }
+
 		private Color theColor = Color.FromHex ("5AA9D3");
 		private double theSize = 16.0;
 		private double theSize2 = 12.0;
 
 		private int currentPos = 0;
 		private bool runningAnimation = false;
-		private TextAnimation currentAnimation = TextAnimation.Appear;
 		private int delayBeforeNextAnimation = 0;
 		private int pauseAnimation = 0;
 		private int delayBlink = 0;
@@ -53,6 +58,8 @@ namespace LaBuilderApp
 			}
 			if (pauseAnimation > 1)
 				pauseAnimation = 1;
+			if (currentPos < 1)
+				currentPos = 1;
 		}
 
 		public AppearingText ()
@@ -82,6 +89,30 @@ namespace LaBuilderApp
 			StartTimer ();
 		}
 
+		public AppearingText (string text, Color textColor, TextAnimation anim)
+		{
+			InitializeComponent ();
+
+			TheText = text;
+			theColor = textColor;
+			currentAnimation = anim;
+			LaunchAnimation ();
+			StartTimer ();
+		}
+
+		public AppearingText (string text, Color textColor, TextAnimation anim, double fontSize)
+		{
+			InitializeComponent ();
+
+			TheText = text;
+			theColor = textColor;
+			currentAnimation = anim;
+			theSize = fontSize;
+			theSize2 = fontSize;
+			LaunchAnimation ();
+			StartTimer ();
+		}
+
 		public AppearingText (string text, double fontSize, double fontSize2)
 		{
 			InitializeComponent ();
@@ -107,12 +138,15 @@ namespace LaBuilderApp
 
 		private void StartTimer ()
 		{
-			Device.StartTimer (new TimeSpan (0, 0, 0, 0, 60 + Global.Random.Next (40)), DoAnimation);
+			//Tools.Trace ("Anim starting timer...");
+			Device.StartTimer (new TimeSpan (0, 0, 0, 0, 50 + Global.Random.Next (40)), DoAnimation);
+			//Tools.Trace ($"Anim start timer OK : {currentAnimation}");
 		}
 
 		private void LaunchAnimation ()
 		{
-			runningAnimation = false;
+			if (runningAnimation) return;
+			//runningAnimation = false;
 			currentPos = 0;
 			try {
 				labelAnim.Text = string.Empty;
@@ -124,9 +158,11 @@ namespace LaBuilderApp
 				theBox.BackgroundColor = theColor;
 				theBox.MinimumHeightRequest = 12;
 				theBox.HeightRequest = 24; //labelText.Height;
-			} catch (Exception) {
+			} catch (Exception err) {
+				//Tools.Trace ($"Anim-launch: {err.Message}");
 			}
 			runningAnimation = true;
+			//Tools.Trace ($"Anim running OK ; {currentAnimation}");
 		}
 
 		private void ChooseRandomAnimation ()
@@ -184,6 +220,7 @@ namespace LaBuilderApp
 					break;
 
 				case TextAnimation.Appear:
+					//Tools.Trace (".");
 					if (currentPos > theText.Length)
 						return true;
 					currentPos++;
@@ -198,6 +235,7 @@ namespace LaBuilderApp
 						DoPauseAnimation ();
 						currentAnimation = TextAnimation.Disappear;
 					}
+					//Tools.Trace ("..");
 					break;
 
 				case TextAnimation.AppearAurekBesh:
@@ -238,9 +276,21 @@ namespace LaBuilderApp
 					}
 					break;
 
+
+				case TextAnimation.AppearAndStop:
+					if (currentPos > theText.Length) {
+						theBox.BackgroundColor = Color.Transparent;
+						if (AppearDone != null) AppearDone ();
+						return false;
+					}
+					currentPos++;
+					if (currentPos > 1)
+						labelText.Text = theText.Substring (0, currentPos - 1);
+					break;
 				}
 
-			} catch (Exception) {
+			} catch (Exception err) {
+				//Tools.Trace ($"Anim: {err.Message}");
 			}
 			return true;
 		}

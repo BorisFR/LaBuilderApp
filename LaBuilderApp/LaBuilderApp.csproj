@@ -55,6 +55,16 @@
     <EmbeddedResource Include="Images\2048.png" />
     <EmbeddedResource Include="Images\4096.png" />
     <EmbeddedResource Include="Images\btn_menu.png" />
+    <EmbeddedResource Include="Views\ViewNews.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\menu_builders.png" />
+    <EmbeddedResource Include="Views\ViewBuilders.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ViewFirstLoading.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -96,6 +106,16 @@
     <Compile Include="Code\StarJedi.cs" />
     <Compile Include="Code\AurekBesh.cs" />
     <Compile Include="Code\TieWing.cs" />
+    <Compile Include="Views\ViewNews.xaml.cs">
+      <DependentUpon>ViewNews.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ViewBuilders.xaml.cs">
+      <DependentUpon>ViewBuilders.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ViewFirstLoading.xaml.cs">
+      <DependentUpon>ViewFirstLoading.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Code\Builder.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="project.json" />

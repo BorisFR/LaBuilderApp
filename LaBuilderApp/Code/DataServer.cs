@@ -6,6 +6,8 @@ namespace LaBuilderApp
 {
 	public static class DataServer
 	{
+		public static Trigger QueueEmpty;
+
 		private static List<IDataServer> toDo = new List<IDataServer> ();
 		private static bool inProgress = false;
 		private static IDataServer current = null;
@@ -38,8 +40,10 @@ namespace LaBuilderApp
 		{
 			if (inProgress)
 				return;
-			if (toDo.Count == 0)
+			if (toDo.Count == 0) {
+				if (QueueEmpty != null) QueueEmpty ();
 				return;
+			}
 			inProgress = true;
 			current = toDo [0];
 			Tools.Trace ("Processing: " + current.FileName);
@@ -47,17 +51,17 @@ namespace LaBuilderApp
 			current.DoDownload ();
 		}
 
-		static void Current_JobDone (bool status, string result)
+		static void Current_JobDone (object sender, bool status, string result)
 		{
 			Tools.Trace ("Job done: " + current.FileName);
 			current.DataRefresh -= Current_JobDone;
-			current.TriggerData (status, result);
+			//current.TriggerData (status, result);
 			current = null;
 			if (!status) {
 				// on error, try again
 				count++;
-				// but just 3 times
-				if (count > 2) {
+				// but just 2 times
+				if (count > 1) {
 					// abandon
 					toDo.RemoveAt (0);
 					count = 0;

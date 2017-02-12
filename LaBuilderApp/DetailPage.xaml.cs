@@ -20,6 +20,12 @@ namespace LaBuilderApp
 				}
 			};
 			btMenu.GestureRecognizers.Add (tapGestureRecognizer);
+
+			Menu m = new Menu ();
+			m.Detail = string.Empty;
+			m.Title = "Chargement des donnees";
+			m.Page = MyPage.FirstLoading;
+			ShowPage (m);
 		}
 
 		public void ShowPage (Menu menu)
@@ -29,26 +35,27 @@ namespace LaBuilderApp
 			else
 				theTitle.ChangeText (menu.Title.ToLower ());
 			switch (menu.Page) {
-			case MyPage.Exhibitions:
+			case MyPage.FirstLoading:
+				theFrame.Content = null;
+				theFrame.Content = new ViewFirstLoading ();
+				break;
+			case MyPage.News:
+				theFrame.Content = null;
+				theFrame.Content = new ViewNews ();
+				break;
+			case MyPage.Events:
 				theFrame.Content = null;
 				theFrame.Content = new ViewAgenda ();
+				break;
+			case MyPage.Builders:
+				theFrame.Content = null;
+				theFrame.Content = new ViewBuilders ();
 				break;
 			case MyPage.About:
 				theFrame.Content = null;
 				theFrame.Content = new ViewAbout ();
 				break;
-				/*			case MyPage.FirstLoading:
-								theFrame.Content = null;
-								theFrame.Content = new ViewFirstLoading ();
-								break;
-							case MyPage.Home:
-								theFrame.Content = null;
-								theFrame.Content = new ViewHome ();
-								break;
-							case MyPage.Builders:
-								theFrame.Content = null;
-								theFrame.Content = new ViewBuilders ();
-								break;
+				/*			
 							case MyPage.Account:
 								theFrame.Content = null;
 								theFrame.Content = new ViewAccount ();

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="LaBuilderApp.ViewFirstLoading" 
+	BackgroundColor="Transparent" xmlns:local="clr-namespace:LaBuilderApp">
+	<ContentView.Content>
+		<ScrollView Orientation="Vertical">
+		<StackLayout x:Name="theLayout" Orientation="Vertical" WidthRequest="3000" HeightRequest="3000">
+		</StackLayout>
+		</ScrollView>
+	</ContentView.Content>
+</ContentView>

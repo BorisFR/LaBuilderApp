@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Newtonsoft.Json;
@@ -31,6 +32,10 @@ namespace LaBuilderApp
 			Whole = all;
 			//return all;
 		}
+
+
+		private static ObservableCollection<T> toto = new ObservableCollection<T> ();
+		public static ObservableCollection<T> All { get { return toto; } set { toto = value; } }
 
 	}
 }

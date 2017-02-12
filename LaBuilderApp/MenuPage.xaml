@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="LaBuilderApp.MenuPage" 
-	  xmlns:local="clr-namespace:LaBuilderApp" Padding="{x:Static local:Global.PagePadding}" Title="Menu" BackgroundColor="Transparent">
+	  xmlns:local="clr-namespace:LaBuilderApp" Padding="{x:Static local:Global.PagePadding}" Title="Menu" BackgroundColor="White">
 	<ContentPage.Content>
 		<StackLayout Orientation="Vertical" VerticalOptions="Fill" HorizontalOptions="Start">
 
-     	 	<Image Source="{local:ImageResource R2BuildersLogo.png}" Aspect="AspectFill" />
+     	 	<Image Source="{local:ImageResource R2BuildersLogo.png}" Aspect="AspectFit" />
 
 			<ListView x:Name="theList" ItemsSource="{x:Static local:MenuManager.All}" HasUnevenRows="true" IsGroupingEnabled="true" SeparatorVisibility="None" VerticalOptions="Fill" BackgroundColor="White" Margin="0,0,12,0">
 				<ListView.GroupHeaderTemplate>
@@ -28,7 +28,7 @@
 						        	<RowDefinition Height="30" />
 						        	<RowDefinition Height="20" />
 						        </Grid.RowDefinitions>
-						        <Image Source="{Binding Image}" WidthRequest="50" Grid.RowSpan="2" />
+						        <Image Source="{Binding Image}" WidthRequest="55" HeightRequest="55" Aspect="AspectFit" Grid.RowSpan="2" />
 						        <Label Text="{Binding Title}" Font="Bold" FontSize="17" TextColor="Black" Grid.Column="1" />
 						        <Label Text="{Binding Detail}" FontSize="14" TextColor="Black" Grid.Column="1" Grid.Row="1" />
 			        		</Grid>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="LaBuilderApp.ViewBuilders" 
+	xmlns:local="clr-namespace:LaBuilderApp">
+	<ContentView.Content>
+	<StackLayout Orientation="Vertical" HeightRequest="3000">
+		<ListView x:Name="lvBuilder" ItemsSource="{x:Static local:Builder.DesignData}" BackgroundColor="Black" SeparatorColor="Transparent" >
+			<ListView.ItemTemplate>
+				<DataTemplate>
+						<ViewCell>
+							<ViewCell.View>
+								<StackLayout Orientation="Horizontal">
+									<Image Source="{Binding AvatarImage}" WidthRequest="50" HeightRequest="50" Aspect="AspectFit" />
+									<StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
+										<Label Text="{Binding Username, StringFormat=' {0}'}" HorizontalOptions="FillAndExpand" BackgroundColor="White" TextColor="Black" FontSize="14" LineBreakMode="TailTruncation"/>
+										<Label Text="{Binding Since, StringFormat=' Builder depuis {0}'}}" TextColor="White" FontSize="10" LineBreakMode="TailTruncation"/>
+									</StackLayout>
+								</StackLayout>
+							</ViewCell.View>
+						</ViewCell>
+				</DataTemplate>
+			</ListView.ItemTemplate>
+		</ListView>
+	</StackLayout>	
+	</ContentView.Content>
+</ContentView>

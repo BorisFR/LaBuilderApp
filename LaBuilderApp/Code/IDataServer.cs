@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Plugin.Settings;
 
 namespace LaBuilderApp
 {
 	public class IDataServer
 	{
+		public event Trigger StartWorking;
 		public event JobDone DataRefresh;
 
 		public bool IgnoreLocalData = false;
@@ -27,21 +29,28 @@ namespace LaBuilderApp
 
 		public void DoDownload ()
 		{
+			if (StartWorking != null) StartWorking ();
 			Tools.DoneBatch += DoneBatch;
-			Tools.DoDownload (fileName);
+			Tools.DoDownload (this, fileName);
 		}
 
-		private async void DoneBatch (bool status, string result)
+		private async void DoneBatch (object sender, bool status, string result)
 		{
 			Tools.DoneBatch -= DoneBatch;
-			if (status) {
-				await Global.Files.SaveFile (fileName, result);
+			isExistAlreadyTest = false;
+			if (status) { // on sauvegarde en cache
+				if (result.Equals ("{\"state\":false}")) { // pas d'erreur de transfert, mais pas de bonnes data récupérées
+					status = false;
+				} else {
+					await Global.Files.SaveFile (fileName, result);
+					CrossSettings.Current.AddOrUpdateValue<DateTime> ($"cache_{fileName}", DateTime.Now);
+				}
 			}
-			DataRefresh (status, result);
+			DataRefresh (this, status, result);
 		}
 
-		private bool isExit = false;
-		private bool isTest = false;
+		private bool isExist = false;
+		private bool isExistAlreadyTest = false;
 
 		public async Task<bool> HasOldData ()
 		{
@@ -49,17 +58,26 @@ namespace LaBuilderApp
 				Tools.Trace ("Ignore local for: " + fileName);
 				return false;
 			}
-			if (isTest)
-				return isExit;
-			isTest = true;
-			Tools.Trace ("HasOldData testing fileExist: " + fileName);
-			isExit = await Global.Files.IsExit (fileName);
-			return isExit;
+			if (isExistAlreadyTest)
+				return isExist;
+			isExistAlreadyTest = true;
+			//Tools.Trace ("HasOldData testing fileExist: " + fileName);
+			DateTime dataTime = CrossSettings.Current.GetValueOrDefault<DateTime> ($"cache_{fileName}", new DateTime (2000, 1, 1));
+			DateTime now = DateTime.Now;
+			if ((now - dataTime).TotalHours > 24) { // ignore les data plus anciennes que 24 heures
+				isExist = false;
+				Tools.Trace ($"FileExist {fileName}: exist, but too old");
+				return isExist;
+			} else {
+				isExist = await Global.Files.IsExit (fileName);
+			}
+			Tools.Trace ($"FileExist {fileName}: {isExist}");
+			return isExist;
 		}
 
 		public void TriggerData (bool status, string result)
 		{
-			DataRefresh (status, result);
+			DataRefresh (this, status, result);
 		}
 
 	}

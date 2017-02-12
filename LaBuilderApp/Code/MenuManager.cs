@@ -39,18 +39,30 @@ namespace LaBuilderApp
 
 			MenuGroup mg = new MenuGroup (T (" "));
 			mg.Add (new Menu () {
-				Page = MyPage.Home,
+				Page = MyPage.News,
 				Title = T ("La Gazette"),
 				Detail = T ("Les actus de l'association"),
 				Icon = "news"
 			});
-			/*
+			mg.Add (new Menu () {
+				Page = MyPage.Events,
+				Title = T ("L'Agenda"),
+				Detail = T ("Les R2 Builders en balade"),
+				Icon = "events"
+			});
 			mg.Add (new Menu () {
 				Page = MyPage.Builders,
-				Title = T ("MenuTheBuilders"),
-				Detail = T ("MenuTheBuildersDetail"),
+				Title = T ("Les Builders"),
+				Detail = T ("Mais qui sont'ils ?"),
 				Icon = "builders"
 			});
+			mg.Add (new Menu () {
+				Page = MyPage.About,
+				Title = T ("A propos de"),
+				Detail = T ("Informations"),
+				Icon = "about"
+			});
+			/*
 			mg.Add (new Menu () {
 				Page = MyPage.None,
 				Title = T ("MenuTheDroids"),
@@ -58,14 +70,6 @@ namespace LaBuilderApp
 				Icon = "robots"
 			});
 			//mg.Add (new Menu (){ Page = MyPage.None, Title = "AstroDex", 			Detail = "L'anuaire des unités Astro", 		Icon = "IA" });
-			*/
-			mg.Add (new Menu () {
-				Page = MyPage.Exhibitions,
-				Title = T ("L'Agenda"),
-				Detail = T ("Les R2 Builders en balade"),
-				Icon = "events"
-			});
-			/*
 			mg.Add (new Menu () {
 				Page = MyPage.None,
 				Title = T ("MenuMyCards"),
@@ -88,12 +92,6 @@ namespace LaBuilderApp
 			});
 			//mg.Add (new Menu (){ Page = MyPage.None, Title = "Aide", 				Detail = "Comment fonctionne l'application", Icon = "IA" });
 			*/
-			mg.Add (new Menu () {
-				Page = MyPage.About,
-				Title = T ("A propos de"),
-				Detail = T ("Informations"),
-				Icon = "about"
-			});
 			All.Add (mg);
 
 			/*
