@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="LaBuilderApp.AppearingText" 
+	xmlns:local="clr-namespace:LaBuilderApp" BackgroundColor="Transparent">
+	<ContentView.Content>
+	<StackLayout Orientation="Horizontal" BackgroundColor="Transparent">
+		<local:StarJedi x:Name="labelText" Text="Hello" FontSize="16" TextColor="#5AA9D3" VerticalOptions="Center" />
+		<local:AurekBesh x:Name="labelAnim" Text="World!" FontSize="12" TextColor="#5AA9D3" VerticalOptions="Center" />
+		<BoxView x:Name="theBox" WidthRequest="16" VerticalOptions="Center" />
+	</StackLayout>
+	</ContentView.Content>
+</ContentView>

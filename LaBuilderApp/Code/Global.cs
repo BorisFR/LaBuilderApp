@@ -66,10 +66,10 @@ namespace LaBuilderApp
 			Tools.Trace ($"> {from}: Global.DoInit() done.");
 		}
 
-		public static void GotoPage (MyPage page)
+		public static void GotoPage (Menu menu)
 		{
 			//AwesomeWrappanel.CleanAll ();
-			DetailPage.ShowPage (page);
+			DetailPage.ShowPage (menu);
 		}
 
 	}

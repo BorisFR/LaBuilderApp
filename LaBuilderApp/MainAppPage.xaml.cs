@@ -10,6 +10,7 @@ namespace LaBuilderApp
 		public MainAppPage ()
 		{
 			InitializeComponent ();
+			Global.MainAppPage = this;
 			Global.MenuPage = new MenuPage ();
 			this.Master = Global.MenuPage;
 			Global.DetailPage = new DetailPage ();

@@ -20,7 +20,7 @@ namespace LaBuilderApp
 					theList.SelectedItem = null;
 					return;
 				}
-				Global.GotoPage (m.Page);
+				Global.GotoPage (m);
 
 
 				//				if (Global.AllBuilders.All.Count == 0) {
@@ -37,7 +37,7 @@ namespace LaBuilderApp
 					Global.MainAppPage.IsPresented = false;
 				} catch (Exception) {
 				}
-				theList.SelectedItem = null;
+				//theList.SelectedItem = null;
 			};
 			Tools.Trace ("MenuPage done.");
 		}

@@ -41,6 +41,20 @@
     <EmbeddedResource Include="Views\ViewAgenda.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="Images\R2BuildersLogo.png" />
+    <EmbeddedResource Include="Images\menu_about.png" />
+    <EmbeddedResource Include="Images\menu_events.png" />
+    <EmbeddedResource Include="Images\menu_news.png" />
+    <EmbeddedResource Include="Views\ViewAbout.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\AppearingText.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\1024.png" />
+    <EmbeddedResource Include="Images\2048.png" />
+    <EmbeddedResource Include="Images\4096.png" />
+    <EmbeddedResource Include="Images\btn_menu.png" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -73,6 +87,15 @@
     <Compile Include="Views\ViewAgenda.xaml.cs">
       <DependentUpon>ViewAgenda.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ViewAbout.xaml.cs">
+      <DependentUpon>ViewAbout.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AppearingText.xaml.cs">
+      <DependentUpon>AppearingText.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Code\StarJedi.cs" />
+    <Compile Include="Code\AurekBesh.cs" />
+    <Compile Include="Code\TieWing.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="project.json" />
@@ -80,6 +103,7 @@
   <ItemGroup>
     <Folder Include="Code\" />
     <Folder Include="Views\" />
+    <Folder Include="Images\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.3.3.180\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.3.3.180\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" />

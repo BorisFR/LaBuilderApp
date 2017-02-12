@@ -50,5 +50,36 @@
 	<true/>
 	<key>UIRequiresFullScreen</key>
 	<true/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSExceptionDomains</key>
+		<dict>
+			<key>www.r2builders.fr</key>
+			<dict>
+				<key>NSExceptionMinimumTLSVersion</key>
+				<string>TLSv1.0</string>
+				<key>NSExceptionRequiresForwardSecrecy</key>
+				<false/>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+			</dict>
+			<key>NSAllowsArbitraryLoads</key>
+			<true/>
+		</dict>
+	</dict>
+	<key>UIAppFonts</key>
+	<array>
+		<string>TIE-Wing.ttf</string>
+		<string>Aurek-Besh.ttf</string>
+		<string>Star Jedi.ttf</string>
+	</array>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Afin de découvrir les Builders et leurs robots !</string>
+	<key>NSLocationUsageDescription</key>
+	<string>Afin de découvrir les Builders et leurs robots !</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Afin de découvrir les Builders et leurs robots !</string>
 </dict>
 </plist>

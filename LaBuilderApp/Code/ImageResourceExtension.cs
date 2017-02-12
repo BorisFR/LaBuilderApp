@@ -15,7 +15,7 @@ namespace LaBuilderApp
 				return null;
 			if (Device.OS == TargetPlatform.Windows) {
 				try {
-					var imageSource = ImageSource.FromResource ("AstroBuilders.Win.Images." + Source);
+					var imageSource = ImageSource.FromResource ("LaBuilderApp.Win.Images." + Source);
 					return imageSource;
 				} catch (Exception err) {
 					System.Diagnostics.Debug.WriteLine ("********** ERROR: " + err.Message);
@@ -23,7 +23,7 @@ namespace LaBuilderApp
 				return null;
 			}
 			try {
-				var imageSource = ImageSource.FromResource ("AstroBuilders.Images." + Source);
+				var imageSource = ImageSource.FromResource ("LaBuilderApp.Images." + Source);
 				return imageSource;
 			} catch (Exception err) {
 				System.Diagnostics.Debug.WriteLine ("********** ERROR: " + err.Message);

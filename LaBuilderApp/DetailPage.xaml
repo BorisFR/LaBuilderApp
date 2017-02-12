@@ -1,23 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="LaBuilderApp.DetailPage" 
-	  xmlns:local="clr-namespace:LaBuilderApp" Padding="{x:Static local:Global.PagePadding}" BackgroundColor="Aqua">
+	  xmlns:local="clr-namespace:LaBuilderApp" Padding="{x:Static local:Global.PagePadding}" BackgroundColor="Transparent">
 	<ContentPage.Content>
 		<RelativeLayout>
-		<BoxView Color="Green"
+            <!--
+		<BoxView
              RelativeLayout.XConstraint= "{ConstraintExpression Type=Constant, Constant=0}"
              RelativeLayout.YConstraint= "{ConstraintExpression Type=Constant, Constant=0}"
              RelativeLayout.WidthConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Width, Constant=1}"
              RelativeLayout.HeightConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Height, Constant=1}" />
-
 		<RelativeLayout x:Name="theAnimation" BackgroundColor="Transparent"
              RelativeLayout.XConstraint= "{ConstraintExpression Type=Constant, Constant=0}"
              RelativeLayout.YConstraint= "{ConstraintExpression Type=Constant, Constant=0}"
              RelativeLayout.WidthConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Width, Constant=1}"
              RelativeLayout.HeightConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Height, Constant=1}" />
-
-		<ContentView x:Name="theFrame" BackgroundColor="Transparent"
+            -->
+		<StackLayout Orientation="Vertical" BackgroundColor="#11252D"
              RelativeLayout.WidthConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Width, Constant=1}"
-             RelativeLayout.HeightConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Height, Constant=1}" />
+             RelativeLayout.HeightConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Height, Constant=1}" >
+			<StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+				<Image x:Name="btMenu" Source="{local:ImageResource btn_menu.png}" WidthRequest="32" HeightRequest="32" Aspect="AspectFit"  />
+				<local:AppearingText x:Name="theTitle" TheText="Hello World!" HorizontalOptions="Center" />
+			</StackLayout>
+			<ContentView x:Name="theFrame" BackgroundColor="Transparent" Padding="6,6,6,6"/>
+		</StackLayout>
 		</RelativeLayout>		
 	</ContentPage.Content>
 </ContentPage>
