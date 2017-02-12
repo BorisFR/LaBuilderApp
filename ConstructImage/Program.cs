@@ -9,7 +9,7 @@ namespace ConstructImage
 			Console.WriteLine ("Hello World!");
 
 			GenerateBackground x = new GenerateBackground ();
-			x.DoIt (512, 512);
+			x.DoIt (1024, 1024);
 		}
 	}
 }

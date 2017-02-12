@@ -19,18 +19,19 @@ namespace ConstructImage
 
 			Pen pBlue = new Pen (Color.FromArgb (100, 90, 170, 210));
 
+			int step = 35;
 			int i = 0;
 			System.Diagnostics.Debug.WriteLine ("Doing width");
 			while (i < width) {
 				drawing.DrawLine (pBlue, i, 0, i, height);
-				i = i + 10;
+				i = i + step;
 			}
 
 			i = 0;
 			System.Diagnostics.Debug.WriteLine ("Doing height");
 			while (i < height) {
 				drawing.DrawLine (pBlue, 0, i, width, i);
-				i = i + 10;
+				i = i + step;
 			}
 
 			System.Diagnostics.Debug.WriteLine ("Saving");
