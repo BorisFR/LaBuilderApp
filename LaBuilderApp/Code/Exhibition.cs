@@ -184,20 +184,22 @@ namespace LaBuilderApp
 			Tools.Trace ("ChangeToYear");
 			if (currentYear == year) return;
 			currentYear = year;
-			All.Clear ();
-			try {
-				//List<Exhibition> temp = new List<Exhibition> ();
-				foreach (Exhibition ex in Whole) {
-					if (ex.YearEvent == year) {
-						//temp.Add (ex);
-						All.Add (ex);
+			Device.BeginInvokeOnMainThread (() => {
+				All.Clear ();
+				try {
+					//List<Exhibition> temp = new List<Exhibition> ();
+					foreach (Exhibition ex in Whole) {
+						if (ex.YearEvent == year) {
+							//temp.Add (ex);
+							All.Add (ex);
+						}
 					}
+					//All.;
+					Tools.Trace ("ChangeToYear done.");
+				} catch (Exception err) {
+					Tools.Trace ("ChangeToYear-Error: " + err.Message);
 				}
-				//All.;
-				Tools.Trace ("ChangeToYear done.");
-			} catch (Exception err) {
-				Tools.Trace ("ChangeToYear-Error: " + err.Message);
-			}
+			});
 		}
 
 		public static void PopulateData ()

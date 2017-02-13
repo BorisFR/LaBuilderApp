@@ -105,17 +105,19 @@ namespace LaBuilderApp
 		public static void PopulateData ()
 		{
 			Tools.Trace ("Builder PopulateData");
-			All.Clear ();
-			dictBuilders.Clear ();
-			try {
-				//List<Exhibition> temp = new List<Exhibition> ();
-				foreach (Builder ex in Whole) {
-					All.Add (ex);
-					dictBuilders.Add (ex.UserId, ex);
+			Device.BeginInvokeOnMainThread (() => {
+				All.Clear ();
+				dictBuilders.Clear ();
+				try {
+					//List<Exhibition> temp = new List<Exhibition> ();
+					foreach (Builder ex in Whole) {
+						All.Add (ex);
+						dictBuilders.Add (ex.UserId, ex);
+					}
+				} catch (Exception err) {
+					Tools.Trace ("Builder PopulateData-Error: " + err.Message);
 				}
-			} catch (Exception err) {
-				Tools.Trace ("Builder PopulateData-Error: " + err.Message);
-			}
+			});
 		}
 
 		static Builder ()
