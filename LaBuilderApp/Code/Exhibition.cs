@@ -71,6 +71,19 @@ namespace LaBuilderApp
 		public ImageSource CountryImage { get { return ImageSource.FromUri (new Uri ($"http://www.r2builders.fr/boris/Content/flags/{countryCode}.png")); } }
 		public string DescriptionLabel { get { return description.Replace ("\\n", "\r\n"); } }
 
+		private ObservableCollection<Builder> allBuilders;
+		public ObservableCollection<Builder> AllBuilder {
+			get {
+				if (allBuilders != null) return allBuilders;
+				allBuilders = new ObservableCollection<Builder> ();
+				if (builderList == null) return allBuilders;
+				foreach (int i in builderList) {
+					allBuilders.Add (Builder.GetById (i));
+				}
+				return allBuilders;
+			}
+		}
+
 		private string dateEvent = string.Empty; public string DateEvent {
 			get {
 				if (dateEvent.Length > 0) return dateEvent;

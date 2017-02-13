@@ -69,6 +69,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="Images\closewindow.png" />
+    <EmbeddedResource Include="Views\PageBuilder.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -122,6 +125,10 @@
     <Compile Include="Code\Builder.cs" />
     <Compile Include="Views\PageAgenda.xaml.cs">
       <DependentUpon>PageAgenda.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Code\AwesomeWrappanel.cs" />
+    <Compile Include="Views\PageBuilder.xaml.cs">
+      <DependentUpon>PageBuilder.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

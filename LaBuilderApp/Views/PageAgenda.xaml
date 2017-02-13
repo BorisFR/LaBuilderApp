@@ -30,6 +30,35 @@
 						<Label Text="Quand a lieu l'événement" FontSize="14" TextColor="Black" BackgroundColor="White" />
 						<Label Text="{Binding Ouverture}" FontSize="14" TextColor="White" />
 						<Label Text="Builder" FontSize="14" TextColor="Black" BackgroundColor="White" />
+						<local:AwesomeWrappanel x:Name="theBuilders" Orientation="Horizontal" Spacing="6" ItemsSource="{Binding AllBuilder}">
+							<local:AwesomeWrappanel.ItemTemplate>
+								<DataTemplate>
+								<Grid WidthRequest="132" HeightRequest="172" Padding="0" RowSpacing="0" ColumnSpacing="0">
+						        <Grid.ColumnDefinitions>
+						            <ColumnDefinition Width="3"/>
+						            <ColumnDefinition Width="3"/>
+						            <ColumnDefinition Width="120"/>
+						            <ColumnDefinition Width="3"/>
+						            <ColumnDefinition Width="3"/>
+						        </Grid.ColumnDefinitions>
+						        <Grid.RowDefinitions>
+						            <RowDefinition Height="3"/>
+						            <RowDefinition Height="3"/>
+						            <RowDefinition Height="120"/>
+						            <RowDefinition Height="40"/>
+						            <RowDefinition Height="3"/>
+						            <RowDefinition Height="3"/>
+						        </Grid.RowDefinitions>
+
+								<BoxView BackgroundColor="#5AA9D3" Grid.Row="0" Grid.RowSpan="6" Grid.Column="0" Grid.ColumnSpan="5" />
+								<BoxView BackgroundColor="White" Grid.Row="1" Grid.RowSpan="4" Grid.Column="1" Grid.ColumnSpan="3" />
+								<Image Source="{Binding AvatarImage}" Aspect="AspectFit" WidthRequest="120" HeightRequest="120" HorizontalOptions="Center" VerticalOptions="Start" Grid.Row="2" Grid.Column="2" />
+								<Label Text="{Binding Username}" FontSize="17" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center" Grid.Row="3" Grid.Column="2" />
+								<Button Text="" BackgroundColor="Transparent" CommandParameter="{Binding UserId}" BorderColor="Transparent" BorderWidth="0" Grid.Row="0" Grid.RowSpan="6" Grid.Column="0" Grid.ColumnSpan="5" Clicked="ButtonClicked" />
+								</Grid>
+								</DataTemplate>
+							</local:AwesomeWrappanel.ItemTemplate>
+						</local:AwesomeWrappanel>
 						<Label Text="Construction" FontSize="14" TextColor="Black" BackgroundColor="White" />
 					</StackLayout>
 					

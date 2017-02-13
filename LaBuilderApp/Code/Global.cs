@@ -42,8 +42,11 @@ namespace LaBuilderApp
 		public static IFiles Files = null;
 
 		public static Random Random;
+		public static Color DarkColor = Color.FromHex ("#11252D");
+		public static Color LightColor = Color.FromHex ("#5AA9D3");
 
 		public static Exhibition SelectedExhibition;
+		public static Builder SelectedBuilder;
 
 		public static async void DoInit (string from)
 		{

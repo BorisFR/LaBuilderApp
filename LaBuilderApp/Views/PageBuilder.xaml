@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="LaBuilderApp.PageBuilder" 
+	xmlns:local="clr-namespace:LaBuilderApp" Padding="{x:Static local:Global.PagePadding}">
+	<ContentPage.Content>
+		<ScrollView Orientation="Vertical" BackgroundColor="#11252D" Padding="6">
+			<StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand">
+				<Grid HorizontalOptions="Fill" ColumnSpacing="0" RowSpacing="0">
+			        <Grid.ColumnDefinitions>
+			            <ColumnDefinition Width="150*"/>
+			            <ColumnDefinition Width="6"/>
+			            <ColumnDefinition Width="40*"/>
+			        </Grid.ColumnDefinitions>
+			        <Grid.RowDefinitions>
+			        	<RowDefinition Height="40" />
+			        	<RowDefinition Height="*" />
+			        </Grid.RowDefinitions>
+					<!-- 1ere ligne -->
+					<local:AppearingText TheText="Builder" HorizontalOptions="Center" />
+					<Image x:Name="imgClose" Source="{local:ImageResource closewindow.png}" HorizontalOptions="End" WidthRequest="32" HeightRequest="32" Grid.Column="2" />
+					<!-- 2nde ligne -->
+
+					<StackLayout Orientation="Vertical" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1">
+						<Label Text="{Binding Username}" FontSize="17" HorizontalOptions="Center" TextColor="White" />
+						<Image Source="{Binding AvatarImage}" Aspect="AspectFit" WidthRequest="120" HeightRequest="120" HorizontalOptions="Center" />
+						<Label Text="{Binding Since, StringFormat='Builder depuis {0}'}}" FontSize="14" TextColor="White" HorizontalOptions="Center" />
+						<StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+							<Label Text="{Binding Location}" FontSize="12" TextColor="White" YAlign="Center" />
+							<Image Source="{Binding CountryImage}" WidthRequest="50" Aspect="AspectFit" HorizontalOptions="EndAndExpand" />
+						</StackLayout>
+						<Label Text="{Binding Interest}" LineBreakMode="WordWrap" FontSize="15" TextColor="White"/>
+						<Label Text="{Binding Occupation}" LineBreakMode="WordWrap" FontSize="15" TextColor="White"/>
+						<Label Text="Communication" FontSize="14" TextColor="Black" BackgroundColor="White" />
+						<Label Text="{Binding Communication}" LineBreakMode="WordWrap" FontSize="15" TextColor="White" />
+						<Label Text="Construction" FontSize="14" TextColor="Black" BackgroundColor="White" />
+					</StackLayout>
+					
+				</Grid>
+			</StackLayout>
+		</ScrollView>
+	</ContentPage.Content>
+</ContentPage>

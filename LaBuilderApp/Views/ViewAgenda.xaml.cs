@@ -22,16 +22,15 @@ namespace LaBuilderApp
 
 			lvExhibition.ItemSelected += (sender, e) => {
 				if (lvExhibition.SelectedItem == null) return;
-				ChooseIsDone (this);
+				ChooseIsDone ();
 			};
 		}
 
-		private async void ChooseIsDone (ViewAgenda instance)
+		private async void ChooseIsDone ()
 		{
 			Global.SelectedExhibition = lvExhibition.SelectedItem as Exhibition;
 			lvExhibition.SelectedItem = null;
 			await Navigation.PushModalAsync (new PageAgenda (), true);
-			//Navigation.PopModalAsync (true);
 		}
 
 	}

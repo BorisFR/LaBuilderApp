@@ -26,7 +26,34 @@ namespace LaBuilderApp
 		private string from; public string From { get { return from; } set { from = value; RaisePropertyChanged (); } }
 
 		public ImageSource AvatarImage { get { return ImageSource.FromUri (new Uri ($"http://www.r2builders.fr/forum/download/file.php?avatar={avatar}")); } }
+		public ImageSource CountryImage { get { return ImageSource.FromUri (new Uri ($"http://www.r2builders.fr/boris/Content/flags/33.png")); } }
 
+		private string communication = string.Empty;
+		public string Communication {
+			get {
+				if (communication.Length > 0) return communication;
+
+				if (website != null && website.Length > 0)
+					communication = $"Site Internet :\n {website}";
+				if (facebook != null && facebook.Length > 0)
+					if (communication.Length > 0)
+						communication = communication + $"\nFacebook :\n https://fb.com/{facebook}";
+					else
+						communication = $"Facebook :\n https://fb.com/{facebook}";
+				if (youtube != null && youtube.Length > 0)
+					if (communication.Length > 0)
+						communication = communication + $"\nChaine youtube :\n https://youtube.com/{youtube}";
+					else
+						communication = $"Chaine youtube :\n https://youtube.com/{youtube}";
+				if (twitter != null && twitter.Length > 0)
+					if (communication.Length > 0)
+						communication = communication + $"\nTwitter : @{twitter}\n https://twitter.com/{twitter}";
+					else
+						communication = $"Twitter : @{twitter}\n https://twitter.com/{twitter}";
+
+				return communication;
+			}
+		}
 		private string since = string.Empty;
 		public string Since {
 			get {
@@ -67,6 +94,14 @@ namespace LaBuilderApp
 			}
 		}
 
+		public static Builder GetById (int id)
+		{
+			if (dictBuilders.ContainsKey (id))
+				return dictBuilders [id];
+			return new Builder () { Username = id.ToString () };
+		}
+
+		private static Dictionary<int, Builder> dictBuilders = new Dictionary<int, Builder> ();
 		public static void PopulateData ()
 		{
 			Tools.Trace ("Builder PopulateData");
@@ -75,6 +110,7 @@ namespace LaBuilderApp
 				//List<Exhibition> temp = new List<Exhibition> ();
 				foreach (Builder ex in Whole) {
 					All.Add (ex);
+					dictBuilders.Add (ex.UserId, ex);
 				}
 			} catch (Exception err) {
 				Tools.Trace ("Builder PopulateData-Error: " + err.Message);

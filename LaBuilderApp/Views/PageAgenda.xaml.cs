@@ -21,5 +21,13 @@ namespace LaBuilderApp
 			this.BindingContext = Global.SelectedExhibition;
 		}
 
+		void ButtonClicked (object sender, EventArgs e)
+		{
+			Button button = sender as Button;
+			int param = (int)button.CommandParameter;
+			Global.SelectedBuilder = Builder.GetById (param);
+			Navigation.PushModalAsync (new PageBuilder (), true);
+		}
+
 	}
 }
