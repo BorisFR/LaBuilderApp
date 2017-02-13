@@ -43,7 +43,7 @@ namespace LaBuilderApp
 					status = false;
 				} else {
 					await Global.Files.SaveFile (fileName, result);
-					CrossSettings.Current.AddOrUpdateValue<DateTime> ($"cache_{fileName}", DateTime.Now);
+					CrossSettings.Current.AddOrUpdateValue<DateTime> ($"cache_{fileName}", DateTime.UtcNow);
 				}
 			}
 			DataRefresh (this, status, result);
@@ -82,7 +82,7 @@ namespace LaBuilderApp
 
 		public DateTime FileDate ()
 		{
-			return CrossSettings.Current.GetValueOrDefault<DateTime> ($"cache_{fileName}", new DateTime (2000, 1, 1));
+			return CrossSettings.Current.GetValueOrDefault<DateTime> ($"cache_{fileName}", new DateTime (2000, 1, 1)).ToUniversalTime ();
 		}
 
 		public void TriggerData (bool status, string result)

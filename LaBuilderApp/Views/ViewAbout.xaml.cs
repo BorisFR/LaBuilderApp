@@ -30,7 +30,7 @@ namespace LaBuilderApp
 			if (!exist)
 				lData.Text = lData.Text + separator + $"File {name}: missing";
 			else
-				lData.Text = lData.Text + separator + $"File {name}: {date.ToString ("F", Global.CultureFrench)}";
+				lData.Text = lData.Text + separator + $"File {name}: {date.ToLocalTime ().ToString ("F", Global.CultureFrench)}";
 		}
 
 		private void LoadInfo ()
