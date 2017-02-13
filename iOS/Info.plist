@@ -79,8 +79,6 @@
 	<string>Afin de découvrir les Builders et leurs robots !</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>Afin de découvrir les Builders et leurs robots !</string>
-	<key>XSLaunchImageAssets</key>
-	<string>Assets.xcassets/LaunchImage-1.launchimage</string>
 	<key>UIStatusBarHidden</key>
 	<true/>
 	<key>UIRequiresFullScreen</key>

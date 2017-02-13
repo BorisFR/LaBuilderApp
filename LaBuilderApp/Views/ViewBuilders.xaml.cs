@@ -19,6 +19,29 @@ namespace LaBuilderApp
 				ChooseIsDone ();
 			};
 
+			lvBuilder.Refreshing += (sender, e) => {
+				IDataServer builders = new IDataServer ("builders");
+				builders.IgnoreLocalData = true;
+				builders.DataRefresh += (obj, status, result) => {
+					IDataServer x = obj as IDataServer;
+					if (status) {
+						Tools.Trace ($"DataRefresh {x.FileName}: {result}");
+						Builder.LoadData (result);
+						Builder.PopulateData ();
+					} else {
+						Tools.Trace ($"DataRefresh ERROR {x.FileName}: {result}");
+					}
+				};
+				DataServer.AddToDo (builders);
+
+				DataServer.QueueEmpty += () => {
+					lvBuilder.EndRefresh ();
+					DataServer.QueueEmpty = null;
+				};
+				DataServer.Launch ();
+
+			};
+
 		}
 
 		private async void ChooseIsDone ()

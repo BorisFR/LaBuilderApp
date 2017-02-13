@@ -24,6 +24,29 @@ namespace LaBuilderApp
 				if (lvExhibition.SelectedItem == null) return;
 				ChooseIsDone ();
 			};
+
+			lvExhibition.Refreshing += (sender, e) => {
+				IDataServer events = new IDataServer ("events");
+				events.IgnoreLocalData = true;
+				events.DataRefresh += (obj, status, result) => {
+					IDataServer x = obj as IDataServer;
+					if (status) {
+						Tools.Trace ($"DataRefresh {x.FileName}: {result}");
+						Exhibition.LoadData (result);
+						Exhibition.PopulateData ();
+					} else {
+						Tools.Trace ($"DataRefresh ERROR {x.FileName}: {result}");
+					}
+				};
+				DataServer.AddToDo (events);
+
+				DataServer.QueueEmpty += () => {
+					lvExhibition.EndRefresh ();
+					DataServer.QueueEmpty = null;
+				};
+				DataServer.Launch ();
+
+			};
 		}
 
 		private async void ChooseIsDone ()

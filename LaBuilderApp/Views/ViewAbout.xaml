@@ -7,6 +7,8 @@
 		<Label x:Name="lApp" FontSize="12" TextColor="White" />
 		<Label Text="Plateforme" FontSize="14" BackgroundColor="White"/>
 		<Label x:Name="lDevice" FontSize="12" TextColor="White"/>
+		<Label Text="Data" FontSize="14" BackgroundColor="White"/>
+		<Label x:Name="lData" FontSize="12" TextColor="White"/>
 		<WebView x:Name="theWebview" VerticalOptions="FillAndExpand" Source="http://www.r2builders.fr/disclaimer.php" WidthRequest="3000" HeightRequest="3000" />
 	</StackLayout>
 	</ContentView.Content>

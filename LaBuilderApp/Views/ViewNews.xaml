@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="LaBuilderApp.ViewNews">
 	<ContentView.Content>
-		<Label Text="Hello" />
+		<ScrollView Orientation="Vertical">
+		<Label TextColor="White" LineBreakMode="WordWrap">
+			<Label.FormattedText>
+				<FormattedString>
+				<Span Text="Bonjour et bienvenue sur l'application des Builders." />
+				<Span Text="&#10;&#10;Cette application permet de connaitre les événements auxquels participent les Builders. Vous avez la liste des événements passés mais aussi à venir. Vous pourrez ainsi aller à la rencontre des Builders." />
+				<Span Text="&#10;Pour chaque événement vous avez un détail complet avec notamment la liste des Builders qui sont présents." />
+				<Span Text="&#10;L’application vous donne également la liste des Builders du club. Pour chaque Builder, vous avez une fiche détaillée présentant le Builder." />
+				<Span Text="&#10;&#10;À venir :" />
+				<Span Text="&#10;Les constructions créées par les Builders et les événements où ils ont été vus ou seront visibles. Parmi ces constructions vous trouverez bien évidemment différentes unités Astromech comme R2-D2 mais vous découvrirez surtout la grande variétés des créations des Builder : cosplay, grenade de proximité, grenade thermique, fusion reactor, ..." />
+				</FormattedString>
+			</Label.FormattedText>
+		</Label>
+		</ScrollView>
 	</ContentView.Content>
 </ContentView>

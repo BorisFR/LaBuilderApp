@@ -13,7 +13,24 @@ namespace LaBuilderApp
 			InitializeComponent ();
 			theWebview.Source = "http://www.r2builders.fr/disclaimer.php";
 			LoadInfo ();
+			InfoData ();
+		}
 
+		private async void InfoData ()
+		{
+			DoFile ("events", "");
+			DoFile ("builders", "\n");
+		}
+
+		private async void DoFile (string name, string separator)
+		{
+			IDataServer obj = new IDataServer (name);
+			bool exist = await obj.FileIsPresent ();
+			DateTime date = obj.FileDate ();
+			if (!exist)
+				lData.Text = lData.Text + separator + $"File {name}: missing";
+			else
+				lData.Text = lData.Text + separator + $"File {name}: {date.ToString ("F", Global.CultureFrench)}";
 		}
 
 		private void LoadInfo ()

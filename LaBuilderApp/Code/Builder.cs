@@ -106,6 +106,7 @@ namespace LaBuilderApp
 		{
 			Tools.Trace ("Builder PopulateData");
 			All.Clear ();
+			dictBuilders.Clear ();
 			try {
 				//List<Exhibition> temp = new List<Exhibition> ();
 				foreach (Builder ex in Whole) {

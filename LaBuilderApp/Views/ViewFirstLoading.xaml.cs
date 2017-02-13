@@ -48,6 +48,7 @@ namespace LaBuilderApp
 
 		private bool ChangeScreen ()
 		{
+			isReady = false;
 			Global.GotoPage (MenuManager.All [0] [0]);
 			return false;
 		}
@@ -93,6 +94,7 @@ namespace LaBuilderApp
 			DataServer.QueueEmpty += () => {
 				AddText ("App is ready");
 				isReady = true;
+				DataServer.QueueEmpty = null;
 			};
 			DataServer.Launch ();
 

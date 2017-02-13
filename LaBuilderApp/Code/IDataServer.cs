@@ -75,6 +75,16 @@ namespace LaBuilderApp
 			return isExist;
 		}
 
+		public async Task<bool> FileIsPresent ()
+		{
+			return await Global.Files.IsExit (fileName);
+		}
+
+		public DateTime FileDate ()
+		{
+			return CrossSettings.Current.GetValueOrDefault<DateTime> ($"cache_{fileName}", new DateTime (2000, 1, 1));
+		}
+
 		public void TriggerData (bool status, string result)
 		{
 			DataRefresh (this, status, result);
