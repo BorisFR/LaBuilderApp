@@ -19,6 +19,19 @@ namespace LaBuilderApp
 				Exhibition.ChangeToYear (Exhibition.CurrentYear + 1);
 				lYear.Text = $"Agenda {Exhibition.CurrentYear.ToString ()}";
 			};
+
+			lvExhibition.ItemSelected += (sender, e) => {
+				if (lvExhibition.SelectedItem == null) return;
+				ChooseIsDone (this);
+			};
+		}
+
+		private async void ChooseIsDone (ViewAgenda instance)
+		{
+			Global.SelectedExhibition = lvExhibition.SelectedItem as Exhibition;
+			lvExhibition.SelectedItem = null;
+			await Navigation.PushModalAsync (new PageAgenda (), true);
+			//Navigation.PopModalAsync (true);
 		}
 
 	}

@@ -65,6 +65,10 @@
     <EmbeddedResource Include="Views\ViewFirstLoading.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\PageAgenda.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\closewindow.png" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -116,6 +120,9 @@
       <DependentUpon>ViewFirstLoading.xaml</DependentUpon>
     </Compile>
     <Compile Include="Code\Builder.cs" />
+    <Compile Include="Views\PageAgenda.xaml.cs">
+      <DependentUpon>PageAgenda.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="project.json" />

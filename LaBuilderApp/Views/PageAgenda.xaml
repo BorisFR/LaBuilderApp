@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="LaBuilderApp.PageAgenda" 
+	xmlns:local="clr-namespace:LaBuilderApp" Padding="{x:Static local:Global.PagePadding}">
+	<ContentPage.Content>
+		<ScrollView Orientation="Vertical" BackgroundColor="#11252D" Padding="6">
+			<StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand">
+				<Grid HorizontalOptions="Fill" ColumnSpacing="0" RowSpacing="0">
+			        <Grid.ColumnDefinitions>
+			            <ColumnDefinition Width="150*"/>
+			            <ColumnDefinition Width="6"/>
+			            <ColumnDefinition Width="40*"/>
+			        </Grid.ColumnDefinitions>
+			        <Grid.RowDefinitions>
+			        	<RowDefinition Height="40" />
+			        	<RowDefinition Height="*" />
+			        </Grid.RowDefinitions>
+					<!-- 1ere ligne -->
+					<local:AppearingText TheText="Evenement" HorizontalOptions="Center" />
+					<Image x:Name="imgClose" Source="{local:ImageResource closewindow.png}" HorizontalOptions="End" WidthRequest="32" HeightRequest="32" Grid.Column="2" />
+					<!-- 2nde ligne -->
+
+					<StackLayout Orientation="Vertical" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1">
+						<Label Text="{Binding Title}" FontSize="17" HorizontalOptions="Center" TextColor="White" />
+						<Image Source="{Binding LogoImage}" HorizontalOptions="Center" />
+						<StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+							<Label Text="{Binding Location}" FontSize="12" TextColor="White" YAlign="Center" />
+							<Image Source="{Binding CountryImage}" WidthRequest="50" Aspect="AspectFit" HorizontalOptions="EndAndExpand" />
+						</StackLayout>
+						<Label Text="{Binding DescriptionLabel}" LineBreakMode="WordWrap" FontSize="15" TextColor="White" HorizontalOptions="Center" />
+						<Label Text="Quand a lieu l'événement" FontSize="14" TextColor="Black" BackgroundColor="White" />
+						<Label Text="{Binding Ouverture}" FontSize="14" TextColor="White" />
+						<Label Text="Builder" FontSize="14" TextColor="Black" BackgroundColor="White" />
+						<Label Text="Construction" FontSize="14" TextColor="Black" BackgroundColor="White" />
+					</StackLayout>
+					
+				</Grid>
+			</StackLayout>
+		</ScrollView>
+	</ContentPage.Content>
+</ContentPage>

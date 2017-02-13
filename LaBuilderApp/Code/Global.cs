@@ -43,6 +43,8 @@ namespace LaBuilderApp
 
 		public static Random Random;
 
+		public static Exhibition SelectedExhibition;
+
 		public static async void DoInit (string from)
 		{
 			if (Files != null) {

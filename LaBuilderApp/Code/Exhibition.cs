@@ -67,6 +67,9 @@ namespace LaBuilderApp
 		private bool publicView; public bool PublicView { get { return publicView; } set { publicView = value; RaisePropertyChanged (); } }
 
 		public ImageSource LogoImage { get { return ImageSource.FromUri (new Uri ($"http://www.r2builders.fr/boris/data/images/events/{logo}")); } }
+		public ImageSource FlyerImage { get { return ImageSource.FromUri (new Uri ($"http://www.r2builders.fr/boris/data/images/flyer/{flyer}")); } }
+		public ImageSource CountryImage { get { return ImageSource.FromUri (new Uri ($"http://www.r2builders.fr/boris/Content/flags/{countryCode}.png")); } }
+		public string DescriptionLabel { get { return description.Replace ("\\n", "\r\n"); } }
 
 		private string dateEvent = string.Empty; public string DateEvent {
 			get {
@@ -81,6 +84,14 @@ namespace LaBuilderApp
 				if (hourEvent.Length > 0) return hourEvent;
 				populateComplementData ();
 				return hourEvent;
+			}
+		}
+
+		public string Ouverture {
+			get {
+				if (hourEvent.Length > 0)
+					return dateEvent + '\n' + hourEvent;
+				return dateEvent;
 			}
 		}
 
@@ -126,13 +137,15 @@ namespace LaBuilderApp
 								}
 							}
 						}
-						if (OpenHourList.Count () == 1 && hourEvent.Length > 0)
+						if (OpenHourList.Count () == 1 && hourEvent.Length > 0) {
 							dateEvent = hourEvent;
+							hourEvent = string.Empty;
+						}
 					}
 				} catch (Exception err) {
 					Tools.Trace ("populateComplementData-Error hour: " + err.Message);
 				}
-				if (dateEvent.Length == 0) dateEvent = hourEvent;
+				if (dateEvent.Length == 0) { dateEvent = hourEvent; hourEvent = string.Empty; }
 
 				if (StartDate.date == null && OpenHourList == null) {
 					yearEvent = currentYear;

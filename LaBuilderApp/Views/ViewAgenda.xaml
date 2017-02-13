@@ -6,7 +6,7 @@
 		<StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" HeightRequest="50">
 			<Button x:Name="btPreviousYear" Text="&lt;" FontSize="20" FontAttributes="Bold" Margin="0" HeightRequest="50" WidthRequest="30" BackgroundColor="Transparent" TextColor="#5AA9D3" HorizontalOptions="Center" VerticalOptions="Center" BorderWidth="0" />
 			<StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
-				<Label x:Name="lYear" Text="Agenda 2017" FontSize="16" TextColor="#5AA9D3" VerticalTextAlignment="Center" />
+				<Label x:Name="lYear" Text="Agenda 2017" FontSize="16" TextColor="#5AA9D3" VerticalTextAlignment="Center" YAlign="Center" />
 			</StackLayout>
 			<StackLayout Orientation="Horizontal" HorizontalOptions="End">
 				<Button x:Name="btNextYear" Text="&gt;" FontSize="20" FontAttributes="Bold" Margin="0" HeightRequest="50" WidthRequest="30" BackgroundColor="Transparent" TextColor="#5AA9D3" HorizontalOptions="Center" VerticalOptions="Center" BorderWidth="0" />
