@@ -39,8 +39,9 @@ namespace LaBuilderApp
 			Tools.DoneBatch -= DoneBatch;
 			isExistAlreadyTest = false;
 			if (status) { // on sauvegarde en cache
-				if (result.Equals ("{\"state\":false}")) { // pas d'erreur de transfert, mais pas de bonnes data récupérées
+				if (result.StartsWith ("{\"state\":false")) { // pas d'erreur de transfert, mais pas de bonnes data récupérées
 					status = false;
+					Tools.Trace ($"Data error: {result}");
 				} else {
 					await Global.Files.SaveFile (fileName, result);
 					CrossSettings.Current.AddOrUpdateValue<DateTime> ($"cache_{fileName}", DateTime.UtcNow);

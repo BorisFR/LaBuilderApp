@@ -144,7 +144,8 @@ namespace LaBuilderApp
 						bg.Add (b);
 						//All.Add (b);
 					}
-					AllGroup.Add (bg);
+					if (bg != null)
+						AllGroup.Add (bg);
 				} catch (Exception err) {
 					Tools.Trace ("Builder PopulateData-Error: " + err.Message);
 				}

@@ -120,7 +120,7 @@ namespace LaBuilderApp
 			}
 		}
 
-		private string monthEvent = "?";
+		private string monthEvent = "*** sans date";
 		public string MonthEvent {
 			get {
 				return monthEvent;
@@ -228,7 +228,8 @@ namespace LaBuilderApp
 							//All.Add (ex);
 						}
 					}
-					AllGroup.Add (eg);
+					if (eg != null)
+						AllGroup.Add (eg);
 					Tools.Trace ("ChangeToYear done.");
 				} catch (Exception err) {
 					Tools.Trace ("ChangeToYear-Error: " + err.Message);

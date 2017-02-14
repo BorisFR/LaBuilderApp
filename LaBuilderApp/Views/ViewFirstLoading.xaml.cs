@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
+using Plugin.Settings;
 using Xamarin.Forms;
 
 namespace LaBuilderApp
@@ -55,6 +57,29 @@ namespace LaBuilderApp
 
 		private void LoadAll ()
 		{
+			if (Global.CurrentToken.Length > 0) {
+				IDataServer login = new IDataServer ("login");
+				login.IgnoreLocalData = true;
+				login.DataRefresh += (obj, status, result) => {
+					IDataServer x = obj as IDataServer;
+					if (status) {
+						Tools.Trace ($"DataRefresh {x.FileName}: {result}");
+						// extraire le token
+						try {
+							Login l = JsonConvert.DeserializeObject<Login> (result);
+							Global.CurrentBuilderId = l.UserId;
+							Global.CurrentToken = l.Token;
+							CrossSettings.Current.AddOrUpdateValue<string> ("usertoken", Global.CurrentToken);
+						} catch (Exception err) {
+							Tools.Trace ($"DataRefresh ERROR {x.FileName}: {err.Message}");
+						}
+					} else {
+						Tools.Trace ($"DataRefresh ERROR {x.FileName}: {result}");
+					}
+				};
+				DataServer.AddToDo (login);
+			}
+
 			IDataServer events = new IDataServer ("events");
 			//events.IgnoreLocalData = true;
 			events.StartWorking += () => {

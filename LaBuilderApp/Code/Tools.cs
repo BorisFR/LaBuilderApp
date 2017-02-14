@@ -38,6 +38,10 @@ namespace LaBuilderApp
 			bool status = false;
 			try {
 				string url = string.Format ($"{Global.BaseUrl}boris/getData.php?data={fileName}");
+				if (Global.CurrentToken.Length > 0)
+					url = string.Format ($"{Global.BaseUrl}boris/getData.php?data={fileName}&token={Global.CurrentToken}");
+				if (fileName == "login")
+					url = string.Format ($"{Global.BaseUrl}boris/dologin.php?login={Global.CurrentLogin}&password={Global.CurrentPassword}");
 				Trace ("Url: " + url);
 				result = await theHttpClient.GetStringAsync (url);
 				status = true;

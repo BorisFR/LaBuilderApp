@@ -11,6 +11,11 @@ namespace LaBuilderApp
 			if (!CrossAppInfo.Current.DisplayName.Equals ("XamarinFormsPreviewer"))
 				lvExhibition.ItemsSource = Exhibition.AllGroup;
 
+			if (Exhibition.AllGroup.Count == 0) {
+				lvExhibition.IsRefreshing = true;
+				DoRefresh ();
+			}
+
 			btPreviousYear.Clicked += (sender, e) => {
 				Exhibition.ChangeToYear (Exhibition.CurrentYear - 1);
 				lYear.Text = $"Agenda {Exhibition.CurrentYear.ToString ()}";
@@ -26,27 +31,31 @@ namespace LaBuilderApp
 			};
 
 			lvExhibition.Refreshing += (sender, e) => {
-				IDataServer events = new IDataServer ("events");
-				events.IgnoreLocalData = true;
-				events.DataRefresh += (obj, status, result) => {
-					IDataServer x = obj as IDataServer;
-					if (status) {
-						Tools.Trace ($"DataRefresh {x.FileName}: {result}");
-						Exhibition.LoadData (result);
-						Exhibition.PopulateData ();
-					} else {
-						Tools.Trace ($"DataRefresh ERROR {x.FileName}: {result}");
-					}
-				};
-				DataServer.AddToDo (events);
-
-				DataServer.QueueEmpty += () => {
-					lvExhibition.EndRefresh ();
-					DataServer.QueueEmpty = null;
-				};
-				DataServer.Launch ();
-
+				DoRefresh ();
 			};
+		}
+
+		private void DoRefresh ()
+		{
+			IDataServer events = new IDataServer ("events");
+			events.IgnoreLocalData = true;
+			events.DataRefresh += (obj, status, result) => {
+				IDataServer x = obj as IDataServer;
+				if (status) {
+					Tools.Trace ($"DataRefresh {x.FileName}: {result}");
+					Exhibition.LoadData (result);
+					Exhibition.PopulateData ();
+				} else {
+					Tools.Trace ($"DataRefresh ERROR {x.FileName}: {result}");
+				}
+			};
+			DataServer.AddToDo (events);
+
+			DataServer.QueueEmpty += () => {
+				lvExhibition.EndRefresh ();
+				DataServer.QueueEmpty = null;
+			};
+			DataServer.Launch ();
 		}
 
 		private async void ChooseIsDone ()

@@ -138,6 +138,7 @@
     <Compile Include="Views\ViewConnect.xaml.cs">
       <DependentUpon>ViewConnect.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Code\Login.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="project.json" />

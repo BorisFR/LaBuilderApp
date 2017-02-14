@@ -3,12 +3,13 @@
 	BackgroundColor="Transparent">
 	<ContentView.Content>
 	<ScrollView Orientation="Vertical">
-		<StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" Spacing="0" BackgroundColor="Gray">
+		<StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" Spacing="0">
 			<StackLayout x:Name="toLogin" Orientation="Vertical" Spacing="0">
 				<Label Text="Ceci est uniquement à destination des Builders !" TextColor="White" />
 				<BoxView HeightRequest="20" BackgroundColor="Transparent" />
 				<Label Text="Utilisez votre compte du forum r2builders.fr" TextColor="White" />
 				<BoxView HeightRequest="20" BackgroundColor="Transparent" />
+				<Label x:Name="lError" Text="" TextColor="Red"/>
 				<Label Text="Identifiant" TextColor="White"/>
 				<Entry x:Name="eLogin" Keyboard="Text" Placeholder="identifiant du forum" />
 				<Label Text="Mot de passe" TextColor="White"/>

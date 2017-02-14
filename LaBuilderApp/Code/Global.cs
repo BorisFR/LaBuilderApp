@@ -2,6 +2,7 @@
 using Xamarin.Forms;
 using System.Net;
 using System.Globalization;
+using Plugin.Settings;
 
 namespace LaBuilderApp
 {
@@ -62,18 +63,9 @@ namespace LaBuilderApp
 			}
 			Files = DependencyService.Get<IFiles> ();
 			Random = new Random (DateTime.Now.Millisecond);
-			/*
-			IDataServer events = new IDataServer ("events");
-			//events.IgnoreLocalData = true;
-			events.DataRefresh += (status, result) => {
-				Tools.Trace ("DataRefresh: " + result);
-				//Exhibition.All = Exhibition.LoadData (result);
-				Exhibition.LoadData (result);
-				Exhibition.PopulateData ();
-			};
-			DataServer.AddToDo (events);
-
-			DataServer.Launch ();*/
+			CurrentLogin = CrossSettings.Current.GetValueOrDefault<string> ("userlogin", string.Empty);
+			CurrentPassword = CrossSettings.Current.GetValueOrDefault<string> ("userpassword", string.Empty);
+			CurrentToken = CrossSettings.Current.GetValueOrDefault<string> ("usertoken", string.Empty);
 			MenuManager.Refresh ();
 			Tools.Trace ($"> {from}: Global.DoInit() done.");
 		}
