@@ -12,7 +12,7 @@
 				<Button x:Name="btNextYear" Text="&gt;" FontSize="20" FontAttributes="Bold" Margin="0" HeightRequest="50" WidthRequest="30" BackgroundColor="Transparent" TextColor="#5AA9D3" HorizontalOptions="Center" VerticalOptions="Center" BorderWidth="0" />
 			</StackLayout>
 		</StackLayout>
-		<ListView x:Name="lvExhibition" ItemsSource="{x:Static local:Exhibition.DesignData}" HasUnevenRows="true" IsGroupingEnabled="true" IsPullToRefreshEnabled="true" BackgroundColor="Black" SeparatorColor="Transparent" >
+		<ListView x:Name="lvExhibition" ItemsSource="{x:Static local:Exhibition.DesignData}" HasUnevenRows="true" IsGroupingEnabled="true" IsPullToRefreshEnabled="true" BackgroundColor="Black" SeparatorVisibility="None" >
 			<ListView.GroupHeaderTemplate>
 				<DataTemplate>
 					<ViewCell Height="20">

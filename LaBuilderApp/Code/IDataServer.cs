@@ -90,5 +90,13 @@ namespace LaBuilderApp
 			DataRefresh (this, status, result);
 		}
 
+
+		public static async void ClearData (string fileName)
+		{
+			if (await Global.Files.IsExit (fileName)) {
+				await Global.Files.DeleteFile (fileName);
+				CrossSettings.Current.Remove ($"cache_{fileName}");
+			}
+		}
 	}
 }

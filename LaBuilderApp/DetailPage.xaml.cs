@@ -55,6 +55,10 @@ namespace LaBuilderApp
 				theFrame.Content = null;
 				theFrame.Content = new ViewAbout ();
 				break;
+			case MyPage.Connect:
+				theFrame.Content = null;
+				theFrame.Content = new ViewConnect ();
+				break;
 				/*			
 							case MyPage.Account:
 								theFrame.Content = null;

@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using Xamarin.Forms;
 using System.Runtime.CompilerServices;
+using Plugin.AppInfo;
 
 namespace LaBuilderApp
 {
@@ -40,6 +41,8 @@ namespace LaBuilderApp
 				}
 				if (Device.OS == TargetPlatform.Windows)
 					return ImageSource.FromResource (string.Format ("LaBuilderApp.Win.Images.menu_{0}.png", Icon));
+				if (CrossAppInfo.Current.DisplayName.Equals ("XamarinFormsPreviewer"))
+					return ImageSource.FromResource (string.Format ("XamarinFormsPreviewer.Images.menu_{0}.png", Icon));
 				return ImageSource.FromResource (string.Format ("LaBuilderApp.Images.menu_{0}.png", Icon));
 			}
 		}

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="LaBuilderApp.ViewConnect" 
+	BackgroundColor="Transparent">
+	<ContentView.Content>
+	<ScrollView Orientation="Vertical">
+		<StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" Spacing="0" BackgroundColor="Gray">
+			<StackLayout x:Name="toLogin" Orientation="Vertical" Spacing="0">
+				<Label Text="Ceci est uniquement à destination des Builders !" TextColor="White" />
+				<BoxView HeightRequest="20" BackgroundColor="Transparent" />
+				<Label Text="Utilisez votre compte du forum r2builders.fr" TextColor="White" />
+				<BoxView HeightRequest="20" BackgroundColor="Transparent" />
+				<Label Text="Identifiant" TextColor="White"/>
+				<Entry x:Name="eLogin" Keyboard="Text" Placeholder="identifiant du forum" />
+				<Label Text="Mot de passe" TextColor="White"/>
+				<Entry x:Name="ePassword" IsPassword="true" Placeholder="mot de passe du forum" />
+				<Button x:Name="btLogin" Text="Se connecter" />
+			</StackLayout>
+			<StackLayout x:Name="toCheck" Orientation="Vertical" Spacing="0">
+				<Label Text="Authentification en cours..." TextColor="White" />
+			</StackLayout>
+			<StackLayout x:Name="toOut" Orientation="Vertical" Spacing="0">
+				<Label Text="Vous êtes connecté." TextColor="White" />
+				<Label x:Name="lCompte" Text="compte" TextColor="White" />
+				<Button x:Name="btOut" Text="Se déconnecter" />					
+			</StackLayout>
+		</StackLayout>
+	</ScrollView>
+	</ContentView.Content>
+</ContentView>

@@ -48,7 +48,7 @@ namespace LaBuilderApp
 				Page = MyPage.Events,
 				Title = T ("L'Agenda"),
 				Detail = T ("Les R2 Builders en balade"),
-				Icon = "events"
+				Icon = "planner"
 			});
 			mg.Add (new Menu () {
 				Page = MyPage.Builders,
@@ -93,6 +93,16 @@ namespace LaBuilderApp
 			//mg.Add (new Menu (){ Page = MyPage.None, Title = "Aide", 				Detail = "Comment fonctionne l'application", Icon = "IA" });
 			*/
 			All.Add (mg);
+
+			mg = new MenuGroup (T ("Builder"));
+			mg.Add (new Menu () {
+				Page = MyPage.Connect,
+				Title = T ("Se connecter"),
+				Detail = T ("Privilège des Builders..."),
+				Icon = "login"
+			});
+			All.Add (mg);
+
 
 			/*
 			if (Global.IsConnected) {

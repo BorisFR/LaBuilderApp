@@ -2,7 +2,7 @@
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="LaBuilderApp.ViewAbout"
 	BackgroundColor="Transparent">
 	<ContentView.Content>
-	<StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
+	<StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" Spacing="0">
 		<Label Text="Application" FontSize="14" BackgroundColor="White"/>
 		<Label x:Name="lApp" FontSize="12" TextColor="White" />
 		<Label Text="Plateforme" FontSize="14" BackgroundColor="White"/>

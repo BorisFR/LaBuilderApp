@@ -9,9 +9,9 @@
 			<ListView x:Name="theList" ItemsSource="{x:Static local:MenuManager.All}" HasUnevenRows="true" IsGroupingEnabled="true" SeparatorVisibility="None" VerticalOptions="Fill" BackgroundColor="White" Margin="0,0,12,0">
 				<ListView.GroupHeaderTemplate>
 					<DataTemplate>
-						<ViewCell Height="17">
+						<ViewCell Height="22">
 							<StackLayout Orientation="Vertical" Spacing="0" BackgroundColor="White" Padding="0,0,0,0">
-								<Label Text="{Binding Title}" Font="Bold" FontSize="17" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" />
+								<Label Text="{Binding Title}" Font="Bold" FontSize="17" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center" />
 							</StackLayout>
 						</ViewCell>
 					</DataTemplate>
@@ -29,8 +29,8 @@
 						        	<RowDefinition Height="20" />
 						        </Grid.RowDefinitions>
 						        <Image Source="{Binding Image}" WidthRequest="55" HeightRequest="55" Aspect="AspectFit" Grid.RowSpan="2" />
-						        <Label Text="{Binding Title}" Font="Bold" FontSize="17" TextColor="Black" Grid.Column="1" />
-						        <Label Text="{Binding Detail}" FontSize="14" TextColor="Black" Grid.Column="1" Grid.Row="1" />
+						        <Label Text="{Binding Title}" Font="Bold" FontSize="17" YAlign="Center" TextColor="Black" Grid.Column="1" />
+						        <Label Text="{Binding Detail}" FontSize="14" YAlign="Center" TextColor="Black" Grid.Column="1" Grid.Row="1" />
 			        		</Grid>
 			        	</ViewCell>
 			        </DataTemplate>

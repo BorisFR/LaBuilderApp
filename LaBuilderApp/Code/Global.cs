@@ -17,7 +17,8 @@ namespace LaBuilderApp
 		AdminUsers,
 		AdminBuilders,
 		MyExhibitions,
-		About
+		About,
+		Connect
 	}
 
 	public delegate void Trigger ();
@@ -47,6 +48,11 @@ namespace LaBuilderApp
 
 		public static Exhibition SelectedExhibition;
 		public static Builder SelectedBuilder;
+
+		public static string CurrentLogin = string.Empty;
+		public static string CurrentPassword = string.Empty;
+		public static string CurrentToken = string.Empty;
+		public static int CurrentBuilderId = 0;
 
 		public static async void DoInit (string from)
 		{

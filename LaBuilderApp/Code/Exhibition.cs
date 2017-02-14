@@ -236,6 +236,14 @@ namespace LaBuilderApp
 			});
 		}
 
+		public static void ClearData ()
+		{
+			IDataServer.ClearData ("events");
+			AllGroup.Clear ();
+			Whole.Clear ();
+			ChangeToYear (0);
+		}
+
 		public static void PopulateData ()
 		{
 			Tools.Trace ("Exhibition PopulateData");
