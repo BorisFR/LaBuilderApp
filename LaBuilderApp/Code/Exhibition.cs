@@ -31,6 +31,18 @@ namespace LaBuilderApp
 		public PhpDateTime EndHour;
 	}
 
+	public class ExhibitionGroup : ObservableCollection<Exhibition>
+	{
+
+		public ExhibitionGroup (string title)
+		{
+			Title = title;
+		}
+
+		public string Title { get; private set; }
+
+	}
+
 
 	public class Exhibition : CModel<Exhibition>
 	{
@@ -108,6 +120,13 @@ namespace LaBuilderApp
 			}
 		}
 
+		private string monthEvent = "?";
+		public string MonthEvent {
+			get {
+				return monthEvent;
+			}
+		}
+
 		private int yearEvent = 0; public int YearEvent {
 			get {
 				if (yearEvent > 0) return yearEvent;
@@ -124,6 +143,7 @@ namespace LaBuilderApp
 				try {
 					if (StartDate.date != null) { // on a une date de début
 						yearEvent = StartDate.Date.Year;
+						monthEvent = StartDate.Date.ToString ("MMMMM", Global.CultureFrench);
 
 						if ((EndDate.date == null) || (StartDate.Date == EndDate.Date)) { // sur 1 seule journée
 							dateEvent = $"Le {StartDate.Date.ToString ("dddd dd MMMMM yyyy", Global.CultureFrench)}";
@@ -145,6 +165,7 @@ namespace LaBuilderApp
 							if (oh.EndHour == null) oh.EndHour = new PhpDateTime ();
 							if (oh.StartHour.date != null) {
 								yearEvent = oh.StartHour.Date.Year;
+								monthEvent = StartDate.Date.ToString ("MMMMM", Global.CultureFrench);
 								if (oh.EndHour.date != null) {
 									hourEvent = $"le {oh.StartHour.Date.ToString ("dddd dd MMMMM", Global.CultureFrench)} de {oh.StartHour.Date.ToString ("HH:mm", Global.CultureFrench)} à {oh.EndHour.Date.ToString ("HH:mm", Global.CultureFrench)}";
 								}
@@ -176,6 +197,8 @@ namespace LaBuilderApp
 		// GLOBAL STATIC functions
 		// ***********************
 
+		public static ObservableCollection<ExhibitionGroup> AllGroup = new ObservableCollection<ExhibitionGroup> ();
+
 		private static int currentYear = 0;
 		public static int CurrentYear { get { return currentYear; } }
 
@@ -185,16 +208,27 @@ namespace LaBuilderApp
 			if (currentYear == year) return;
 			currentYear = year;
 			Device.BeginInvokeOnMainThread (() => {
-				All.Clear ();
+				//All.Clear ();
+				AllGroup.Clear ();
+				ExhibitionGroup eg = null;
 				try {
 					//List<Exhibition> temp = new List<Exhibition> ();
 					foreach (Exhibition ex in Whole) {
 						if (ex.YearEvent == year) {
 							//temp.Add (ex);
-							All.Add (ex);
+							if (eg == null) {
+								eg = new ExhibitionGroup (ex.MonthEvent);
+							} else {
+								if (ex.MonthEvent != eg.Title) {
+									AllGroup.Add (eg);
+									eg = new ExhibitionGroup (ex.MonthEvent);
+								}
+							}
+							eg.Add (ex);
+							//All.Add (ex);
 						}
 					}
-					//All.;
+					AllGroup.Add (eg);
 					Tools.Trace ("ChangeToYear done.");
 				} catch (Exception err) {
 					Tools.Trace ("ChangeToYear-Error: " + err.Message);
@@ -220,7 +254,9 @@ namespace LaBuilderApp
 			//All = new ObservableCollection<Exhibition> ();
 			//try {
 			// DATA de démo pour la conception.
-			List<Exhibition> temp = new List<Exhibition> ();
+			List<ExhibitionGroup> leg = new List<ExhibitionGroup> ();
+			ExhibitionGroup eg = new ExhibitionGroup ("janvier");
+			//List<Exhibition> temp = new List<Exhibition> ();
 			Exhibition ex = new Exhibition ();
 			ex.BuilderCode = 2634;
 			ex.CountryCode = 33;
@@ -230,7 +266,8 @@ namespace LaBuilderApp
 			ex.Location = "Lille";
 			ex.PublicView = true;
 			ex.Title = "Démonstration 1";
-			temp.Add (ex);
+			//temp.Add (ex);
+			eg.Add (ex);
 			//All.Add (ex);
 			ex = new Exhibition ();
 			ex.BuilderCode = 2634;
@@ -243,17 +280,19 @@ namespace LaBuilderApp
 			ex.Location = "Paris";
 			ex.PublicView = true;
 			ex.Title = "Démonstration 2";
-			temp.Add (ex);
+			//temp.Add (ex);
+			eg.Add (ex);
+			leg.Add (eg);
 			//All.Add (ex);
 			//All = temp;
-			DesignData = temp;
+			DesignData = leg;
 			//PopulateData ();
 			//} catch (Exception err) {
 			//	Tools.Trace ("Exhibition-Error: " + err.Message);
 			//}
 		}
 
-		public static IEnumerable<Exhibition> DesignData { get; set; }
+		public static IEnumerable<ExhibitionGroup> DesignData { get; set; }
 
 
 	}

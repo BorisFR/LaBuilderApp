@@ -9,7 +9,7 @@ namespace LaBuilderApp
 		{
 			InitializeComponent ();
 			if (!CrossAppInfo.Current.DisplayName.Equals ("XamarinFormsPreviewer"))
-				lvExhibition.ItemsSource = Exhibition.All;
+				lvExhibition.ItemsSource = Exhibition.AllGroup;
 
 			btPreviousYear.Clicked += (sender, e) => {
 				Exhibition.ChangeToYear (Exhibition.CurrentYear - 1);

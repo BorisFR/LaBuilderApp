@@ -1,11 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Plugin.AppInfo;
 using Xamarin.Forms;
 
 namespace LaBuilderApp
 {
-	public class Builder : CModel<Builder>
+	public class BuilderGroup : ObservableCollection<Builder>
+	{
+
+		public BuilderGroup (string title)
+		{
+			Title = title;
+		}
+
+		public string Title { get; private set; }
+
+	}
+
+	public class Builder : CModel<Builder>, IComparable<Builder>
 	{
 
 		// {"username":"Boris","avatar":"2634_1366807872.gif","userId":2634,"groupId":9,"location":"Villeneuve d'Ascq, Lille, Nord, France",
@@ -106,34 +119,64 @@ namespace LaBuilderApp
 		{
 			Tools.Trace ("Builder PopulateData");
 			Device.BeginInvokeOnMainThread (() => {
-				All.Clear ();
+				//All.Clear ();
+				AllGroup.Clear ();
+				List<Builder> list = new List<Builder> ();
 				dictBuilders.Clear ();
 				try {
 					//List<Exhibition> temp = new List<Exhibition> ();
 					foreach (Builder ex in Whole) {
-						All.Add (ex);
+						//All.Add (ex);
 						dictBuilders.Add (ex.UserId, ex);
+						list.Add (ex);
 					}
+					list.Sort ();
+					BuilderGroup bg = null;
+					foreach (Builder b in list) {
+						if (bg == null) {
+							bg = new BuilderGroup (b.Username.Substring (0, 1).ToLower ());
+						} else {
+							if (b.Username.Substring (0, 1).ToLower () != bg.Title) {
+								AllGroup.Add (bg);
+								bg = new BuilderGroup (b.Username.Substring (0, 1).ToLower ());
+							}
+						}
+						bg.Add (b);
+						//All.Add (b);
+					}
+					AllGroup.Add (bg);
 				} catch (Exception err) {
 					Tools.Trace ("Builder PopulateData-Error: " + err.Message);
 				}
+
 			});
 		}
+
+		int IComparable<Builder>.CompareTo (Builder other)
+		{
+			return -other.Username.ToLower ().CompareTo (this.Username.ToLower ());
+		}
+
+		public static ObservableCollection<BuilderGroup> AllGroup = new ObservableCollection<BuilderGroup> ();
 
 		static Builder ()
 		{
 			if (!CrossAppInfo.Current.DisplayName.Equals ("XamarinFormsPreviewer")) return;
 			Tools.Trace ("Builder class");
-			List<Builder> temp = new List<Builder> ();
+			List<BuilderGroup> lbg = new List<BuilderGroup> ();
+			BuilderGroup bg = new BuilderGroup ("a");
+			//List<Builder> temp = new List<Builder> ();
 			Builder b = new Builder ();
 			b.Username = "Demo";
 			b.Avatar = "2634_1366807872.gif";
 			b.From = "20130224";
-			temp.Add (b);
-			DesignData = temp;
+			//temp.Add (b);
+			bg.Add (b);
+			lbg.Add (bg);
+			DesignData = lbg; // temp;
 		}
 
-		public static IEnumerable<Builder> DesignData { get; set; }
+		public static IEnumerable<BuilderGroup> DesignData { get; set; }
 
 	}
 }

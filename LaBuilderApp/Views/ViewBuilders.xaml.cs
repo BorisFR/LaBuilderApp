@@ -12,7 +12,7 @@ namespace LaBuilderApp
 			InitializeComponent ();
 
 			if (!CrossAppInfo.Current.DisplayName.Equals ("XamarinFormsPreviewer"))
-				lvBuilder.ItemsSource = Builder.All;
+				lvBuilder.ItemsSource = Builder.AllGroup;
 
 			lvBuilder.ItemSelected += (sender, e) => {
 				if (lvBuilder.SelectedItem == null) return;
