@@ -11,20 +11,26 @@ namespace LaBuilderApp
 		public ViewMedia ()
 		{
 			InitializeComponent ();
-			btReload.IsVisible = false;
+			Device.BeginInvokeOnMainThread (() => {
+				btReload.IsVisible = false;
+			});
 
 			theWebview.Navigating += (sender, e) => {
-				if (gotoHome) {
-					btReload.IsVisible = false;
-					gotoHome = false;
-				} else {
-					btReload.IsVisible = true;
-				}
+				Device.BeginInvokeOnMainThread (() => {
+					if (gotoHome) {
+						btReload.IsVisible = false;
+						gotoHome = false;
+					} else {
+						btReload.IsVisible = true;
+					}
+				});
 			};
 
 			btReload.Clicked += (sender, e) => {
 				gotoHome = true;
-				theWebview.Source = "http://www.r2builders.fr/boris/medias.php";
+				Device.BeginInvokeOnMainThread (() => {
+					theWebview.Source = "http://www.r2builders.fr/boris/medias.php";
+				});
 			};
 		}
 

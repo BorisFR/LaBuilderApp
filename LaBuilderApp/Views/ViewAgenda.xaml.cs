@@ -8,30 +8,43 @@ namespace LaBuilderApp
 		public ViewAgenda ()
 		{
 			InitializeComponent ();
-			if (!CrossAppInfo.Current.DisplayName.Equals ("XamarinFormsPreviewer"))
-				lvExhibition.ItemsSource = Exhibition.AllGroup;
+			if (!CrossAppInfo.Current.DisplayName.Equals ("XamarinFormsPreviewer")) {
+				Device.BeginInvokeOnMainThread (() => {
+					lvExhibition.ItemsSource = Exhibition.AllGroup;
+				});
+			}
 
 			if (Exhibition.AllGroup.Count == 0) {
-				lvExhibition.IsRefreshing = true;
-				DoRefresh ();
+				Device.BeginInvokeOnMainThread (() => {
+					lvExhibition.IsRefreshing = true;
+					DoRefresh ();
+				});
 			}
 
 			btPreviousYear.Clicked += (sender, e) => {
-				Exhibition.ChangeToYear (Exhibition.CurrentYear - 1);
-				lYear.Text = $"Agenda {Exhibition.CurrentYear.ToString ()}";
+				Device.BeginInvokeOnMainThread (() => {
+					Exhibition.ChangeToYear (Exhibition.CurrentYear - 1);
+					lYear.Text = $"Agenda {Exhibition.CurrentYear.ToString ()}";
+				});
 			};
 			btNextYear.Clicked += (sender, e) => {
-				Exhibition.ChangeToYear (Exhibition.CurrentYear + 1);
-				lYear.Text = $"Agenda {Exhibition.CurrentYear.ToString ()}";
+				Device.BeginInvokeOnMainThread (() => {
+					Exhibition.ChangeToYear (Exhibition.CurrentYear + 1);
+					lYear.Text = $"Agenda {Exhibition.CurrentYear.ToString ()}";
+				});
 			};
 
 			lvExhibition.ItemSelected += (sender, e) => {
-				if (lvExhibition.SelectedItem == null) return;
-				ChooseIsDone ();
+				Device.BeginInvokeOnMainThread (() => {
+					if (lvExhibition.SelectedItem == null) return;
+					ChooseIsDone ();
+				});
 			};
 
 			lvExhibition.Refreshing += (sender, e) => {
-				DoRefresh ();
+				Device.BeginInvokeOnMainThread (() => {
+					DoRefresh ();
+				});
 			};
 		}
 
@@ -43,8 +56,10 @@ namespace LaBuilderApp
 				IDataServer x = obj as IDataServer;
 				if (status) {
 					Tools.Trace ($"DataRefresh {x.FileName}: {result}");
-					Exhibition.LoadData (result);
-					Exhibition.PopulateData ();
+					Device.BeginInvokeOnMainThread (() => {
+						Exhibition.LoadData (result);
+						Exhibition.PopulateData ();
+					});
 				} else {
 					Tools.Trace ($"DataRefresh ERROR {x.FileName}: {result}");
 				}
@@ -52,7 +67,9 @@ namespace LaBuilderApp
 			DataServer.AddToDo (events);
 
 			DataServer.QueueEmpty += () => {
-				lvExhibition.EndRefresh ();
+				Device.BeginInvokeOnMainThread (() => {
+					lvExhibition.EndRefresh ();
+				});
 				DataServer.QueueEmpty = null;
 			};
 			DataServer.Launch ();
@@ -61,7 +78,9 @@ namespace LaBuilderApp
 		private async void ChooseIsDone ()
 		{
 			Global.SelectedExhibition = lvExhibition.SelectedItem as Exhibition;
-			lvExhibition.SelectedItem = null;
+			Device.BeginInvokeOnMainThread (() => {
+				lvExhibition.SelectedItem = null;
+			});
 			await Navigation.PushModalAsync (new PageAgenda (), true);
 		}
 

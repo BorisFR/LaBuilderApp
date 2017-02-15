@@ -188,22 +188,24 @@ namespace LaBuilderApp
 				return true;
 			if (pauseAnimation > 0) {
 				pauseAnimation--;
-
-				if (delayBlink < 1) {
-					delayBlink = 3;
-					if (cursorIsVisible)
-						theBox.BackgroundColor = Color.Transparent;
-					else
-						theBox.BackgroundColor = theColor;
-					cursorIsVisible = !cursorIsVisible;
-				} else
-					delayBlink--;
-
+				try {
+					if (delayBlink < 1) {
+						delayBlink = 3;
+						if (cursorIsVisible)
+							theBox.BackgroundColor = Color.Transparent;
+						else
+							theBox.BackgroundColor = theColor;
+						cursorIsVisible = !cursorIsVisible;
+					} else
+						delayBlink--;
+				} catch (Exception) { }
 				return true;
 			}
 			if (!cursorIsVisible) {
-				theBox.BackgroundColor = theColor;
-				cursorIsVisible = !cursorIsVisible;
+				try {
+					theBox.BackgroundColor = theColor;
+					cursorIsVisible = !cursorIsVisible;
+				} catch (Exception) { }
 			}
 			try {
 
@@ -289,9 +291,7 @@ namespace LaBuilderApp
 					break;
 				}
 
-			} catch (Exception err) {
-				//Tools.Trace ($"Anim: {err.Message}");
-			}
+			} catch (Exception) { }
 			return true;
 		}
 

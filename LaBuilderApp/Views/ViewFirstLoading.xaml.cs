@@ -90,8 +90,10 @@ namespace LaBuilderApp
 				if (status) {
 					AddText ("Events done");
 					Tools.Trace ($"DataRefresh {x.FileName}: {result}");
-					Exhibition.LoadData (result);
-					Exhibition.PopulateData ();
+					Device.BeginInvokeOnMainThread (() => {
+						Exhibition.LoadData (result);
+						Exhibition.PopulateData ();
+					});
 				} else {
 					AddText ($"{x.FileName} error");
 				}
@@ -108,8 +110,10 @@ namespace LaBuilderApp
 				if (status) {
 					AddText ("Builders done");
 					Tools.Trace ($"DataRefresh {x.FileName}: {result}");
-					Builder.LoadData (result);
-					Builder.PopulateData ();
+					Device.BeginInvokeOnMainThread (() => {
+						Builder.LoadData (result);
+						Builder.PopulateData ();
+					});
 				} else {
 					AddText ($"{x.FileName} error");
 				}

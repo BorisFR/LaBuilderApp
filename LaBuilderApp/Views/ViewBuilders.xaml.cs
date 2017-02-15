@@ -11,8 +11,11 @@ namespace LaBuilderApp
 		{
 			InitializeComponent ();
 
-			if (!CrossAppInfo.Current.DisplayName.Equals ("XamarinFormsPreviewer"))
-				lvBuilder.ItemsSource = Builder.AllGroup;
+			if (!CrossAppInfo.Current.DisplayName.Equals ("XamarinFormsPreviewer")) {
+				Device.BeginInvokeOnMainThread (() => {
+					lvBuilder.ItemsSource = Builder.AllGroup;
+				});
+			}
 
 			lvBuilder.ItemSelected += (sender, e) => {
 				if (lvBuilder.SelectedItem == null) return;
@@ -26,8 +29,10 @@ namespace LaBuilderApp
 					IDataServer x = obj as IDataServer;
 					if (status) {
 						Tools.Trace ($"DataRefresh {x.FileName}: {result}");
-						Builder.LoadData (result);
-						Builder.PopulateData ();
+						Device.BeginInvokeOnMainThread (() => {
+							Builder.LoadData (result);
+							Builder.PopulateData ();
+						});
 					} else {
 						Tools.Trace ($"DataRefresh ERROR {x.FileName}: {result}");
 					}
@@ -35,7 +40,9 @@ namespace LaBuilderApp
 				DataServer.AddToDo (builders);
 
 				DataServer.QueueEmpty += () => {
-					lvBuilder.EndRefresh ();
+					Device.BeginInvokeOnMainThread (() => {
+						lvBuilder.EndRefresh ();
+					});
 					DataServer.QueueEmpty = null;
 				};
 				DataServer.Launch ();
@@ -47,7 +54,9 @@ namespace LaBuilderApp
 		private async void ChooseIsDone ()
 		{
 			Global.SelectedBuilder = lvBuilder.SelectedItem as Builder;
-			lvBuilder.SelectedItem = null;
+			Device.BeginInvokeOnMainThread (() => {
+				lvBuilder.SelectedItem = null;
+			});
 			await Navigation.PushModalAsync (new PageBuilder (), true);
 		}
 

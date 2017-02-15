@@ -11,9 +11,11 @@ namespace LaBuilderApp
 		public ViewAbout ()
 		{
 			InitializeComponent ();
-			theWebview.Source = "http://www.r2builders.fr/disclaimer.php";
-			LoadInfo ();
-			InfoData ();
+			Device.BeginInvokeOnMainThread (() => {
+				theWebview.Source = "http://www.r2builders.fr/disclaimer.php";
+				LoadInfo ();
+				InfoData ();
+			});
 		}
 
 		private async void InfoData ()

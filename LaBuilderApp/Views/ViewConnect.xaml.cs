@@ -24,10 +24,12 @@ namespace LaBuilderApp
 					if (Global.CurrentPassword.Length > 0) {
 						CrossSettings.Current.AddOrUpdateValue<string> ("userpassword", Global.CurrentPassword);
 						CrossSettings.Current.AddOrUpdateValue<string> ("usertoken", string.Empty);
-						toCheck.IsVisible = true;
-						toLogin.IsVisible = false;
-						Exhibition.ClearData ();
-						lError.Text = string.Empty;
+						Device.BeginInvokeOnMainThread (() => {
+							toCheck.IsVisible = true;
+							toLogin.IsVisible = false;
+							Exhibition.ClearData ();
+							lError.Text = string.Empty;
+						});
 
 						IDataServer login = new IDataServer ("login");
 						login.IgnoreLocalData = true;
@@ -75,18 +77,19 @@ namespace LaBuilderApp
 
 		private void RefreshScreen ()
 		{
-			toCheck.IsVisible = false;
-			if (Global.CurrentBuilderId > 0) {
-				toLogin.IsVisible = false;
-				toOut.IsVisible = true;
-				lCompte.Text = $"Builder : {Builder.GetById (Global.CurrentBuilderId).Username}";
+			Device.BeginInvokeOnMainThread (() => {
+				toCheck.IsVisible = false;
+				if (Global.CurrentBuilderId > 0) {
+					toLogin.IsVisible = false;
+					toOut.IsVisible = true;
+					lCompte.Text = $"Builder : {Builder.GetById (Global.CurrentBuilderId).Username}";
 
-			} else {
-				toLogin.IsVisible = true;
-				toOut.IsVisible = false;
-			}
-			eLogin.Text = Global.CurrentLogin;
-
+				} else {
+					toLogin.IsVisible = true;
+					toOut.IsVisible = false;
+				}
+				eLogin.Text = Global.CurrentLogin;
+			});
 		}
 
 	}
