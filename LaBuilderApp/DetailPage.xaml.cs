@@ -51,6 +51,10 @@ namespace LaBuilderApp
 				theFrame.Content = null;
 				theFrame.Content = new ViewBuilders ();
 				break;
+			case MyPage.Media:
+				theFrame.Content = null;
+				theFrame.Content = new ViewMedia ();
+				break;
 			case MyPage.About:
 				theFrame.Content = null;
 				theFrame.Content = new ViewAbout ();

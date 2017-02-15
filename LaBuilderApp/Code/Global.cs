@@ -19,7 +19,8 @@ namespace LaBuilderApp
 		AdminBuilders,
 		MyExhibitions,
 		About,
-		Connect
+		Connect,
+		Media
 	}
 
 	public delegate void Trigger ();
