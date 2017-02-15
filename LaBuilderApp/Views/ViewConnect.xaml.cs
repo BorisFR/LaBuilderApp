@@ -28,7 +28,7 @@ namespace LaBuilderApp
 						toLogin.IsVisible = false;
 						Exhibition.ClearData ();
 						lError.Text = string.Empty;
-						// http://www.r2builders.fr/boris/dologin.php?login=Boris&password=19MKYGC7RVF9A
+
 						IDataServer login = new IDataServer ("login");
 						login.IgnoreLocalData = true;
 						login.DataRefresh += (obj, status, result) => {
