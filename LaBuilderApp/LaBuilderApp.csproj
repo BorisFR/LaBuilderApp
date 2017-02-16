@@ -92,13 +92,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Code\Tools.cs" />
-    <Compile Include="Code\IDataServer.cs" />
     <Compile Include="Code\Global.cs" />
-    <Compile Include="Code\IFiles.cs" />
-    <Compile Include="Code\DataServer.cs" />
-    <Compile Include="Code\EventsManager.cs" />
-    <Compile Include="Code\Exhibition.cs" />
-    <Compile Include="Code\CModel.cs" />
     <Compile Include="MainAppPage.xaml.cs">
       <DependentUpon>MainAppPage.xaml</DependentUpon>
     </Compile>
@@ -109,7 +103,6 @@
     <Compile Include="DetailPage.xaml.cs">
       <DependentUpon>DetailPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Code\ImageResourceExtension.cs" />
     <Compile Include="Code\MenuManager.cs" />
     <Compile Include="Views\ViewAgenda.xaml.cs">
       <DependentUpon>ViewAgenda.xaml</DependentUpon>
@@ -120,9 +113,6 @@
     <Compile Include="Views\AppearingText.xaml.cs">
       <DependentUpon>AppearingText.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Code\StarJedi.cs" />
-    <Compile Include="Code\AurekBesh.cs" />
-    <Compile Include="Code\TieWing.cs" />
     <Compile Include="Views\ViewNews.xaml.cs">
       <DependentUpon>ViewNews.xaml</DependentUpon>
     </Compile>
@@ -132,21 +122,30 @@
     <Compile Include="Views\ViewFirstLoading.xaml.cs">
       <DependentUpon>ViewFirstLoading.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Code\Builder.cs" />
     <Compile Include="Views\PageAgenda.xaml.cs">
       <DependentUpon>PageAgenda.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Code\AwesomeWrappanel.cs" />
     <Compile Include="Views\PageBuilder.xaml.cs">
       <DependentUpon>PageBuilder.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ViewConnect.xaml.cs">
       <DependentUpon>ViewConnect.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Code\Login.cs" />
     <Compile Include="Views\ViewMedia.xaml.cs">
       <DependentUpon>ViewMedia.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Component\AwesomeWrappanel.cs" />
+    <Compile Include="Component\ImageResourceExtension.cs" />
+    <Compile Include="Component\StarJedi.cs" />
+    <Compile Include="Component\TieWing.cs" />
+    <Compile Include="Component\AurekBesh.cs" />
+    <Compile Include="Model\Builder.cs" />
+    <Compile Include="Model\CModel.cs" />
+    <Compile Include="Model\DataServer.cs" />
+    <Compile Include="Model\Exhibition.cs" />
+    <Compile Include="Model\IDataServer.cs" />
+    <Compile Include="Model\Login.cs" />
+    <Compile Include="Component\IFiles.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="project.json" />
@@ -155,6 +154,8 @@
     <Folder Include="Code\" />
     <Folder Include="Views\" />
     <Folder Include="Images\" />
+    <Folder Include="Component\" />
+    <Folder Include="Model\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.3.3.180\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.3.3.180\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" />

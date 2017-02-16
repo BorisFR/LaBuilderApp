@@ -3,6 +3,9 @@ using System.Threading.Tasks;
 
 namespace LaBuilderApp
 {
+
+	// see in each projet to se the real implementation
+
 	public interface IFiles
 	{
 		Task<bool> IsExit (string name);

@@ -191,10 +191,12 @@ namespace LaBuilderApp
 				try {
 					if (delayBlink < 1) {
 						delayBlink = 3;
-						if (cursorIsVisible)
-							theBox.BackgroundColor = Color.Transparent;
-						else
-							theBox.BackgroundColor = theColor;
+						Device.BeginInvokeOnMainThread (() => {
+							if (cursorIsVisible)
+								theBox.BackgroundColor = Color.Transparent;
+							else
+								theBox.BackgroundColor = theColor;
+						});
 						cursorIsVisible = !cursorIsVisible;
 					} else
 						delayBlink--;
@@ -203,7 +205,9 @@ namespace LaBuilderApp
 			}
 			if (!cursorIsVisible) {
 				try {
-					theBox.BackgroundColor = theColor;
+					Device.BeginInvokeOnMainThread (() => {
+						theBox.BackgroundColor = theColor;
+					});
 					cursorIsVisible = !cursorIsVisible;
 				} catch (Exception) { }
 			}
