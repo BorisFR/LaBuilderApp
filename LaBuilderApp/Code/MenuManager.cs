@@ -57,10 +57,16 @@ namespace LaBuilderApp
 				Icon = "builders"
 			});
 			mg.Add (new Menu () {
-				Page = MyPage.Media,
+				Page = MyPage.Things,
+				Title = T ("Constructions"),
+				Detail = T ("Ce qu'ils ont construit !"),
+				Icon = "things"
+			});
+			mg.Add (new Menu () {
+				Page = MyPage.Medias,
 				Title = T ("Medias"),
 				Detail = T ("Vu dans les médias"),
-				Icon = "media"
+				Icon = "medias"
 			});
 			mg.Add (new Menu () {
 				Page = MyPage.About,

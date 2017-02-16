@@ -35,3 +35,10 @@ https://github.com/LosXamarinos/Xamarin-Forms-Sound-Player
 [3]: https://github.com/Aftnet/AppInfoPlugin
 [4]: https://github.com/jamesmontemagno/SettingsPlugin
 [5]: https://www.xamarin.com
+
+Freepik
+Pixel Buddha
+Madebyoliver
+
+Icon made by Freepik from www.flaticon.com 
+http://www.flaticon.com

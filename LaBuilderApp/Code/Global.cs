@@ -20,7 +20,8 @@ namespace LaBuilderApp
 		MyExhibitions,
 		About,
 		Connect,
-		Media
+		Medias,
+		Things
 	}
 
 	public delegate void Trigger ();
@@ -50,6 +51,7 @@ namespace LaBuilderApp
 
 		public static Exhibition SelectedExhibition;
 		public static Builder SelectedBuilder;
+		public static Thing SelectedThing;
 
 		public static string CurrentLogin = string.Empty;
 		public static string CurrentPassword = string.Empty;

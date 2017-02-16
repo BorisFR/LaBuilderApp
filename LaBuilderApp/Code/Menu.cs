@@ -41,10 +41,10 @@ namespace LaBuilderApp
 					return null;
 				}
 				if (Device.OS == TargetPlatform.Windows)
-					return ImageSource.FromResource (string.Format ("LaBuilderApp.Win.Images.menu_{0}.png", Icon));
+					return ImageSource.FromResource (string.Format ("LaBuilderApp.Win.Images.menu_c_{0}.png", Icon));
 				if (CrossAppInfo.Current.DisplayName.Equals ("XamarinFormsPreviewer"))
-					return ImageSource.FromResource (string.Format ("XamarinFormsPreviewer.Images.menu_{0}.png", Icon));
-				return ImageSource.FromResource (string.Format ("LaBuilderApp.Images.menu_{0}.png", Icon));
+					return ImageSource.FromResource (string.Format ("XamarinFormsPreviewer.Images.menu_c_{0}.png", Icon));
+				return ImageSource.FromResource (string.Format ("LaBuilderApp.Images.menu_c_{0}.png", Icon));
 			}
 		}
 

@@ -78,7 +78,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Images\menu_planner.png" />
     <EmbeddedResource Include="Images\menu_login.png" />
-    <EmbeddedResource Include="Images\menu_media.png" />
+    <EmbeddedResource Include="Images\menu_medias.png" />
     <EmbeddedResource Include="Views\ViewMedia.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -86,8 +86,18 @@
     <EmbeddedResource Include="Images\menu_builders.svg" />
     <EmbeddedResource Include="Images\menu_events.svg" />
     <EmbeddedResource Include="Images\menu_login.svg" />
-    <EmbeddedResource Include="Images\menu_media.svg" />
+    <EmbeddedResource Include="Images\menu_medias.svg" />
     <EmbeddedResource Include="Images\menu_news.svg" />
+    <EmbeddedResource Include="Images\menu_c_builders.png" />
+    <EmbeddedResource Include="Images\menu_c_events.png" />
+    <EmbeddedResource Include="Images\menu_c_about.png" />
+    <EmbeddedResource Include="Images\menu_c_login.png" />
+    <EmbeddedResource Include="Images\menu_c_medias.png" />
+    <EmbeddedResource Include="Images\menu_c_news.png" />
+    <EmbeddedResource Include="Images\menu_c_things.png" />
+    <EmbeddedResource Include="Views\ViewThings.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -152,6 +162,10 @@
     <Compile Include="Model\IDataServer.cs" />
     <Compile Include="Model\Login.cs" />
     <Compile Include="Component\IFiles.cs" />
+    <Compile Include="Model\Thing.cs" />
+    <Compile Include="Views\ViewThings.xaml.cs">
+      <DependentUpon>ViewThings.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="project.json" />

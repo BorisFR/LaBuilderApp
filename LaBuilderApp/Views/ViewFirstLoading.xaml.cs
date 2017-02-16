@@ -120,6 +120,28 @@ namespace LaBuilderApp
 			};
 			DataServer.AddToDo (builders);
 
+
+			IDataServer things = new IDataServer ("things");
+			//events.IgnoreLocalData = true;
+			things.StartWorking += () => {
+				AddText ("Loading things");
+			};
+			things.DataRefresh += (sender, status, result) => {
+				IDataServer x = sender as IDataServer;
+				if (status) {
+					AddText ("Things done");
+					Tools.Trace ($"DataRefresh {x.FileName}: {result}");
+					Device.BeginInvokeOnMainThread (() => {
+						Thing.LoadData (result);
+						//Thing.PopulateData ();
+					});
+				} else {
+					AddText ($"{x.FileName} error");
+				}
+			};
+			DataServer.AddToDo (things);
+
+
 			DataServer.QueueEmpty += () => {
 				AddText ("App is ready");
 				isReady = true;

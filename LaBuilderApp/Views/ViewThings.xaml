@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="LaBuilderApp.ViewThings" 
+	xmlns:local="clr-namespace:LaBuilderApp" xmlns:ffi="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms">
+	<ContentView.Content>
+	<StackLayout Orientation="Vertical" HeightRequest="3000">
+		<ListView x:Name="lvThing" ItemsSource="{x:Static local:Thing.DesignData}" IsPullToRefreshEnabled="true" BackgroundColor="Black" SeparatorVisibility="None" SeparatorColor="Transparent" >
+			<ListView.ItemTemplate>
+				<DataTemplate>
+						<ViewCell>
+							<ViewCell.View>
+								<StackLayout Orientation="Horizontal" Spacing="0" HeightRequest="50">
+									<Image Source="{Binding PictureImage}" WidthRequest="50" HeightRequest="50" Aspect="AspectFit" BackgroundColor="White" />
+									<StackLayout Orientation="Vertical" Spacing="0" HorizontalOptions="FillAndExpand" HeightRequest="50">
+										<Label Text="{Binding Name, StringFormat=' {0}'}" YAlign="Center" HeightRequest="25" HorizontalOptions="FillAndExpand" BackgroundColor="White" TextColor="Black" FontSize="20" LineBreakMode="TailTruncation"/>
+										<Label Text="{Binding Description, StringFormat=' {0}'}}" YAlign="Center" HeightRequest="25" TextColor="White" FontSize="16" LineBreakMode="TailTruncation"/>
+									</StackLayout>
+								</StackLayout>
+							</ViewCell.View>
+						</ViewCell>
+				</DataTemplate>
+			</ListView.ItemTemplate>
+		</ListView>
+	</StackLayout>			
+	</ContentView.Content>
+</ContentView>
