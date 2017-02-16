@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="LaBuilderApp.MenuPage" 
-	  xmlns:local="clr-namespace:LaBuilderApp" Padding="{x:Static local:Global.PagePadding}" Title="Menu" BackgroundColor="White">
+	  xmlns:local="clr-namespace:LaBuilderApp" Padding="{x:Static local:Global.PagePadding}" Title="Menu" BackgroundColor="White" 
+	xmlns:ffi="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms">
 	<ContentPage.Content>
 		<StackLayout Orientation="Vertical" VerticalOptions="Fill" HorizontalOptions="Start">
 
@@ -28,7 +29,7 @@
 						        	<RowDefinition Height="30" />
 						        	<RowDefinition Height="20" />
 						        </Grid.RowDefinitions>
-						        <Image Source="{Binding Image}" WidthRequest="55" HeightRequest="55" Aspect="AspectFit" Grid.RowSpan="2" />
+						        <ffi:CachedImage Source="{Binding Image}" WidthRequest="55" HeightRequest="55" Aspect="AspectFit" Grid.RowSpan="2" />
 						        <Label Text="{Binding Title}" Font="Bold" FontSize="17" YAlign="Center" TextColor="Black" Grid.Column="1" />
 						        <Label Text="{Binding Detail}" FontSize="14" YAlign="Center" TextColor="Black" Grid.Column="1" Grid.Row="1" />
 			        		</Grid>

@@ -1,10 +1,15 @@
 ﻿{
   "dependencies": {
     "Newtonsoft.Json": "9.0.1",
+    "SkiaSharp": "1.56.1",
     "Xam.Plugin.AppInfo": "1.0.8",
     "Xam.Plugin.DeviceInfo": "2.1.2",
     "Xam.Plugin.Media": "2.6.2",
     "Xam.Plugins.Settings": "2.5.4",
+    "Xamarin.FFImageLoading": "2.2.9-pre-331",
+    "Xamarin.FFImageLoading.Forms": "2.2.9-pre-331",
+    "Xamarin.FFImageLoading.Svg": "2.2.9-pre-331",
+    "Xamarin.FFImageLoading.Svg.Forms": "2.2.9-pre-331",
     "Xamarin.Forms": "2.3.3.180"
   },
   "frameworks": {

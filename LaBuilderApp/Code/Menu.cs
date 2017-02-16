@@ -3,6 +3,7 @@ using System.ComponentModel;
 using Xamarin.Forms;
 using System.Runtime.CompilerServices;
 using Plugin.AppInfo;
+using FFImageLoading.Svg.Forms;
 
 namespace LaBuilderApp
 {
@@ -44,6 +45,17 @@ namespace LaBuilderApp
 				if (CrossAppInfo.Current.DisplayName.Equals ("XamarinFormsPreviewer"))
 					return ImageSource.FromResource (string.Format ("XamarinFormsPreviewer.Images.menu_{0}.png", Icon));
 				return ImageSource.FromResource (string.Format ("LaBuilderApp.Images.menu_{0}.png", Icon));
+			}
+		}
+
+		public FFImageLoading.Work.ImageSource ImageSVG {
+			get {
+				if (Icon.Length == 0) {
+					//return null;
+				}
+
+
+				return SvgImageSource.FromResource (string.Format ("LaBuilderApp.Images.menu_{0}.svg", Icon));
 			}
 		}
 

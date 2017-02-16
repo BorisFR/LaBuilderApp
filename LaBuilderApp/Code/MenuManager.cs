@@ -48,7 +48,7 @@ namespace LaBuilderApp
 				Page = MyPage.Events,
 				Title = T ("L'Agenda"),
 				Detail = T ("Les R2 Builders en balade"),
-				Icon = "planner"
+				Icon = "events"
 			});
 			mg.Add (new Menu () {
 				Page = MyPage.Builders,

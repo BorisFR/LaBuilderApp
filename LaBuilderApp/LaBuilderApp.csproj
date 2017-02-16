@@ -82,6 +82,12 @@
     <EmbeddedResource Include="Views\ViewMedia.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="Images\menu_about.svg" />
+    <EmbeddedResource Include="Images\menu_builders.svg" />
+    <EmbeddedResource Include="Images\menu_events.svg" />
+    <EmbeddedResource Include="Images\menu_login.svg" />
+    <EmbeddedResource Include="Images\menu_media.svg" />
+    <EmbeddedResource Include="Images\menu_news.svg" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">

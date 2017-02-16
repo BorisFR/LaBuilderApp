@@ -31,8 +31,6 @@ namespace LaBuilderApp
 				//					//Navigation.PushAsync (new PageBuilder ());
 				//				}
 
-
-
 				try {
 					Global.MainAppPage.IsPresented = false;
 				} catch (Exception) {

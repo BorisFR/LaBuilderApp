@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="LaBuilderApp.PageBuilder" 
-	xmlns:local="clr-namespace:LaBuilderApp" Padding="{x:Static local:Global.PagePadding}">
+	xmlns:local="clr-namespace:LaBuilderApp" Padding="{x:Static local:Global.PagePadding}" 
+	xmlns:ffi="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms">
 	<ContentPage.Content>
 		<ScrollView Orientation="Vertical" BackgroundColor="#11252D" Padding="6">
 			<StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand">
@@ -21,11 +22,11 @@
 
 					<StackLayout Orientation="Vertical" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1">
 						<Label Text="{Binding Username}" FontSize="17" HorizontalOptions="Center" TextColor="White" />
-						<Image Source="{Binding AvatarImage}" Aspect="AspectFit" WidthRequest="120" HeightRequest="120" HorizontalOptions="Center" />
+						<ffi:CachedImage Source="{Binding AvatarImage}" Aspect="AspectFit" WidthRequest="120" HeightRequest="120" HorizontalOptions="Center" />
 						<Label Text="{Binding Since, StringFormat='Builder depuis {0}'}}" FontSize="14" TextColor="White" HorizontalOptions="Center" />
 						<StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
 							<Label Text="{Binding Location}" FontSize="12" TextColor="White" YAlign="Center" />
-							<Image Source="{Binding CountryImage}" WidthRequest="50" Aspect="AspectFit" HorizontalOptions="EndAndExpand" />
+							<ffi:CachedImage Source="{Binding CountryImage}" WidthRequest="50" Aspect="AspectFit" HorizontalOptions="EndAndExpand" />
 						</StackLayout>
 						<Label Text="{Binding Interest}" LineBreakMode="WordWrap" FontSize="15" TextColor="White"/>
 						<Label Text="{Binding Occupation}" LineBreakMode="WordWrap" FontSize="15" TextColor="White"/>

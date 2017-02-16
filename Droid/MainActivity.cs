@@ -8,6 +8,7 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 using Plugin.Permissions;
+using FFImageLoading.Forms.Droid;
 
 namespace LaBuilderApp.Droid
 {
@@ -22,6 +23,7 @@ namespace LaBuilderApp.Droid
 			base.OnCreate (bundle);
 
 			global::Xamarin.Forms.Forms.Init (this, bundle);
+			CachedImageRenderer.Init ();
 
 			LoadApplication (new App ());
 		}
