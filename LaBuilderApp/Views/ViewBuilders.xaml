@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="LaBuilderApp.ViewBuilders" 
-	xmlns:local="clr-namespace:LaBuilderApp" xmlns:ffi="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms">
+	xmlns:local="clr-namespace:LaBuilderApp">
 	<ContentView.Content>
 	<StackLayout Orientation="Vertical" HeightRequest="3000">
 		<ListView x:Name="lvBuilder" ItemsSource="{x:Static local:Builder.DesignData}" HasUnevenRows="true" IsGroupingEnabled="true" GroupDisplayBinding="{Binding Title}" GroupShortNameBinding="{Binding Title}" IsPullToRefreshEnabled="true" BackgroundColor="Black" SeparatorVisibility="None" SeparatorColor="Transparent" >
@@ -18,7 +18,7 @@
 						<ViewCell>
 							<ViewCell.View>
 								<StackLayout Orientation="Horizontal" Spacing="0" HeightRequest="50">
-									<ffi:CachedImage Source="{Binding AvatarImage}" WidthRequest="50" HeightRequest="50" Aspect="AspectFit" BackgroundColor="White" />
+									<Image Source="{Binding AvatarImage}" WidthRequest="50" HeightRequest="50" Aspect="AspectFit" BackgroundColor="White" />
 									<StackLayout Orientation="Vertical" Spacing="0" HorizontalOptions="FillAndExpand" HeightRequest="50">
 										<Label Text="{Binding Username, StringFormat=' {0}'}" YAlign="Center" HeightRequest="25" HorizontalOptions="FillAndExpand" BackgroundColor="White" TextColor="Black" FontSize="20" LineBreakMode="TailTruncation"/>
 										<Label Text="{Binding Since, StringFormat=' Builder depuis {0}'}}" YAlign="Center" HeightRequest="25" TextColor="White" FontSize="16" LineBreakMode="TailTruncation"/>

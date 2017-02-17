@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="LaBuilderApp.PageAgenda" 
 	xmlns:local="clr-namespace:LaBuilderApp" Padding="{x:Static local:Global.PagePadding}" 
-	xmlns:ffi="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms">
+	>
 	<ContentPage.Content>
 		<ScrollView Orientation="Vertical" BackgroundColor="#11252D" Padding="6">
 			<StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand">
@@ -22,10 +22,10 @@
 
 					<StackLayout Orientation="Vertical" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1">
 						<Label Text="{Binding Title}" FontSize="17" HorizontalOptions="Center" TextColor="White" />
-						<ffi:CachedImage Source="{Binding LogoImage}" HorizontalOptions="Center" />
+						<Image Source="{Binding LogoImage}" HorizontalOptions="Center" />
 						<StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
 							<Label Text="{Binding Location}" FontSize="12" TextColor="White" YAlign="Center" />
-							<ffi:CachedImage Source="{Binding CountryImage}" WidthRequest="50" Aspect="AspectFit" HorizontalOptions="EndAndExpand" />
+							<Image Source="{Binding CountryImage}" WidthRequest="50" Aspect="AspectFit" HorizontalOptions="EndAndExpand" />
 						</StackLayout>
 						<Label Text="{Binding DescriptionLabel}" LineBreakMode="WordWrap" FontSize="15" TextColor="White" HorizontalOptions="Center" />
 						<Label Text="Quand a lieu l'événement" FontSize="14" TextColor="Black" BackgroundColor="White" />
@@ -53,7 +53,7 @@
 
 								<BoxView BackgroundColor="#5AA9D3" Grid.Row="0" Grid.RowSpan="6" Grid.Column="0" Grid.ColumnSpan="5" />
 								<BoxView BackgroundColor="White" Grid.Row="1" Grid.RowSpan="4" Grid.Column="1" Grid.ColumnSpan="3" />
-								<ffi:CachedImage Source="{Binding AvatarImage}" Aspect="AspectFit" WidthRequest="120" HeightRequest="120" HorizontalOptions="Center" VerticalOptions="Start" Grid.Row="2" Grid.Column="2" />
+								<Image Source="{Binding AvatarImage}" Aspect="AspectFit" WidthRequest="120" HeightRequest="120" HorizontalOptions="Center" VerticalOptions="Start" Grid.Row="2" Grid.Column="2" />
 								<Label Text="{Binding Username}" FontSize="17" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center" Grid.Row="3" Grid.Column="2" />
 								<Button Text="" BackgroundColor="Transparent" CommandParameter="{Binding UserId}" BorderColor="Transparent" BorderWidth="0" Grid.Row="0" Grid.RowSpan="6" Grid.Column="0" Grid.ColumnSpan="5" Clicked="ButtonClicked" />
 								</Grid>
