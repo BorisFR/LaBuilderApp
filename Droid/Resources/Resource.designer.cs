@@ -1091,32 +1091,32 @@ namespace LaBuilderApp.Droid
 		public partial class Color
 		{
 			
-			// aapt resource value: 0x7f0b0048
-			public const int abc_background_cache_hint_selector_material_dark = 2131427400;
+			// aapt resource value: 0x7f0b004d
+			public const int abc_background_cache_hint_selector_material_dark = 2131427405;
 			
-			// aapt resource value: 0x7f0b0049
-			public const int abc_background_cache_hint_selector_material_light = 2131427401;
+			// aapt resource value: 0x7f0b004e
+			public const int abc_background_cache_hint_selector_material_light = 2131427406;
 			
-			// aapt resource value: 0x7f0b004a
-			public const int abc_color_highlight_material = 2131427402;
+			// aapt resource value: 0x7f0b004f
+			public const int abc_color_highlight_material = 2131427407;
 			
 			// aapt resource value: 0x7f0b000e
 			public const int abc_input_method_navigation_guard = 2131427342;
 			
-			// aapt resource value: 0x7f0b004b
-			public const int abc_primary_text_disable_only_material_dark = 2131427403;
+			// aapt resource value: 0x7f0b0050
+			public const int abc_primary_text_disable_only_material_dark = 2131427408;
 			
-			// aapt resource value: 0x7f0b004c
-			public const int abc_primary_text_disable_only_material_light = 2131427404;
+			// aapt resource value: 0x7f0b0051
+			public const int abc_primary_text_disable_only_material_light = 2131427409;
 			
-			// aapt resource value: 0x7f0b004d
-			public const int abc_primary_text_material_dark = 2131427405;
+			// aapt resource value: 0x7f0b0052
+			public const int abc_primary_text_material_dark = 2131427410;
 			
-			// aapt resource value: 0x7f0b004e
-			public const int abc_primary_text_material_light = 2131427406;
+			// aapt resource value: 0x7f0b0053
+			public const int abc_primary_text_material_light = 2131427411;
 			
-			// aapt resource value: 0x7f0b004f
-			public const int abc_search_url_text = 2131427407;
+			// aapt resource value: 0x7f0b0054
+			public const int abc_search_url_text = 2131427412;
 			
 			// aapt resource value: 0x7f0b000f
 			public const int abc_search_url_text_normal = 2131427343;
@@ -1127,11 +1127,14 @@ namespace LaBuilderApp.Droid
 			// aapt resource value: 0x7f0b0011
 			public const int abc_search_url_text_selected = 2131427345;
 			
-			// aapt resource value: 0x7f0b0050
-			public const int abc_secondary_text_material_dark = 2131427408;
+			// aapt resource value: 0x7f0b0055
+			public const int abc_secondary_text_material_dark = 2131427413;
 			
-			// aapt resource value: 0x7f0b0051
-			public const int abc_secondary_text_material_light = 2131427409;
+			// aapt resource value: 0x7f0b0056
+			public const int abc_secondary_text_material_light = 2131427414;
+			
+			// aapt resource value: 0x7f0b004a
+			public const int accent = 2131427402;
 			
 			// aapt resource value: 0x7f0b0012
 			public const int accent_material_dark = 2131427346;
@@ -1283,6 +1286,12 @@ namespace LaBuilderApp.Droid
 			// aapt resource value: 0x7f0b0035
 			public const int material_grey_900 = 2131427381;
 			
+			// aapt resource value: 0x7f0b0048
+			public const int primary = 2131427400;
+			
+			// aapt resource value: 0x7f0b0049
+			public const int primaryDark = 2131427401;
+			
 			// aapt resource value: 0x7f0b0036
 			public const int primary_dark_material_dark = 2131427382;
 			
@@ -1325,23 +1334,29 @@ namespace LaBuilderApp.Droid
 			// aapt resource value: 0x7f0b0043
 			public const int secondary_text_disabled_material_light = 2131427395;
 			
+			// aapt resource value: 0x7f0b004c
+			public const int splash_background = 2131427404;
+			
 			// aapt resource value: 0x7f0b0044
 			public const int switch_thumb_disabled_material_dark = 2131427396;
 			
 			// aapt resource value: 0x7f0b0045
 			public const int switch_thumb_disabled_material_light = 2131427397;
 			
-			// aapt resource value: 0x7f0b0052
-			public const int switch_thumb_material_dark = 2131427410;
+			// aapt resource value: 0x7f0b0057
+			public const int switch_thumb_material_dark = 2131427415;
 			
-			// aapt resource value: 0x7f0b0053
-			public const int switch_thumb_material_light = 2131427411;
+			// aapt resource value: 0x7f0b0058
+			public const int switch_thumb_material_light = 2131427416;
 			
 			// aapt resource value: 0x7f0b0046
 			public const int switch_thumb_normal_material_dark = 2131427398;
 			
 			// aapt resource value: 0x7f0b0047
 			public const int switch_thumb_normal_material_light = 2131427399;
+			
+			// aapt resource value: 0x7f0b004b
+			public const int window_background = 2131427403;
 			
 			static Color()
 			{
@@ -2156,52 +2171,58 @@ namespace LaBuilderApp.Droid
 			public const int icon = 2130837649;
 			
 			// aapt resource value: 0x7f020092
-			public const int mr_dialog_material_background_dark = 2130837650;
+			public const int loadingScreen = 2130837650;
 			
 			// aapt resource value: 0x7f020093
-			public const int mr_dialog_material_background_light = 2130837651;
+			public const int mr_dialog_material_background_dark = 2130837651;
 			
 			// aapt resource value: 0x7f020094
-			public const int mr_ic_audiotrack_light = 2130837652;
+			public const int mr_dialog_material_background_light = 2130837652;
 			
 			// aapt resource value: 0x7f020095
-			public const int mr_ic_cast_dark = 2130837653;
+			public const int mr_ic_audiotrack_light = 2130837653;
 			
 			// aapt resource value: 0x7f020096
-			public const int mr_ic_cast_light = 2130837654;
+			public const int mr_ic_cast_dark = 2130837654;
 			
 			// aapt resource value: 0x7f020097
-			public const int mr_ic_close_dark = 2130837655;
+			public const int mr_ic_cast_light = 2130837655;
 			
 			// aapt resource value: 0x7f020098
-			public const int mr_ic_close_light = 2130837656;
+			public const int mr_ic_close_dark = 2130837656;
 			
 			// aapt resource value: 0x7f020099
-			public const int mr_ic_media_route_connecting_mono_dark = 2130837657;
+			public const int mr_ic_close_light = 2130837657;
 			
 			// aapt resource value: 0x7f02009a
-			public const int mr_ic_media_route_connecting_mono_light = 2130837658;
+			public const int mr_ic_media_route_connecting_mono_dark = 2130837658;
 			
 			// aapt resource value: 0x7f02009b
-			public const int mr_ic_media_route_mono_dark = 2130837659;
+			public const int mr_ic_media_route_connecting_mono_light = 2130837659;
 			
 			// aapt resource value: 0x7f02009c
-			public const int mr_ic_media_route_mono_light = 2130837660;
+			public const int mr_ic_media_route_mono_dark = 2130837660;
 			
 			// aapt resource value: 0x7f02009d
-			public const int mr_ic_pause_dark = 2130837661;
+			public const int mr_ic_media_route_mono_light = 2130837661;
 			
 			// aapt resource value: 0x7f02009e
-			public const int mr_ic_pause_light = 2130837662;
+			public const int mr_ic_pause_dark = 2130837662;
 			
 			// aapt resource value: 0x7f02009f
-			public const int mr_ic_play_dark = 2130837663;
+			public const int mr_ic_pause_light = 2130837663;
 			
 			// aapt resource value: 0x7f0200a0
-			public const int mr_ic_play_light = 2130837664;
+			public const int mr_ic_play_dark = 2130837664;
 			
 			// aapt resource value: 0x7f0200a1
-			public const int notification_template_icon_bg = 2130837665;
+			public const int mr_ic_play_light = 2130837665;
+			
+			// aapt resource value: 0x7f0200a3
+			public const int notification_template_icon_bg = 2130837667;
+			
+			// aapt resource value: 0x7f0200a2
+			public const int splash = 2130837666;
 			
 			static Drawable()
 			{
@@ -3528,6 +3549,9 @@ namespace LaBuilderApp.Droid
 			
 			// aapt resource value: 0x7f0a0173
 			public const int MyTheme_Base = 2131362163;
+			
+			// aapt resource value: 0x7f0a0175
+			public const int MyTheme_Splash = 2131362165;
 			
 			// aapt resource value: 0x7f0a004b
 			public const int Platform_AppCompat = 2131361867;

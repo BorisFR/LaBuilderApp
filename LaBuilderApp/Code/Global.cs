@@ -36,6 +36,11 @@ namespace LaBuilderApp
 		public static MenuManager Menus = new MenuManager ();
 		public static readonly Thickness PagePadding = new Thickness (Device.OnPlatform (0, 0, 0), Device.OnPlatform (20, 0, 0), Device.OnPlatform (0, 0, 0), Device.OnPlatform (0, 0, 0));
 
+		public static bool OnSleep = false;
+		public static bool IsResume = false;
+		public static bool IsDoingInit = false;
+		public static Menu CurrentMenu = null;
+
 		public static bool IsConnected = false;
 		//public static User ConnectedUser = null;
 
@@ -62,8 +67,10 @@ namespace LaBuilderApp
 		{
 			if (Files != null) {
 				Tools.Trace ($"> {from}: Global.DoInit() already done.");
+				IsDoingInit = false;
 				return;
 			}
+			IsDoingInit = true;
 			Files = DependencyService.Get<IFiles> ();
 			Random = new Random (DateTime.Now.Millisecond);
 			CurrentLogin = CrossSettings.Current.GetValueOrDefault<string> ("userlogin", string.Empty);

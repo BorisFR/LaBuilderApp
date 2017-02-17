@@ -14,7 +14,7 @@ namespace LaBuilderApp
 			Global.MenuPage = new MenuPage ();
 			this.Master = Global.MenuPage;
 			Global.DetailPage = new DetailPage ();
-			this.Detail = new NavigationPage (Global.DetailPage);
+			this.Detail = Global.DetailPage; //new NavigationPage (Global.DetailPage);
 
 			Tools.Trace ("MainAppPage done.");
 			if (Device.OS == TargetPlatform.Windows)

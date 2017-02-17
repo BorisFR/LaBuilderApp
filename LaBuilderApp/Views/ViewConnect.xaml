@@ -11,9 +11,9 @@
 				<BoxView HeightRequest="20" BackgroundColor="Transparent" />
 				<Label x:Name="lError" Text="" TextColor="Red"/>
 				<Label Text="Identifiant" TextColor="White"/>
-				<Entry x:Name="eLogin" Keyboard="Text" Placeholder="identifiant du forum" />
+				<Entry x:Name="eLogin" Keyboard="Text" Placeholder="identifiant du forum" TextColor="White" />
 				<Label Text="Mot de passe" TextColor="White"/>
-				<Entry x:Name="ePassword" IsPassword="true" Placeholder="mot de passe du forum" />
+				<Entry x:Name="ePassword" IsPassword="true" Placeholder="mot de passe du forum" TextColor="White" />
 				<Button x:Name="btLogin" Text="Se connecter" />
 			</StackLayout>
 			<StackLayout x:Name="toCheck" Orientation="Vertical" Spacing="0">

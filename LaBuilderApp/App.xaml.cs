@@ -22,11 +22,13 @@ namespace LaBuilderApp
 		{
 			// Handle when your app sleeps
 			Tools.Trace ("OnSleep...");
+			Global.OnSleep = true;
 		}
 
 		protected override void OnResume ()
 		{
 			// Handle when your app resumes
+			Global.IsResume = true;
 			Global.DoInit ("OnResume");
 		}
 

@@ -21,15 +21,25 @@ namespace LaBuilderApp
 			};
 			btMenu.GestureRecognizers.Add (tapGestureRecognizer);
 
-			Menu m = new Menu ();
-			m.Detail = string.Empty;
-			m.Title = "Chargement des donnees";
-			m.Page = MyPage.FirstLoading;
-			ShowPage (m);
+
+			if (Global.OnSleep && !Global.IsDoingInit && Global.CurrentMenu != null) {
+				Tools.Trace ($"Going to an old page: {Global.CurrentMenu.Title}");
+				ShowPage (Global.CurrentMenu);
+			} else {
+				Menu m = new Menu ();
+				m.Detail = string.Empty;
+				m.Title = "Chargement des donnees";
+				m.Page = MyPage.FirstLoading;
+				ShowPage (m);
+			}
+			Global.OnSleep = false;
+			Global.IsResume = false;
+			Global.IsDoingInit = false;
 		}
 
 		public void ShowPage (Menu menu)
 		{
+			Global.CurrentMenu = menu;
 			Device.BeginInvokeOnMainThread (() => {
 				if (CrossDeviceInfo.Current.Model.Equals ("iPad"))
 					theTitle.ChangeText (menu.Title.ToLower () + " - " + menu.Detail.ToLower ());

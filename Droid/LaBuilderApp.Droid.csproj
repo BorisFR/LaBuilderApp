@@ -159,6 +159,7 @@
     <Compile Include="StarJediRenderer.cs" />
     <Compile Include="TieWingRenderer.cs" />
     <Compile Include="Helpers\Settings.cs" />
+    <Compile Include="splashscreen.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -175,6 +176,9 @@
     <AndroidResource Include="Resources\drawable-xhdpi\icon.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\icon.png" />
     <AndroidResource Include="Resources\xml\file_paths.xml" />
+    <AndroidResource Include="Resources\drawable\loadingScreen.xml" />
+    <AndroidResource Include="Resources\values\colors.xml" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\splash.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\xml\" />

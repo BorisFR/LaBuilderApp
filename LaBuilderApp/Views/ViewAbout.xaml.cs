@@ -22,6 +22,7 @@ namespace LaBuilderApp
 		{
 			DoFile ("events", "");
 			DoFile ("builders", "\n");
+			DoFile ("things", "\n");
 		}
 
 		private async void DoFile (string name, string separator)
