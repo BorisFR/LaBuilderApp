@@ -13,7 +13,7 @@ namespace LaBuilderApp
 
 			if (!CrossAppInfo.Current.DisplayName.Equals ("XamarinFormsPreviewer")) {
 				Device.BeginInvokeOnMainThread (() => {
-					lvThing.ItemsSource = Thing.All;
+					lvThing.ItemsSource = Thing.Whole;
 				});
 			}
 

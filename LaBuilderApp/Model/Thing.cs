@@ -14,14 +14,14 @@ namespace LaBuilderApp
 		private string description; public string Description { get { return description; } set { description = value; RaisePropertyChanged (); } }
 		private int duree; public int Duree { get { return duree; } set { duree = value; RaisePropertyChanged (); } }
 
-		public ImageSource PictureImage { get { return ImageSource.FromUri (new Uri ($"http://www.r2builders.fr/boris/data/images/things/{picture}")); } }
+		public ImageSource PictureImage { get { return ImageSource.FromUri (new Uri ($"http://www.r2builders.fr/boris/data/images/things/{builderCode}/{picture}")); } }
 
-		private string builder = string.Empty;
+		private string builder; // = string.Empty;
 		public string Builder {
 			get {
-				if (builder.Length > 0) return builder;
+				if (builder != null && builder.Length > 0) return builder;
 
-				return builder;
+				return builderCode.ToString ();
 			}
 		}
 
