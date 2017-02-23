@@ -54,13 +54,25 @@ namespace LaBuilderApp
 			}
 		}
 
+		public static Thing GetById (string id)
+		{
+			if (dictThings.ContainsKey (id))
+				return dictThings [id];
+			return new Thing () { Name = id.ToString () };
+		}
+
+		private static Dictionary<string, Thing> dictThings = new Dictionary<string, Thing> ();
+
 		public static void PopulateData ()
 		{
 			Device.BeginInvokeOnMainThread (() => {
 				All.Clear ();
+				AllGroup.Clear ();
+				dictThings.Clear ();
 				ThingsGroup tg = null;
 				int tt = -42;
 				foreach (Thing t in Whole) {
+					dictThings.Add (t.id, t);
 					if (tt != t.ThingType) {
 						tt = t.ThingType;
 						if (tg == null) {

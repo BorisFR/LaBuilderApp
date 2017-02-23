@@ -107,6 +107,21 @@ namespace LaBuilderApp
 			}
 		}
 
+		private ObservableCollection<Thing> things = null;
+		public ObservableCollection<Thing> Things {
+			get {
+				if (things != null) return things;
+				things = new ObservableCollection<Thing> ();
+				foreach (Thing t in LaBuilderApp.Thing.Whole) {
+					if (t.BuilderCode == userId)
+						things.Add (t);
+				}
+				return things;
+			}
+		}
+
+
+
 		public static Builder GetById (int id)
 		{
 			if (dictBuilders.ContainsKey (id))
