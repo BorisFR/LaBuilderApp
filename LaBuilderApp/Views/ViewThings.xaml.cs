@@ -13,7 +13,7 @@ namespace LaBuilderApp
 
 			if (!CrossAppInfo.Current.DisplayName.Equals ("XamarinFormsPreviewer")) {
 				Device.BeginInvokeOnMainThread (() => {
-					lvThing.ItemsSource = Thing.Whole;
+					lvThing.ItemsSource = Thing.AllGroup;
 				});
 			}
 
@@ -31,7 +31,7 @@ namespace LaBuilderApp
 						Tools.Trace ($"DataRefresh {x.FileName}: {result}");
 						Device.BeginInvokeOnMainThread (() => {
 							Thing.LoadData (result);
-							//Thing.PopulateData ();
+							Thing.PopulateData ();
 						});
 					} else {
 						Tools.Trace ($"DataRefresh ERROR {x.FileName}: {result}");
@@ -57,7 +57,7 @@ namespace LaBuilderApp
 			Device.BeginInvokeOnMainThread (() => {
 				lvThing.SelectedItem = null;
 			});
-			//await Navigation.PushModalAsync (new PageBuilder (), true);
+			await Navigation.PushModalAsync (new PageThing (), true);
 		}
 
 	}

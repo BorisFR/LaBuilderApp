@@ -10,7 +10,7 @@
     <AssemblyName>LaBuilderApp</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Profile111</TargetFrameworkProfile>
-    <ReleaseVersion>0.2</ReleaseVersion>
+    <ReleaseVersion>0.4</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -98,6 +98,9 @@
     <EmbeddedResource Include="Views\ViewThings.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\PageThing.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -165,6 +168,9 @@
     <Compile Include="Model\Thing.cs" />
     <Compile Include="Views\ViewThings.xaml.cs">
       <DependentUpon>ViewThings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PageThing.xaml.cs">
+      <DependentUpon>PageThing.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

@@ -133,7 +133,7 @@ namespace LaBuilderApp
 					Tools.Trace ($"DataRefresh {x.FileName}: {result}");
 					Device.BeginInvokeOnMainThread (() => {
 						Thing.LoadData (result);
-						//Thing.PopulateData ();
+						Thing.PopulateData ();
 					});
 				} else {
 					AddText ($"{x.FileName} error");

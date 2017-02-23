@@ -74,6 +74,6 @@ Global
 		{BD1D1394-B94F-4411-9F89-2C70985D6D7D}.Debug|iPhone.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		version = 0.2
+		version = 0.4
 	EndGlobalSection
 EndGlobal
