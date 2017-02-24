@@ -107,9 +107,10 @@ namespace LaBuilderApp
 			}
 		}
 
-		private ObservableCollection<Thing> things = null;
+		//private ObservableCollection<Thing> things = null;
 		public ObservableCollection<Thing> Things {
 			get {
+				ObservableCollection<Thing> things = null;
 				if (things != null) return things;
 				things = new ObservableCollection<Thing> ();
 				foreach (Thing t in LaBuilderApp.Thing.Whole) {

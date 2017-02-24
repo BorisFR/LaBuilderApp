@@ -39,6 +39,9 @@ namespace LaBuilderApp
 
 		public void ShowPage (Menu menu)
 		{
+			Global.ComingFromBuilder = 0;
+			Global.ComingFromThing = string.Empty;
+			Global.ComingFromEvent = string.Empty;
 			Global.CurrentMenu = menu;
 			Device.BeginInvokeOnMainThread (() => {
 				if (CrossDeviceInfo.Current.Model.Equals ("iPad"))

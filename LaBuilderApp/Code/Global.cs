@@ -55,8 +55,11 @@ namespace LaBuilderApp
 		public static Color LightColor = Color.FromHex ("#5AA9D3");
 
 		public static Exhibition SelectedExhibition;
+		public static string ComingFromEvent = string.Empty;
 		public static Builder SelectedBuilder;
+		public static int ComingFromBuilder = 0;
 		public static Thing SelectedThing;
+		public static string ComingFromThing = string.Empty;
 
 		public static string CurrentLogin = string.Empty;
 		public static string CurrentPassword = string.Empty;

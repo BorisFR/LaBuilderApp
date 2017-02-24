@@ -83,9 +83,10 @@ namespace LaBuilderApp
 		public ImageSource CountryImage { get { return ImageSource.FromUri (new Uri ($"http://www.r2builders.fr/boris/Content/flags/{countryCode}.png")); } }
 		public string DescriptionLabel { get { return description.Replace ("\\n", "\r\n"); } }
 
-		private ObservableCollection<Builder> allBuilders;
+		//private ObservableCollection<Builder> allBuilders;
 		public ObservableCollection<Builder> AllBuilder {
 			get {
+				ObservableCollection<Builder> allBuilders = null;
 				if (allBuilders != null) return allBuilders;
 				allBuilders = new ObservableCollection<Builder> ();
 				if (builderList == null) return allBuilders;
@@ -95,6 +96,12 @@ namespace LaBuilderApp
 				return allBuilders;
 			}
 		}
+
+		/*
+		public void RefreshBuilders ()
+		{
+			allBuilders = null;
+		}*/
 
 		private string dateEvent = string.Empty; public string DateEvent {
 			get {
@@ -211,6 +218,7 @@ namespace LaBuilderApp
 				//All.Clear ();
 				AllGroup.Clear ();
 				ExhibitionGroup eg = null;
+				dictEvents.Clear ();
 				try {
 					//List<Exhibition> temp = new List<Exhibition> ();
 					foreach (Exhibition ex in Whole) {
@@ -227,6 +235,7 @@ namespace LaBuilderApp
 							eg.Add (ex);
 							//All.Add (ex);
 						}
+						dictEvents.Add (ex.Id, ex);
 					}
 					if (eg != null)
 						AllGroup.Add (eg);
@@ -236,6 +245,16 @@ namespace LaBuilderApp
 				}
 			});
 		}
+
+		public static Exhibition GetById (string id)
+		{
+			if (dictEvents.ContainsKey (id))
+				return dictEvents [id];
+			return new Exhibition () { Title = id.ToString () };
+		}
+
+		private static Dictionary<string, Exhibition> dictEvents = new Dictionary<string, Exhibition> ();
+
 
 		public static void ClearData ()
 		{
@@ -255,6 +274,13 @@ namespace LaBuilderApp
 				ChangeToYear (DateTime.Now.Year);
 			}
 		}
+		/*
+		public static void BuildersNeedToBeRefresh ()
+		{
+			foreach (KeyValuePair<string, Exhibition> kvp in dictEvents) {
+				kvp.Value.RefreshBuilders ();
+			}
+		}*/
 
 		static Exhibition ()
 		{

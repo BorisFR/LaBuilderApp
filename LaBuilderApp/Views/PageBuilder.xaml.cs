@@ -7,12 +7,21 @@ namespace LaBuilderApp
 {
 	public partial class PageBuilder : ContentPage
 	{
+		private int saveIdBuilder = 0;
+		private string saveIdThing = string.Empty;
+		private string saveIdEvent = string.Empty;
+
 		public PageBuilder ()
 		{
+			Global.ComingFromBuilder = Global.SelectedBuilder.UserId;
+			saveIdBuilder = Global.SelectedBuilder.UserId;
+			saveIdThing = Global.ComingFromThing;
+			saveIdEvent = Global.ComingFromEvent;
 			InitializeComponent ();
 
 			var tapGestureRecognizer = new TapGestureRecognizer ();
 			tapGestureRecognizer.Tapped += (s, e) => {
+				Global.ComingFromBuilder = 0;
 				Navigation.PopModalAsync ();
 			};
 			imgClose.GestureRecognizers.Add (tapGestureRecognizer);
@@ -24,8 +33,24 @@ namespace LaBuilderApp
 		{
 			Button button = sender as Button;
 			string param = (string)button.CommandParameter;
+			if (Global.ComingFromThing == param) {
+				Global.ComingFromBuilder = 0;
+				Navigation.PopModalAsync ();
+				return;
+			}
 			Global.SelectedThing = Thing.GetById (param);
 			Navigation.PushModalAsync (new PageThing (), true);
+		}
+
+		protected override void OnAppearing ()
+		{
+			Global.ComingFromBuilder = saveIdBuilder;
+			if (saveIdBuilder > 0) Global.SelectedBuilder = Builder.GetById (saveIdBuilder);
+			Global.ComingFromThing = saveIdThing;
+			if (saveIdThing.Length > 0) Global.SelectedThing = Thing.GetById (saveIdThing);
+			Global.ComingFromEvent = saveIdEvent;
+			if (saveIdEvent.Length > 0) Global.SelectedExhibition = Exhibition.GetById (saveIdEvent);
+			base.OnAppearing ();
 		}
 
 	}
