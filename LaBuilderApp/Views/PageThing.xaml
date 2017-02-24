@@ -23,7 +23,7 @@
 						<Label Text="{Binding Name}" FontSize="17" HorizontalOptions="Center" TextColor="White" />
 						<Image Source="{Binding PictureImage}" Aspect="AspectFit" WidthRequest="4000" HorizontalOptions="Center" />
 						<Label Text="{Binding Duree, StringFormat='Durée de la construction : {0}'}}" FontSize="14" TextColor="White" HorizontalOptions="Center" />
-						<Label Text="{Binding Description}" LineBreakMode="WordWrap" FontSize="15" TextColor="White"/>
+						<Label Text="{Binding DescriptionLabel}" LineBreakMode="WordWrap" FontSize="15" TextColor="White"/>
 
 						<Label Text="Builder" FontSize="14" TextColor="Black" BackgroundColor="White" />
 								<Grid WidthRequest="132" HeightRequest="172" Padding="0" RowSpacing="0" ColumnSpacing="0">

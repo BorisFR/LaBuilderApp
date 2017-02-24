@@ -28,8 +28,8 @@
 							<Label Text="{Binding Location}" FontSize="12" TextColor="White" YAlign="Center" />
 							<Image Source="{Binding CountryImage}" WidthRequest="50" Aspect="AspectFit" HorizontalOptions="EndAndExpand" />
 						</StackLayout>
-						<Label Text="{Binding Interest}" LineBreakMode="WordWrap" FontSize="15" TextColor="White"/>
-						<Label Text="{Binding Occupation}" LineBreakMode="WordWrap" FontSize="15" TextColor="White"/>
+						<Label Text="{Binding InterestLabel}" LineBreakMode="WordWrap" FontSize="15" TextColor="White"/>
+						<Label Text="{Binding OccupationLabel}" LineBreakMode="WordWrap" FontSize="15" TextColor="White"/>
 						<Label Text="Communication" FontSize="14" TextColor="Black" BackgroundColor="White" />
 						<Label Text="{Binding Communication}" LineBreakMode="WordWrap" FontSize="15" TextColor="White" />
 						<Label Text="Construction" FontSize="14" TextColor="Black" BackgroundColor="White" />

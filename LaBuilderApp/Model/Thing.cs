@@ -29,6 +29,7 @@ namespace LaBuilderApp
 		private int duree; public int Duree { get { return duree; } set { duree = value; RaisePropertyChanged (); } }
 
 		public ImageSource PictureImage { get { return ImageSource.FromUri (new Uri ($"http://www.r2builders.fr/boris/data/images/things/{builderCode}/{picture}")); } }
+		public string DescriptionLabel { get { return description.Replace ("\\n", "\r\n"); } }
 
 		private string builder; // = string.Empty;
 		public string Builder {
@@ -48,7 +49,11 @@ namespace LaBuilderApp
 			switch (t) {
 			case 100: return "Astromech";
 			case 200: return "Sabre laser";
-			case 300: return "Mouse Droïd";
+			case 300: return "Mouse Droïde";
+			case 400: return "Accessoires";
+			case 500: return "Cosplay";
+			case 600: return "Radio commande";
+			case 700: return "Application";
 			case 5000: return "Autre";
 			default: return t.ToString ();
 			}
