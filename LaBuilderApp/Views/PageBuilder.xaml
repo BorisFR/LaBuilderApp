@@ -63,6 +63,34 @@
 							</local:AwesomeWrappanel.ItemTemplate>
 						</local:AwesomeWrappanel>
 
+						<Label Text="Événement" FontSize="14" TextColor="Black" BackgroundColor="White" />
+						<ListView x:Name="lvExhibition" ItemsSource="{Binding Events}" HasUnevenRows="true" IsGroupingEnabled="true" BackgroundColor="Black" SeparatorVisibility="None" >
+							<ListView.GroupHeaderTemplate>
+								<DataTemplate>
+									<ViewCell Height="20">
+										<StackLayout Orientation="Vertical" Spacing="0" BackgroundColor="#5AA9D3" Padding="6,0">
+											<Label Text="{Binding Title}" Font="Bold" FontSize="14" TextColor="#11252D" HorizontalOptions="Start" YAlign="Center"  />
+										</StackLayout>
+									</ViewCell>
+								</DataTemplate>
+							</ListView.GroupHeaderTemplate>
+							<ListView.ItemTemplate>
+								<DataTemplate>
+										<ViewCell>
+											<ViewCell.View>
+												<StackLayout Orientation="Horizontal" Spacing="0" VerticalOptions="StartAndExpand">
+													<Image Source="{Binding LogoImage}" WidthRequest="100" HeightRequest="50" Aspect="AspectFit" BackgroundColor="White" />
+													<StackLayout Orientation="Vertical" Spacing="0" HorizontalOptions="FillAndExpand">
+														<Label Text="{Binding Title, StringFormat=' {0}'}" HorizontalOptions="FillAndExpand" HeightRequest="25" YAlign="Center" BackgroundColor="White" TextColor="Black" FontSize="14" LineBreakMode="TailTruncation"/>
+														<Label Text="{Binding DateEvent, StringFormat=' {0}'}" TextColor="White" HeightRequest="25" FontSize="12" YAlign="Center" LineBreakMode="TailTruncation"/>
+													</StackLayout>
+												</StackLayout>
+											</ViewCell.View>
+										</ViewCell>
+								</DataTemplate>
+							</ListView.ItemTemplate>
+						</ListView>
+						
 					</StackLayout>
 					
 				</Grid>

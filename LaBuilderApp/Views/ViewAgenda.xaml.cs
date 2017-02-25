@@ -75,13 +75,13 @@ namespace LaBuilderApp
 			DataServer.Launch ();
 		}
 
-		private async void ChooseIsDone ()
+		private void ChooseIsDone ()
 		{
 			Global.SelectedExhibition = lvExhibition.SelectedItem as Exhibition;
 			Device.BeginInvokeOnMainThread (() => {
 				lvExhibition.SelectedItem = null;
 			});
-			await Navigation.PushModalAsync (new PageAgenda (), true);
+			Navigation.PushModalAsync (new PageAgenda (), true);
 		}
 
 	}

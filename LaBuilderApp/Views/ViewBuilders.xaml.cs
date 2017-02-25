@@ -51,13 +51,13 @@ namespace LaBuilderApp
 
 		}
 
-		private async void ChooseIsDone ()
+		private void ChooseIsDone ()
 		{
 			Global.SelectedBuilder = lvBuilder.SelectedItem as Builder;
 			Device.BeginInvokeOnMainThread (() => {
 				lvBuilder.SelectedItem = null;
 			});
-			await Navigation.PushModalAsync (new PageBuilder (), true);
+			Navigation.PushModalAsync (new PageBuilder (), true);
 		}
 
 	}

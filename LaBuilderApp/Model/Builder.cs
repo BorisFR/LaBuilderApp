@@ -123,6 +123,55 @@ namespace LaBuilderApp
 			}
 		}
 
+		public ObservableCollection<ExhibitionGroup> Events {
+			get {
+				ObservableCollection<ExhibitionGroup> list = new ObservableCollection<ExhibitionGroup> ();
+
+				ExhibitionGroup eg = null;
+				int year = 0;
+				string month = string.Empty;
+				foreach (Exhibition ex in Exhibition.Whole) {
+					bool isPresent = false;
+					try {
+						if (ex.BuilderList != null) {
+							foreach (int x in ex.BuilderList) {
+								if (x == userId) {
+									isPresent = true;
+									break;
+								}
+							}
+						}
+					} catch (Exception err) {
+						System.Diagnostics.Debug.WriteLine (err.Message);
+					}
+					if (!isPresent) {
+						//System.Diagnostics.Debug.WriteLine ($"Ignore event: {ex.Title}");
+						continue;
+					}
+					//System.Diagnostics.Debug.WriteLine ($"Event: {ex.Title}");
+					try {
+						if (ex.YearEvent != year || ex.MonthEvent != month) {
+							month = ex.MonthEvent;
+							year = ex.YearEvent;
+							if (eg == null) {
+								eg = new ExhibitionGroup ($"{month} {year}");
+							} else {
+								list.Insert (0, eg);
+								eg = new ExhibitionGroup ($"{month} {year}");
+							}
+							eg.Insert (0, ex);
+						} else {
+							eg.Insert (0, ex);
+						}
+					} catch (Exception err) {
+						System.Diagnostics.Debug.WriteLine (err.Message);
+					}
+				}
+				if (eg != null)
+					list.Insert (0, eg);
+				return list;
+			}
+		}
 
 
 		public static Builder GetById (int id)

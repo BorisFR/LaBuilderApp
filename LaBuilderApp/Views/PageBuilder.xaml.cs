@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 
 using Xamarin.Forms;
+using System.Threading.Tasks;
 
 namespace LaBuilderApp
 {
@@ -27,8 +28,30 @@ namespace LaBuilderApp
 			imgClose.GestureRecognizers.Add (tapGestureRecognizer);
 
 			this.BindingContext = Global.SelectedBuilder;
+			/*
+			lvExhibition.ItemSelected += (sender, e) => {
+				Device.BeginInvokeOnMainThread (() => {
+					if (lvExhibition.SelectedItem == null) return;
+					ChooseEvent ();
+				});
+			};
+			*/
 		}
-
+		/*
+		private void ChooseEvent ()
+		{
+			if (Global.ComingFromEvent == ((Exhibition)lvExhibition.SelectedItem).Id) {
+				Global.ComingFromBuilder = 0;
+				Navigation.PopModalAsync ();
+				return;
+			}
+			Global.SelectedExhibition = lvExhibition.SelectedItem as Exhibition;
+			Device.BeginInvokeOnMainThread (() => {
+				lvExhibition.SelectedItem = null;
+			});
+			Navigation.PushModalAsync (new PageAgenda (), true);
+		}
+		*/
 		void ButtonClicked (object sender, EventArgs e)
 		{
 			Button button = sender as Button;
