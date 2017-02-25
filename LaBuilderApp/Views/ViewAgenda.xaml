@@ -30,7 +30,7 @@
 									<Image Source="{Binding LogoImage}" WidthRequest="100" HeightRequest="50" Aspect="AspectFit" BackgroundColor="White" />
 									<StackLayout Orientation="Vertical" Spacing="0" HorizontalOptions="FillAndExpand">
 										<Label Text="{Binding Title, StringFormat=' {0}'}" HorizontalOptions="FillAndExpand" HeightRequest="25" YAlign="Center" BackgroundColor="White" TextColor="Black" FontSize="14" LineBreakMode="TailTruncation"/>
-										<Label Text="{Binding DateEvent, StringFormat=' {0}'}" TextColor="White" HeightRequest="25" FontSize="12" YAlign="Center" LineBreakMode="TailTruncation"/>
+										<Label Text="{Binding DateEvent, StringFormat=' {0}'}" BackgroundColor="White" TextColor="Black" HeightRequest="25" FontSize="12" YAlign="Center" LineBreakMode="TailTruncation"/>
 									</StackLayout>
 								</StackLayout>
 							</ViewCell.View>

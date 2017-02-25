@@ -19,10 +19,10 @@
 							<ViewCell.View>
 								<StackLayout Orientation="Horizontal" Spacing="0" HeightRequest="100">
 									<Image Source="{Binding PictureImage}" WidthRequest="100" HeightRequest="100" Aspect="AspectFit" BackgroundColor="White" />
-									<StackLayout Orientation="Vertical" Spacing="0" HorizontalOptions="FillAndExpand" HeightRequest="100">
+									<StackLayout Orientation="Vertical" Spacing="0" HorizontalOptions="FillAndExpand" HeightRequest="100" WidthRequest="5000">
 										<Label Text="{Binding Name, StringFormat=' {0}'}" YAlign="Center" HeightRequest="25" HorizontalOptions="FillAndExpand" BackgroundColor="White" TextColor="Black" FontSize="20" LineBreakMode="TailTruncation"/>
-										<Label Text="{Binding Builder, StringFormat=' Builder : {0}'}}" YAlign="Center" HeightRequest="25" TextColor="White" FontSize="16" LineBreakMode="TailTruncation"/>
-										<Label Text="{Binding DescriptionLabel, StringFormat=' {0}'}}" YAlign="Start" HeightRequest="50" TextColor="White" FontSize="16" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" LineBreakMode="WordWrap"/>
+										<Label Text="{Binding Builder, StringFormat=' Builder : {0}'}" YAlign="Center" HeightRequest="25" TextColor="White" FontSize="16" LineBreakMode="TailTruncation"/>
+										<Label Text="{Binding DescriptionLabel}" Margin="6,0,0,0" YAlign="Start" HeightRequest="50" TextColor="White" FontSize="16" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" LineBreakMode="WordWrap"/>
 									</StackLayout>
 								</StackLayout>
 							</ViewCell.View>

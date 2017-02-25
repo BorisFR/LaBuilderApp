@@ -172,6 +172,7 @@
     <Compile Include="Views\PageThing.xaml.cs">
       <DependentUpon>PageThing.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\ThingsType.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="project.json" />

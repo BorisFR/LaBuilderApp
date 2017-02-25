@@ -121,6 +121,25 @@ namespace LaBuilderApp
 			DataServer.AddToDo (builders);
 
 
+			IDataServer thingstype = new IDataServer ("thingstype");
+			//events.IgnoreLocalData = true;
+			thingstype.StartWorking += () => {
+				AddText ("Loading things type");
+			};
+			thingstype.DataRefresh += (sender, status, result) => {
+				IDataServer x = sender as IDataServer;
+				if (status) {
+					AddText ("Things type done");
+					Tools.Trace ($"DataRefresh {x.FileName}: {result}");
+					ThingsType.LoadData (result);
+					ThingsType.PopulateData ();
+				} else {
+					AddText ($"{x.FileName} error");
+				}
+			};
+			DataServer.AddToDo (thingstype);
+
+
 			IDataServer things = new IDataServer ("things");
 			//events.IgnoreLocalData = true;
 			things.StartWorking += () => {

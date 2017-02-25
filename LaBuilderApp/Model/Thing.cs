@@ -46,6 +46,8 @@ namespace LaBuilderApp
 
 		private static string typeText (int t)
 		{
+			return LaBuilderApp.ThingsType.GetName (t);
+			/*
 			switch (t) {
 			case 100: return "Astromech";
 			case 200: return "Sabre laser";
@@ -54,9 +56,10 @@ namespace LaBuilderApp
 			case 500: return "Cosplay";
 			case 600: return "Radio commande";
 			case 700: return "Application";
+			case 800: return "BB-8";
 			case 5000: return "Autre";
 			default: return t.ToString ();
-			}
+			}*/
 		}
 
 		public static Thing GetById (string id)
