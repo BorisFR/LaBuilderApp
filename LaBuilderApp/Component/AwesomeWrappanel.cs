@@ -72,14 +72,15 @@ namespace LaBuilderApp
 			set { SetValue (ItemsSourceProperty, value); }
 		}
 
+		/*
 		public static void CleanAll ()
 		{
 			if (alreadyAdd)
 				coll.CollectionChanged -= ItemsSource_OnItemChanged;
-		}
+		}*/
 
-		private static bool alreadyAdd = false; // TODO: bad workaround
-		static INotifyCollectionChanged coll;
+		//private static bool alreadyAdd = false; // TODO: bad workaround
+		//static INotifyCollectionChanged coll;
 		private static void ItemsSource_OnPropertyChanged (BindableObject bindable, IEnumerable oldvalue, IEnumerable newvalue)
 		{
 			if (oldvalue != null) {
@@ -89,34 +90,52 @@ namespace LaBuilderApp
 			}
 
 			if (newvalue != null) {
-				//var coll = (INotifyCollectionChanged)newvalue;
-				coll = null;
-				coll = (INotifyCollectionChanged)newvalue;
+				var coll = (INotifyCollectionChanged)newvalue;
+				//coll = null;
+				//coll = (INotifyCollectionChanged)newvalue;
 				// Subscribe to CollectionChanged on the new collection
-				if (!alreadyAdd) {
-					alreadyAdd = true;
-					coll.CollectionChanged += ItemsSource_OnItemChanged;
-				}
+				//if (!alreadyAdd) {
+				//	alreadyAdd = true;
+				coll.CollectionChanged += ItemsSource_OnItemChanged;
+				//}
 				// Note: We might already have items
 				foreach (var item in newvalue) {
 					ItemsSource_OnItemChanged (null, new NotifyCollectionChangedEventArgs (NotifyCollectionChangedAction.Add, item));
 				}
+				_collectionChanged = null;
 			}
 		}
 
 		public AwesomeWrappanel ()
 		{
 			_collectionChanged += OnCollectionChanged;
-			alreadyAdd = false;
+			//alreadyAdd = false;
 		}
 
 		~AwesomeWrappanel ()
 		{
-			coll.CollectionChanged -= ItemsSource_OnItemChanged;
+			//coll.CollectionChanged -= ItemsSource_OnItemChanged;
 		}
 
 		private void OnCollectionChanged (object sender, NotifyCollectionChangedEventArgs args)
 		{
+			if (args.Action == NotifyCollectionChangedAction.Reset) {
+				Children.Clear ();
+				return;
+			}
+
+			if (args.Action == NotifyCollectionChangedAction.Add) {
+				foreach (object item in args.NewItems) {
+					var child = ItemTemplate.CreateContent () as View;
+					if (child == null)
+						return;
+
+					child.BindingContext = item;
+					Children.Add (child);
+				}
+				return;
+			}
+
 			foreach (object item in args.NewItems) {
 				var child = ItemTemplate.CreateContent () as View;
 				if (child == null)
