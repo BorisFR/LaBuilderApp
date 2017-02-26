@@ -80,7 +80,7 @@ namespace LaBuilderApp
 
 		public ImageSource LogoImage { get { return ImageSource.FromUri (new Uri ($"http://www.r2builders.fr/boris/data/images/events/{logo}")); } }
 		public ImageSource FlyerImage { get { return ImageSource.FromUri (new Uri ($"http://www.r2builders.fr/boris/data/images/flyer/{flyer}")); } }
-		public ImageSource CountryImage { get { return ImageSource.FromUri (new Uri ($"http://www.r2builders.fr/boris/Content/flags/{countryCode}.png")); } }
+		public ImageSource CountryImage { get { return Country.CountryImage (countryCode); } }
 		public string DescriptionLabel { get { return description.Replace ("\\n", "\r\n"); } }
 
 		//private ObservableCollection<Builder> allBuilders;

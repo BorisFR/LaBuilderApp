@@ -3,7 +3,7 @@
 	xmlns:local="clr-namespace:LaBuilderApp">
 	<ContentView.Content>
 	<StackLayout Orientation="Vertical" HeightRequest="3000">
-		<ListView x:Name="lvBuilder" ItemsSource="{x:Static local:Builder.DesignData}" HasUnevenRows="true" IsGroupingEnabled="true" GroupDisplayBinding="{Binding Title}" GroupShortNameBinding="{Binding Title}" IsPullToRefreshEnabled="true" BackgroundColor="Black" SeparatorVisibility="None" SeparatorColor="Transparent" >
+		<ListView x:Name="lvBuilder" ItemsSource="{x:Static local:Builder.DesignData}" HasUnevenRows="true" IsGroupingEnabled="true" GroupDisplayBinding="{Binding Title}" GroupShortNameBinding="{Binding Title}" IsPullToRefreshEnabled="true" BackgroundColor="Black" SeparatorVisibility="None">
 			<ListView.GroupHeaderTemplate>
 				<DataTemplate>
 					<ViewCell Height="20">

@@ -17,6 +17,11 @@ Développement
 Utilisation de la plateforme de développement Xamarin Forms ([5]). L'application est disponible en version iOS et Android.  
 Du code php a été ajouté au backoffice phpbb, moteur du site web de l'association, permettant l'intégration de l'application avec le site web.  
 
+Infos utilisées
+---------------
+Les codes pays sont les codes iso utilisés par exemple en téléphonie.  
+Les images de drapeau proviennent de ce site : [http://flagpedia.net/](http://flagpedia.net/).  
+
 Packages utilisés
 -----------------
 Device Info, to display informations of the runing device ([1]).  

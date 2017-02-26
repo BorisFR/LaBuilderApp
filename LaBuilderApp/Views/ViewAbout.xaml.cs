@@ -20,10 +20,11 @@ namespace LaBuilderApp
 
 		private async void InfoData ()
 		{
+			DoFile ("country", "\n");
+			DoFile ("thingstype", "\n");
 			DoFile ("events", "");
 			DoFile ("builders", "\n");
 			DoFile ("things", "\n");
-			DoFile ("thingtype", "\n");
 		}
 
 		private async void DoFile (string name, string separator)

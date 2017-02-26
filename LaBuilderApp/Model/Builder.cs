@@ -39,7 +39,7 @@ namespace LaBuilderApp
 		private string from; public string From { get { return from; } set { from = value; RaisePropertyChanged (); } }
 
 		public ImageSource AvatarImage { get { return ImageSource.FromUri (new Uri ($"http://www.r2builders.fr/forum/download/file.php?avatar={avatar}")); } }
-		public ImageSource CountryImage { get { return ImageSource.FromUri (new Uri ($"http://www.r2builders.fr/boris/Content/flags/33.png")); } }
+		public ImageSource CountryImage { get { return Country.CountryImage (33); } } // TODO: change 33
 		public string InterestLabel { get { return interest.Replace ("\\n", "\r\n"); } }
 		public string OccupationLabel { get { return occupation.Replace ("\\n", "\r\n"); } }
 

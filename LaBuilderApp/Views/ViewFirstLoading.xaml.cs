@@ -80,6 +80,26 @@ namespace LaBuilderApp
 				DataServer.AddToDo (login);
 			}
 
+
+			IDataServer country = new IDataServer ("country");
+			//events.IgnoreLocalData = true;
+			country.StartWorking += () => {
+				AddText ("Loading country");
+			};
+			country.DataRefresh += (sender, status, result) => {
+				IDataServer x = sender as IDataServer;
+				if (status) {
+					AddText ("Country done");
+					Tools.Trace ($"DataRefresh {x.FileName}: {result}");
+					Country.LoadData (result);
+					Country.PopulateData ();
+				} else {
+					AddText ($"{x.FileName} error");
+				}
+			};
+			DataServer.AddToDo (country);
+
+
 			IDataServer events = new IDataServer ("events");
 			//events.IgnoreLocalData = true;
 			events.StartWorking += () => {

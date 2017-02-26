@@ -173,6 +173,7 @@
       <DependentUpon>PageThing.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\ThingsType.cs" />
+    <Compile Include="Model\Country.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="project.json" />
