@@ -107,6 +107,14 @@
     <EmbeddedResource Include="Views\ViewInfo.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="GameR2finder\ViewGameR2Finder.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\menu_c_gamer2finder.png" />
+    <EmbeddedResource Include="Images\menu_c_game1.png" />
+    <EmbeddedResource Include="Images\darth-vader.png" />
+    <EmbeddedResource Include="Images\gamer2d2blue.png" />
+    <EmbeddedResource Include="Images\gamer2d2white.png" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -185,6 +193,11 @@
     <Compile Include="Views\ViewInfo.xaml.cs">
       <DependentUpon>ViewInfo.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GameR2finder\GameR2FinderTile.cs" />
+    <Compile Include="GameR2finder\GameR2FinderBoard.cs" />
+    <Compile Include="GameR2finder\ViewGameR2Finder.xaml.cs">
+      <DependentUpon>ViewGameR2Finder.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="project.json" />
@@ -195,6 +208,7 @@
     <Folder Include="Images\" />
     <Folder Include="Component\" />
     <Folder Include="Model\" />
+    <Folder Include="GameR2finder\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.3.3.180\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.3.3.180\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" />

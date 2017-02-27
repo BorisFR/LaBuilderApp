@@ -69,6 +69,12 @@ namespace LaBuilderApp
 				Icon = "medias"
 			});
 			mg.Add (new Menu () {
+				Page = MyPage.GameR2Finder,
+				Title = T ("R2 Finder"),
+				Detail = T ("Un petit jeu avec R2 !"),
+				Icon = "game1"
+			});
+			mg.Add (new Menu () {
 				Page = MyPage.About,
 				Title = T ("A propos de"),
 				Detail = T ("Informations"),

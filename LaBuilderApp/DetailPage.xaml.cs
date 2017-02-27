@@ -73,6 +73,10 @@ namespace LaBuilderApp
 					theFrame.Content = null;
 					theFrame.Content = new ViewMedia ();
 					break;
+				case MyPage.GameR2Finder:
+					theFrame.Content = null;
+					theFrame.Content = new ViewGameR2Finder ();
+					break;
 				case MyPage.About:
 					theFrame.Content = null;
 					theFrame.Content = new ViewAbout ();

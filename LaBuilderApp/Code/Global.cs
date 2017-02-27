@@ -22,7 +22,8 @@ namespace LaBuilderApp
 		Connect,
 		Medias,
 		Things,
-		Legal
+		Legal,
+		GameR2Finder
 	}
 
 	public delegate void Trigger ();
