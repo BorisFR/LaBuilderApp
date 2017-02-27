@@ -53,13 +53,14 @@
 						<Label Text="Détail de la construction" FontSize="14" TextColor="Black" BackgroundColor="White" />
 						<Label Text="{Binding DescriptionLabel}" LineBreakMode="WordWrap" FontSize="15" TextColor="White"/>
 
-						<cv:CarouselView ItemsSource="{Binding AllPictures}" x:Name="theCarousel" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+						<cv:CarouselView Position="{Binding AllPicturesPosition, Mode=TwoWay}" ItemsSource="{Binding AllPictures}" x:Name="theCarousel" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
 						    <cv:CarouselView.ItemTemplate>
 						      <DataTemplate>
 						          <Image Aspect="AspectFit" Source="{Binding}" WidthRequest="4000" HorizontalOptions="FillAndExpand"/>
 						      </DataTemplate>
 						    </cv:CarouselView.ItemTemplate>
 						  </cv:CarouselView>
+						<local:CarouselIndicators Margin="0,-50,0,0" IndicatorHeight="16" IndicatorWidth="16" UnselectedIndicator="unselected_circle.png" SelectedIndicator="selected_circle.png" Position="{Binding AllPicturesPosition}" ItemsSource="{Binding AllPictures}" />
 						
 					</StackLayout>
 					

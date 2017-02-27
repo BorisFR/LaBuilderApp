@@ -101,6 +101,8 @@
     <EmbeddedResource Include="Views\PageThing.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="Images\selected_circle.png" />
+    <EmbeddedResource Include="Images\unselected_circle.png" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -175,6 +177,7 @@
     <Compile Include="Model\ThingsType.cs" />
     <Compile Include="Model\Country.cs" />
     <Compile Include="Component\CarouselIndicators.cs" />
+    <Compile Include="Component\IScreenSize.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="project.json" />

@@ -142,6 +142,7 @@
     <Compile Include="TieWingRenderer.cs" />
     <Compile Include="Helpers\Settings.cs" />
     <Compile Include="splashscreen.cs" />
+    <Compile Include="Code\ScreenSize.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

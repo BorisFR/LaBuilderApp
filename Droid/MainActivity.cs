@@ -24,6 +24,13 @@ namespace LaBuilderApp.Droid
 
 			global::Xamarin.Forms.Forms.Init (this, bundle);
 
+
+			var metrics = Resources.DisplayMetrics;
+			var widthInDp = ConvertPixelsToDp (metrics.WidthPixels);
+			var heightInDp = ConvertPixelsToDp (metrics.HeightPixels);
+			ScreenSize.ScreenWidth = widthInDp;
+			ScreenSize.ScreenHeight = heightInDp;
+
 			LoadApplication (new App ());
 		}
 
@@ -32,5 +39,12 @@ namespace LaBuilderApp.Droid
 			PermissionsImplementation.Current.OnRequestPermissionsResult (requestCode, permissions, grantResults);
 		}
 
+
+		private int ConvertPixelsToDp (float pixelValue)
+		{
+			var dp = (int)((pixelValue) / Resources.DisplayMetrics.Density);
+			return dp;
+		}
 	}
+
 }

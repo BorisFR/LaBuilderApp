@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using Plugin.DeviceInfo;
 using Xamarin.Forms;
 
 namespace LaBuilderApp
@@ -30,6 +30,9 @@ namespace LaBuilderApp
 			//theCarousel.HeightRequest = this.Height;
 		}
 
+		private int _position;
+		public int Position { get { return _position; } set { _position = value; OnPropertyChanged (); } }
+
 		void ButtonClicked (object sender, EventArgs e)
 		{
 			Button button = sender as Button;
@@ -51,9 +54,10 @@ namespace LaBuilderApp
 			if (saveIdThing.Length > 0) Global.SelectedThing = Thing.GetById (saveIdThing);
 			Global.ComingFromEvent = saveIdEvent;
 			if (saveIdEvent.Length > 0) Global.SelectedExhibition = Exhibition.GetById (saveIdEvent);
-			if (Global.SelectedThing.PictureList != null && Global.SelectedThing.PictureList.Length > 0)
-				theCarousel.HeightRequest = this.Height;
-			else
+			if (Global.SelectedThing.PictureList != null && Global.SelectedThing.PictureList.Length > 0) {
+				theCarousel.HeightRequest = Global.ScreenSize.GetHeight ();
+				Tools.Trace ($"Screen height: {Global.ScreenSize.GetHeight ()}, width: {Global.ScreenSize.GetWidth ()}");
+			} else
 				theCarousel.HeightRequest = 1;
 			base.OnAppearing ();
 		}

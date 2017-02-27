@@ -171,6 +171,7 @@
     <Compile Include="AppDelegate.cs" />
     <Compile Include="Code\Files.cs" />
     <Compile Include="Helpers\Settings.cs" />
+    <Compile Include="Code\ScreenSize.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Aurek-Besh.ttf" />

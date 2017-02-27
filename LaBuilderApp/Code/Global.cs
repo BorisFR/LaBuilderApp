@@ -49,6 +49,7 @@ namespace LaBuilderApp
 		public static CultureInfo CultureFrench = new CultureInfo ("fr-FR");
 
 		public static IFiles Files = null;
+		public static IScreenSize ScreenSize = null;
 
 		public static Random Random;
 		public static Color DarkColor = Color.FromHex ("#11252D");
@@ -75,6 +76,7 @@ namespace LaBuilderApp
 			}
 			IsDoingInit = true;
 			Files = DependencyService.Get<IFiles> ();
+			ScreenSize = DependencyService.Get<IScreenSize> ();
 			Random = new Random (DateTime.Now.Millisecond);
 			CurrentLogin = CrossSettings.Current.GetValueOrDefault<string> ("userlogin", string.Empty);
 			CurrentPassword = CrossSettings.Current.GetValueOrDefault<string> ("userpassword", string.Empty);

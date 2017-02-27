@@ -53,6 +53,9 @@ namespace LaBuilderApp
 			}
 		}
 
+		private int allPicturesPosition;
+		public int AllPicturesPosition { get { return allPicturesPosition; } set { allPicturesPosition = value; RaisePropertyChanged (); } }
+
 		public ImageSource BuilderAvatarImage { get { return ImageSource.FromUri (new Uri ($"http://www.r2builders.fr/forum/download/file.php?avatar={LaBuilderApp.Builder.GetById (builderCode).Avatar}")); } }
 
 		public static ObservableCollection<ThingsGroup> AllGroup = new ObservableCollection<ThingsGroup> ();
