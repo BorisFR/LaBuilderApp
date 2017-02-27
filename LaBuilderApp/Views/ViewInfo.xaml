@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="LaBuilderApp.ViewInfo"
+	BackgroundColor="Transparent">
+	<ContentView.Content>
+	<StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" Spacing="0">
+		<WebView x:Name="theWebview" VerticalOptions="FillAndExpand" Source="http://www.r2builders.fr/disclaimer.php" WidthRequest="3000" HeightRequest="3000" />
+	</StackLayout>
+	</ContentView.Content>
+</ContentView>

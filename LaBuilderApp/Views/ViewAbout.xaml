@@ -7,9 +7,20 @@
 		<Label x:Name="lApp" FontSize="12" TextColor="White" />
 		<Label Text="Plateforme" FontSize="14" BackgroundColor="White"/>
 		<Label x:Name="lDevice" FontSize="12" TextColor="White"/>
+		<Label x:Name="lScreen" FontSize="12" TextColor="White"/>
 		<Label Text="Data" FontSize="14" BackgroundColor="White"/>
 		<Label x:Name="lData" FontSize="12" TextColor="White"/>
-		<WebView x:Name="theWebview" VerticalOptions="FillAndExpand" Source="http://www.r2builders.fr/disclaimer.php" WidthRequest="3000" HeightRequest="3000" />
+		<Label Text="Auteur" FontSize="14" BackgroundColor="White"/>
+		<Label FontSize="12" TextColor="White">
+			<Label.FormattedText>
+				<FormattedString>
+					<Span Text="Application créée par Stéphane Fardoux pour le club des R2-Builders."/>
+					<Span Text="&#10;Profil : https://www.linkedin.com/in/sfardoux" />
+					<Span Text="&#10;Made with Xamarin Forms"/>
+					<Span Text="&#10;&#169; 2017 - R2Builders.fr"/>
+				</FormattedString>
+			</Label.FormattedText>
+		</Label>
 	</StackLayout>
 	</ContentView.Content>
 </ContentView>

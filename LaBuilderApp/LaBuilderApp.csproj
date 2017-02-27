@@ -103,6 +103,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Images\selected_circle.png" />
     <EmbeddedResource Include="Images\unselected_circle.png" />
+    <EmbeddedResource Include="Images\menu_c_info.png" />
+    <EmbeddedResource Include="Views\ViewInfo.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -178,6 +182,9 @@
     <Compile Include="Model\Country.cs" />
     <Compile Include="Component\CarouselIndicators.cs" />
     <Compile Include="Component\IScreenSize.cs" />
+    <Compile Include="Views\ViewInfo.xaml.cs">
+      <DependentUpon>ViewInfo.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="project.json" />

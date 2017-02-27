@@ -74,6 +74,12 @@ namespace LaBuilderApp
 				Detail = T ("Informations"),
 				Icon = "about"
 			});
+			mg.Add (new Menu () {
+				Page = MyPage.Legal,
+				Title = T ("Mentions légales"),
+				Detail = T ("Parce qu'il en faut"),
+				Icon = "info"
+			});
 			/*
 			mg.Add (new Menu () {
 				Page = MyPage.None,

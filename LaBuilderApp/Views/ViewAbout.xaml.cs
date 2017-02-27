@@ -12,7 +12,6 @@ namespace LaBuilderApp
 		{
 			InitializeComponent ();
 			Device.BeginInvokeOnMainThread (() => {
-				theWebview.Source = "http://www.r2builders.fr/disclaimer.php";
 				LoadInfo ();
 				InfoData ();
 			});
@@ -20,11 +19,11 @@ namespace LaBuilderApp
 
 		private async void InfoData ()
 		{
-			DoFile ("country", "\n");
+			DoFile ("country", "");
 			DoFile ("thingstype", "\n");
-			DoFile ("events", "");
 			DoFile ("builders", "\n");
 			DoFile ("things", "\n");
+			DoFile ("events", "\n");
 		}
 
 		private async void DoFile (string name, string separator)
@@ -50,6 +49,8 @@ namespace LaBuilderApp
 			Tools.Trace ($"Display: {CrossAppInfo.Current.DisplayName}");    // LaBuilderApp
 			Tools.Trace ($"Package: {CrossAppInfo.Current.PackageName}");    // com.boris.labuilderapp
 			Tools.Trace ($"Version: {CrossAppInfo.Current.Version}");        // 1.0
+			lScreen.Text = $"Screen size: {Global.ScreenSize.GetWidth ().ToString ()}x{Global.ScreenSize.GetHeight ().ToString ()}";
+			Tools.Trace ($"Screen size: {Global.ScreenSize.GetWidth ().ToString ()}x{Global.ScreenSize.GetHeight ().ToString ()}");
 		}
 
 	}

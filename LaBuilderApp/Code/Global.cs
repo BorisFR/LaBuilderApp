@@ -21,7 +21,8 @@ namespace LaBuilderApp
 		About,
 		Connect,
 		Medias,
-		Things
+		Things,
+		Legal
 	}
 
 	public delegate void Trigger ();
