@@ -29,7 +29,6 @@ namespace LaBuilderApp
 			imgClose.GestureRecognizers.Add (tapGestureRecognizer);
 
 			this.BindingContext = Global.SelectedThing;
-			//theCarousel.HeightRequest = this.Height;
 		}
 
 		private int _position;
@@ -50,17 +49,23 @@ namespace LaBuilderApp
 
 		protected override void OnAppearing ()
 		{
-			Global.ComingFromBuilder = saveIdBuilder;
-			if (saveIdBuilder > 0) Global.SelectedBuilder = Builder.GetById (saveIdBuilder);
-			Global.ComingFromThing = saveIdThing;
-			if (saveIdThing.Length > 0) Global.SelectedThing = Thing.GetById (saveIdThing);
-			Global.ComingFromEvent = saveIdEvent;
-			if (saveIdEvent.Length > 0) Global.SelectedExhibition = Exhibition.GetById (saveIdEvent);
-			if (Global.SelectedThing.PictureList != null && Global.SelectedThing.PictureList.Length > 0) {
-				theCarousel.HeightRequest = Global.ScreenSize.GetHeight ();
-				Tools.Trace ($"Screen height: {Global.ScreenSize.GetHeight ()}, width: {Global.ScreenSize.GetWidth ()}");
-			} else
-				theCarousel.HeightRequest = 1;
+			try {
+				Global.ComingFromBuilder = saveIdBuilder;
+				if (saveIdBuilder > 0) Global.SelectedBuilder = Builder.GetById (saveIdBuilder);
+				Global.ComingFromThing = saveIdThing;
+				if (saveIdThing.Length > 0) Global.SelectedThing = Thing.GetById (saveIdThing);
+				Global.ComingFromEvent = saveIdEvent;
+				if (saveIdEvent.Length > 0) Global.SelectedExhibition = Exhibition.GetById (saveIdEvent);
+
+				if (Global.SelectedThing != null && Global.SelectedThing.PictureList != null && Global.SelectedThing.PictureList.Length > 0) {
+					theCarousel.HeightRequest = Global.ScreenSize.GetHeight ();
+					Tools.Trace ($"Screen height: {Global.ScreenSize.GetHeight ()}, width: {Global.ScreenSize.GetWidth ()}");
+				} else
+					theCarousel.HeightRequest = 1;
+
+			} catch (Exception err) {
+				Tools.Trace ($"PageThing.OnAppearing error: {err.Message}");
+			}
 			base.OnAppearing ();
 		}
 
