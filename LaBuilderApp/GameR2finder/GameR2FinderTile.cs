@@ -2,6 +2,7 @@
 #define FIX_WINDOWS_PHONE_NULL_CONTENT  // Set Content of Frame to null doesn't work in Windows as of 2.3.0
 
 using System;
+using System.Collections.Generic;
 using Xamarin.Forms;
 
 namespace LaBuilderApp
@@ -18,7 +19,17 @@ namespace LaBuilderApp
 		GameR2FinderTileStatus tileStatus = GameR2FinderTileStatus.Hidden;
 		Label label;
 		Image flagImage, bugImage;
-		static ImageSource flagImageSource;
+		Color fullBackGround = Color.FromHex ("5AA9D3");
+		Color astroBackGround = Color.White;
+		Color labelBackGround = Color.FromHex ("11252D");
+
+		static List<string> astroList = new List<string> ();
+		static ImageSource flagImageSource {
+			get {
+				string s = astroList [Global.Random.Next (astroList.Count)];
+				return ImageSource.FromResource ("LaBuilderApp.Images." + s + ".png");
+			}
+		}
 		static ImageSource bugImageSource;
 		bool doNotFireEvent;
 
@@ -26,7 +37,24 @@ namespace LaBuilderApp
 
 		static GameR2FinderTile ()
 		{
-			flagImageSource = ImageSource.FromResource ("LaBuilderApp.Images.gamer2d2white.png");
+			astroList.Add ("r2a6-2-125");
+			astroList.Add ("r2b1-2-125");
+			astroList.Add ("r2d2-2-125");
+			astroList.Add ("r2r9-2-125");
+			astroList.Add ("r2v2-2-125");
+			astroList.Add ("r3d2-2-125");
+			astroList.Add ("r3t7-2-125");
+			astroList.Add ("r4g9-2-125");
+			astroList.Add ("r4i9-2-125");
+			astroList.Add ("r4m9-2-125");
+			astroList.Add ("r5a7-2-125");
+			astroList.Add ("r5d4-2-125");
+			astroList.Add ("r6t6-2-125");
+			astroList.Add ("r7s1-2-125");
+			astroList.Add ("r9-1-125");
+
+
+			//flagImageSource = ImageSource.FromResource ("LaBuilderApp.Images.gamer2d2white.png");
 			bugImageSource = ImageSource.FromResource ("LaBuilderApp.Images.darth-vader.png");
 		}
 
@@ -49,7 +77,6 @@ namespace LaBuilderApp
 
 			flagImage = new Image {
 				Source = flagImageSource,
-
 			};
 
 			bugImage = new Image {
@@ -98,6 +125,7 @@ namespace LaBuilderApp
 					switch (tileStatus) {
 					case GameR2FinderTileStatus.Hidden:
 						this.Content = null;
+						this.BackgroundColor = fullBackGround;
 
 #if FIX_WINDOWS_PHONE_NULL_CONTENT
 
@@ -110,13 +138,16 @@ namespace LaBuilderApp
 
 					case GameR2FinderTileStatus.Flagged:
 						this.Content = flagImage;
+						this.BackgroundColor = astroBackGround;
 						break;
 
 					case GameR2FinderTileStatus.Exposed:
 						if (this.IsBug) {
 							this.Content = bugImage;
+							this.BackgroundColor = astroBackGround;
 						} else {
 							this.Content = label;
+							this.BackgroundColor = labelBackGround;
 							label.Text =
 									(this.SurroundingBugCount > 0) ?
 										this.SurroundingBugCount.ToString () : " ";

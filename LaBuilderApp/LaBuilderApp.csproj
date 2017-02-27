@@ -115,6 +115,21 @@
     <EmbeddedResource Include="Images\darth-vader.png" />
     <EmbeddedResource Include="Images\gamer2d2blue.png" />
     <EmbeddedResource Include="Images\gamer2d2white.png" />
+    <EmbeddedResource Include="Images\r2a6-2-125.png" />
+    <EmbeddedResource Include="Images\r2b1-2-125.png" />
+    <EmbeddedResource Include="Images\r2d2-2-125.png" />
+    <EmbeddedResource Include="Images\r2r9-2-125.png" />
+    <EmbeddedResource Include="Images\r2v2-2-125.png" />
+    <EmbeddedResource Include="Images\r3d2-2-125.png" />
+    <EmbeddedResource Include="Images\r3t7-2-125.png" />
+    <EmbeddedResource Include="Images\r4g9-2-125.png" />
+    <EmbeddedResource Include="Images\r4i9-2-125.png" />
+    <EmbeddedResource Include="Images\r4m9-2-125.png" />
+    <EmbeddedResource Include="Images\r5a7-2-125.png" />
+    <EmbeddedResource Include="Images\r5d4-2-125.png" />
+    <EmbeddedResource Include="Images\r6t6-2-125.png" />
+    <EmbeddedResource Include="Images\r7s1-2-125.png" />
+    <EmbeddedResource Include="Images\r9-1-125.png" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">

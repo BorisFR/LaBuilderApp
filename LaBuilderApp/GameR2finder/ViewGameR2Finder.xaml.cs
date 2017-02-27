@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using Plugin.Settings;
 
 namespace LaBuilderApp
 {
@@ -20,7 +21,7 @@ namespace LaBuilderApp
 			InitializeComponent ();
 
 			this.SizeChanged += (sender, e) => {
-				OnMainContentViewSizeChanged (sender, e);
+				//OnMainContentViewSizeChanged (sender, e);
 			};
 
 			board.GameStarted += (sender, args) => {
@@ -44,6 +45,24 @@ namespace LaBuilderApp
 			};
 
 			PrepareForNewGame ();
+
+			bool alreadyShowRules = CrossSettings.Current.GetValueOrDefault<bool> ("GameR2FinderRulesShow", false);
+			if (!alreadyShowRules) {
+				CrossSettings.Current.AddOrUpdateValue<bool> ("GameR2FinderRulesShow", true);
+				ShowRules ();
+			}
+
+			btRules.Clicked += (sender, e) => {
+				ShowRules ();
+			};
+		}
+
+		void ShowRules ()
+		{
+			Global.MainAppPage.DisplayAlert ("Règles du jeu", "L'objectif de ta mission est de retrouver l'ensemble des unités Astromeccano qui se sont cachées dans la grille. Mais attention car l'Empire est présent !" +
+											 " \r\n\r\nTouche une case pour poser ou enlever une unité Astromeccano. Fais un double-tap si tu penses que la case est vide." +
+											 " \r\n\r\nLe nombre qui apparaît t'indique le nombre d'unités Astromeccano présentes autour de cette case." +
+											 " \r\n\r\nSoit vigilant car l'Empire est fourbe !", "Ok");
 		}
 
 
@@ -60,6 +79,7 @@ namespace LaBuilderApp
 			isGameInProgress = false;
 		}
 
+		/*
 		void OnMainContentViewSizeChanged (object sender, EventArgs args)
 		{
 			ContentView contentView = (ContentView)sender;
@@ -68,6 +88,7 @@ namespace LaBuilderApp
 
 			//bool isLandscape = width > height;
 			bool isLandscape = Global.ScreenSize.GetWidth () > Global.ScreenSize.GetHeight ();
+			Tools.Trace ($"Screen size: {Global.ScreenSize.GetWidth ()}x{Global.ScreenSize.GetHeight ()}");
 
 			if (isLandscape) {
 				mainGrid.RowDefinitions [0].Height = 0;
@@ -89,7 +110,7 @@ namespace LaBuilderApp
 				Grid.SetRow (textStack, 0);
 				Grid.SetColumn (textStack, 1);
 			}
-		}
+		}*/
 
 		// Maintains a square aspect ratio for the board.
 		void OnBoardContentViewSizeChanged (object sender, EventArgs args)
@@ -97,6 +118,7 @@ namespace LaBuilderApp
 			ContentView contentView = (ContentView)sender;
 			double width = contentView.Width;
 			double height = contentView.Height;
+			//double height = Global.ScreenSize.GetHeight ();
 			double dimension = Math.Min (width, height);
 			double horzPadding = (width - dimension) / 2;
 			double vertPadding = (height - dimension) / 2;
