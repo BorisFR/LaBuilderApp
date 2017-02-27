@@ -35,6 +35,7 @@ namespace LaBuilderApp
 			};
 
 			board.GameEnded += (sender, hasWon) => {
+				if (!isGameInProgress) return;
 				isGameInProgress = false;
 
 				if (hasWon) {

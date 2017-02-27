@@ -19,7 +19,7 @@ namespace LaBuilderApp
 
 			lvThing.ItemSelected += (sender, e) => {
 				if (lvThing.SelectedItem == null) return;
-				ChooseIsDone ();
+				ChooseThing ();
 			};
 
 			lvThing.Refreshing += (sender, e) => {
@@ -51,7 +51,7 @@ namespace LaBuilderApp
 
 		}
 
-		private void ChooseIsDone ()
+		private void ChooseThing ()
 		{
 			Global.SelectedThing = lvThing.SelectedItem as Thing;
 			Device.BeginInvokeOnMainThread (() => {

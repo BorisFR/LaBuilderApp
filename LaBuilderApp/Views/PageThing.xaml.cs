@@ -13,10 +13,12 @@ namespace LaBuilderApp
 
 		public PageThing ()
 		{
-			Global.ComingFromThing = Global.SelectedThing.Id;
-			saveIdBuilder = Global.ComingFromBuilder;
-			saveIdEvent = Global.ComingFromEvent;
-			saveIdThing = Global.SelectedThing.Id;
+			try {
+				Global.ComingFromThing = Global.SelectedThing.Id;
+				saveIdBuilder = Global.ComingFromBuilder;
+				saveIdEvent = Global.ComingFromEvent;
+				saveIdThing = Global.SelectedThing.Id;
+			} catch (Exception) { }
 			InitializeComponent ();
 
 			var tapGestureRecognizer = new TapGestureRecognizer ();

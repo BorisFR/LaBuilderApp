@@ -11,7 +11,8 @@ namespace LaBuilderApp
 	{
 		Hidden,
 		Flagged,
-		Exposed
+		Exposed,
+		ExposedDoubleTap
 	}
 
 	class GameR2FinderTile : Frame
@@ -52,6 +53,21 @@ namespace LaBuilderApp
 			astroList.Add ("r6t6-2-125");
 			astroList.Add ("r7s1-2-125");
 			astroList.Add ("r9-1-125");
+
+			astroList.Add ("r2a6-1-125");
+			astroList.Add ("r2b1-1-125");
+			astroList.Add ("r2d2-1-125");
+			astroList.Add ("r2r9-1-125");
+			astroList.Add ("r2v2-1-125");
+			astroList.Add ("r3d2-1-125");
+			astroList.Add ("r3t7-1-125");
+			astroList.Add ("r4g9-1-125");
+			astroList.Add ("r4i9-1-125");
+			astroList.Add ("r4m9-1-125");
+			astroList.Add ("r5a7-1-125");
+			astroList.Add ("r5d4-1-125");
+			astroList.Add ("r6t6-1-125");
+			astroList.Add ("r7s1-1-125");
 
 
 			//flagImageSource = ImageSource.FromResource ("LaBuilderApp.Images.gamer2d2white.png");
@@ -157,6 +173,13 @@ namespace LaBuilderApp
 
 					if (!doNotFireEvent && TileStatusChanged != null) {
 						TileStatusChanged (this, tileStatus);
+					}
+				} else if (tileStatus == GameR2FinderTileStatus.Exposed) {
+					if (!this.IsBug) {
+						// double click sur un nombre
+						if (!doNotFireEvent && TileStatusChanged != null) {
+							TileStatusChanged (this, GameR2FinderTileStatus.ExposedDoubleTap);
+						}
 					}
 				}
 			}

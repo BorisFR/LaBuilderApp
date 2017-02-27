@@ -183,15 +183,63 @@ namespace LaBuilderApp
 				}
 			}
 
+			if (tileStatus == GameR2FinderTileStatus.ExposedDoubleTap) {
+				//nb de R2 = changedTile.SurroundingBugCount
+				// calcul du nb de Flag posé
+				int nbFlag = 0;
+				CycleThroughNeighbors (changedTile.Row, changedTile.Col,
+					(neighborRow, neighborCol) => {
+						// Expose all the neighbors.
+						switch (tiles [neighborRow, neighborCol].Status) {
+						case GameR2FinderTileStatus.Flagged:
+							nbFlag++;
+							break;
+						}
+					});
+				// si on a posé le bon nb de flag
+				if (nbFlag == changedTile.SurroundingBugCount) {
+					CycleThroughNeighbors (changedTile.Row, changedTile.Col,
+						(neighborRow, neighborCol) => {
+							// Expose all the neighbors.
+							switch (tiles [neighborRow, neighborCol].Status) {
+							case GameR2FinderTileStatus.Hidden:
+								tiles [neighborRow, neighborCol].Status = GameR2FinderTileStatus.Exposed;
+								// non découvert
+								// est-ce un bug ?
+								//if (tiles [neighborRow, neighborCol].IsBug) {
+								// c'est perdu !
+								//}
+								break;
+							}
+						});
+				}
+			}
+
 			// Check for a win.
 			bool hasWon = true;
 
+			int nb = 0;
 			foreach (GameR2FinderTile til in tiles) {
 				if (til.IsBug && til.Status != GameR2FinderTileStatus.Flagged)
 					hasWon = false;
 
 				if (!til.IsBug && til.Status != GameR2FinderTileStatus.Exposed)
 					hasWon = false;
+
+				if (til.Status == GameR2FinderTileStatus.Flagged) {
+					nb++;
+				}
+				if (til.Status == GameR2FinderTileStatus.Hidden)
+					nb++;
+			}
+			if (nb == BUGS) {
+				//hasWon = true;
+				foreach (GameR2FinderTile til in tiles) {
+					if (til.Status == GameR2FinderTileStatus.Hidden)
+						til.Status = GameR2FinderTileStatus.Flagged;
+				}
+			} else {
+				System.Diagnostics.Debug.WriteLine ($"still: {nb.ToString ()}");
 			}
 
 			// If there's a win, celebrate!
