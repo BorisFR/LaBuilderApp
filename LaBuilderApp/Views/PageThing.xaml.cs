@@ -27,6 +27,7 @@ namespace LaBuilderApp
 			imgClose.GestureRecognizers.Add (tapGestureRecognizer);
 
 			this.BindingContext = Global.SelectedThing;
+			//theCarousel.HeightRequest = this.Height;
 		}
 
 		void ButtonClicked (object sender, EventArgs e)
@@ -50,6 +51,10 @@ namespace LaBuilderApp
 			if (saveIdThing.Length > 0) Global.SelectedThing = Thing.GetById (saveIdThing);
 			Global.ComingFromEvent = saveIdEvent;
 			if (saveIdEvent.Length > 0) Global.SelectedExhibition = Exhibition.GetById (saveIdEvent);
+			if (Global.SelectedThing.PictureList != null && Global.SelectedThing.PictureList.Length > 0)
+				theCarousel.HeightRequest = this.Height;
+			else
+				theCarousel.HeightRequest = 1;
 			base.OnAppearing ();
 		}
 

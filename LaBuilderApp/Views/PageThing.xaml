@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="LaBuilderApp.PageThing" 
-	xmlns:local="clr-namespace:LaBuilderApp" Padding="{x:Static local:Global.PagePadding}">
+	xmlns:local="clr-namespace:LaBuilderApp" Padding="{x:Static local:Global.PagePadding}" 
+	xmlns:cv="clr-namespace:Xamarin.Forms;assembly=Xamarin.Forms.CarouselView">
 	<ContentPage.Content>
 		<ScrollView Orientation="Vertical" BackgroundColor="#11252D" Padding="6">
 			<StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand">
@@ -23,8 +24,6 @@
 						<Label Text="{Binding Name}" FontSize="17" HorizontalOptions="Center" TextColor="White" />
 						<Label Text="{Binding Builder, StringFormat='par {0}'}" FontSize="17" HorizontalOptions="Center" TextColor="White" />
 						<Image Source="{Binding PictureImage}" Aspect="AspectFit" WidthRequest="4000" HorizontalOptions="Center" />
-						<Label Text="{Binding Duree, StringFormat='Durée de la construction : {0}'}}" FontSize="14" TextColor="White" HorizontalOptions="Center" />
-						<Label Text="{Binding DescriptionLabel}" LineBreakMode="WordWrap" FontSize="15" TextColor="White"/>
 
 						<Label Text="Builder" FontSize="14" TextColor="Black" BackgroundColor="White" />
 								<Grid WidthRequest="132" HeightRequest="172" Padding="0" RowSpacing="0" ColumnSpacing="0">
@@ -50,6 +49,17 @@
 								<Label Text="{Binding Builder}" FontSize="17" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center" Grid.Row="3" Grid.Column="2" />
 								<Button Text="" BackgroundColor="Transparent" CommandParameter="{Binding BuilderCode}" BorderColor="Transparent" BorderWidth="0" Grid.Row="0" Grid.RowSpan="6" Grid.Column="0" Grid.ColumnSpan="5" Clicked="ButtonClicked" />
 								</Grid>
+
+						<Label Text="Détail de la construction" FontSize="14" TextColor="Black" BackgroundColor="White" />
+						<Label Text="{Binding DescriptionLabel}" LineBreakMode="WordWrap" FontSize="15" TextColor="White"/>
+
+						<cv:CarouselView ItemsSource="{Binding AllPictures}" x:Name="theCarousel" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+						    <cv:CarouselView.ItemTemplate>
+						      <DataTemplate>
+						          <Image Aspect="AspectFit" Source="{Binding}" WidthRequest="4000" HorizontalOptions="FillAndExpand"/>
+						      </DataTemplate>
+						    </cv:CarouselView.ItemTemplate>
+						  </cv:CarouselView>
 						
 					</StackLayout>
 					

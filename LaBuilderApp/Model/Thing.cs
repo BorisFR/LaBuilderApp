@@ -27,6 +27,7 @@ namespace LaBuilderApp
 		private int builderCode; public int BuilderCode { get { return builderCode; } set { builderCode = value; RaisePropertyChanged (); } }
 		private string description; public string Description { get { return description; } set { description = value; RaisePropertyChanged (); } }
 		private int duree; public int Duree { get { return duree; } set { duree = value; RaisePropertyChanged (); } }
+		private string [] pictureList; public string [] PictureList { get { return pictureList; } set { pictureList = value; RaisePropertyChanged (); } }
 
 		public ImageSource PictureImage { get { return ImageSource.FromUri (new Uri ($"http://www.r2builders.fr/boris/data/images/things/{builderCode}/{picture}")); } }
 		public string DescriptionLabel { get { return description.Replace ("\\n", "\r\n"); } }
@@ -37,6 +38,18 @@ namespace LaBuilderApp
 				if (builder != null && builder.Length > 0) return builder;
 				builder = LaBuilderApp.Builder.GetById (builderCode).Username;
 				return builder;
+			}
+		}
+
+		public ObservableCollection<ImageSource> AllPictures {
+			get {
+				ObservableCollection<ImageSource> temp = new ObservableCollection<ImageSource> ();
+				if (pictureList != null) {
+					foreach (string img in pictureList) {
+						temp.Add (ImageSource.FromUri (new Uri ($"http://www.r2builders.fr/boris/data/images/things/{builderCode}/{img}")));
+					}
+				}
+				return temp;
 			}
 		}
 
