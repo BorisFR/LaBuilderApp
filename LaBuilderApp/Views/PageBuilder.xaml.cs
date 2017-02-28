@@ -14,10 +14,12 @@ namespace LaBuilderApp
 
 		public PageBuilder ()
 		{
-			Global.ComingFromBuilder = Global.SelectedBuilder.UserId;
-			saveIdBuilder = Global.SelectedBuilder.UserId;
-			saveIdThing = Global.ComingFromThing;
-			saveIdEvent = Global.ComingFromEvent;
+			try {
+				Global.ComingFromBuilder = Global.SelectedBuilder.UserId;
+				saveIdBuilder = Global.SelectedBuilder.UserId;
+				saveIdThing = Global.ComingFromThing;
+				saveIdEvent = Global.ComingFromEvent;
+			} catch (Exception) { }
 			InitializeComponent ();
 
 			var tapGestureRecognizer = new TapGestureRecognizer ();
@@ -36,6 +38,13 @@ namespace LaBuilderApp
 				});
 			};
 			*/
+
+			// we're removing the scroll bar of the listview by settings it's size
+			//lvExhibition.HeightRequest = 50 * Global.SelectedBuilder.EventsDetail.Count + 20 * Global.SelectedBuilder.Events.Count;
+
+			//lvExhibition.ChildAdded += (sender, e) => {
+			//	lvExhibition.HeightRequest = lvExhibition.HeightRequest + (sender as View).Height;
+			//};
 		}
 		/*
 		private void ChooseEvent ()

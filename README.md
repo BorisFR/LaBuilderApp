@@ -29,9 +29,16 @@ Media, to take pictures ([2]).
 App info, to display informations of the current app ([3]).  
 Settings, to store settings on the device ([4]).  
 
+Remerciements à
+---------------
+https://gist.github.com/NicoVermeir/7ffb34ebd639ed958382 pour le Awesome Wrap Panel  
+https://xamarinhelp.com/carousel-view-page-indicators/  pour l'ajout d'indicateur sur le carousel  
+http://www.flaticon.com : Icon made by Freepik, Pixel Buddha, Madebyoliver from www.flaticon.com  
+
 à voir  
-https://github.com/XAM-Consulting/Xam.Plugins.ImageCropper  pas compatible avec version de PCL :(  
-https://github.com/luberda-molinet/FFImageLoading  
+------
+https://github.com/XAM-Consulting/Xam.Plugins.ImageCropper : pas compatible avec version de PCL :(  
+https://github.com/luberda-molinet/FFImageLoading  : bug sous iOS au moment ou j'ai essayé
 https://github.com/LosXamarinos/Xamarin-Forms-Sound-Player  
 
 
@@ -40,10 +47,3 @@ https://github.com/LosXamarinos/Xamarin-Forms-Sound-Player
 [3]: https://github.com/Aftnet/AppInfoPlugin
 [4]: https://github.com/jamesmontemagno/SettingsPlugin
 [5]: https://www.xamarin.com
-
-Freepik
-Pixel Buddha
-Madebyoliver
-
-Icon made by Freepik from www.flaticon.com 
-http://www.flaticon.com

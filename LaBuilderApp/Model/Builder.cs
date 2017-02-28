@@ -123,10 +123,19 @@ namespace LaBuilderApp
 			}
 		}
 
+		private int groupCount = 0;
+		private int itemCount = 0;
+
+		public int AllGroupsAndItemsSize {
+			// change 50 and 20 if you change the PageBuilder.xaml design
+			get { return 50 * itemCount + 20 * groupCount; }
+		}
+
 		public ObservableCollection<ExhibitionGroup> Events {
 			get {
 				ObservableCollection<ExhibitionGroup> list = new ObservableCollection<ExhibitionGroup> ();
-
+				groupCount = 0;
+				itemCount = 0;
 				ExhibitionGroup eg = null;
 				int year = 0;
 				string month = string.Empty;
@@ -157,22 +166,57 @@ namespace LaBuilderApp
 								eg = new ExhibitionGroup ($"{month} {year}");
 							} else {
 								list.Insert (0, eg);
+								groupCount++;
 								eg = new ExhibitionGroup ($"{month} {year}");
 							}
 							eg.Insert (0, ex);
+							itemCount++;
 						} else {
 							eg.Insert (0, ex);
+							itemCount++;
 						}
 					} catch (Exception err) {
 						System.Diagnostics.Debug.WriteLine (err.Message);
 					}
 				}
-				if (eg != null)
+				if (eg != null) {
 					list.Insert (0, eg);
+					groupCount++;
+				}
+				RaisePropertyChanged ("AllGroupsAndItemsSize");
 				return list;
 			}
 		}
 
+
+		public ObservableCollection<Exhibition> EventsDetail {
+			get {
+				ObservableCollection<Exhibition> list = new ObservableCollection<Exhibition> ();
+
+				foreach (Exhibition ex in Exhibition.Whole) {
+					bool isPresent = false;
+					try {
+						if (ex.BuilderList != null) {
+							foreach (int x in ex.BuilderList) {
+								if (x == userId) {
+									isPresent = true;
+									break;
+								}
+							}
+						}
+					} catch (Exception err) {
+						System.Diagnostics.Debug.WriteLine (err.Message);
+					}
+					if (!isPresent) {
+						//System.Diagnostics.Debug.WriteLine ($"Ignore event: {ex.Title}");
+						continue;
+					}
+					//System.Diagnostics.Debug.WriteLine ($"Event: {ex.Title}");
+					list.Insert (0, ex);
+				}
+				return list;
+			}
+		}
 
 		public static Builder GetById (int id)
 		{

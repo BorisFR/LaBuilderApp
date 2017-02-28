@@ -13,14 +13,15 @@
 			        </Grid.ColumnDefinitions>
 			        <Grid.RowDefinitions>
 			        	<RowDefinition Height="40" />
-			        	<RowDefinition Height="*" />
+			        	<!--<RowDefinition Height="*" />-->
 			        </Grid.RowDefinitions>
 					<!-- 1ere ligne -->
 					<local:AppearingText TheText="Construction" HorizontalOptions="Center" />
 					<Image x:Name="imgClose" Source="{local:ImageResource closewindow.png}" HorizontalOptions="End" WidthRequest="32" HeightRequest="32" Grid.Column="2" />
 					<!-- 2nde ligne -->
-
-					<StackLayout Orientation="Vertical" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1">
+					</Grid>
+					<!--<StackLayout Orientation="Vertical" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1">-->
+					<StackLayout Orientation="Vertical">
 						<Label Text="{Binding Name}" FontSize="17" HorizontalOptions="Center" TextColor="White" />
 						<Label Text="{Binding Builder, StringFormat='par {0}'}" FontSize="17" HorizontalOptions="Center" TextColor="White" />
 						<Image Source="{Binding PictureImage}" Aspect="AspectFit" WidthRequest="4000" HorizontalOptions="Center" />
@@ -65,7 +66,8 @@
 
 					</StackLayout>
 					
-				</Grid>
+			<BoxView BackgroundColor="Transparent" HeightRequest="30"/>
+				
 			</StackLayout>
 		</ScrollView>
 	</ContentPage.Content>

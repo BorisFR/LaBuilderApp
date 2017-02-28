@@ -13,14 +13,15 @@
 			        </Grid.ColumnDefinitions>
 			        <Grid.RowDefinitions>
 			        	<RowDefinition Height="40" />
-			        	<RowDefinition Height="*" />
+			        	<!--<RowDefinition Height="*" />-->
 			        </Grid.RowDefinitions>
 					<!-- 1ere ligne -->
 					<local:AppearingText TheText="Evenement" HorizontalOptions="Center" />
 					<Image x:Name="imgClose" Source="{local:ImageResource closewindow.png}" HorizontalOptions="End" WidthRequest="32" HeightRequest="32" Grid.Column="2" />
 					<!-- 2nde ligne -->
+				</Grid>
 
-					<StackLayout Orientation="Vertical" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1">
+					<!--<StackLayout Orientation="Vertical" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1">-->
 						<Label Text="{Binding Title}" FontSize="17" HorizontalOptions="Center" TextColor="White" />
 						<Image Source="{Binding LogoImage}" HorizontalOptions="Center" />
 						<StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
@@ -60,10 +61,10 @@
 								</DataTemplate>
 							</local:AwesomeWrappanel.ItemTemplate>
 						</local:AwesomeWrappanel>
-						<Label Text="Construction" FontSize="14" TextColor="Black" BackgroundColor="White" />
-					</StackLayout>
+						<!--<Label Text="Construction" FontSize="14" TextColor="Black" BackgroundColor="White" />-->
+					<!--</StackLayout>-->
 					
-				</Grid>
+			<BoxView BackgroundColor="Transparent" HeightRequest="30"/>
 			</StackLayout>
 		</ScrollView>
 	</ContentPage.Content>

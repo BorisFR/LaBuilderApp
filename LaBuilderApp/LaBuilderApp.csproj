@@ -227,6 +227,7 @@
     <Compile Include="GameR2finder\ViewGameR2Finder.xaml.cs">
       <DependentUpon>ViewGameR2Finder.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Component\CustomListViewRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="project.json" />

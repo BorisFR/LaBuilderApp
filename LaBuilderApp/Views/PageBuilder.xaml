@@ -13,14 +13,16 @@
 			        </Grid.ColumnDefinitions>
 			        <Grid.RowDefinitions>
 			        	<RowDefinition Height="40" />
-			        	<RowDefinition Height="*" />
+			        	<!--<RowDefinition Height="*" />-->
 			        </Grid.RowDefinitions>
 					<!-- 1ere ligne -->
 					<local:AppearingText TheText="Builder" HorizontalOptions="Center" />
 					<Image x:Name="imgClose" Source="{local:ImageResource closewindow.png}" HorizontalOptions="End" WidthRequest="32" HeightRequest="32" Grid.Column="2" />
 					<!-- 2nde ligne -->
+				</Grid>
 
-					<StackLayout Orientation="Vertical" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1">
+					<!--<StackLayout Orientation="Vertical" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1">-->
+					<!--<StackLayout Orientation="Vertical">-->
 						<Label Text="{Binding Username}" FontSize="17" HorizontalOptions="Center" TextColor="White" />
 						<Image Source="{Binding AvatarImage}" Aspect="AspectFit" WidthRequest="120" HeightRequest="120" HorizontalOptions="Center" />
 						<Label Text="{Binding Since, StringFormat='Builder depuis {0}'}}" FontSize="14" TextColor="White" HorizontalOptions="Center" />
@@ -62,9 +64,39 @@
 								</DataTemplate>
 							</local:AwesomeWrappanel.ItemTemplate>
 						</local:AwesomeWrappanel>
-
+						<!--
 						<Label Text="Événement" FontSize="14" TextColor="Black" BackgroundColor="White" />
-						<ListView x:Name="lvExhibition" ItemsSource="{Binding Events}" HasUnevenRows="true" IsGroupingEnabled="true" BackgroundColor="Black" SeparatorVisibility="None" >
+						<local:AwesomeWrappanel x:Name="theEvents" Orientation="Horizontal" Spacing="6" ItemsSource="{Binding EventsDetail}">
+							<local:AwesomeWrappanel.ItemTemplate>
+								<DataTemplate>
+								<Grid WidthRequest="112" HeightRequest="112" Padding="0" RowSpacing="0" ColumnSpacing="0">
+						        <Grid.ColumnDefinitions>
+						            <ColumnDefinition Width="3"/>
+						            <ColumnDefinition Width="3"/>
+						            <ColumnDefinition Width="100"/>
+						            <ColumnDefinition Width="3"/>
+						            <ColumnDefinition Width="3"/>
+						        </Grid.ColumnDefinitions>
+						        <Grid.RowDefinitions>
+						            <RowDefinition Height="3"/>
+						            <RowDefinition Height="3"/>
+						            <RowDefinition Height="100"/>
+						            <RowDefinition Height="40"/>
+						            <RowDefinition Height="3"/>
+						            <RowDefinition Height="3"/>
+						        </Grid.RowDefinitions>
+
+								<BoxView BackgroundColor="#5AA9D3" Grid.Row="0" Grid.RowSpan="6" Grid.Column="0" Grid.ColumnSpan="5" />
+								<BoxView BackgroundColor="White" Grid.Row="1" Grid.RowSpan="4" Grid.Column="1" Grid.ColumnSpan="3" />
+								<Image Source="{Binding LogoImage}" Aspect="AspectFit" WidthRequest="10" HeightRequest="10" HorizontalOptions="Center" VerticalOptions="Start" Grid.Row="2" Grid.Column="2" />
+								<Label Text="{Binding Title}" FontSize="17" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center" Grid.Row="3" Grid.Column="2" />
+								</Grid>
+								</DataTemplate>
+							</local:AwesomeWrappanel.ItemTemplate>
+						</local:AwesomeWrappanel>
+					-->
+					<!-- change AllItemsSize in Builder if you change the height design -->
+						<ListView x:Name="lvExhibition" HeightRequest="{Binding AllGroupsAndItemsSize}" ItemsSource="{Binding Events}" HasUnevenRows="true" IsGroupingEnabled="true" BackgroundColor="Black" SeparatorVisibility="None" >
 							<ListView.GroupHeaderTemplate>
 								<DataTemplate>
 									<ViewCell Height="20">
@@ -90,11 +122,11 @@
 								</DataTemplate>
 							</ListView.ItemTemplate>
 						</ListView>
-						
+
+			<BoxView BackgroundColor="Transparent" HeightRequest="30"/>
 					</StackLayout>
 					
-				</Grid>
-			</StackLayout>
+			<!--</StackLayout>-->
 		</ScrollView>
 	</ContentPage.Content>
 </ContentPage>

@@ -1,6 +1,7 @@
 ﻿using System;
 using Plugin.DeviceInfo.Abstractions;
 using Xamarin.Forms;
+
 namespace LaBuilderApp
 {
 	public class AurekBesh : Label
