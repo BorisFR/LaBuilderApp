@@ -11,6 +11,22 @@ namespace LaBuilderApp
 		{
 			InitializeComponent ();
 			theList.BackgroundColor = this.BackgroundColor;
+
+			var tapGestureRecognizer = new TapGestureRecognizer ();
+			tapGestureRecognizer.Tapped += (s, e) => {
+				Menu m = new Menu ();
+				m.Detail = string.Empty;
+				m.Title = "A propos de";
+				m.Page = MyPage.About;
+				Global.GotoPage (m);
+				try {
+					Global.MainAppPage.IsPresented = false;
+				} catch (Exception) {
+				}
+			};
+			imgTitle.GestureRecognizers.Add (tapGestureRecognizer);
+
+
 			//theList.ItemsSource = Global.Menus.All;
 			theList.ItemSelected += delegate (object sender, SelectedItemChangedEventArgs e) {
 				if (e.SelectedItem == null)

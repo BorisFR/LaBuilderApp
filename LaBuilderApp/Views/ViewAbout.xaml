@@ -2,6 +2,7 @@
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="LaBuilderApp.ViewAbout"
 	BackgroundColor="Transparent">
 	<ContentView.Content>
+		<ScrollView Orientation="Vertical">
 	<StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" Spacing="0">
 		<Label Text="Application" FontSize="14" BackgroundColor="White"/>
 		<Label x:Name="lApp" FontSize="12" TextColor="White" />
@@ -34,6 +35,9 @@
 				</FormattedString>
 			</Label.FormattedText>
 		</Label>
+				<Button x:Name="btMentionsLegales" Text="Mentions légales"/>
+		<BoxView BackgroundColor="Transparent" HeightRequest="30"/>
 	</StackLayout>
+	</ScrollView>
 	</ContentView.Content>
 </ContentView>

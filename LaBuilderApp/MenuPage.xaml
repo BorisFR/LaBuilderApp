@@ -5,7 +5,7 @@
 	<ContentPage.Content>
 		<StackLayout Orientation="Vertical" VerticalOptions="Fill" HorizontalOptions="Start" WidthRequest="3000" HeightRequest="3000">
 
-     	 	<Image Source="{local:ImageResource R2BuildersLogo.png}" Aspect="AspectFit" />
+     	 	<Image x:Name="imgTitle" Source="{local:ImageResource R2BuildersLogo.png}" Aspect="AspectFit" />
 
 			<ListView x:Name="theList" ItemsSource="{x:Static local:MenuManager.All}" HasUnevenRows="true" IsGroupingEnabled="true" SeparatorVisibility="None" VerticalOptions="Fill" BackgroundColor="White" Margin="0,0,12,0" WidthRequest="3000" HeightRequest="3000">
 				<ListView.GroupHeaderTemplate>

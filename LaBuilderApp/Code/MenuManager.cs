@@ -74,6 +74,7 @@ namespace LaBuilderApp
 				Detail = T ("Un petit jeu avec R2 !"),
 				Icon = "game1"
 			});
+			/*
 			mg.Add (new Menu () {
 				Page = MyPage.About,
 				Title = T ("A propos de"),
@@ -86,35 +87,6 @@ namespace LaBuilderApp
 				Detail = T ("Parce qu'il en faut"),
 				Icon = "info"
 			});
-			/*
-			mg.Add (new Menu () {
-				Page = MyPage.None,
-				Title = T ("MenuTheDroids"),
-				Detail = T ("MenuTheDroidsDetail"),
-				Icon = "robots"
-			});
-			//mg.Add (new Menu (){ Page = MyPage.None, Title = "AstroDex", 			Detail = "L'anuaire des unités Astro", 		Icon = "IA" });
-			mg.Add (new Menu () {
-				Page = MyPage.None,
-				Title = T ("MenuMyCards"),
-				Detail = T ("MenuMyCardsDetail"),
-				Icon = "cards"
-			});
-			mg.Add (new Menu () {
-				Page = MyPage.None,
-				Title = T ("MenuQrCode"),
-				Detail = T ("MenuQrCodeDetail"),
-				Icon = "qrcode"
-			});
-			//mg.Add (new Menu (){ Page = MyPage.None, Title = "Vos cartes", 			Detail = "Votre collection de cartes", 		Icon = "IA" });
-			//mg.Add (new Menu (){ Page = MyPage.None, Title = "Vos récompenses", 	Detail = "Vos récompenses obtenues", 		Icon = "IA" });
-			mg.Add (new Menu () {
-				Page = MyPage.Account,
-				Title = T ("MenuMyAccount"),
-				Detail = T ("MenuMyAccountDetail"),
-				Icon = "user"
-			});
-			//mg.Add (new Menu (){ Page = MyPage.None, Title = "Aide", 				Detail = "Comment fonctionne l'application", Icon = "IA" });
 			*/
 			All.Add (mg);
 

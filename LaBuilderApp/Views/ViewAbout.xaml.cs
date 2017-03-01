@@ -15,6 +15,16 @@ namespace LaBuilderApp
 				LoadInfo ();
 				InfoData ();
 			});
+
+			btMentionsLegales.Clicked += (sender, e) => {
+				//Navigation.PushModalAsync (new ViewInfo (), true);
+				Menu m = new Menu ();
+				m.Detail = string.Empty;
+				m.Title = "Mentions légales";
+				m.Page = MyPage.Legal;
+
+				Global.GotoPage (m);
+			};
 		}
 
 		private async void InfoData ()

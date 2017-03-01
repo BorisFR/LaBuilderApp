@@ -120,25 +120,6 @@ namespace LaBuilderApp
 			};
 			DataServer.AddToDo (events);
 
-			IDataServer builders = new IDataServer ("builders");
-			//events.IgnoreLocalData = true;
-			builders.StartWorking += () => {
-				AddText ("Loading builders");
-			};
-			builders.DataRefresh += (sender, status, result) => {
-				IDataServer x = sender as IDataServer;
-				if (status) {
-					AddText ("Builders done");
-					Tools.Trace ($"DataRefresh {x.FileName}: {result}");
-					Device.BeginInvokeOnMainThread (() => {
-						Builder.LoadData (result);
-						Builder.PopulateData ();
-					});
-				} else {
-					AddText ($"{x.FileName} error");
-				}
-			};
-			DataServer.AddToDo (builders);
 
 
 			IDataServer thingstype = new IDataServer ("thingstype");
@@ -180,6 +161,26 @@ namespace LaBuilderApp
 			};
 			DataServer.AddToDo (things);
 
+
+			IDataServer builders = new IDataServer ("builders");
+			//events.IgnoreLocalData = true;
+			builders.StartWorking += () => {
+				AddText ("Loading builders");
+			};
+			builders.DataRefresh += (sender, status, result) => {
+				IDataServer x = sender as IDataServer;
+				if (status) {
+					AddText ("Builders done");
+					Tools.Trace ($"DataRefresh {x.FileName}: {result}");
+					Device.BeginInvokeOnMainThread (() => {
+						Builder.LoadData (result);
+						Builder.PopulateData ();
+					});
+				} else {
+					AddText ($"{x.FileName} error");
+				}
+			};
+			DataServer.AddToDo (builders);
 
 			DataServer.QueueEmpty += () => {
 				AddText ("App is ready");

@@ -30,18 +30,48 @@ namespace LaBuilderApp
 		private int userId; public int UserId { get { return userId; } set { userId = value; RaisePropertyChanged (); } }
 		private int groupId; public int GroupId { get { return groupId; } set { groupId = value; RaisePropertyChanged (); } }
 		private string location; public string Location { get { return location; } set { location = value; RaisePropertyChanged (); } }
-		private string interest; public string Interest { get { return interest; } set { interest = value; RaisePropertyChanged (); } }
-		private string occupation; public string Occupation { get { return occupation; } set { occupation = value; RaisePropertyChanged (); } }
+		//private string interest; public string Interest { get { return interest; } set { interest = value; RaisePropertyChanged (); } }
+		private string description; public string Description { get { return description; } set { description = value; RaisePropertyChanged (); } }
+		//private string occupation; public string Occupation { get { return occupation; } set { occupation = value; RaisePropertyChanged (); } }
 		private string website; public string Website { get { return website; } set { website = value; RaisePropertyChanged (); } }
 		private string facebook; public string Facebook { get { return facebook; } set { facebook = value; RaisePropertyChanged (); } }
 		private string twitter; public string Twitter { get { return twitter; } set { twitter = value; RaisePropertyChanged (); } }
 		private string youtube; public string Youtube { get { return youtube; } set { youtube = value; RaisePropertyChanged (); } }
 		private string from; public string From { get { return from; } set { from = value; RaisePropertyChanged (); } }
+		private string sceneName; public string SceneName { get { return sceneName; } set { sceneName = value; RaisePropertyChanged (); } }
+		private int countryCode; public int CountryCode { get { return countryCode; } set { countryCode = value; RaisePropertyChanged (); } }
+		private string picture; public string MainPicture { get { return picture; } set { picture = value; RaisePropertyChanged (); } }
+		private Dictionary<string, string> pictureList; public Dictionary<string, string> PictureList { get { return pictureList; } set { pictureList = value; RaisePropertyChanged (); } }
+
+		public ImageSource PictureImage { get { return ImageSource.FromUri (new Uri ($"http://www.r2builders.fr/boris/data/images/builders/{userId}/{picture}")); } }
 
 		public ImageSource AvatarImage { get { return ImageSource.FromUri (new Uri ($"http://www.r2builders.fr/forum/download/file.php?avatar={avatar}")); } }
-		public ImageSource CountryImage { get { return Country.CountryImage (33); } } // TODO: change 33
-		public string InterestLabel { get { return interest.Replace ("\\n", "\r\n"); } }
-		public string OccupationLabel { get { return occupation.Replace ("\\n", "\r\n"); } }
+		public ImageSource CountryImage {
+			get {
+				if (countryCode > 0)
+					return Country.CountryImage (countryCode);
+
+				return Country.CountryImage (33);
+			}
+		}
+		//public string InterestLabel { get { return interest.Replace ("\\n", "\r\n"); } }
+		//public string OccupationLabel { get { return occupation.Replace ("\\n", "\r\n"); } }
+		public string DescriptionLabel { get { return description.Replace ("\\n", "\r\n"); } }
+
+		public string FullName {
+			get {
+				if (Global.IsConnected) {
+					if (username.Equals (sceneName))
+						return username;
+					if (sceneName != null && sceneName.Length > 0)
+						return $"{sceneName} ({username})";
+					return username;
+				}
+				if (sceneName != null && sceneName.Length > 0)
+					return sceneName;
+				return username;
+			}
+		}
 
 		private string communication = string.Empty;
 		public string Communication {
@@ -108,6 +138,24 @@ namespace LaBuilderApp
 				return since;
 			}
 		}
+
+
+		public ObservableCollection<ImageSource> AllPictures {
+			get {
+				ObservableCollection<ImageSource> temp = new ObservableCollection<ImageSource> ();
+				if (pictureList != null) {
+					foreach (string img in pictureList.Values) {
+						temp.Add (ImageSource.FromUri (new Uri ($"http://www.r2builders.fr/boris/data/images/builders/{userId}/{img}")));
+					}
+				}
+				return temp;
+			}
+		}
+
+		private int allPicturesPosition;
+		public int AllPicturesPosition { get { return allPicturesPosition; } set { allPicturesPosition = value; RaisePropertyChanged (); } }
+
+
 
 		//private ObservableCollection<Thing> things = null;
 		public ObservableCollection<Thing> Things {
@@ -244,6 +292,11 @@ namespace LaBuilderApp
 					list.Sort ();
 					BuilderGroup bg = null;
 					foreach (Builder b in list) {
+						// affiche-t'on ce builder ?
+						if (b.Things.Count == 0)
+							continue;
+
+
 						if (bg == null) {
 							bg = new BuilderGroup (b.Username.Substring (0, 1).ToLower ());
 						} else {
@@ -280,6 +333,7 @@ namespace LaBuilderApp
 			//List<Builder> temp = new List<Builder> ();
 			Builder b = new Builder ();
 			b.Username = "Demo";
+			b.SceneName = "Boris";
 			b.Avatar = "2634_1366807872.gif";
 			b.From = "20130224";
 			//temp.Add (b);

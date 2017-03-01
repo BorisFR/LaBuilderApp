@@ -31,8 +31,8 @@ namespace LaBuilderApp
 			this.BindingContext = Global.SelectedThing;
 		}
 
-		private int _position;
-		public int Position { get { return _position; } set { _position = value; OnPropertyChanged (); } }
+		//private int _position;
+		//public int Position { get { return _position; } set { _position = value; OnPropertyChanged (); } }
 
 		void ButtonClicked (object sender, EventArgs e)
 		{

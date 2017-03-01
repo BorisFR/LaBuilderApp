@@ -24,6 +24,9 @@
                             </imageView>
                         </subviews>
                     </view>
+                    <connections>
+                        <outlet property="xx" destination="3" id="name-outlet-3"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

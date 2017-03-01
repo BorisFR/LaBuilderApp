@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="LaBuilderApp.PageBuilder" 
 	xmlns:local="clr-namespace:LaBuilderApp" Padding="{x:Static local:Global.PagePadding}" 
-	>
+	xmlns:cv="clr-namespace:Xamarin.Forms;assembly=Xamarin.Forms.CarouselView">
 	<ContentPage.Content>
 		<ScrollView Orientation="Vertical" BackgroundColor="#11252D" Padding="6">
 			<StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand">
@@ -23,15 +23,15 @@
 
 					<!--<StackLayout Orientation="Vertical" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1">-->
 					<!--<StackLayout Orientation="Vertical">-->
-						<Label Text="{Binding Username}" FontSize="17" HorizontalOptions="Center" TextColor="White" />
+						<Label Text="{Binding FullName}" FontSize="17" HorizontalOptions="Center" TextColor="White" />
 						<Image Source="{Binding AvatarImage}" Aspect="AspectFit" WidthRequest="120" HeightRequest="120" HorizontalOptions="Center" />
 						<Label Text="{Binding Since, StringFormat='Builder depuis {0}'}}" FontSize="14" TextColor="White" HorizontalOptions="Center" />
 						<StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
 							<Label Text="{Binding Location}" FontSize="12" TextColor="White" YAlign="Center" />
 							<Image Source="{Binding CountryImage}" WidthRequest="50" Aspect="AspectFit" HorizontalOptions="EndAndExpand" />
 						</StackLayout>
-						<Label Text="{Binding InterestLabel}" LineBreakMode="WordWrap" FontSize="15" TextColor="White"/>
-						<Label Text="{Binding OccupationLabel}" LineBreakMode="WordWrap" FontSize="15" TextColor="White"/>
+						<Image Source="{Binding PictureImage}" Aspect="AspectFit" WidthRequest="4000" HorizontalOptions="Center" />
+						<Label Text="{Binding Description}" LineBreakMode="WordWrap" FontSize="15" TextColor="White"/>
 						<Label Text="Communication" FontSize="14" TextColor="Black" BackgroundColor="White" />
 						<Label Text="{Binding Communication}" LineBreakMode="WordWrap" FontSize="15" TextColor="White" />
 						<Label Text="Construction" FontSize="14" TextColor="Black" BackgroundColor="White" />
@@ -95,6 +95,17 @@
 							</local:AwesomeWrappanel.ItemTemplate>
 						</local:AwesomeWrappanel>
 					-->
+
+						<cv:CarouselView Position="{Binding AllPicturesPosition, Mode=TwoWay}" ItemsSource="{Binding AllPictures}" x:Name="theCarousel" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+						    <cv:CarouselView.ItemTemplate>
+						      <DataTemplate>
+						          <Image Aspect="AspectFit" Source="{Binding}" WidthRequest="4000" HorizontalOptions="FillAndExpand"/>
+						      </DataTemplate>
+						    </cv:CarouselView.ItemTemplate>
+						  </cv:CarouselView>
+						
+						<local:CarouselIndicators Margin="0,-50,0,0" IndicatorHeight="16" IndicatorWidth="16" UnselectedIndicator="unselected_circle.png" SelectedIndicator="selected_circle.png" Position="{Binding AllPicturesPosition}" ItemsSource="{Binding AllPictures}" />
+
 					<!-- change AllItemsSize in Builder if you change the height design -->
 						<ListView x:Name="lvExhibition" HeightRequest="{Binding AllGroupsAndItemsSize}" ItemsSource="{Binding Events}" HasUnevenRows="true" IsGroupingEnabled="true" BackgroundColor="Black" SeparatorVisibility="None" >
 							<ListView.GroupHeaderTemplate>

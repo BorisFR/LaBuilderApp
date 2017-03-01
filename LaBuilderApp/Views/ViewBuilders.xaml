@@ -17,12 +17,13 @@
 				<DataTemplate>
 						<ViewCell>
 							<ViewCell.View>
-								<StackLayout Orientation="Horizontal" Spacing="0" HeightRequest="50">
-									<Image Source="{Binding AvatarImage}" WidthRequest="50" HeightRequest="50" Aspect="AspectFit" BackgroundColor="White" />
-									<StackLayout Orientation="Vertical" Spacing="0" HorizontalOptions="FillAndExpand" HeightRequest="50">
-										<Label Text="{Binding Username, StringFormat=' {0}'}" YAlign="Center" HeightRequest="25" HorizontalOptions="FillAndExpand" BackgroundColor="White" TextColor="Black" FontSize="20" LineBreakMode="TailTruncation"/>
-										<Label Text="{Binding Since, StringFormat=' Builder depuis {0}'}}" YAlign="Center" HeightRequest="25" TextColor="White" FontSize="16" LineBreakMode="TailTruncation"/>
+								<StackLayout Orientation="Horizontal" Spacing="0" HeightRequest="80">
+									<Image Source="{Binding AvatarImage}" WidthRequest="80" HeightRequest="80" Aspect="AspectFit" BackgroundColor="White" />
+									<StackLayout Orientation="Vertical" Spacing="0" HorizontalOptions="FillAndExpand" HeightRequest="80">
+										<Label Text="{Binding FullName, StringFormat=' {0}'}" YAlign="Center" HeightRequest="40" HorizontalOptions="FillAndExpand" BackgroundColor="White" TextColor="Black" FontSize="20" LineBreakMode="TailTruncation"/>
+										<Label Text="{Binding Since, StringFormat=' Depuis {0}'}}" YAlign="Center" HeightRequest="40" TextColor="Black" BackgroundColor="White" FontSize="16" LineBreakMode="TailTruncation"/>
 									</StackLayout>
+									<Image Source="{Binding CountryImage}" WidthRequest="30" HeightRequest="30" Aspect="AspectFit" BackgroundColor="White" />
 								</StackLayout>
 							</ViewCell.View>
 						</ViewCell>
