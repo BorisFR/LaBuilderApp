@@ -47,3 +47,12 @@ https://github.com/LosXamarinos/Xamarin-Forms-Sound-Player
 [3]: https://github.com/Aftnet/AppInfoPlugin
 [4]: https://github.com/jamesmontemagno/SettingsPlugin
 [5]: https://www.xamarin.com
+
+note perso:  
+missing icons  
+iphone/ipod  
+app icon 120x120 en .png  
+ipad  
+app icon 76x76 en .png  
+app icon 167x167 en .png  
+app icon 152x152 en .png  
