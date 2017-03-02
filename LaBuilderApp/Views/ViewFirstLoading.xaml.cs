@@ -70,11 +70,14 @@ namespace LaBuilderApp
 							Global.CurrentBuilderId = l.UserId;
 							Global.CurrentToken = l.Token;
 							CrossSettings.Current.AddOrUpdateValue<string> ("usertoken", Global.CurrentToken);
+							Global.IsConnected = true;
 						} catch (Exception err) {
 							Tools.Trace ($"DataRefresh ERROR {x.FileName}: {err.Message}");
+							Global.IsConnected = false;
 						}
 					} else {
 						Tools.Trace ($"DataRefresh ERROR {x.FileName}: {result}");
+						Global.IsConnected = false;
 					}
 				};
 				DataServer.AddToDo (login);

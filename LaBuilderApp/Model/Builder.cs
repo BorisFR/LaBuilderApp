@@ -42,9 +42,26 @@ namespace LaBuilderApp
 		private int countryCode; public int CountryCode { get { return countryCode; } set { countryCode = value; RaisePropertyChanged (); } }
 		private string picture; public string MainPicture { get { return picture; } set { picture = value; RaisePropertyChanged (); } }
 		private Dictionary<string, string> pictureList; public Dictionary<string, string> PictureList { get { return pictureList; } set { pictureList = value; RaisePropertyChanged (); } }
+		private string isPublicClubPicture; public string IsPublicClubPicture { get { return isPublicClubPicture; } set { isPublicClubPicture = value; RaisePropertyChanged (); } }
+		private string firstLastName; public string FirstLastName { get { return firstLastName; } set { firstLastName = value; RaisePropertyChanged (); } }
 
 		public ImageSource PictureImage { get { return ImageSource.FromUri (new Uri ($"http://www.r2builders.fr/boris/data/images/builders/{userId}/{picture}")); } }
-
+		public ImageSource OfficialPictureImage {
+			get {
+				if (IsPublicClub)
+					return ImageSource.FromUri (new Uri ($"http://www.r2builders.fr/boris/data/images/builders/{userId}.jpg"));
+				return ImageSource.FromUri (new Uri ($"http://www.r2builders.fr/boris/1x1.png"));
+			}
+		}
+		public bool IsPublicClub {
+			get {
+				if (isPublicClubPicture != null && isPublicClubPicture.Equals ("True"))
+					return true;
+				if (Global.IsConnected)
+					return true;
+				return false;
+			}
+		}
 		public ImageSource AvatarImage { get { return ImageSource.FromUri (new Uri ($"http://www.r2builders.fr/forum/download/file.php?avatar={avatar}")); } }
 		public ImageSource CountryImage {
 			get {
@@ -61,15 +78,29 @@ namespace LaBuilderApp
 		public string FullName {
 			get {
 				if (Global.IsConnected) {
-					if (username.Equals (sceneName))
+					if (firstLastName != null && firstLastName.Length > 0) {
+						if (username.Equals (sceneName))
+							return $"{username} - {firstLastName}";
+						if (sceneName != null && sceneName.Length > 0)
+							return $"{sceneName} ({username}) - {firstLastName}";
+						return $"{username} - {firstLastName}";
+					} else {
+						if (username.Equals (sceneName))
+							return username;
+						if (sceneName != null && sceneName.Length > 0)
+							return $"{sceneName} ({username})";
 						return username;
-					if (sceneName != null && sceneName.Length > 0)
-						return $"{sceneName} ({username})";
-					return username;
+					}
 				}
 				if (sceneName != null && sceneName.Length > 0)
 					return sceneName;
 				return username;
+			}
+		}
+
+		public bool IsBuilderConnected {
+			get {
+				return Global.IsConnected;
 			}
 		}
 
@@ -334,6 +365,7 @@ namespace LaBuilderApp
 			Builder b = new Builder ();
 			b.Username = "Demo";
 			b.SceneName = "Boris";
+			b.FirstLastName = "Stéphane Fardoux";
 			b.Avatar = "2634_1366807872.gif";
 			b.From = "20130224";
 			//temp.Add (b);

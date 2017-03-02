@@ -19,9 +19,10 @@
 							<ViewCell.View>
 								<StackLayout Orientation="Horizontal" Spacing="0" HeightRequest="80">
 									<Image Source="{Binding AvatarImage}" WidthRequest="80" HeightRequest="80" Aspect="AspectFit" BackgroundColor="White" />
+									<Image Source="{Binding OfficialPictureImage}" WidthRequest="80" HeightRequest="80" Aspect="AspectFit" BackgroundColor="White" />
 									<StackLayout Orientation="Vertical" Spacing="0" HorizontalOptions="FillAndExpand" HeightRequest="80">
-										<Label Text="{Binding FullName, StringFormat=' {0}'}" YAlign="Center" HeightRequest="40" HorizontalOptions="FillAndExpand" BackgroundColor="White" TextColor="Black" FontSize="20" LineBreakMode="TailTruncation"/>
-										<Label Text="{Binding Since, StringFormat=' Depuis {0}'}}" YAlign="Center" HeightRequest="40" TextColor="Black" BackgroundColor="White" FontSize="16" LineBreakMode="TailTruncation"/>
+										<Label Text="{Binding FullName, StringFormat=' {0}'}" YAlign="Center" HeightRequest="60" HorizontalOptions="FillAndExpand" BackgroundColor="White" TextColor="Black" FontSize="20" LineBreakMode="TailTruncation"/>
+										<Label Text="{Binding Since, StringFormat=' Depuis {0}'}}" YAlign="Center" HeightRequest="20" TextColor="Black" BackgroundColor="White" FontSize="16" LineBreakMode="TailTruncation"/>
 									</StackLayout>
 									<Image Source="{Binding CountryImage}" WidthRequest="30" HeightRequest="30" Aspect="AspectFit" BackgroundColor="White" />
 								</StackLayout>

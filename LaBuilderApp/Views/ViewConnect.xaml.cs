@@ -43,13 +43,16 @@ namespace LaBuilderApp
 									Global.CurrentBuilderId = l.UserId;
 									Global.CurrentToken = l.Token;
 									CrossSettings.Current.AddOrUpdateValue<string> ("usertoken", Global.CurrentToken);
+									Global.IsConnected = true;
 									RefreshScreen ();
 								} catch (Exception err) {
 									lError.Text = err.Message;
+									Global.IsConnected = false;
 								}
 							} else {
 								Tools.Trace ($"DataRefresh ERROR {x.FileName}: {result}");
 								lError.Text = "La connexion a échouée.";
+								Global.IsConnected = false;
 							}
 						};
 						DataServer.AddToDo (login);
@@ -65,6 +68,7 @@ namespace LaBuilderApp
 			};
 
 			btOut.Clicked += (sender, e) => {
+				CrossSettings.Current.AddOrUpdateValue<string> ("userpassword", string.Empty);
 				Global.CurrentToken = string.Empty;
 				Global.CurrentBuilderId = 0;
 				Exhibition.ClearData ();
@@ -83,10 +87,11 @@ namespace LaBuilderApp
 					toLogin.IsVisible = false;
 					toOut.IsVisible = true;
 					lCompte.Text = $"Builder : {Builder.GetById (Global.CurrentBuilderId).Username}";
-
+					Global.IsConnected = true;
 				} else {
 					toLogin.IsVisible = true;
 					toOut.IsVisible = false;
+					Global.IsConnected = false;
 				}
 				eLogin.Text = Global.CurrentLogin;
 			});
