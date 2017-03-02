@@ -50,7 +50,7 @@ namespace LaBuilderApp
 			get {
 				if (IsPublicClub)
 					return ImageSource.FromUri (new Uri ($"http://www.r2builders.fr/boris/data/images/builders/{userId}.jpg"));
-				return ImageSource.FromUri (new Uri ($"http://www.r2builders.fr/boris/1x1.png"));
+				return ImageSource.FromUri (new Uri ("http://www.r2builders.fr/boris/1x1.png"));
 			}
 		}
 		public bool IsPublicClub {
@@ -363,10 +363,12 @@ namespace LaBuilderApp
 			BuilderGroup bg = new BuilderGroup ("a");
 			//List<Builder> temp = new List<Builder> ();
 			Builder b = new Builder ();
+			b.userId = 2634;
 			b.Username = "Demo";
 			b.SceneName = "Boris";
 			b.FirstLastName = "Stéphane Fardoux";
 			b.Avatar = "2634_1366807872.gif";
+			b.IsPublicClubPicture = "True";
 			b.From = "20130224";
 			//temp.Add (b);
 			bg.Add (b);
