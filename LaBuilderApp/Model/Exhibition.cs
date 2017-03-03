@@ -204,6 +204,60 @@ namespace LaBuilderApp
 		// GLOBAL STATIC functions
 		// ***********************
 
+		private static int comingEventsHeight = 0; public static int ComingEventsHeight { get { return comingEventsHeight; } }
+		public static ObservableCollection<ExhibitionGroup> ComingEvents = new ObservableCollection<ExhibitionGroup> ();
+
+		public static void PrepareComingEvents ()
+		{
+			comingEventsHeight = 0;
+			ComingEvents.Clear ();
+			DateTime now = DateTime.Now;
+			DateTime finishDateForNews = new DateTime (now.Year, now.Month, 1, 0, 0, 0); // début du mois, ex 1/3/2017
+			finishDateForNews = finishDateForNews.AddMonths (2).AddDays (-1); // on ajoute 2 mois moins 1 jours => 1/5/2017 -1 => 30/4/2017
+			int maxDaysInFutur = (int)(finishDateForNews - now).TotalDays;
+			DateTime startDateForNews = new DateTime (now.Year, now.Month, 1, 0, 0, 0); // début du mois, ex 1/3/2017
+			startDateForNews = startDateForNews.AddMonths (-1); // on enleve 1 mois => 1/2/2017
+			int maxDaysInPast = (int)(startDateForNews - now).TotalDays;
+			TimeSpan ts;
+			ExhibitionGroup eg = null;
+			try {
+				//List<Exhibition> temp = new List<Exhibition> ();
+				foreach (Exhibition ex in Whole) {
+					ts = ex.StartDate.Date - now;
+					if (ts.TotalDays < maxDaysInPast) continue; // trop loin dans le passé
+					if (ts.TotalDays > maxDaysInFutur) continue; // trop loin
+					if (ts.TotalDays < 0) {
+						if (eg == null) {
+							eg = new ExhibitionGroup ("Ca vient d'avoir lieu");
+							eg.Add (ex);
+							comingEventsHeight = 20 + 100;
+							//Tools.Trace ($"Height: {comingEventsHeight}");
+							continue;
+						}
+						eg.Add (ex);
+						comingEventsHeight += 100;
+						//Tools.Trace ($"Height: {comingEventsHeight}");
+					}
+					if (ComingEvents.Count () == 0) {
+						if (eg != null)
+							ComingEvents.Add (eg);
+						eg = new ExhibitionGroup ("Les prochains événements");
+						comingEventsHeight += 20;
+						//Tools.Trace ($"Height: {comingEventsHeight}");
+					}
+					eg.Add (ex);
+					comingEventsHeight += 100;
+					//Tools.Trace ($"Height: {comingEventsHeight}");
+				}
+				if (eg != null)
+					ComingEvents.Add (eg);
+
+			} catch (Exception err) {
+				Tools.Trace ("PrepareComingEvents: " + err.Message);
+			}
+		}
+
+
 		public static ObservableCollection<ExhibitionGroup> AllGroup = new ObservableCollection<ExhibitionGroup> ();
 
 		private static int currentYear = 0;
@@ -273,6 +327,7 @@ namespace LaBuilderApp
 				currentYear = 0;
 				ChangeToYear (DateTime.Now.Year);
 			}
+			PrepareComingEvents ();
 		}
 		/*
 		public static void BuildersNeedToBeRefresh ()
@@ -303,6 +358,8 @@ namespace LaBuilderApp
 			ex.Title = "Démonstration 1";
 			//temp.Add (ex);
 			eg.Add (ex);
+			Whole.Add (ex);
+
 			//All.Add (ex);
 			ex = new Exhibition ();
 			ex.BuilderCode = 2634;
@@ -317,6 +374,8 @@ namespace LaBuilderApp
 			ex.Title = "Démonstration 2";
 			//temp.Add (ex);
 			eg.Add (ex);
+			Whole.Add (ex);
+
 			leg.Add (eg);
 			//All.Add (ex);
 			//All = temp;
@@ -325,6 +384,8 @@ namespace LaBuilderApp
 			//} catch (Exception err) {
 			//	Tools.Trace ("Exhibition-Error: " + err.Message);
 			//}
+			PopulateData ();
+			PrepareComingEvents ();
 		}
 
 		public static IEnumerable<ExhibitionGroup> DesignData { get; set; }

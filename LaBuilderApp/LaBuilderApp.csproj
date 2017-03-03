@@ -144,6 +144,7 @@
     <EmbeddedResource Include="Images\r5d4-1-125.png" />
     <EmbeddedResource Include="Images\r6t6-1-125.png" />
     <EmbeddedResource Include="Images\r7s1-1-125.png" />
+    <EmbeddedResource Include="Images\nouvellebanniere1024.png" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">

@@ -1,15 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="LaBuilderApp.ViewNews">
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="LaBuilderApp.ViewNews" 
+	xmlns:local="clr-namespace:LaBuilderApp">
 	<ContentView.Content>
 		<ScrollView Orientation="Vertical">
-		<Label TextColor="White" LineBreakMode="WordWrap">
-			<Label.FormattedText>
-				<FormattedString>
-				<Span Text="Bonjour et bienvenue sur l'application des Builders." />
-				<Span Text="&#10;&#10;Cette application permet de connaitre les événements auxquels participent les Builders. Vous pourrez ainsi aller à leur rencontre et découvrir leurs créations." />
-				</FormattedString>
-			</Label.FormattedText>
-		</Label>
+			<StackLayout Orientation="Vertical">
+				<Label TextColor="White" LineBreakMode="WordWrap">
+					<Label.FormattedText>
+						<FormattedString>
+						<Span Text="Bonjour et bienvenue sur l'application des Builders." />
+						<Span Text="&#10;&#10;Cette application permet de connaitre les événements auxquels participent les Builders. Vous pourrez ainsi aller à leur rencontre et découvrir leurs créations." />
+						</FormattedString>
+					</Label.FormattedText>
+				</Label>
+     	 		<Label x:Name="lInfo" TextColor="White" LineBreakMode="WordWrap"/>
+		<ListView x:Name="lvExhibition" ItemsSource="{x:Static local:Exhibition.ComingEvents}" HasUnevenRows="true" IsGroupingEnabled="true" BackgroundColor="Black" SeparatorVisibility="None" >
+			<ListView.GroupHeaderTemplate>
+				<DataTemplate>
+					<ViewCell Height="20">
+						<StackLayout Orientation="Vertical" Spacing="0" BackgroundColor="#5AA9D3" Padding="6,0">
+							<Label Text="{Binding Title}" Font="Bold" FontSize="14" TextColor="#11252D" HorizontalOptions="Start" YAlign="Center"  />
+						</StackLayout>
+					</ViewCell>
+				</DataTemplate>
+			</ListView.GroupHeaderTemplate>
+			<ListView.ItemTemplate>
+				<DataTemplate>
+						<ViewCell>
+							<ViewCell.View>
+								<StackLayout Orientation="Horizontal" Spacing="0" VerticalOptions="StartAndExpand">
+									<Image Source="{Binding LogoImage}" WidthRequest="100" HeightRequest="50" Aspect="AspectFit" BackgroundColor="White" />
+									<StackLayout Orientation="Vertical" Spacing="0" HorizontalOptions="FillAndExpand">
+										<Label Text="{Binding Title, StringFormat=' {0}'}" HorizontalOptions="FillAndExpand" HeightRequest="25" YAlign="Center" BackgroundColor="White" TextColor="Black" FontSize="14" LineBreakMode="TailTruncation"/>
+										<Label Text="{Binding DateEvent, StringFormat=' {0}'}" BackgroundColor="White" TextColor="Black" HeightRequest="25" FontSize="12" YAlign="Center" LineBreakMode="TailTruncation"/>
+									</StackLayout>
+								</StackLayout>
+							</ViewCell.View>
+						</ViewCell>
+				</DataTemplate>
+			</ListView.ItemTemplate>
+		</ListView>
+     	 		<Image Source="{local:ImageResource nouvellebanniere1024.png}" Aspect="AspectFit" WidthRequest="4000" />
+			</StackLayout>
 		</ScrollView>
 	</ContentView.Content>
 </ContentView>
