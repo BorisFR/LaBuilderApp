@@ -74,7 +74,7 @@
     <DefineConstants>DEBUG;ENABLE_TEST_CLOUD;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodesignKey>iPhone Developer</CodesignKey>
+    <CodesignKey>iPhone Developer: Stéphane Fardoux (XK8R562C64)</CodesignKey>
     <DeviceSpecificBuild>true</DeviceSpecificBuild>
     <MtouchDebug>true</MtouchDebug>
     <MtouchFastDev>true</MtouchFastDev>
@@ -88,6 +88,7 @@
     <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
     <MtouchTlsProvider>Default</MtouchTlsProvider>
     <PlatformTarget>x86</PlatformTarget>
+    <CodesignProvision>02896946-1d10-421f-a4f9-1cefcfaf78b7</CodesignProvision>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -147,14 +148,6 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\Contents.json" />
     <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\LaunchImage-1.launchimage\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\LaunchImage-1.launchimage\Default.png" />
-    <ImageAsset Include="Assets.xcassets\LaunchImage-1.launchimage\Default%402x.png" />
-    <ImageAsset Include="Assets.xcassets\LaunchImage-1.launchimage\Default-568h%402x.png" />
-    <ImageAsset Include="Assets.xcassets\LaunchImage-1.launchimage\Default-Portrait.png" />
-    <ImageAsset Include="Assets.xcassets\LaunchImage-1.launchimage\Default-Landscape.png" />
-    <ImageAsset Include="Assets.xcassets\LaunchImage-1.launchimage\Default-Portrait%402x.png" />
-    <ImageAsset Include="Assets.xcassets\LaunchImage-1.launchimage\Default-Landscape%402x.png" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-Small-40.png" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-Small-40%402x.png" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-Small-40%403x.png" />
@@ -172,6 +165,22 @@
     <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\Default-Portrait%402x.png" />
     <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\Default-Landscape.png" />
     <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\Default-Landscape%402x.png" />
+    <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\Default-568h%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-60%403x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-50.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-50%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-72%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-167.png" />
+    <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\loading-1920x1080.png" />
+    <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\loading-1242x2208.png" />
+    <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\loading-750x1334.png" />
+    <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\loading-2208x1242.png" />
+    <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\loading-1024x1366%402x.png" />
+    <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\loading-640x1136.png" />
+    <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\loading-768x1024.png" />
+    <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\loading-768x1024%402x.png" />
+    <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\loading-1024x768.png" />
+    <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\loading-1024x768%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
@@ -204,11 +213,11 @@
     <BundleResource Include="Resources\Icon-Small-40.png" />
     <BundleResource Include="Resources\Icon-Small-40%402x.png" />
     <BundleResource Include="Resources\Icon-Small-40%403x.png" />
-    <BundleResource Include="Resources\Icon-Small.png" />
-    <BundleResource Include="Resources\Icon-Small%402x.png" />
-    <BundleResource Include="Resources\Icon-Small%403x.png" />
-    <BundleResource Include="Resources\Icon.png" />
-    <BundleResource Include="Resources\Icon%402x.png" />
+    <BundleResource Include="Resources\Icon-Small-29.png" />
+    <BundleResource Include="Resources\Icon-Small-29%402x.png" />
+    <BundleResource Include="Resources\Icon-Small-29%403x.png" />
+    <BundleResource Include="Resources\Icon-57.png" />
+    <BundleResource Include="Resources\Icon-57%402x.png" />
     <BundleResource Include="Resources\Default-568h%402x.png" />
     <BundleResource Include="Resources\Default-Landscape.png" />
     <BundleResource Include="Resources\Default-Landscape%402x.png" />
@@ -216,6 +225,19 @@
     <BundleResource Include="Resources\Default-Portrait%402x.png" />
     <BundleResource Include="Resources\Default.png" />
     <BundleResource Include="Resources\Default%402x.png" />
+    <BundleResource Include="Resources\Icon-50.png" />
+    <BundleResource Include="Resources\Icon-50%402x.png" />
+    <BundleResource Include="Resources\Icon-72%402x.png" />
+    <BundleResource Include="Resources\Icon-167.png" />
+    <BundleResource Include="Resources\loading-1920x1080.png" />
+    <BundleResource Include="Resources\loading-1242x2208.png" />
+    <BundleResource Include="Resources\loading-750x1334.png" />
+    <BundleResource Include="Resources\loading-2208x1242.png" />
+    <BundleResource Include="Resources\loading-1024x1366%402x.png" />
+    <BundleResource Include="Resources\loading-640x1136.png" />
+    <BundleResource Include="Resources\loading-768x1024%402x.png" />
+    <BundleResource Include="Resources\loading-1024x768.png" />
+    <BundleResource Include="Resources\loading-1024x768%402x.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.3.3.193\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.3.3.193\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" />

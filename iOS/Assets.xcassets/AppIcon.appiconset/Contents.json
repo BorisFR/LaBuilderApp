@@ -49,6 +49,7 @@
       "idiom": "iphone"
     },
     {
+      "filename": "Icon-60@3x.png",
       "size": "60x60",
       "scale": "3x",
       "idiom": "iphone"
@@ -78,16 +79,19 @@
       "idiom": "ipad"
     },
     {
+      "filename": "Icon-50.png",
       "size": "50x50",
       "scale": "1x",
       "idiom": "ipad"
     },
     {
+      "filename": "Icon-50@2x.png",
       "size": "50x50",
       "scale": "2x",
       "idiom": "ipad"
     },
     {
+      "filename": "Icon-167.png",
       "size": "83.5x83.5",
       "scale": "2x",
       "idiom": "ipad"
@@ -99,6 +103,7 @@
       "idiom": "ipad"
     },
     {
+      "filename": "Icon-72@2x.png",
       "size": "72x72",
       "scale": "2x",
       "idiom": "ipad"
@@ -145,6 +150,7 @@
     },
     {
       "role": "appLauncher",
+      "filename": "Icon-Small-40@2x.png",
       "size": "40x40",
       "subtype": "38mm",
       "scale": "2x",
