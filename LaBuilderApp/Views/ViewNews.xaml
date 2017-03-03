@@ -3,7 +3,7 @@
 	xmlns:local="clr-namespace:LaBuilderApp">
 	<ContentView.Content>
 		<ScrollView Orientation="Vertical">
-			<StackLayout Orientation="Vertical">
+			<StackLayout Orientation="Vertical" VerticalOptions="Start">
 				<Label TextColor="White" LineBreakMode="WordWrap">
 					<Label.FormattedText>
 						<FormattedString>
@@ -13,7 +13,7 @@
 					</Label.FormattedText>
 				</Label>
      	 		<Label x:Name="lInfo" TextColor="White" LineBreakMode="WordWrap"/>
-		<ListView x:Name="lvExhibition" ItemsSource="{x:Static local:Exhibition.ComingEvents}" HasUnevenRows="true" IsGroupingEnabled="true" BackgroundColor="Black" SeparatorVisibility="None" >
+		<ListView x:Name="lvExhibition" VerticalOptions="Start" ItemsSource="{x:Static local:Exhibition.ComingEvents}" HasUnevenRows="true" IsGroupingEnabled="true" BackgroundColor="Black" SeparatorVisibility="None" >
 			<ListView.GroupHeaderTemplate>
 				<DataTemplate>
 					<ViewCell Height="20">
@@ -27,9 +27,9 @@
 				<DataTemplate>
 						<ViewCell>
 							<ViewCell.View>
-								<StackLayout Orientation="Horizontal" Spacing="0" VerticalOptions="StartAndExpand">
+								<StackLayout Orientation="Horizontal" HeightRequest="50" Spacing="0" VerticalOptions="Start">
 									<Image Source="{Binding LogoImage}" WidthRequest="100" HeightRequest="50" Aspect="AspectFit" BackgroundColor="White" />
-									<StackLayout Orientation="Vertical" Spacing="0" HorizontalOptions="FillAndExpand">
+									<StackLayout Orientation="Vertical" HeightRequest="50" Spacing="0" HorizontalOptions="FillAndExpand">
 										<Label Text="{Binding Title, StringFormat=' {0}'}" HorizontalOptions="FillAndExpand" HeightRequest="25" YAlign="Center" BackgroundColor="White" TextColor="Black" FontSize="14" LineBreakMode="TailTruncation"/>
 										<Label Text="{Binding DateEvent, StringFormat=' {0}'}" BackgroundColor="White" TextColor="Black" HeightRequest="25" FontSize="12" YAlign="Center" LineBreakMode="TailTruncation"/>
 									</StackLayout>

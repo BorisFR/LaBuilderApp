@@ -81,6 +81,8 @@ namespace LaBuilderApp
 					}
 				};
 				DataServer.AddToDo (login);
+			} else {
+				Tools.Trace ("No token");
 			}
 
 

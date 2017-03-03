@@ -230,12 +230,12 @@ namespace LaBuilderApp
 						if (eg == null) {
 							eg = new ExhibitionGroup ("Ca vient d'avoir lieu");
 							eg.Add (ex);
-							comingEventsHeight = 20 + 100;
+							comingEventsHeight = 20 + 50;
 							//Tools.Trace ($"Height: {comingEventsHeight}");
 							continue;
 						}
 						eg.Add (ex);
-						comingEventsHeight += 100;
+						comingEventsHeight += 50;
 						//Tools.Trace ($"Height: {comingEventsHeight}");
 					}
 					if (ComingEvents.Count () == 0) {
@@ -246,7 +246,7 @@ namespace LaBuilderApp
 						//Tools.Trace ($"Height: {comingEventsHeight}");
 					}
 					eg.Add (ex);
-					comingEventsHeight += 100;
+					comingEventsHeight += 50;
 					//Tools.Trace ($"Height: {comingEventsHeight}");
 				}
 				if (eg != null)

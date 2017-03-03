@@ -11,9 +11,9 @@ namespace LaBuilderApp
 		public ViewInfo ()
 		{
 			InitializeComponent ();
-			Device.BeginInvokeOnMainThread (() => {
-				theWebview.Source = "http://www.r2builders.fr/disclaimer.php";
-			});
+			//Device.BeginInvokeOnMainThread (() => {
+			//	theWebview.Source = "http://www.r2builders.fr/disclaimer.php";
+			//});
 		}
 
 	}

@@ -10,26 +10,24 @@ namespace LaBuilderApp
 		{
 			InitializeComponent ();
 			lvExhibition.HeightRequest = Exhibition.ComingEventsHeight;
-			Tools.Trace ($"ViewNews Setting height: {Exhibition.ComingEventsHeight}");
-			LoadInfo ();
+
+			lvExhibition.ItemSelected += (sender, e) => {
+				Device.BeginInvokeOnMainThread (() => {
+					if (lvExhibition.SelectedItem == null) return;
+					ChooseIsDone ();
+				});
+			};
+
 		}
 
-		public void LoadInfo ()
+		private void ChooseIsDone ()
 		{
+			Global.SelectedExhibition = lvExhibition.SelectedItem as Exhibition;
 			Device.BeginInvokeOnMainThread (() => {
-				lInfo.Text = "Hello";
+				lvExhibition.SelectedItem = null;
 			});
+			Navigation.PushModalAsync (new PageAgenda (), true);
 		}
 
-		/*
-		protected override void OnSizeAllocated (double width, double height)
-		{
-			if (lvExhibition != null) {
-				lvExhibition.HeightRequest = Exhibition.ComingEventsHeight;
-				Tools.Trace ($"Setting height: {Exhibition.ComingEventsHeight}");
-			}
-			base.OnSizeAllocated (width, height);
-		}
-		*/
 	}
 }
