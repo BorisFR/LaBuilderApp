@@ -19,6 +19,11 @@ namespace LaBuilderApp
 
 		}
 
+		~ViewFirstLoading ()
+		{
+			var ignore = Tools.DelayedGCAsync ();
+		}
+
 		private void AddText (string text)
 		{
 			AppearingText t = new AppearingText (text, Color.FromHex ("#5AA9D3"), TextAnimation.AppearAndStop, 8);

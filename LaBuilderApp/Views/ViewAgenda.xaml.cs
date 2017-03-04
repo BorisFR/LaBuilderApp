@@ -48,6 +48,11 @@ namespace LaBuilderApp
 			};
 		}
 
+		~ViewAgenda ()
+		{
+			var ignore = Tools.DelayedGCAsync ();
+		}
+
 		private void DoRefresh ()
 		{
 			IDataServer events = new IDataServer ("events");

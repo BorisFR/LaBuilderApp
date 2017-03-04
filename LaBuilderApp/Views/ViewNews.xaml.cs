@@ -30,6 +30,11 @@ namespace LaBuilderApp
 
 		}
 
+		~ViewNews ()
+		{
+			var ignore = Tools.DelayedGCAsync ();
+		}
+
 		private void ChooseIsDone ()
 		{
 			Global.SelectedExhibition = lvExhibition.SelectedItem as Exhibition;

@@ -51,6 +51,11 @@ namespace LaBuilderApp
 
 		}
 
+		~ViewThings ()
+		{
+			var ignore = Tools.DelayedGCAsync ();
+		}
+
 		private void ChooseThing ()
 		{
 			Global.SelectedThing = lvThing.SelectedItem as Thing;

@@ -29,6 +29,11 @@ namespace LaBuilderApp
 			this.BindingContext = Global.SelectedExhibition;
 		}
 
+		~PageAgenda ()
+		{
+			var ignore = Tools.DelayedGCAsync ();
+		}
+
 		void ButtonClicked (object sender, EventArgs e)
 		{
 			Button button = sender as Button;

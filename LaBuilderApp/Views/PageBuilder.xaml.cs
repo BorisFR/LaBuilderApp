@@ -46,6 +46,13 @@ namespace LaBuilderApp
 			//	lvExhibition.HeightRequest = lvExhibition.HeightRequest + (sender as View).Height;
 			//};
 		}
+
+
+		~PageBuilder ()
+		{
+			var ignore = Tools.DelayedGCAsync ();
+		}
+
 		/*
 		private void ChooseEvent ()
 		{

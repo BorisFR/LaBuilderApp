@@ -34,6 +34,11 @@ namespace LaBuilderApp
 			};
 		}
 
+		~ViewAbout ()
+		{
+			var ignore = Tools.DelayedGCAsync ();
+		}
+
 		private async void InfoData ()
 		{
 			DoFile ("country", "");

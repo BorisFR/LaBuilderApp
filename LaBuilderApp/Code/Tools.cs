@@ -59,5 +59,11 @@ namespace LaBuilderApp
 			//Global.Files.
 		}
 
+		public static async Task DelayedGCAsync ()
+		{
+			await Task.Delay (2000);
+			GC.Collect ();
+		}
+
 	}
 }

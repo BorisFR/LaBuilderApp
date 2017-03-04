@@ -34,5 +34,10 @@ namespace LaBuilderApp
 			};
 		}
 
+		~ViewMedia ()
+		{
+			var ignore = Tools.DelayedGCAsync ();
+		}
+
 	}
 }

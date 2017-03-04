@@ -31,6 +31,12 @@ namespace LaBuilderApp
 			this.BindingContext = Global.SelectedThing;
 		}
 
+
+		~PageThing ()
+		{
+			var ignore = Tools.DelayedGCAsync ();
+		}
+
 		//private int _position;
 		//public int Position { get { return _position; } set { _position = value; OnPropertyChanged (); } }
 

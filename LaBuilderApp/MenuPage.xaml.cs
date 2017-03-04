@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace LaBuilderApp
@@ -26,8 +26,6 @@ namespace LaBuilderApp
 			};
 			imgTitle.GestureRecognizers.Add (tapGestureRecognizer);
 
-
-			//theList.ItemsSource = Global.Menus.All;
 			theList.ItemSelected += delegate (object sender, SelectedItemChangedEventArgs e) {
 				if (e.SelectedItem == null)
 					return;
@@ -37,24 +35,16 @@ namespace LaBuilderApp
 					return;
 				}
 				Global.GotoPage (m);
-
-
-				//				if (Global.AllBuilders.All.Count == 0) {
-				//				} else {
-				//					Builder b = Global.AllBuilders.All [Global.Random.Next (Global.AllBuilders.All.Count)];
-				//					Global.CurrentBuilder = b;
-				//					Global.MainAppPage.Detail = new NavigationPage (new PageBuilder ());
-				//					//Navigation.PushAsync (new PageBuilder ());
-				//				}
+				var ignore = Tools.DelayedGCAsync ();
 
 				try {
 					Global.MainAppPage.IsPresented = false;
 				} catch (Exception) {
 				}
-				//theList.SelectedItem = null;
 			};
 			Tools.Trace ("MenuPage done.");
 		}
+
 
 	}
 }

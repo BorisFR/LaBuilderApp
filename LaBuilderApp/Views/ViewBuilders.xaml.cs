@@ -51,6 +51,11 @@ namespace LaBuilderApp
 
 		}
 
+		~ViewBuilders ()
+		{
+			var ignore = Tools.DelayedGCAsync ();
+		}
+
 		private void ChooseIsDone ()
 		{
 			Global.SelectedBuilder = lvBuilder.SelectedItem as Builder;

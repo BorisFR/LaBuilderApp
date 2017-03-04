@@ -79,6 +79,11 @@ namespace LaBuilderApp
 			RefreshScreen ();
 		}
 
+		~ViewConnect ()
+		{
+			var ignore = Tools.DelayedGCAsync ();
+		}
+
 		private void RefreshScreen ()
 		{
 			Device.BeginInvokeOnMainThread (() => {
