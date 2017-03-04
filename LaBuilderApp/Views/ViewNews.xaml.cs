@@ -18,6 +18,16 @@ namespace LaBuilderApp
 				});
 			};
 
+			var tapGestureRecognizer = new TapGestureRecognizer ();
+			tapGestureRecognizer.Tapped += (s, e) => {
+				try {
+					Device.OpenUri (new Uri ("http://www.r2builders.fr"));
+				} catch (Exception) {
+				}
+			};
+			imgSite.GestureRecognizers.Add (tapGestureRecognizer);
+
+
 		}
 
 		private void ChooseIsDone ()

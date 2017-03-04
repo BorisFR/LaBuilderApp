@@ -223,6 +223,7 @@ namespace LaBuilderApp
 			try {
 				//List<Exhibition> temp = new List<Exhibition> ();
 				foreach (Exhibition ex in Whole) {
+					if (ex.StartDate == null) continue;
 					ts = ex.StartDate.Date - now;
 					if (ts.TotalDays < maxDaysInPast) continue; // trop loin dans le passé
 					if (ts.TotalDays > maxDaysInFutur) continue; // trop loin

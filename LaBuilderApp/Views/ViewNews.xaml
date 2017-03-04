@@ -39,7 +39,7 @@
 				</DataTemplate>
 			</ListView.ItemTemplate>
 		</ListView>
-     	 		<Image Source="{local:ImageResource nouvellebanniere1024.png}" Aspect="AspectFit" WidthRequest="4000" />
+     	 		<Image x:Name="imgSite" Source="{local:ImageResource nouvellebanniere1024.png}" Aspect="AspectFit" WidthRequest="4000" />
 			</StackLayout>
 		</ScrollView>
 	</ContentView.Content>

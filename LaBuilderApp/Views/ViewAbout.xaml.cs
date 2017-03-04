@@ -25,6 +25,13 @@ namespace LaBuilderApp
 
 				Global.GotoPage (m);
 			};
+
+			btSite.Clicked += (sender, e) => {
+				try {
+					Device.OpenUri (new Uri ("http://www.r2builders.fr"));
+				} catch (Exception) {
+				}
+			};
 		}
 
 		private async void InfoData ()

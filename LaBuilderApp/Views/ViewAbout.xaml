@@ -36,6 +36,7 @@
 			</Label.FormattedText>
 		</Label>
 				<Button x:Name="btMentionsLegales" Text="Mentions légales"/>
+				<Button x:Name="btSite" Text="Ouvrir le site web"/>
 		<BoxView BackgroundColor="Transparent" HeightRequest="30"/>
 	</StackLayout>
 	</ScrollView>
