@@ -177,12 +177,22 @@ namespace LaBuilderApp
 		}
 
 
+		private int allPicturesCount = 0;
+		public int AllPicturesCount {
+			get { return allPicturesCount; }
+		}
+
 		public ObservableCollection<ImageSource> AllPictures {
 			get {
+				allPicturesCount = 0;
 				ObservableCollection<ImageSource> temp = new ObservableCollection<ImageSource> ();
 				if (pictureList != null) {
 					foreach (string img in pictureList.Values) {
-						temp.Add (ImageSource.FromUri (new Uri ($"http://www.r2builders.fr/boris/data/images/builders/{userId}/{img}")));
+						if (img.Length == 0) continue;
+						if (img.Contains ("BADFORMAT")) continue;
+						allPicturesCount++;
+						temp.Add (new UriImageSource { Uri = new Uri ($"http://www.r2builders.fr/boris/data/images/builders/{userId}/{img}"), CachingEnabled = true, CacheValidity = new TimeSpan (5, 0, 0, 0) });
+						//temp.Add (ImageSource.FromUri (new Uri ($"http://www.r2builders.fr/boris/data/images/builders/{userId}/{img}")));
 					}
 				}
 				return temp;

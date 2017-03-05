@@ -63,7 +63,7 @@ namespace LaBuilderApp
 				Global.ComingFromEvent = saveIdEvent;
 				if (saveIdEvent.Length > 0) Global.SelectedExhibition = Exhibition.GetById (saveIdEvent);
 
-				if (Global.SelectedThing != null && Global.SelectedThing.PictureList != null && Global.SelectedThing.PictureList.Length > 0) {
+				if (Global.SelectedThing != null && Global.SelectedThing.AllPicturesCount > 0) {
 					theCarousel.HeightRequest = Global.ScreenSize.GetHeight ();
 					Tools.Trace ($"Screen height: {Global.ScreenSize.GetHeight ()}, width: {Global.ScreenSize.GetWidth ()}");
 				} else
