@@ -65,9 +65,15 @@ namespace LaBuilderApp
 
 				if (Global.SelectedThing != null && Global.SelectedThing.AllPicturesCount > 0) {
 					theCarousel.HeightRequest = Global.ScreenSize.GetHeight ();
+					if (Global.SelectedThing.AllPicturesCount > 1)
+						theCarouselIndicators.IsVisible = true;
+					else
+						theCarouselIndicators.IsVisible = false;
 					Tools.Trace ($"Screen height: {Global.ScreenSize.GetHeight ()}, width: {Global.ScreenSize.GetWidth ()}");
-				} else
+				} else {
 					theCarousel.HeightRequest = 1;
+					theCarouselIndicators.IsVisible = false;
+				}
 
 			} catch (Exception err) {
 				Tools.Trace ($"PageThing.OnAppearing error: {err.Message}");

@@ -62,7 +62,7 @@
 						    </cv:CarouselView.ItemTemplate>
 						  </cv:CarouselView>
 						
-						<local:CarouselIndicators Margin="0,-50,0,0" IndicatorHeight="16" IndicatorWidth="16" UnselectedIndicator="unselected_circle.png" SelectedIndicator="selected_circle.png" Position="{Binding AllPicturesPosition}" ItemsSource="{Binding AllPictures}" />
+						<local:CarouselIndicators x:Name="theCarouselIndicators" Margin="0,-50,0,0" IndicatorHeight="16" IndicatorWidth="16" UnselectedIndicator="unselected_circle.png" SelectedIndicator="selected_circle.png" Position="{Binding AllPicturesPosition}" ItemsSource="{Binding AllPictures}" />
 
 					</StackLayout>
 					
