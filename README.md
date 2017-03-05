@@ -33,7 +33,7 @@ Remerciements à
 ---------------
 https://gist.github.com/NicoVermeir/7ffb34ebd639ed958382 pour le Awesome Wrap Panel  
 https://xamarinhelp.com/carousel-view-page-indicators/  pour l'ajout d'indicateur sur le carousel  
-http://www.flaticon.com : Icon made by Freepik, Pixel Buddha, Madebyoliver from www.flaticon.com  
+http://www.flaticon.com : Icon made by Freepik, Pixel Buddha, Madebyoliver, Lyolya from www.flaticon.com  
 
 à voir  
 ------

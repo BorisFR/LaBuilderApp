@@ -51,7 +51,26 @@ namespace LaBuilderApp
 								}
 							} else {
 								Tools.Trace ($"DataRefresh ERROR {x.FileName}: {result}");
-								lError.Text = "La connexion a échouée.";
+								try {
+									var res = JsonConvert.DeserializeObject<ReturnAuthenticate> (result);
+									switch (res.Error) {
+									case "login":
+									case "password":
+										lError.Text = "Souci de communication.";
+										break;
+									case "authenticate":
+										lError.Text = "Souci d'authentification.";
+										break;
+									case "smartphone":
+										lError.Text = "Il faut cocher 'on_smartphone' sur le profil du forum.";
+										break;
+									default:
+										lError.Text = "Une erreur est survenue.";
+										break;
+									}
+								} catch (Exception) {
+									lError.Text = "La connexion a échouée.";
+								}
 								Global.IsConnected = false;
 							}
 						};

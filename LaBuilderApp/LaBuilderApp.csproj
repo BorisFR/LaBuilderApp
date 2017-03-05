@@ -145,6 +145,8 @@
     <EmbeddedResource Include="Images\r6t6-1-125.png" />
     <EmbeddedResource Include="Images\r7s1-1-125.png" />
     <EmbeddedResource Include="Images\nouvellebanniere1024.png" />
+    <EmbeddedResource Include="Images\btn_c_menu.png" />
+    <EmbeddedResource Include="Images\btn_c_previous.png" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -229,6 +231,7 @@
       <DependentUpon>ViewGameR2Finder.xaml</DependentUpon>
     </Compile>
     <Compile Include="Component\CustomListViewRenderer.cs" />
+    <Compile Include="Model\ReturnAuthenticate.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="project.json" />

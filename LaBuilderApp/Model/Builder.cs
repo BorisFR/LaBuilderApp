@@ -73,7 +73,13 @@ namespace LaBuilderApp
 		}
 		//public string InterestLabel { get { return interest.Replace ("\\n", "\r\n"); } }
 		//public string OccupationLabel { get { return occupation.Replace ("\\n", "\r\n"); } }
-		public string DescriptionLabel { get { return description.Replace ("\\n", "\r\n"); } }
+
+		private string descriptionLabel = string.Empty;
+		public string DescriptionLabel {
+			get {
+				return descriptionLabel;// description.Replace ("\\n", "\r\n"); 
+			}
+		}
 
 		public string FullName {
 			get {
@@ -210,9 +216,12 @@ namespace LaBuilderApp
 			get { return 50 * itemCount + 20 * groupCount; }
 		}
 
+		private ObservableCollection<ExhibitionGroup> eventsList = null;
+
 		public ObservableCollection<ExhibitionGroup> Events {
 			get {
-				ObservableCollection<ExhibitionGroup> list = new ObservableCollection<ExhibitionGroup> ();
+				if (eventsList != null) return eventsList;
+				eventsList = new ObservableCollection<ExhibitionGroup> ();
 				groupCount = 0;
 				itemCount = 0;
 				ExhibitionGroup eg = null;
@@ -244,7 +253,7 @@ namespace LaBuilderApp
 							if (eg == null) {
 								eg = new ExhibitionGroup ($"{month} {year}");
 							} else {
-								list.Insert (0, eg);
+								eventsList.Insert (0, eg);
 								groupCount++;
 								eg = new ExhibitionGroup ($"{month} {year}");
 							}
@@ -259,18 +268,20 @@ namespace LaBuilderApp
 					}
 				}
 				if (eg != null) {
-					list.Insert (0, eg);
+					eventsList.Insert (0, eg);
 					groupCount++;
 				}
 				RaisePropertyChanged ("AllGroupsAndItemsSize");
-				return list;
+				return eventsList;
 			}
 		}
 
+		private ObservableCollection<Exhibition> eventsDetailList;
 
 		public ObservableCollection<Exhibition> EventsDetail {
 			get {
-				ObservableCollection<Exhibition> list = new ObservableCollection<Exhibition> ();
+				if (eventsDetailList != null) return eventsDetailList;
+				eventsDetailList = new ObservableCollection<Exhibition> ();
 
 				foreach (Exhibition ex in Exhibition.Whole) {
 					bool isPresent = false;
@@ -291,9 +302,9 @@ namespace LaBuilderApp
 						continue;
 					}
 					//System.Diagnostics.Debug.WriteLine ($"Event: {ex.Title}");
-					list.Insert (0, ex);
+					eventsDetailList.Insert (0, ex);
 				}
-				return list;
+				return eventsDetailList;
 			}
 		}
 
@@ -317,6 +328,8 @@ namespace LaBuilderApp
 					//List<Exhibition> temp = new List<Exhibition> ();
 					foreach (Builder ex in Whole) {
 						//All.Add (ex);
+						if (ex.description != null)
+							ex.descriptionLabel = Tools.PrettyLabel (ex.description);
 						dictBuilders.Add (ex.UserId, ex);
 						list.Add (ex);
 					}

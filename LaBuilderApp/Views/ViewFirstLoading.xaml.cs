@@ -28,7 +28,7 @@ namespace LaBuilderApp
 		{
 			AppearingText t = new AppearingText (text, Color.FromHex ("#5AA9D3"), TextAnimation.AppearAndStop, 8);
 			theLayout.Children.Add (t);
-			t.AppearDone += () => {
+			t.AppearDone += async () => {
 				step++;
 				switch (step) {
 				case 1:
@@ -40,6 +40,7 @@ namespace LaBuilderApp
 				default:
 					Tools.Trace ($"Step: {step}");
 					if (isReady) {
+						await System.Threading.Tasks.Task.Yield ();
 						Device.StartTimer (new TimeSpan (0, 0, 0, 0, 600), ChangeScreen);
 					}
 					break;

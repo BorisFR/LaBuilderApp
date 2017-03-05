@@ -7,17 +7,17 @@
 			<StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand">
 				<Grid HorizontalOptions="Fill" ColumnSpacing="0" RowSpacing="0">
 			        <Grid.ColumnDefinitions>
-			            <ColumnDefinition Width="150*"/>
-			            <ColumnDefinition Width="6"/>
 			            <ColumnDefinition Width="40*"/>
+			            <ColumnDefinition Width="6"/>
+			            <ColumnDefinition Width="150*"/>
 			        </Grid.ColumnDefinitions>
 			        <Grid.RowDefinitions>
 			        	<RowDefinition Height="40" />
 			        	<!--<RowDefinition Height="*" />-->
 			        </Grid.RowDefinitions>
 					<!-- 1ere ligne -->
-					<local:AppearingText TheText="Evenement" HorizontalOptions="Center" />
-					<Image x:Name="imgClose" Source="{local:ImageResource closewindow.png}" HorizontalOptions="End" WidthRequest="32" HeightRequest="32" Grid.Column="2" />
+					<local:AppearingText TheText="Evenement" HorizontalOptions="Center" Grid.Column="2" />
+					<Image x:Name="imgClose" Source="{local:ImageResource btn_c_previous.png}" HorizontalOptions="Start" WidthRequest="32" HeightRequest="32" />
 					<!-- 2nde ligne -->
 				</Grid>
 

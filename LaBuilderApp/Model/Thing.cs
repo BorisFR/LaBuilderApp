@@ -30,7 +30,14 @@ namespace LaBuilderApp
 		private string [] pictureList; public string [] PictureList { get { return pictureList; } set { pictureList = value; RaisePropertyChanged (); } }
 
 		public ImageSource PictureImage { get { return ImageSource.FromUri (new Uri ($"http://www.r2builders.fr/boris/data/images/things/{builderCode}/{picture}")); } }
-		public string DescriptionLabel { get { return description.Replace ("\\n", "\r\n"); } }
+
+		private string descriptionLabel = string.Empty;
+		public string DescriptionLabel {
+			get {
+				return descriptionLabel;
+				//description.Replace ("\\n", "\r\n"); 
+			}
+		}
 
 		private string builder; // = string.Empty;
 		public string Builder {
@@ -89,28 +96,30 @@ namespace LaBuilderApp
 
 		public static void PopulateData ()
 		{
-			Device.BeginInvokeOnMainThread (() => {
-				All.Clear ();
-				AllGroup.Clear ();
-				dictThings.Clear ();
-				ThingsGroup tg = null;
-				int tt = -42;
-				foreach (Thing t in Whole) {
-					dictThings.Add (t.id, t);
-					if (tt != t.ThingType) {
-						tt = t.ThingType;
-						if (tg == null) {
-							tg = new ThingsGroup (typeText (tt));
-						} else {
-							AllGroup.Add (tg);
-							tg = new ThingsGroup (typeText (tt));
-						}
+			//Device.BeginInvokeOnMainThread (() => {
+			All.Clear ();
+			AllGroup.Clear ();
+			dictThings.Clear ();
+			ThingsGroup tg = null;
+			int tt = -42;
+			foreach (Thing t in Whole) {
+				if (t.description != null)
+					t.descriptionLabel = Tools.PrettyLabel (t.description);
+				dictThings.Add (t.id, t);
+				if (tt != t.ThingType) {
+					tt = t.ThingType;
+					if (tg == null) {
+						tg = new ThingsGroup (typeText (tt));
+					} else {
+						AllGroup.Add (tg);
+						tg = new ThingsGroup (typeText (tt));
 					}
-					tg.Add (t);
 				}
-				if (tg != null)
-					AllGroup.Add (tg);
-			});
+				tg.Add (t);
+			}
+			if (tg != null)
+				AllGroup.Add (tg);
+			//});
 		}
 
 		static Thing ()
@@ -123,7 +132,7 @@ namespace LaBuilderApp
 			t.ThingType = 1;
 			t.BuilderCode = 2436;
 			t.Duree = 7;
-			t.Description = "This is the best thing ever done, 'cause, it is mine! Bla bla bla and bla bla bla and bla bla bla :)";
+			t.descriptionLabel = "This is the best thing ever done, 'cause, it is mine! Bla bla bla and bla bla bla and bla bla bla :)";
 			tg.Add (t);
 			list.Add (tg);
 			DesignData = list;

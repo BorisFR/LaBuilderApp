@@ -19,7 +19,7 @@
              RelativeLayout.WidthConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Width, Constant=1}"
              RelativeLayout.HeightConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Height, Constant=1}" >
 			<StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-				<Image x:Name="btMenu" Source="{local:ImageResource btn_menu.png}" WidthRequest="32" HeightRequest="32" Aspect="AspectFit"  />
+				<Image x:Name="btMenu" Source="{local:ImageResource btn_c_menu.png}" WidthRequest="32" HeightRequest="32" Aspect="AspectFit"  />
 				<local:AppearingText x:Name="theTitle" TheText="Bienvenue !" Animation="Appear" HorizontalOptions="Center" />
 			</StackLayout>
 			<ContentView x:Name="theFrame" BackgroundColor="Transparent" Padding="6,6,6,6"/>

@@ -24,7 +24,7 @@ namespace LaBuilderApp
 				if (httpClient != null)
 					return httpClient;
 				httpClient = new HttpClient ();
-				Trace ("----------Max response size: " + httpClient.MaxResponseContentBufferSize.ToString ());
+				//Trace ("----------Max response size: " + httpClient.MaxResponseContentBufferSize.ToString ());
 				httpClient.Timeout = new TimeSpan (0, 0, 0, 10, 500);
 				httpClient.DefaultRequestHeaders.ExpectContinue = false;
 				return httpClient;
@@ -65,5 +65,13 @@ namespace LaBuilderApp
 			GC.Collect ();
 		}
 
+
+		public static string PrettyLabel (string source)
+		{
+			return source.Replace ("\\n", "\r\n")
+				  .Replace ("&quot;", "\"")
+				  .Replace ("&gt;", ">")
+				  .Replace ("&lt;", "<");
+		}
 	}
 }
