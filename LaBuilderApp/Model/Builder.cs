@@ -81,6 +81,12 @@ namespace LaBuilderApp
 			}
 		}
 
+		public string DescriptionMiniLabel {
+			get {
+				return descriptionLabel.Substring (0, 700);
+			}
+		}
+
 		public string FullName {
 			get {
 				if (Global.IsConnected) {
@@ -329,46 +335,46 @@ namespace LaBuilderApp
 		public static void PopulateData ()
 		{
 			Tools.Trace ("Builder PopulateData");
-			Device.BeginInvokeOnMainThread (() => {
-				//All.Clear ();
-				AllGroup.Clear ();
-				List<Builder> list = new List<Builder> ();
-				dictBuilders.Clear ();
-				try {
-					//List<Exhibition> temp = new List<Exhibition> ();
-					foreach (Builder ex in Whole) {
-						//All.Add (ex);
-						if (ex.description != null)
-							ex.descriptionLabel = Tools.PrettyLabel (ex.description);
-						dictBuilders.Add (ex.UserId, ex);
-						list.Add (ex);
-					}
-					list.Sort ();
-					BuilderGroup bg = null;
-					foreach (Builder b in list) {
-						// affiche-t'on ce builder ?
-						if (b.Things.Count == 0)
-							continue;
-
-
-						if (bg == null) {
-							bg = new BuilderGroup (b.Username.Substring (0, 1).ToLower ());
-						} else {
-							if (b.Username.Substring (0, 1).ToLower () != bg.Title) {
-								AllGroup.Add (bg);
-								bg = new BuilderGroup (b.Username.Substring (0, 1).ToLower ());
-							}
-						}
-						bg.Add (b);
-						//All.Add (b);
-					}
-					if (bg != null)
-						AllGroup.Add (bg);
-				} catch (Exception err) {
-					Tools.Trace ("Builder PopulateData-Error: " + err.Message);
+			//Device.BeginInvokeOnMainThread (() => {
+			//All.Clear ();
+			AllGroup.Clear ();
+			List<Builder> list = new List<Builder> ();
+			dictBuilders.Clear ();
+			try {
+				//List<Exhibition> temp = new List<Exhibition> ();
+				foreach (Builder ex in Whole) {
+					//All.Add (ex);
+					if (ex.description != null)
+						ex.descriptionLabel = Tools.PrettyLabel (ex.description);
+					dictBuilders.Add (ex.UserId, ex);
+					list.Add (ex);
 				}
+				list.Sort ();
+				BuilderGroup bg = null;
+				foreach (Builder b in list) {
+					// affiche-t'on ce builder ?
+					if (b.Things.Count == 0)
+						continue;
 
-			});
+
+					if (bg == null) {
+						bg = new BuilderGroup (b.Username.Substring (0, 1).ToLower ());
+					} else {
+						if (b.Username.Substring (0, 1).ToLower () != bg.Title) {
+							AllGroup.Add (bg);
+							bg = new BuilderGroup (b.Username.Substring (0, 1).ToLower ());
+						}
+					}
+					bg.Add (b);
+					//All.Add (b);
+				}
+				if (bg != null)
+					AllGroup.Add (bg);
+			} catch (Exception err) {
+				Tools.Trace ("Builder PopulateData-Error: " + err.Message);
+			}
+
+			//});
 		}
 
 		int IComparable<Builder>.CompareTo (Builder other)
