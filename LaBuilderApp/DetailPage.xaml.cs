@@ -77,6 +77,10 @@ namespace LaBuilderApp
 					theFrame.Content = null;
 					theFrame.Content = new ViewGameR2Finder ();
 					break;
+				case MyPage.GameRuzzle:
+					theFrame.Content = null;
+					theFrame.Content = new ViewRuzzle ();
+					break;
 				case MyPage.About:
 					theFrame.Content = null;
 					theFrame.Content = new ViewAbout ();

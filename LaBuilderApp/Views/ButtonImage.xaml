@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="LaBuilderApp.ButtonImage" 
+	xmlns:local="clr-namespace:LaBuilderApp" BackgroundColor="Transparent">
+	<ContentView.Content>
+		<StackLayout x:Name="theLayout" Orientation="Horizontal" BackgroundColor="Transparent">
+			<Image x:Name="theImage" Source="{local:ImageResource menu_c_culture.png}" WidthRequest="48" HeightRequest="48" Aspect="AspectFit" />
+			<Label x:Name="theText" Text="Hello" FontSize="16" TextColor="#5AA9D3" VerticalOptions="Center" />
+		</StackLayout>
+	</ContentView.Content>
+</ContentView>

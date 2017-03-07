@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="LaBuilderApp.ViewCulture">
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="LaBuilderApp.ViewCulture" 
+	xmlns:local="clr-namespace:LaBuilderApp">
 	<ContentView.Content>
 		<ScrollView Orientation="Vertical">
-			<StackLayout Orientation="Vertical">
-				<Button x:Name="btAlphabet" Text="Découvrir l'aphabet Aurebesh" />
+			<StackLayout Orientation="Vertical" Padding="32,0,0,0">
+				<local:ButtonImage x:Name="btAlphabet" ImageSource="{local:ImageResource menu_c_langue.png}" Text="Découvrir l'aphabet Aurebesh" />
+				<local:ButtonImage x:Name="btGameSweeper" ImageSource="{local:ImageResource menu_c_game1.png}" Text="Jouer à R2-Finder" />
+				<local:ButtonImage x:Name="btGameRuzzle" ImageSource="{local:ImageResource menu_c_game2.png}" Text="Jouer à R2-Puzzle" />
 			</StackLayout>
 		</ScrollView>
 	</ContentView.Content>

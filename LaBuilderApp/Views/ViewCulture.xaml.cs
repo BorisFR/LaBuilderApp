@@ -17,6 +17,22 @@ namespace LaBuilderApp
 				m.Title = "Alphabet Aurebesh";
 				Global.GotoPage (m);
 			};
+
+			btGameSweeper.Clicked += (sender, e) => {
+				Global.MenuPage.UnselectMenu ();
+				Menu m = new Menu ();
+				m.Page = MyPage.GameR2Finder;
+				m.Title = "R2-Finder";
+				Global.GotoPage (m);
+			};
+
+			btGameRuzzle.Clicked += (sender, e) => {
+				Global.MenuPage.UnselectMenu ();
+				Menu m = new Menu ();
+				m.Page = MyPage.GameRuzzle;
+				m.Title = "R2-Puzzle";
+				Global.GotoPage (m);
+			};
 		}
 
 	}

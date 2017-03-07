@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="LaBuilderApp.ViewRuzzle" 
+	xmlns:local="clr-namespace:LaBuilderApp">
+	<ContentView.Content>
+		<StackLayout x:Name="theLayout" Spacing="0" Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HeightRequest="4000">
+           	<Label TextColor="#5AA9D3" x:Name="timeLabel" Text="Durée : 0:00" FontAttributes="Bold" HorizontalOptions="Center" />
+			<Button x:Name="btGo" Text="Start !" HorizontalOptions="Center" />
+			<AbsoluteLayout x:Name="absoluteLayout" HorizontalOptions="Center" VerticalOptions="Center">
+			</AbsoluteLayout>
+		</StackLayout>
+	</ContentView.Content>
+</ContentView>

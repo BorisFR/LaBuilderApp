@@ -111,7 +111,6 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="Images\menu_c_gamer2finder.png" />
-    <EmbeddedResource Include="Images\menu_c_game1.png" />
     <EmbeddedResource Include="Images\darth-vader.png" />
     <EmbeddedResource Include="Images\gamer2d2blue.png" />
     <EmbeddedResource Include="Images\gamer2d2white.png" />
@@ -150,10 +149,36 @@
     <EmbeddedResource Include="Views\ViewAureBesh.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="Images\menu_c_culture.png" />
     <EmbeddedResource Include="Views\ViewCulture.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="GameRuzzle\ViewRuzzle.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\menu_c_univers.png" />
+    <EmbeddedResource Include="Images\menu_c_culture.png" />
+    <EmbeddedResource Include="Images\menu_c_game1.png" />
+    <EmbeddedResource Include="Views\ButtonImage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\menu_c_langue.png" />
+    <EmbeddedResource Include="Images\menu_c_game2.png" />
+    <EmbeddedResource Include="Images\head11.png" />
+    <EmbeddedResource Include="Images\head12.png" />
+    <EmbeddedResource Include="Images\head13.png" />
+    <EmbeddedResource Include="Images\head14.png" />
+    <EmbeddedResource Include="Images\head21.png" />
+    <EmbeddedResource Include="Images\head22.png" />
+    <EmbeddedResource Include="Images\head23.png" />
+    <EmbeddedResource Include="Images\head24.png" />
+    <EmbeddedResource Include="Images\head31.png" />
+    <EmbeddedResource Include="Images\head32.png" />
+    <EmbeddedResource Include="Images\head33.png" />
+    <EmbeddedResource Include="Images\head34.png" />
+    <EmbeddedResource Include="Images\head41.png" />
+    <EmbeddedResource Include="Images\head42.png" />
+    <EmbeddedResource Include="Images\head43.png" />
+    <EmbeddedResource Include="Images\head44.png" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -246,6 +271,13 @@
     <Compile Include="Views\ViewCulture.xaml.cs">
       <DependentUpon>ViewCulture.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GameRuzzle\RuzzleSquare.cs" />
+    <Compile Include="GameRuzzle\ViewRuzzle.xaml.cs">
+      <DependentUpon>ViewRuzzle.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ButtonImage.xaml.cs">
+      <DependentUpon>ButtonImage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="project.json" />
@@ -257,6 +289,7 @@
     <Folder Include="Component\" />
     <Folder Include="Model\" />
     <Folder Include="GameR2finder\" />
+    <Folder Include="GameRuzzle\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.3.3.180\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.3.3.180\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" />

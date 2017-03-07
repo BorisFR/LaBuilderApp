@@ -68,17 +68,18 @@ namespace LaBuilderApp
 				Detail = T ("Vu dans les médias"),
 				Icon = "medias"
 			});
+			/*
 			mg.Add (new Menu () {
 				Page = MyPage.GameR2Finder,
 				Title = T ("R2 Finder"),
 				Detail = T ("Un petit jeu avec R2 !"),
 				Icon = "game1"
-			});
+			});*/
 			mg.Add (new Menu () {
 				Page = MyPage.Culture,
 				Title = T ("Univers"),
-				Detail = T ("Connaitre l'univers Star Wars"),
-				Icon = "culture"
+				Detail = T ("L'univers Star Wars"),
+				Icon = "univers"
 			});
 			/*
 			mg.Add (new Menu () {

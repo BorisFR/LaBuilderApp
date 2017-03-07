@@ -24,11 +24,13 @@ namespace LaBuilderApp
 		Things,
 		Legal,
 		GameR2Finder,
+		GameRuzzle,
 		Culture,
 		Alphabet
 	}
 
 	public delegate void Trigger ();
+	public delegate void TriggerObject (object sender, object e);
 	public delegate void JobDone (object sender, bool status, string result);
 
 
