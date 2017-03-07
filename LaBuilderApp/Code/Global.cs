@@ -23,7 +23,9 @@ namespace LaBuilderApp
 		Medias,
 		Things,
 		Legal,
-		GameR2Finder
+		GameR2Finder,
+		Culture,
+		Alphabet
 	}
 
 	public delegate void Trigger ();

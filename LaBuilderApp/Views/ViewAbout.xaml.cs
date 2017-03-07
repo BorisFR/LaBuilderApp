@@ -12,6 +12,7 @@ namespace LaBuilderApp
 		{
 			InitializeComponent ();
 			Device.BeginInvokeOnMainThread (() => {
+				Global.MenuPage.UnselectMenu ();
 				LoadInfo ();
 				InfoData ();
 			});

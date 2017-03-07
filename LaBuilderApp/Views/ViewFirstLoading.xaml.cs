@@ -91,7 +91,6 @@ namespace LaBuilderApp
 				Tools.Trace ("No token");
 			}
 
-
 			IDataServer country = new IDataServer ("country");
 			//events.IgnoreLocalData = true;
 			country.StartWorking += () => {

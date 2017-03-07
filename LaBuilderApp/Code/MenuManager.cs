@@ -74,6 +74,12 @@ namespace LaBuilderApp
 				Detail = T ("Un petit jeu avec R2 !"),
 				Icon = "game1"
 			});
+			mg.Add (new Menu () {
+				Page = MyPage.Culture,
+				Title = T ("Univers"),
+				Detail = T ("Connaitre l'univers Star Wars"),
+				Icon = "culture"
+			});
 			/*
 			mg.Add (new Menu () {
 				Page = MyPage.About,

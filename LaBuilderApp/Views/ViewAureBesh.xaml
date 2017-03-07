@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="LaBuilderApp.ViewAureBesh" 
+	xmlns:local="clr-namespace:LaBuilderApp">
+	<ContentView.Content>
+	<ScrollView Orientation="Vertical">
+			<StackLayout Orientation="Vertical">
+				<local:StarJedi Text="L'alphabet Aurebesh" HorizontalOptions="Center" TextColor="#5AA9D3" />
+				<Label TextColor="White">Aurebesh était un système d'écriture utilisé pour représenter le langage de base. Le nom vient d'une combinaison des deux premières lettres, Aurek et Besh.
+Les mots sont séparés par des espaces et sont écrits principalement de gauche à droite ou de haut en bas. Toutes les lettres ont la même taille relative, bien que parfois les symboles soient inversés pour indiquer des majuscules.</Label>
+				<local:AwesomeWrappanel x:Name="theAlphabet" Orientation="Horizontal" Spacing="0">
+					<local:AwesomeWrappanel.ItemTemplate>
+						<DataTemplate>
+						<Grid WidthRequest="60" HeightRequest="70" Padding="0" RowSpacing="0" ColumnSpacing="0">
+				        <Grid.ColumnDefinitions>
+				            <ColumnDefinition Width="60"/>
+				        </Grid.ColumnDefinitions>
+				        <Grid.RowDefinitions>
+				            <RowDefinition Height="30"/>
+				            <RowDefinition Height="40"/>
+				        </Grid.RowDefinitions>
+
+							<BoxView BackgroundColor="White" Grid.Row="0" Grid.RowSpan="2" Grid.Column="0"/>
+							<local:AurekBesh Text="{Binding Letter}" TextColor="#5AA9D3" FontSize="30" WidthRequest="50" HeightRequest="50" HorizontalOptions="Center" VerticalOptions="Start"/>
+							<StackLayout Spacing="0" Orientation="Vertical" Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center">
+								<Label Text="{Binding Name}" FontSize="17" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center" />
+								<Label Text="{Binding Detail}" FontSize="17" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center" />
+							</StackLayout>
+						</Grid>
+						</DataTemplate>
+					</local:AwesomeWrappanel.ItemTemplate>
+				</local:AwesomeWrappanel>
+			</StackLayout>
+		</ScrollView>
+	</ContentView.Content>
+</ContentView>

@@ -45,6 +45,10 @@ namespace LaBuilderApp
 			Tools.Trace ("MenuPage done.");
 		}
 
+		public void UnselectMenu ()
+		{
+			theList.SelectedItem = null;
+		}
 
 	}
 }

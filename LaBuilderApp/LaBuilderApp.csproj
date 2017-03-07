@@ -147,6 +147,13 @@
     <EmbeddedResource Include="Images\nouvellebanniere1024.png" />
     <EmbeddedResource Include="Images\btn_c_menu.png" />
     <EmbeddedResource Include="Images\btn_c_previous.png" />
+    <EmbeddedResource Include="Views\ViewAureBesh.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\menu_c_culture.png" />
+    <EmbeddedResource Include="Views\ViewCulture.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -232,6 +239,13 @@
     </Compile>
     <Compile Include="Component\CustomListViewRenderer.cs" />
     <Compile Include="Model\ReturnAuthenticate.cs" />
+    <Compile Include="Views\ViewAureBesh.xaml.cs">
+      <DependentUpon>ViewAureBesh.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Model\LettersAurekBesh.cs" />
+    <Compile Include="Views\ViewCulture.xaml.cs">
+      <DependentUpon>ViewCulture.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="project.json" />

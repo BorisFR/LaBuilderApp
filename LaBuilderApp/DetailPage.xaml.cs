@@ -89,27 +89,35 @@ namespace LaBuilderApp
 					theFrame.Content = null;
 					theFrame.Content = new ViewConnect ();
 					break;
+				case MyPage.Culture:
+					theFrame.Content = null;
+					theFrame.Content = new ViewCulture ();
+					break;
+				case MyPage.Alphabet:
+					theFrame.Content = null;
+					theFrame.Content = new ViewAureBesh ();
+					break;
 					/*			
-								case MyPage.Account:
-									theFrame.Content = null;
-									theFrame.Content = new ViewAccount ();
-									break;
-								case MyPage.MyBuilder:
-									theFrame.Content = null;
-									theFrame.Content = new ViewMyBuilder ();
-									break;
-								case MyPage.MyExhibitions:
-									theFrame.Content = null;
-									theFrame.Content = new ViewMyExhibitions ();
-									break;
-								case MyPage.AdminUsers:
-									theFrame.Content = null;
-									theFrame.Content = new ViewAdminUsers ();
-									break;
-								case MyPage.AdminBuilders:
-									theFrame.Content = null;
-									theFrame.Content = new ViewAdminBuilders ();
-									break;*/
+													case MyPage.Account:
+														theFrame.Content = null;
+														theFrame.Content = new ViewAccount ();
+														break;
+													case MyPage.MyBuilder:
+														theFrame.Content = null;
+														theFrame.Content = new ViewMyBuilder ();
+														break;
+													case MyPage.MyExhibitions:
+														theFrame.Content = null;
+														theFrame.Content = new ViewMyExhibitions ();
+														break;
+													case MyPage.AdminUsers:
+														theFrame.Content = null;
+														theFrame.Content = new ViewAdminUsers ();
+														break;
+													case MyPage.AdminBuilders:
+														theFrame.Content = null;
+														theFrame.Content = new ViewAdminBuilders ();
+														break;*/
 				}
 			});
 		}
