@@ -58,6 +58,11 @@ namespace LaBuilderApp
 			};
 		}
 
+		~ViewGameR2Finder ()
+		{
+			var ignore = Tools.DelayedGCAsync ();
+		}
+
 		void ShowRules ()
 		{
 			Global.MainAppPage.DisplayAlert ("Règles du jeu", "L'objectif de ta mission est de retrouver l'ensemble des unités Astromeccano qui se sont cachées dans la grille. Mais attention car l'Empire est présent !" +

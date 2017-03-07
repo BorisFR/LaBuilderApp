@@ -12,6 +12,7 @@ namespace LaBuilderApp
 
 			if (LettersAurekBesh.All.Count == 0)
 				LettersAurekBesh.PopulateData ();
+
 			theAlphabet.ItemsSource = LettersAurekBesh.All;
 		}
 

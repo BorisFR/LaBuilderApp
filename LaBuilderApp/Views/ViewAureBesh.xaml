@@ -10,20 +10,20 @@ Les mots sont séparés par des espaces et sont écrits principalement de gauche
 				<local:AwesomeWrappanel x:Name="theAlphabet" Orientation="Horizontal" Spacing="0">
 					<local:AwesomeWrappanel.ItemTemplate>
 						<DataTemplate>
-						<Grid WidthRequest="60" HeightRequest="70" Padding="0" RowSpacing="0" ColumnSpacing="0">
+						<Grid WidthRequest="60" HeightRequest="79" Padding="0" RowSpacing="0" ColumnSpacing="0">
 				        <Grid.ColumnDefinitions>
 				            <ColumnDefinition Width="60"/>
 				        </Grid.ColumnDefinitions>
 				        <Grid.RowDefinitions>
-				            <RowDefinition Height="30"/>
-				            <RowDefinition Height="40"/>
+				            <RowDefinition Height="35"/>
+				            <RowDefinition Height="44"/>
 				        </Grid.RowDefinitions>
 
 							<BoxView BackgroundColor="White" Grid.Row="0" Grid.RowSpan="2" Grid.Column="0"/>
-							<local:AurekBesh Text="{Binding Letter}" TextColor="#5AA9D3" FontSize="30" WidthRequest="50" HeightRequest="50" HorizontalOptions="Center" VerticalOptions="Start"/>
+							<local:AurekBesh Text="{Binding Letter}" TextColor="#5AA9D3" FontSize="30" WidthRequest="60" HeightRequest="35" XAlign="Center" HorizontalOptions="Center" VerticalOptions="Start"/>
 							<StackLayout Spacing="0" Orientation="Vertical" Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center">
 								<Label Text="{Binding Name}" FontSize="17" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center" />
-								<Label Text="{Binding Detail}" FontSize="17" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center" />
+								<Label Text="{Binding Detail}" FontSize="14" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center" />
 							</StackLayout>
 						</Grid>
 						</DataTemplate>

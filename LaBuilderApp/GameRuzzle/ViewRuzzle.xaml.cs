@@ -87,6 +87,12 @@ namespace LaBuilderApp
 			};
 		}
 
+		~ViewRuzzle ()
+		{
+			var ignore = Tools.DelayedGCAsync ();
+		}
+
+
 		private async void DoGo (object sender)
 		{
 			Button button = (Button)sender;

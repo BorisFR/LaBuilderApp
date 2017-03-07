@@ -196,6 +196,7 @@ namespace LaBuilderApp
 				AddText ("App is ready");
 				isReady = true;
 				DataServer.QueueEmpty = null;
+				var ignore = Tools.DelayedGCAsync ();
 			};
 			DataServer.Launch ();
 
