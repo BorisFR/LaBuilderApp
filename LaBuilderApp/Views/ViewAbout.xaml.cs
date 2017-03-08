@@ -23,7 +23,6 @@ namespace LaBuilderApp
 				m.Detail = string.Empty;
 				m.Title = "Mentions légales";
 				m.Page = MyPage.Legal;
-
 				Global.GotoPage (m);
 			};
 
@@ -32,6 +31,15 @@ namespace LaBuilderApp
 					Device.OpenUri (new Uri ("http://www.r2builders.fr"));
 				} catch (Exception) {
 				}
+			};
+
+			btClearCache.Clicked += (sender, e) => {
+				Global.ClearDataCache ();
+				Menu m = new Menu ();
+				m.Detail = string.Empty;
+				m.Title = "Chargement des donnees";
+				m.Page = MyPage.FirstLoading;
+				Global.GotoPage (m);
 			};
 		}
 

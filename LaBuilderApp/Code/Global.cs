@@ -97,5 +97,16 @@ namespace LaBuilderApp
 			DetailPage.ShowPage (menu);
 		}
 
+		public static void ClearDataCache ()
+		{
+			CrossSettings.Current.Remove ("usertoken");
+			CrossSettings.Current.Remove ("userpassword");
+			IDataServer.ClearData ("builders");
+			IDataServer.ClearData ("things");
+			IDataServer.ClearData ("thingstype");
+			IDataServer.ClearData ("events");
+			IDataServer.ClearData ("country");
+		}
+
 	}
 }

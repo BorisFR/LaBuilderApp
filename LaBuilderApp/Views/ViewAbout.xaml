@@ -3,42 +3,43 @@
 	BackgroundColor="Transparent">
 	<ContentView.Content>
 		<ScrollView Orientation="Vertical">
-	<StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" Spacing="0">
-		<Label Text="Application" FontSize="14" BackgroundColor="White"/>
-		<Label x:Name="lApp" FontSize="12" TextColor="White" />
-		<Label Text="Plateforme" FontSize="14" BackgroundColor="White"/>
-		<Label x:Name="lDevice" FontSize="12" TextColor="White"/>
-		<Label x:Name="lScreen" FontSize="12" TextColor="White"/>
-		<Label Text="Data" FontSize="14" BackgroundColor="White"/>
-		<Label x:Name="lData" FontSize="12" TextColor="White"/>
-		<Label Text="Auteur" FontSize="14" BackgroundColor="White"/>
-		<Label FontSize="12" TextColor="White">
-			<Label.FormattedText>
-				<FormattedString>
-					<Span Text="Application créée par Stéphane Fardoux pour le club des R2-Builders."/>
-					<Span Text="&#10;Profil : https://www.linkedin.com/in/sfardoux" />
-					<Span Text="&#10;&#169; 2017 - R2Builders.fr"/>
-					<Span Text="&#10;Un énorme merci à lolo080, Raphaël et Xoff pour la création de ce club !" />
-					<Span Text="&#10;Merci aux Builders qui rendent ce club si passionnant." />
-					<Span Text="&#10;Et merci à tous les autres clubs que nous fréquentons si souvent et qui rendent nos sorties magnifiques. On ne va pas les citer, de peur d'en oublier ;)" />
-				</FormattedString>
-			</Label.FormattedText>
-		</Label>
-		<Label Text="Information" FontSize="14" BackgroundColor="White"/>
-		<Label FontSize="12" TextColor="White">
-			<Label.FormattedText>
-				<FormattedString>
-					<Span Text="Application développé en C# avec Xamarin, techno Xamarin Forms"/>
-					<Span Text="&#10;Icon made by Freepik, Pixel Buddha, Madebyoliver from www.flaticon.com"/>
-					<Span Text="&#10;Carousel indicators: https://xamarinhelp.com/carousel-view-page-indicators/" />
-					<Span Text="&#10;Awesome Wrap Panel : https://gist.github.com/NicoVermeir/7ffb34ebd639ed958382"/>
-				</FormattedString>
-			</Label.FormattedText>
-		</Label>
-				<Button x:Name="btMentionsLegales" Text="Mentions légales"/>
+			<StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" Spacing="0">
+				<Label Text="Application" FontSize="14" BackgroundColor="White"/>
+				<Label x:Name="lApp" FontSize="12" TextColor="White" />
+				<Label Text="Plateforme" FontSize="14" BackgroundColor="White"/>
+				<Label x:Name="lDevice" FontSize="12" TextColor="White"/>
+				<Label x:Name="lScreen" FontSize="12" TextColor="White"/>
+				<Label Text="Data" FontSize="14" BackgroundColor="White"/>
+				<Label x:Name="lData" FontSize="12" TextColor="White"/>
+				<Button x:Name="btClearCache" Text="Vider le cache" />
+				<Label Text="Auteur" FontSize="14" BackgroundColor="White"/>
+				<Label FontSize="12" TextColor="White">
+					<Label.FormattedText>
+						<FormattedString>
+							<Span Text="Application créée par Stéphane Fardoux pour le club des R2-Builders."/>
+							<Span Text="&#10;Profil : https://www.linkedin.com/in/sfardoux" />
+							<Span Text="&#10;&#169; 2017 - R2Builders.fr"/>
+							<Span Text="&#10;Un énorme merci à lolo080, Raphaël et Xoff pour la création de ce club !" />
+							<Span Text="&#10;Merci aux Builders qui rendent ce club si passionnant." />
+							<Span Text="&#10;Et merci à tous les autres clubs que nous fréquentons si souvent et qui rendent nos sorties magnifiques. On ne va pas les citer, de peur d'en oublier ;)" />
+						</FormattedString>
+					</Label.FormattedText>
+				</Label>
+				<Label Text="Information" FontSize="14" BackgroundColor="White"/>
+				<Label FontSize="12" TextColor="White">
+					<Label.FormattedText>
+						<FormattedString>
+							<Span Text="Application développé en C# avec Xamarin, techno Xamarin Forms"/>
+							<Span Text="&#10;Icon made by Freepik, Pixel Buddha, Madebyoliver from www.flaticon.com"/>
+							<Span Text="&#10;Carousel indicators: https://xamarinhelp.com/carousel-view-page-indicators/" />
+							<Span Text="&#10;Awesome Wrap Panel : https://gist.github.com/NicoVermeir/7ffb34ebd639ed958382"/>
+						</FormattedString>
+					</Label.FormattedText>
+				</Label>
 				<Button x:Name="btSite" Text="Ouvrir le site web"/>
-		<BoxView BackgroundColor="Transparent" HeightRequest="30"/>
-	</StackLayout>
-	</ScrollView>
+				<Button x:Name="btMentionsLegales" Text="Mentions légales"/>
+				<BoxView BackgroundColor="Transparent" HeightRequest="30"/>
+			</StackLayout>
+		</ScrollView>
 	</ContentView.Content>
 </ContentView>
