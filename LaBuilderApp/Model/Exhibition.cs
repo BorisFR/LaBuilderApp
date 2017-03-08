@@ -153,13 +153,13 @@ namespace LaBuilderApp
 						monthEvent = StartDate.Date.ToString ("MMMMM", Global.CultureFrench);
 
 						if ((EndDate.date == null) || (StartDate.Date == EndDate.Date)) { // sur 1 seule journée
-							dateEvent = $"Le {StartDate.Date.ToString ("dddd dd MMMMM yyyy", Global.CultureFrench)}";
+							dateEvent = $"Le {StartDate.Date.ToString ("dddd d MMMMM yyyy", Global.CultureFrench)}";
 						} else {
 							// sur plusieurs jours
 							if (StartDate.Date.Month == EndDate.Date.Month)
-								dateEvent = $"Du {StartDate.Date.ToString ("dddd dd", Global.CultureFrench)} au {EndDate.Date.ToString ("dddd dd MMMMM yyyy", Global.CultureFrench)}";
+								dateEvent = $"Du {StartDate.Date.ToString ("dddd d", Global.CultureFrench)} au {EndDate.Date.ToString ("dddd d MMMMM yyyy", Global.CultureFrench)}";
 							else
-								dateEvent = $"Du {StartDate.Date.ToString ("dddd dd MMMMM", Global.CultureFrench)} au {EndDate.Date.ToString ("dddd dd MMMMM yyyy", Global.CultureFrench)}";
+								dateEvent = $"Du {StartDate.Date.ToString ("dddd d MMMMM", Global.CultureFrench)} au {EndDate.Date.ToString ("dddd d MMMMM yyyy", Global.CultureFrench)}";
 						}
 					}
 				} catch (Exception err) {
@@ -174,7 +174,7 @@ namespace LaBuilderApp
 								yearEvent = oh.StartHour.Date.Year;
 								monthEvent = StartDate.Date.ToString ("MMMMM", Global.CultureFrench);
 								if (oh.EndHour.date != null) {
-									hourEvent = $"le {oh.StartHour.Date.ToString ("dddd dd MMMMM", Global.CultureFrench)} de {oh.StartHour.Date.ToString ("HH:mm", Global.CultureFrench)} à {oh.EndHour.Date.ToString ("HH:mm", Global.CultureFrench)}";
+									hourEvent = $"le {oh.StartHour.Date.ToString ("dddd d MMMMM", Global.CultureFrench)} de {oh.StartHour.Date.ToString ("HH:mm", Global.CultureFrench)} à {oh.EndHour.Date.ToString ("HH:mm", Global.CultureFrench)}";
 								}
 							}
 						}
