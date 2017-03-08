@@ -325,8 +325,10 @@ namespace LaBuilderApp
 			if (currentYear == 0)
 				ChangeToYear (DateTime.Now.Year);
 			else {
+				int save = currentYear;
 				currentYear = 0;
 				ChangeToYear (DateTime.Now.Year);
+				ChangeToYear (save);
 			}
 			PrepareComingEvents ();
 		}
