@@ -325,6 +325,7 @@ namespace LaBuilderApp
 			if (currentYear == 0)
 				ChangeToYear (DateTime.Now.Year);
 			else {
+				// correction bug de changement d'année sur refresh
 				int save = currentYear;
 				currentYear = 0;
 				ChangeToYear (DateTime.Now.Year);
