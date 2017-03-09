@@ -45,12 +45,12 @@ namespace LaBuilderApp
 		private string isPublicClubPicture; public string IsPublicClubPicture { get { return isPublicClubPicture; } set { isPublicClubPicture = value; RaisePropertyChanged (); } }
 		private string firstLastName; public string FirstLastName { get { return firstLastName; } set { firstLastName = value; RaisePropertyChanged (); } }
 
-		public ImageSource PictureImage { get { return ImageSource.FromUri (new Uri ($"http://www.r2builders.fr/boris/data/images/builders/{userId}/{picture}")); } }
+		public ImageSource PictureImage { get { return ImageSource.FromUri (new Uri ($"{Global.BaseUrl}boris/data/images/builders/{userId}/{picture}")); } }
 		public ImageSource OfficialPictureImage {
 			get {
 				if (IsPublicClub)
-					return ImageSource.FromUri (new Uri ($"http://www.r2builders.fr/boris/data/images/builders/{userId}.jpg"));
-				return ImageSource.FromUri (new Uri ("http://www.r2builders.fr/boris/1x1.png"));
+					return ImageSource.FromUri (new Uri ($"{Global.BaseUrl}boris/data/images/builders/{userId}.jpg"));
+				return ImageSource.FromUri (new Uri ($"{Global.BaseUrl}boris/1x1.png"));
 			}
 		}
 		public bool IsPublicClub {
@@ -62,7 +62,7 @@ namespace LaBuilderApp
 				return false;
 			}
 		}
-		public ImageSource AvatarImage { get { return ImageSource.FromUri (new Uri ($"http://www.r2builders.fr/forum/download/file.php?avatar={avatar}")); } }
+		public ImageSource AvatarImage { get { return ImageSource.FromUri (new Uri ($"{Global.BaseUrl}forum/download/file.php?avatar={avatar}")); } }
 		public ImageSource CountryImage {
 			get {
 				if (countryCode > 0)
@@ -197,7 +197,7 @@ namespace LaBuilderApp
 						if (img.Length == 0) continue;
 						if (img.Contains ("BADFORMAT")) continue;
 						allPicturesCount++;
-						temp.Add (new UriImageSource { Uri = new Uri ($"http://www.r2builders.fr/boris/data/images/builders/{userId}/{img}"), CachingEnabled = true, CacheValidity = new TimeSpan (5, 0, 0, 0) });
+						temp.Add (new UriImageSource { Uri = new Uri ($"{Global.BaseUrl}boris/data/images/builders/{userId}/{img}"), CachingEnabled = true, CacheValidity = new TimeSpan (5, 0, 0, 0) });
 						//temp.Add (ImageSource.FromUri (new Uri ($"http://www.r2builders.fr/boris/data/images/builders/{userId}/{img}")));
 					}
 				}

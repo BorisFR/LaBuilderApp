@@ -21,7 +21,7 @@ namespace LaBuilderApp
 			var tapGestureRecognizer = new TapGestureRecognizer ();
 			tapGestureRecognizer.Tapped += (s, e) => {
 				try {
-					Device.OpenUri (new Uri ("http://www.r2builders.fr"));
+					Device.OpenUri (new Uri (Global.BaseUrl));
 				} catch (Exception) {
 				}
 			};

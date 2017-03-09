@@ -78,8 +78,8 @@ namespace LaBuilderApp
 		private string flyer; public string Flyer { get { return flyer; } set { flyer = value; RaisePropertyChanged (); } }
 		private bool publicView; public bool PublicView { get { return publicView; } set { publicView = value; RaisePropertyChanged (); } }
 
-		public ImageSource LogoImage { get { return ImageSource.FromUri (new Uri ($"http://www.r2builders.fr/boris/data/images/events/{logo}")); } }
-		public ImageSource FlyerImage { get { return ImageSource.FromUri (new Uri ($"http://www.r2builders.fr/boris/data/images/flyer/{flyer}")); } }
+		public ImageSource LogoImage { get { return ImageSource.FromUri (new Uri ($"{Global.BaseUrl}boris/data/images/events/{logo}")); } }
+		public ImageSource FlyerImage { get { return ImageSource.FromUri (new Uri ($"{Global.BaseUrl}boris/data/images/flyer/{flyer}")); } }
 		public ImageSource CountryImage { get { return Country.CountryImage (countryCode); } }
 		public string DescriptionLabel { get { return description.Replace ("\\n", "\r\n"); } }
 

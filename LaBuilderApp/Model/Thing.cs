@@ -29,7 +29,7 @@ namespace LaBuilderApp
 		private int duree; public int Duree { get { return duree; } set { duree = value; RaisePropertyChanged (); } }
 		private string [] pictureList; public string [] PictureList { get { return pictureList; } set { pictureList = value; RaisePropertyChanged (); } }
 
-		public ImageSource PictureImage { get { return ImageSource.FromUri (new Uri ($"http://www.r2builders.fr/boris/data/images/things/{builderCode}/{picture}")); } }
+		public ImageSource PictureImage { get { return ImageSource.FromUri (new Uri ($"{Global.BaseUrl}boris/data/images/things/{builderCode}/{picture}")); } }
 
 		private string descriptionLabel = string.Empty;
 		public string DescriptionLabel {
@@ -62,7 +62,7 @@ namespace LaBuilderApp
 						if (img.Length == 0) continue;
 						if (img.Contains ("BADFORMAT")) continue;
 						allPicturesCount++;
-						temp.Add (new UriImageSource { Uri = new Uri ($"http://www.r2builders.fr/boris/data/images/things/{builderCode}/{img}"), CachingEnabled = true, CacheValidity = new TimeSpan (5, 0, 0, 0) });
+						temp.Add (new UriImageSource { Uri = new Uri ($"{Global.BaseUrl}boris/data/images/things/{builderCode}/{img}"), CachingEnabled = true, CacheValidity = new TimeSpan (5, 0, 0, 0) });
 						//temp.Add (ImageSource.FromUri (new Uri ($"http://www.r2builders.fr/boris/data/images/things/{builderCode}/{img}")));
 					}
 				}
@@ -73,7 +73,7 @@ namespace LaBuilderApp
 		private int allPicturesPosition;
 		public int AllPicturesPosition { get { return allPicturesPosition; } set { allPicturesPosition = value; RaisePropertyChanged (); } }
 
-		public ImageSource BuilderAvatarImage { get { return ImageSource.FromUri (new Uri ($"http://www.r2builders.fr/forum/download/file.php?avatar={LaBuilderApp.Builder.GetById (builderCode).Avatar}")); } }
+		public ImageSource BuilderAvatarImage { get { return ImageSource.FromUri (new Uri ($"{Global.BaseUrl}forum/download/file.php?avatar={LaBuilderApp.Builder.GetById (builderCode).Avatar}")); } }
 
 		public static ObservableCollection<ThingsGroup> AllGroup = new ObservableCollection<ThingsGroup> ();
 

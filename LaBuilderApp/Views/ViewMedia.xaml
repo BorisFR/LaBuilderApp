@@ -3,7 +3,7 @@
 	<ContentView.Content>
 		<StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" Spacing="0">
 			<Button x:Name="btReload" Text="Page des médias" />
-			<WebView x:Name="theWebview" VerticalOptions="FillAndExpand" Source="http://www.r2builders.fr/boris/medias.php" WidthRequest="3000" HeightRequest="3000" />
+			<WebView x:Name="theWebview" VerticalOptions="FillAndExpand" Source="https://www.r2builders.fr/boris/medias.php" WidthRequest="3000" HeightRequest="3000" />
 		</StackLayout>
 	</ContentView.Content>
 </ContentView>

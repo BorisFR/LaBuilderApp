@@ -51,7 +51,7 @@ namespace LaBuilderApp
 		//public static User ConnectedUser = null;
 
 
-		public static string BaseUrl = "http://www.r2builders.fr/";
+		public static string BaseUrl = "https://www.r2builders.fr/";
 		public static CultureInfo CultureFrench = new CultureInfo ("fr-FR");
 
 		public static IFiles Files = null;
