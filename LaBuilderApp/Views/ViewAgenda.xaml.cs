@@ -1,4 +1,5 @@
-﻿using Plugin.AppInfo;
+﻿using System;
+using Plugin.AppInfo;
 using Xamarin.Forms;
 
 namespace LaBuilderApp
@@ -67,6 +68,41 @@ namespace LaBuilderApp
 					});
 				} else {
 					Tools.Trace ($"DataRefresh ERROR {x.FileName}: {result}");
+
+
+					if (Global.CurrentToken.Length > 0) {
+						if (Global.IsFirstTimeError) {
+							Global.IsFirstTimeError = false;
+							IDataServer login = new IDataServer ("login");
+							login.IgnoreLocalData = true;
+							login.DataRefresh += (obj2, status2, result2) => {
+								IDataServer x2 = obj2 as IDataServer;
+								if (status2) {
+									Tools.Trace ($"DataRefresh {x2.FileName}: {result2}");
+									// extraire le token
+									try {
+										Login l = Newtonsoft.Json.JsonConvert.DeserializeObject<Login> (result2);
+										Global.CurrentBuilderId = l.UserId;
+										Global.CurrentToken = l.Token;
+										Plugin.Settings.CrossSettings.Current.AddOrUpdateValue<string> ("usertoken", Global.CurrentToken);
+										Global.IsConnected = true;
+
+										DataServer.AddToDo (events);
+
+									} catch (Exception err2) {
+										Tools.Trace ($"DataRefresh ERROR {x2.FileName}: {err2.Message}");
+										Global.IsConnected = false;
+									}
+								} else {
+									Tools.Trace ($"DataRefresh ERROR {x2.FileName}: {result2}");
+									Global.IsConnected = false;
+								}
+							};
+							DataServer.AddToDo (login);
+						}
+					}
+
+
 				}
 			};
 			DataServer.AddToDo (events);
@@ -76,6 +112,7 @@ namespace LaBuilderApp
 					lvExhibition.EndRefresh ();
 				});
 				DataServer.QueueEmpty = null;
+				var ignore = Tools.DelayedGCAsync ();
 			};
 			DataServer.Launch ();
 		}

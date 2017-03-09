@@ -43,8 +43,13 @@ namespace LaBuilderApp
 					status = false;
 					Tools.Trace ($"Data error: {result}");
 				} else {
-					await Global.Files.SaveFile (fileName, result);
-					CrossSettings.Current.AddOrUpdateValue<DateTime> ($"cache_{fileName}", DateTime.UtcNow);
+					if (result.StartsWith ("{") || result.StartsWith ("[")) {
+						await Global.Files.SaveFile (fileName, result);
+						CrossSettings.Current.AddOrUpdateValue<DateTime> ($"cache_{fileName}", DateTime.UtcNow);
+					} else {
+						status = false;
+						Tools.Trace ($"Data error, not json: {result}");
+					}
 				}
 			}
 			DataRefresh (this, status, result);

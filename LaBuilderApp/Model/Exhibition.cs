@@ -224,6 +224,7 @@ namespace LaBuilderApp
 				//List<Exhibition> temp = new List<Exhibition> ();
 				foreach (Exhibition ex in Whole) {
 					if (ex.StartDate == null) continue;
+					if (ex.StartDate.date == null) continue;
 					ts = ex.StartDate.Date - now;
 					if (ts.TotalDays < maxDaysInPast) continue; // trop loin dans le passé
 					if (ts.TotalDays > maxDaysInFutur) continue; // trop loin
@@ -269,36 +270,38 @@ namespace LaBuilderApp
 			Tools.Trace ("ChangeToYear");
 			if (currentYear == year) return;
 			currentYear = year;
-			Device.BeginInvokeOnMainThread (() => {
-				//All.Clear ();
-				AllGroup.Clear ();
-				ExhibitionGroup eg = null;
-				dictEvents.Clear ();
-				try {
-					//List<Exhibition> temp = new List<Exhibition> ();
-					foreach (Exhibition ex in Whole) {
-						if (ex.YearEvent == year) {
-							//temp.Add (ex);
-							if (eg == null) {
+			//Device.BeginInvokeOnMainThread (() => {
+			//All.Clear ();
+			AllGroup.Clear ();
+			ExhibitionGroup eg = null;
+			dictEvents.Clear ();
+			try {
+				//List<Exhibition> temp = new List<Exhibition> ();
+				foreach (Exhibition ex in Whole) {
+					if (ex.YearEvent == year) {
+						//temp.Add (ex);
+						if (eg == null) {
+							eg = new ExhibitionGroup (ex.MonthEvent);
+						} else {
+							if (ex.MonthEvent != eg.Title) {
+								AllGroup.Add (eg);
 								eg = new ExhibitionGroup (ex.MonthEvent);
-							} else {
-								if (ex.MonthEvent != eg.Title) {
-									AllGroup.Add (eg);
-									eg = new ExhibitionGroup (ex.MonthEvent);
-								}
 							}
-							eg.Add (ex);
-							//All.Add (ex);
 						}
-						dictEvents.Add (ex.Id, ex);
+						eg.Add (ex);
+						//All.Add (ex);
 					}
-					if (eg != null)
-						AllGroup.Add (eg);
-					Tools.Trace ("ChangeToYear done.");
-				} catch (Exception err) {
-					Tools.Trace ("ChangeToYear-Error: " + err.Message);
+					dictEvents.Add (ex.Id, ex);
 				}
-			});
+				if (eg != null)
+					AllGroup.Add (eg);
+				Tools.Trace ("ChangeToYear done.");
+				Global.IsFirstTimeError = true;
+				var ignore = Tools.DelayedGCAsync ();
+			} catch (Exception err) {
+				Tools.Trace ("ChangeToYear-Error: " + err.Message);
+			}
+			//});
 		}
 
 		public static Exhibition GetById (string id)

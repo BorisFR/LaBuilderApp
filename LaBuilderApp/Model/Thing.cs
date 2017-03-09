@@ -126,6 +126,8 @@ namespace LaBuilderApp
 					}
 				}
 				tg.Add (t);
+				Global.IsFirstTimeError = true;
+				var ignore = Tools.DelayedGCAsync ();
 			}
 			if (tg != null)
 				AllGroup.Add (tg);

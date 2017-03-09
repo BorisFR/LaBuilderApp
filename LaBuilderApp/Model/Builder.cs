@@ -370,8 +370,14 @@ namespace LaBuilderApp
 				}
 				if (bg != null)
 					AllGroup.Add (bg);
+				Global.IsFirstTimeError = true;
+				var ignore = Tools.DelayedGCAsync ();
 			} catch (Exception err) {
 				Tools.Trace ("Builder PopulateData-Error: " + err.Message);
+
+
+
+
 			}
 
 			//});

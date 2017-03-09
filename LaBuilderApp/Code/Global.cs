@@ -73,6 +73,9 @@ namespace LaBuilderApp
 		public static string CurrentToken = string.Empty;
 		public static int CurrentBuilderId = 0;
 
+		// pour exécuter un re-auth automatique si jamais on s'est connecté avec un autre device. Le token n'est plus bon.
+		public static bool IsFirstTimeError = true;
+
 		public static async void DoInit (string from)
 		{
 			if (Files != null) {
