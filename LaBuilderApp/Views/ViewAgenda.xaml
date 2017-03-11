@@ -26,11 +26,11 @@
 				<DataTemplate>
 						<ViewCell>
 							<ViewCell.View>
-								<StackLayout Orientation="Horizontal" Spacing="0" VerticalOptions="StartAndExpand">
-									<Image Source="{Binding LogoImage}" WidthRequest="100" HeightRequest="50" Aspect="AspectFit" BackgroundColor="White" />
+								<StackLayout Orientation="Horizontal" Spacing="0" VerticalOptions="StartAndExpand" BackgroundColor="{Binding ListBackgroundColor}">
+									<Image Source="{Binding LogoImage}" WidthRequest="100" HeightRequest="50" Aspect="AspectFit" />
 									<StackLayout Orientation="Vertical" Spacing="0" HorizontalOptions="FillAndExpand">
-										<Label Text="{Binding Title, StringFormat=' {0}'}" HorizontalOptions="FillAndExpand" HeightRequest="25" YAlign="Center" BackgroundColor="White" TextColor="Black" FontSize="14" LineBreakMode="TailTruncation"/>
-										<Label Text="{Binding DateEvent, StringFormat=' {0}'}" BackgroundColor="White" TextColor="Black" HeightRequest="25" FontSize="12" YAlign="Center" LineBreakMode="TailTruncation"/>
+										<Label Text="{Binding Title, StringFormat=' {0}'}" HorizontalOptions="FillAndExpand" HeightRequest="25" YAlign="Center" TextColor="Black" FontSize="14" LineBreakMode="TailTruncation"/>
+										<Label Text="{Binding DateEvent, StringFormat=' {0}'}" TextColor="Black" HeightRequest="25" FontSize="12" YAlign="Center" LineBreakMode="TailTruncation"/>
 									</StackLayout>
 								</StackLayout>
 							</ViewCell.View>

@@ -13,12 +13,12 @@
 					</Label.FormattedText>
 				</Label>
      	 		<Label x:Name="lInfo" TextColor="White" LineBreakMode="WordWrap"/>
-		<ListView x:Name="lvExhibition" VerticalOptions="Start" ItemsSource="{x:Static local:Exhibition.ComingEvents}" HasUnevenRows="true" IsGroupingEnabled="true" BackgroundColor="Black" SeparatorVisibility="None" >
+		<ListView x:Name="lvExhibition" VerticalOptions="Start" ItemsSource="{x:Static local:Exhibition.ComingEvents}" HasUnevenRows="true" IsGroupingEnabled="true" BackgroundColor="Transparent" SeparatorVisibility="None" >
 			<ListView.GroupHeaderTemplate>
 				<DataTemplate>
 					<ViewCell Height="20">
-						<StackLayout Orientation="Vertical" Spacing="0" BackgroundColor="#5AA9D3" Padding="6,0">
-							<Label Text="{Binding Title}" Font="Bold" FontSize="14" TextColor="#11252D" HorizontalOptions="Start" YAlign="Center"  />
+						<StackLayout Orientation="Vertical" Spacing="0" BackgroundColor="#335AA9D3" Padding="6,0">
+							<Label Text="{Binding Title}" Font="Bold" FontSize="14" TextColor="#5AA9D3" HorizontalOptions="Start" YAlign="Center"  />
 						</StackLayout>
 					</ViewCell>
 				</DataTemplate>
@@ -27,11 +27,11 @@
 				<DataTemplate>
 						<ViewCell>
 							<ViewCell.View>
-								<StackLayout Orientation="Horizontal" HeightRequest="50" Spacing="0" VerticalOptions="Start">
-									<Image Source="{Binding LogoImage}" WidthRequest="100" HeightRequest="50" Aspect="AspectFit" BackgroundColor="White" />
+								<StackLayout Orientation="Horizontal" HeightRequest="50" Spacing="0" VerticalOptions="Start" BackgroundColor="#55FFFFFF">
+									<Image Source="{Binding LogoImage}" WidthRequest="100" HeightRequest="50" Aspect="AspectFit" />
 									<StackLayout Orientation="Vertical" HeightRequest="50" Spacing="0" HorizontalOptions="FillAndExpand">
-										<Label Text="{Binding Title, StringFormat=' {0}'}" HorizontalOptions="FillAndExpand" HeightRequest="25" YAlign="Center" BackgroundColor="White" TextColor="Black" FontSize="14" LineBreakMode="TailTruncation"/>
-										<Label Text="{Binding DateEvent, StringFormat=' {0}'}" BackgroundColor="White" TextColor="Black" HeightRequest="25" FontSize="12" YAlign="Center" LineBreakMode="TailTruncation"/>
+										<Label Text="{Binding Title, StringFormat=' {0}'}" HorizontalOptions="FillAndExpand" HeightRequest="25" YAlign="Center" TextColor="White" FontSize="14" LineBreakMode="TailTruncation"/>
+										<Label Text="{Binding DateEvent, StringFormat=' {0}'}" TextColor="White" HeightRequest="25" FontSize="12" YAlign="Center" LineBreakMode="TailTruncation"/>
 									</StackLayout>
 								</StackLayout>
 							</ViewCell.View>

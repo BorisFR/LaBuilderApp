@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="LaBuilderApp.DetailPage" 
-	  xmlns:local="clr-namespace:LaBuilderApp" Padding="{x:Static local:Global.PagePadding}" BackgroundColor="Transparent">
+	  xmlns:local="clr-namespace:LaBuilderApp" Padding="{x:Static local:Global.PagePadding}">
 	<ContentPage.Content>
 		<RelativeLayout>
             <!--
@@ -15,7 +15,12 @@
              RelativeLayout.WidthConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Width, Constant=1}"
              RelativeLayout.HeightConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Height, Constant=1}" />
             -->
-		<StackLayout Orientation="Vertical" BackgroundColor="#11252D"
+			<Image Source="{local:ImageResource fond_e12c.jpg}" Aspect="AspectFill" 
+                RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}"
+				RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height}"
+			/>
+			
+		<StackLayout Orientation="Vertical" BackgroundColor="Transparent"
              RelativeLayout.WidthConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Width, Constant=1}"
              RelativeLayout.HeightConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Height, Constant=1}" >
 			<StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">

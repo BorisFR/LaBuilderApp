@@ -179,6 +179,10 @@
     <EmbeddedResource Include="Images\head42.png" />
     <EmbeddedResource Include="Images\head43.png" />
     <EmbeddedResource Include="Images\head44.png" />
+    <EmbeddedResource Include="Images\fond_e12.jpg" />
+    <EmbeddedResource Include="Images\fond_e12b.jpg" />
+    <EmbeddedResource Include="Images\fond_e12c.jpg" />
+    <EmbeddedResource Include="Images\astromech.png" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">

@@ -83,6 +83,23 @@ namespace LaBuilderApp
 		public ImageSource CountryImage { get { return Country.CountryImage (countryCode); } }
 		public string DescriptionLabel { get { return description.Replace ("\\n", "\r\n"); } }
 
+		public Color ListBackgroundColor {
+			get {
+				switch (eventType) {
+				case 0:
+					return Color.White;
+				case 1:
+					return Color.FromHex ("DDDDDD");
+				case 2:
+					return Color.FromHex ("BBBBBB");
+				case 3:
+					return Color.FromHex ("999999");
+				default:
+					return Color.FromHex ("777777");
+				}
+			}
+		}
+
 		//private ObservableCollection<Builder> allBuilders;
 		public ObservableCollection<Builder> AllBuilder {
 			get {
@@ -220,6 +237,8 @@ namespace LaBuilderApp
 			int maxDaysInPast = (int)(startDateForNews - now).TotalDays;
 			TimeSpan ts;
 			ExhibitionGroup eg = null;
+			ExhibitionGroup eg1 = null;
+			ExhibitionGroup eg2 = null;
 			try {
 				//List<Exhibition> temp = new List<Exhibition> ();
 				foreach (Exhibition ex in Whole) {
@@ -228,31 +247,44 @@ namespace LaBuilderApp
 					ts = ex.StartDate.Date - now;
 					if (ts.TotalDays < maxDaysInPast) continue; // trop loin dans le passé
 					if (ts.TotalDays > maxDaysInFutur) continue; // trop loin
-					if (ts.TotalDays < 0) {
+					if (ts.TotalDays <= -1.0) {
 						if (eg == null) {
 							eg = new ExhibitionGroup ("Ca vient d'avoir lieu");
-							eg.Add (ex);
-							comingEventsHeight = 20 + 50;
-							//Tools.Trace ($"Height: {comingEventsHeight}");
-							continue;
+							comingEventsHeight += 20;
 						}
 						eg.Add (ex);
 						comingEventsHeight += 50;
-						//Tools.Trace ($"Height: {comingEventsHeight}");
+						continue;
 					}
-					if (ComingEvents.Count () == 0) {
+					if (ts.TotalDays < 0) {
 						if (eg != null)
 							ComingEvents.Add (eg);
-						eg = new ExhibitionGroup ("Les prochains événements");
-						comingEventsHeight += 20;
-						//Tools.Trace ($"Height: {comingEventsHeight}");
+						eg = null;
+						if (eg1 == null) {
+							eg1 = new ExhibitionGroup ("C'est aujourd'hui");
+							comingEventsHeight += 20;
+						}
+						eg1.Add (ex);
+						comingEventsHeight += 50;
+						continue;
 					}
-					eg.Add (ex);
+					//					if (ComingEvents.Count () == 0) {
+					if (eg1 != null) {
+						ComingEvents.Add (eg1);
+						eg1 = null;
+						eg2 = new ExhibitionGroup ("Les prochains événements");
+						comingEventsHeight += 20;
+					}
+					eg2.Add (ex);
 					comingEventsHeight += 50;
 					//Tools.Trace ($"Height: {comingEventsHeight}");
 				}
 				if (eg != null)
 					ComingEvents.Add (eg);
+				if (eg1 != null)
+					ComingEvents.Add (eg1);
+				if (eg2 != null)
+					ComingEvents.Add (eg2);
 
 			} catch (Exception err) {
 				Tools.Trace ("PrepareComingEvents: " + err.Message);

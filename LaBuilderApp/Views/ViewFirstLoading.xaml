@@ -3,8 +3,12 @@
 	BackgroundColor="Transparent" xmlns:local="clr-namespace:LaBuilderApp">
 	<ContentView.Content>
 		<ScrollView Orientation="Vertical">
-		<StackLayout x:Name="theLayout" Orientation="Vertical" WidthRequest="3000" HeightRequest="3000">
-		</StackLayout>
+			<StackLayout Orientation="Vertical">
+				<StackLayout x:Name="theLayout" Orientation="Vertical" WidthRequest="3000">
+				</StackLayout>
+     	 		<Image Source="{local:ImageResource nouvellebanniere1024.png}" Aspect="AspectFit" />
+				<Image Source="{local:ImageResource astromech.png}" Aspect="AspectFit" />
+			</StackLayout>
 		</ScrollView>
 	</ContentView.Content>
 </ContentView>

@@ -1,31 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="LaBuilderApp.ViewAbout"
-	BackgroundColor="Transparent">
+	xmlns:local="clr-namespace:LaBuilderApp" BackgroundColor="Transparent">
 	<ContentView.Content>
 		<ScrollView Orientation="Vertical">
-			<StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" Spacing="0">
-				<Label Text="Application" FontSize="14" BackgroundColor="White"/>
+			<RelativeLayout>
+				<!--
+				<Image Source="{local:ImageResource fond_e12.jpg}"
+	                RelativeLayout.WidthConstraint=
+	                  "{ConstraintExpression Type=RelativeToParent, Property=Width}"
+	                RelativeLayout.HeightConstraint=
+	                  "{ConstraintExpression Type=RelativeToParent, Property=Height}"/>
+				-->
+			<StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" Spacing="0" BackgroundColor="Transparent">
+				<Label Text="Application" FontSize="14" BackgroundColor="#CCFFFFFF"/>
 				<Label x:Name="lApp" FontSize="12" TextColor="White" />
-				<Label Text="Plateforme" FontSize="14" BackgroundColor="White"/>
+				<Label Text="Plateforme" FontSize="14" BackgroundColor="#AAFFFFFF"/>
 				<Label x:Name="lDevice" FontSize="12" TextColor="White"/>
 				<Label x:Name="lScreen" FontSize="12" TextColor="White"/>
-				<Label Text="Data" FontSize="14" BackgroundColor="White"/>
+				<Label Text="Data" FontSize="14" BackgroundColor="#88FFFFFF"/>
 				<Label x:Name="lData" FontSize="12" TextColor="White"/>
 				<Button x:Name="btClearCache" Text="Vider le cache" />
-				<Label Text="Auteur" FontSize="14" BackgroundColor="White"/>
+				<Label Text="Auteur" FontSize="14" BackgroundColor="#55FFFFFF"/>
 				<Label FontSize="12" TextColor="White">
 					<Label.FormattedText>
 						<FormattedString>
 							<Span Text="Application créée par Stéphane Fardoux pour le club des R2-Builders."/>
 							<Span Text="&#10;Profil : https://www.linkedin.com/in/sfardoux" />
 							<Span Text="&#10;&#169; 2017 - R2Builders.fr"/>
-							<Span Text="&#10;Un énorme merci à lolo080, Raphaël et Xoff pour la création de ce club !" />
+							<Span Text="&#10;Un énorme merci à Christophe (Xoff), Laurent (lolo080) et Raphaël (raphael71) pour la création de ce club !" />
 							<Span Text="&#10;Merci aux Builders qui rendent ce club si passionnant." />
 							<Span Text="&#10;Et merci à tous les autres clubs que nous fréquentons si souvent et qui rendent nos sorties magnifiques. On ne va pas les citer, de peur d'en oublier ;)" />
 						</FormattedString>
 					</Label.FormattedText>
 				</Label>
-				<Label Text="Information" FontSize="14" BackgroundColor="White"/>
+				<Label Text="Information" FontSize="14" BackgroundColor="#33FFFFFF"/>
 				<Label FontSize="12" TextColor="White">
 					<Label.FormattedText>
 						<FormattedString>
@@ -36,10 +44,13 @@
 						</FormattedString>
 					</Label.FormattedText>
 				</Label>
+     	 		<Image Source="{local:ImageResource nouvellebanniere1024.png}" Aspect="AspectFit" />
 				<Button x:Name="btSite" Text="Ouvrir le site web"/>
 				<Button x:Name="btMentionsLegales" Text="Mentions légales"/>
+				<Image Source="{local:ImageResource astromech.png}" Aspect="AspectFit" />
 				<BoxView BackgroundColor="Transparent" HeightRequest="30"/>
 			</StackLayout>
+			</RelativeLayout>
 		</ScrollView>
 	</ContentView.Content>
 </ContentView>
