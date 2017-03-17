@@ -12,12 +12,12 @@
 				<Button x:Name="btNextYear" Text="&gt;" FontSize="20" FontAttributes="Bold" Margin="0" HeightRequest="50" WidthRequest="30" BackgroundColor="Transparent" TextColor="#5AA9D3" HorizontalOptions="Center" VerticalOptions="Center" BorderWidth="0" />
 			</StackLayout>
 		</StackLayout>
-		<ListView x:Name="lvExhibition" ItemsSource="{x:Static local:Exhibition.DesignData}" HasUnevenRows="true" IsGroupingEnabled="true" IsPullToRefreshEnabled="true" BackgroundColor="Black" SeparatorVisibility="None" >
+		<ListView x:Name="lvExhibition" ItemsSource="{x:Static local:Exhibition.DesignData}" HasUnevenRows="true" IsGroupingEnabled="true" IsPullToRefreshEnabled="true" BackgroundColor="Transparent" SeparatorVisibility="None" >
 			<ListView.GroupHeaderTemplate>
 				<DataTemplate>
 					<ViewCell Height="20">
-						<StackLayout Orientation="Vertical" Spacing="0" BackgroundColor="#5AA9D3" Padding="6,0">
-							<Label Text="{Binding Title}" Font="Bold" FontSize="14" TextColor="#11252D" HorizontalOptions="Start" YAlign="Center"  />
+						<StackLayout Orientation="Vertical" Spacing="0" BackgroundColor="#335AA9D3" Padding="6,0">
+							<Label Text="{Binding Title}" Font="Bold" FontSize="14" TextColor="#5AA9D3" HorizontalOptions="Start" YAlign="Center"  />
 						</StackLayout>
 					</ViewCell>
 				</DataTemplate>
@@ -29,8 +29,8 @@
 								<StackLayout Orientation="Horizontal" Spacing="0" VerticalOptions="StartAndExpand" BackgroundColor="{Binding ListBackgroundColor}">
 									<Image Source="{Binding LogoImage}" WidthRequest="100" HeightRequest="50" Aspect="AspectFit" />
 									<StackLayout Orientation="Vertical" Spacing="0" HorizontalOptions="FillAndExpand">
-										<Label Text="{Binding Title, StringFormat=' {0}'}" HorizontalOptions="FillAndExpand" HeightRequest="25" YAlign="Center" TextColor="Black" FontSize="14" LineBreakMode="TailTruncation"/>
-										<Label Text="{Binding DateEvent, StringFormat=' {0}'}" TextColor="Black" HeightRequest="25" FontSize="12" YAlign="Center" LineBreakMode="TailTruncation"/>
+										<Label Text="{Binding Title, StringFormat=' {0}'}" HorizontalOptions="FillAndExpand" HeightRequest="25" YAlign="Center" TextColor="White" FontSize="14" LineBreakMode="TailTruncation"/>
+										<Label Text="{Binding DateEvent, StringFormat=' {0}'}" TextColor="White" HeightRequest="25" FontSize="12" YAlign="Center" LineBreakMode="TailTruncation"/>
 									</StackLayout>
 								</StackLayout>
 							</ViewCell.View>

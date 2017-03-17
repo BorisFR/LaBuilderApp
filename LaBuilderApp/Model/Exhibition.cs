@@ -78,8 +78,8 @@ namespace LaBuilderApp
 		private string flyer; public string Flyer { get { return flyer; } set { flyer = value; RaisePropertyChanged (); } }
 		private bool publicView; public bool PublicView { get { return publicView; } set { publicView = value; RaisePropertyChanged (); } }
 
-		public ImageSource LogoImage { get { return ImageSource.FromUri (new Uri ($"{Global.BaseUrl}boris/data/images/events/{logo}")); } }
-		public ImageSource FlyerImage { get { return ImageSource.FromUri (new Uri ($"{Global.BaseUrl}boris/data/images/flyer/{flyer}")); } }
+		public ImageSource LogoImage { get { return ImageSource.FromUri (new Uri ($"{Global.DataUrl}images/events/{logo}")); } }
+		public ImageSource FlyerImage { get { return ImageSource.FromUri (new Uri ($"{Global.DataUrl}images/flyer/{flyer}")); } }
 		public ImageSource CountryImage { get { return Country.CountryImage (countryCode); } }
 		public string DescriptionLabel { get { return description.Replace ("\\n", "\r\n"); } }
 
@@ -87,15 +87,15 @@ namespace LaBuilderApp
 			get {
 				switch (eventType) {
 				case 0:
-					return Color.White;
+					return Color.FromHex ("55FFFFFF");
 				case 1:
-					return Color.FromHex ("DDDDDD");
+					return Color.FromHex ("55DDDDDD");
 				case 2:
-					return Color.FromHex ("BBBBBB");
+					return Color.FromHex ("55BBBBBB");
 				case 3:
-					return Color.FromHex ("999999");
+					return Color.FromHex ("55999999");
 				default:
-					return Color.FromHex ("777777");
+					return Color.FromHex ("55777777");
 				}
 			}
 		}
@@ -242,42 +242,52 @@ namespace LaBuilderApp
 			try {
 				//List<Exhibition> temp = new List<Exhibition> ();
 				foreach (Exhibition ex in Whole) {
-					if (ex.StartDate == null) continue;
-					if (ex.StartDate.date == null) continue;
-					ts = ex.StartDate.Date - now;
-					if (ts.TotalDays < maxDaysInPast) continue; // trop loin dans le passé
-					if (ts.TotalDays > maxDaysInFutur) continue; // trop loin
-					if (ts.TotalDays <= -1.0) {
-						if (eg == null) {
-							eg = new ExhibitionGroup ("Ca vient d'avoir lieu");
-							comingEventsHeight += 20;
+					try {
+						if (ex.StartDate == null) continue;
+						if (ex.StartDate.date == null) continue;
+						ts = ex.StartDate.Date - now;
+						if (ts.TotalDays < maxDaysInPast) continue; // trop loin dans le passé
+						if (ts.TotalDays > maxDaysInFutur) continue; // trop loin
+						if (ts.TotalDays <= -1.0) {
+							if (eg == null) {
+								eg = new ExhibitionGroup ("Ca vient d'avoir lieu");
+								comingEventsHeight += 20;
+							}
+							eg.Add (ex);
+							comingEventsHeight += 50;
+							continue;
 						}
-						eg.Add (ex);
-						comingEventsHeight += 50;
-						continue;
-					}
-					if (ts.TotalDays < 0) {
-						if (eg != null)
+						if (ts.TotalDays < 0) {
+							if (eg != null)
+								ComingEvents.Add (eg);
+							eg = null;
+							if (eg1 == null) {
+								eg1 = new ExhibitionGroup ("C'est aujourd'hui");
+								comingEventsHeight += 20;
+							}
+							eg1.Add (ex);
+							comingEventsHeight += 50;
+							continue;
+						}
+						//					if (ComingEvents.Count () == 0) {
+						if (eg != null) {
 							ComingEvents.Add (eg);
-						eg = null;
-						if (eg1 == null) {
-							eg1 = new ExhibitionGroup ("C'est aujourd'hui");
+							eg = null;
+							eg2 = new ExhibitionGroup ("Les prochains événements");
 							comingEventsHeight += 20;
 						}
-						eg1.Add (ex);
+						if (eg1 != null) {
+							ComingEvents.Add (eg1);
+							eg1 = null;
+							eg2 = new ExhibitionGroup ("Les prochains événements");
+							comingEventsHeight += 20;
+						}
+						eg2.Add (ex);
 						comingEventsHeight += 50;
-						continue;
+						//Tools.Trace ($"Height: {comingEventsHeight}");
+					} catch (Exception error) {
+						Tools.Trace ($"**** ERROR **** PrepareComingEvents: {ex.Title}");
 					}
-					//					if (ComingEvents.Count () == 0) {
-					if (eg1 != null) {
-						ComingEvents.Add (eg1);
-						eg1 = null;
-						eg2 = new ExhibitionGroup ("Les prochains événements");
-						comingEventsHeight += 20;
-					}
-					eg2.Add (ex);
-					comingEventsHeight += 50;
-					//Tools.Trace ($"Height: {comingEventsHeight}");
 				}
 				if (eg != null)
 					ComingEvents.Add (eg);

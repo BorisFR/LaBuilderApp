@@ -29,7 +29,7 @@ namespace LaBuilderApp
 			btReload.Clicked += (sender, e) => {
 				gotoHome = true;
 				Device.BeginInvokeOnMainThread (() => {
-					theWebview.Source = $"{Global.BaseUrl}boris/medias.php";
+					theWebview.Source = $"{Global.AppUrl}medias.php";
 				});
 			};
 		}

@@ -28,6 +28,7 @@ namespace LaBuilderApp
 				all.TrimExcess ();
 			} catch (Exception err) {
 				Tools.Trace ("LoadData-Error: " + err.Message);
+				all = new List<T> ();
 			}
 			Whole = all;
 			//return all;

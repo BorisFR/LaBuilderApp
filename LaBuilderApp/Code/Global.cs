@@ -52,6 +52,8 @@ namespace LaBuilderApp
 
 
 		public static string BaseUrl = "https://www.r2builders.fr/";
+		public static string AppUrl = "https://www.r2builders.fr/DroidBuilders.Fr/";
+		public static string DataUrl = "https://www.r2builders.fr/boris/data/";
 		public static CultureInfo CultureFrench = new CultureInfo ("fr-FR");
 
 		public static IFiles Files = null;

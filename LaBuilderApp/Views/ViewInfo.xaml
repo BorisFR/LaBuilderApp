@@ -3,7 +3,7 @@
 	BackgroundColor="Transparent">
 	<ContentView.Content>
 	<StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" Spacing="0">
-		<WebView x:Name="theWebview" VerticalOptions="FillAndExpand" Source="https://www.r2builders.fr/boris/mentions.php" WidthRequest="3000" HeightRequest="3000" />
+		<WebView x:Name="theWebview" VerticalOptions="FillAndExpand" Source="https://www.r2builders.fr/DroidBuilders.Fr/mentions.php" WidthRequest="3000" HeightRequest="3000" />
 	</StackLayout>
 	</ContentView.Content>
 </ContentView>

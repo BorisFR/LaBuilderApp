@@ -31,7 +31,7 @@ namespace LaBuilderApp
 
 		public static ImageSource CountryImage (int id)
 		{
-			return ImageSource.FromUri (new Uri ($"{Global.BaseUrl}boris/Content/flags/{id}.png"));
+			return ImageSource.FromUri (new Uri ($"{Global.AppUrl}Content/flags/{id}.png"));
 		}
 
 

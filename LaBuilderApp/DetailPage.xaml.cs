@@ -44,7 +44,7 @@ namespace LaBuilderApp
 			Global.ComingFromEvent = string.Empty;
 			Global.CurrentMenu = menu;
 			Device.BeginInvokeOnMainThread (() => {
-				if (CrossDeviceInfo.Current.Model.Equals ("iPad"))
+				if (CrossDeviceInfo.Current.Model.Equals ("iPad") && menu.Detail != null)
 					theTitle.ChangeText (menu.Title.ToLower () + " - " + menu.Detail.ToLower ());
 				else
 					theTitle.ChangeText (menu.Title.ToLower ());
