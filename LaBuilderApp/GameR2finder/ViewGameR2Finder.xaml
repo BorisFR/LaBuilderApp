@@ -10,6 +10,7 @@
                 </StackLayout>
                	<Label TextColor="#5AA9D3" x:Name="timeLabel" Text="Durée : 0:00" HorizontalOptions="Center" />
 				<Button x:Name="btRules" Text="Règles du jeu"/>
+				<Button x:Name="btScores" Text="Voir les scores" HorizontalOptions="Center" />
             </StackLayout>
             <ContentView SizeChanged="OnBoardContentViewSizeChanged" WidthRequest="4000" HeightRequest="4000">
                 <!-- Single-cell Grid for Board and overlays. -->

@@ -7,8 +7,10 @@ namespace LaBuilderApp
 {
 	public class PlayerScore : CModel<PlayerScore>
 	{
-		private int i; public int I { get { return i; } set { i = value; RaisePropertyChanged (); } }
+		private int i; public int I { get { return i; } set { place = ++counter; i = value; RaisePropertyChanged (); } }
 		private int s; public int S { get { return s; } set { s = value; RaisePropertyChanged (); } }
+
+		private int place; public int Place { get { return place; } set { place = value; RaisePropertyChanged (); } }
 
 		private string builder; // = string.Empty;
 		public string Builder {
@@ -28,9 +30,16 @@ namespace LaBuilderApp
 			}
 		}
 
+		public static void PopulateData (string data)
+		{
+			counter = 0;
+			LoadData (data);
+		}
 
+		private static int counter = 0;
 		static PlayerScore ()
 		{
+			counter = 0;
 			if (!CrossAppInfo.Current.DisplayName.Equals ("XamarinFormsPreviewer")) return;
 			List<PlayerScore> list = new List<PlayerScore> ();
 			PlayerScore t = new PlayerScore ();

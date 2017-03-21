@@ -59,6 +59,11 @@ namespace LaBuilderApp
 				DoGo (sender);
 			};
 
+			Tools.LoadWinners (1, 0);
+			btScores.Clicked += (sender, e) => {
+				Navigation.PushModalAsync (new ScoresPage (), true);
+			};
+
 			theLayout.SizeChanged += (sender, e) => {
 				double width = theLayout.Width;
 				double height = theLayout.Height;
@@ -92,6 +97,15 @@ namespace LaBuilderApp
 			var ignore = Tools.DelayedGCAsync ();
 		}
 
+		void Tools_JobDone (object sender, bool status, string result)
+		{
+			Tools.JobDone -= Tools_JobDone;
+			Tools.Trace ("Winners: " + result);
+		}
+
+		DateTime startTime = DateTime.Now;
+
+		const int DELAY = 10; // 25
 
 		private async void DoGo (object sender)
 		{
@@ -103,24 +117,25 @@ namespace LaBuilderApp
 
 			// Simulate some fast crazy taps.
 			for (int i = 0; i < 100; i++) {
-				await ShiftIntoEmpty (rand.Next (NUM), emptyCol, 25);
-				await ShiftIntoEmpty (emptyRow, rand.Next (NUM), 25);
+				await ShiftIntoEmpty (rand.Next (NUM), emptyCol, DELAY);
+				await ShiftIntoEmpty (emptyRow, rand.Next (NUM), DELAY);
 			}
 			button.IsEnabled = true;
 
 			isBusy = false;
 
 			// Prepare for playing.
-			DateTime startTime = DateTime.Now;
+			startTime = DateTime.Now;
 
 			Device.StartTimer (TimeSpan.FromSeconds (1), () => {
-				// Round duration and get rid of milliseconds.
-				TimeSpan timeSpan = (DateTime.Now - startTime) + TimeSpan.FromSeconds (0.5);
-				timeSpan = new TimeSpan (timeSpan.Hours, timeSpan.Minutes, timeSpan.Seconds);
+				if (isPlaying) {
+					// Round duration and get rid of milliseconds.
+					TimeSpan timeSpan = (DateTime.Now - startTime) + TimeSpan.FromSeconds (0.5);
+					timeSpan = new TimeSpan (timeSpan.Hours, timeSpan.Minutes, timeSpan.Seconds);
 
-				// Display the duration.
-				if (isPlaying)
+					// Display the duration.
 					timeLabel.Text = timeSpan.ToString ("t");
+				}
 				return isPlaying;
 			});
 			this.isPlaying = true;
@@ -151,6 +166,8 @@ namespace LaBuilderApp
 				// We have a winner!
 				if (index == NUM * NUM - 1) {
 					isPlaying = false;
+					Tools.JobDone += Tools_JobDone;
+					Tools.PostScore (1, 0, (int)(DateTime.Now - startTime).TotalSeconds);
 					await DoWinAnimation ();
 				}
 			}
@@ -217,7 +234,7 @@ namespace LaBuilderApp
 				if (cycle == 0)
 					await Task.Delay (1500);
 			}
-
+			Navigation.PushModalAsync (new ScoresPage (), true);
 			// All input.
 			btGo.IsEnabled = true;
 			isBusy = false;

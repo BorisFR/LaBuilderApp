@@ -7,25 +7,28 @@
                 RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}"
 				RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height}"
 			/>
-			<ListView Margin="30" x:Name="lvScore" ItemsSource="{x:Static local:PlayerScore.DesignData}" BackgroundColor="Transparent" SeparatorVisibility="Default"
-				RelativeLayout.WidthConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Width, Constant=1}"
-	             RelativeLayout.HeightConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Height, Constant=1}">
-				<ListView.ItemTemplate>
-					<DataTemplate>
-							<ViewCell>
-								<ViewCell.View>
-									<StackLayout Orientation="Horizontal" Spacing="0" HeightRequest="100" BackgroundColor="#55FFFFFF">
-										<Image Source="{Binding AvatarImage}" WidthRequest="100" HeightRequest="100" Aspect="AspectFit" />
-										<StackLayout Orientation="Vertical" Spacing="0" HorizontalOptions="FillAndExpand" HeightRequest="100" WidthRequest="5000">
-											<Label Text="{Binding Builder, StringFormat=' {0}'}" YAlign="Center" HeightRequest="50" TextColor="White" FontSize="16" LineBreakMode="TailTruncation"/>
-											<Label Text="{Binding Score, StringFormat=' {0}'}" YAlign="Center" HeightRequest="50" TextColor="White" FontSize="16" />
+			<StackLayout Orientation="Vertical" RelativeLayout.WidthConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Width, Constant=1}" RelativeLayout.HeightConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Height, Constant=1}">
+				<Label x:Name="lTitle" FontSize="48" HorizontalOptions="Center" Text="Hello" TextColor="White" />
+				<Label x:Name="lSubTitle" FontSize="30" HorizontalOptions="Center" Text="Tableau des scores" TextColor="White" />
+				<ListView Margin="30,0,30,0" x:Name="lvScore" ItemsSource="{x:Static local:PlayerScore.DesignData}" BackgroundColor="Transparent" SeparatorColor="Transparent" SeparatorVisibility="Default">
+					<ListView.ItemTemplate>
+						<DataTemplate>
+								<ViewCell>
+									<ViewCell.View>
+										<StackLayout Orientation="Horizontal" Spacing="0" HeightRequest="100" BackgroundColor="#55FFFFFF">
+											<Label Text="{Binding Place, StringFormat=' {0}'}" YAlign="Center" HeightRequest="100" TextColor="White" FontSize="32" />
+											<Image Source="{Binding AvatarImage}" WidthRequest="100" HeightRequest="100" Aspect="AspectFit" />
+											<StackLayout Orientation="Vertical" Spacing="0" HorizontalOptions="FillAndExpand" HeightRequest="100">
+												<Label Text="{Binding Builder, StringFormat=' {0}'}" YAlign="Center" HeightRequest="50" TextColor="White" FontSize="16" LineBreakMode="TailTruncation"/>
+												<Label Text="{Binding Score, StringFormat=' {0}'}" YAlign="Center" HeightRequest="50" TextColor="White" FontSize="16" />
+											</StackLayout>
 										</StackLayout>
-									</StackLayout>
-								</ViewCell.View>
-							</ViewCell>
-					</DataTemplate>
-				</ListView.ItemTemplate>
-			</ListView>
+									</ViewCell.View>
+								</ViewCell>
+						</DataTemplate>
+					</ListView.ItemTemplate>
+				</ListView>
+			</StackLayout>
 		</RelativeLayout>
 	</ContentPage.Content>
 </ContentPage>

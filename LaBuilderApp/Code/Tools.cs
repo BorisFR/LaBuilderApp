@@ -112,8 +112,12 @@ namespace LaBuilderApp
 			TheWinners = string.Empty;
 			string fileName = $"game_{game.ToString ()}_{level.ToString ()}";
 			if (await Global.Files.IsExit (fileName)) {
-				TheWinners = await Global.Files.ReadFile (fileName);
-			} else {
+				try {
+					TheWinners = await Global.Files.ReadFile (fileName);
+				} catch (Exception) {
+				}
+			}
+			if (TheWinners.Length == 0) {
 				JobDone += Tools_JobDone_Score;
 				justLoadScores = true;
 				PostScore (game, level, 0);

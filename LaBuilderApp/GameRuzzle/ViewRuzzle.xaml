@@ -5,6 +5,7 @@
 		<StackLayout x:Name="theLayout" Spacing="0" Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HeightRequest="4000">
            	<Label TextColor="#5AA9D3" x:Name="timeLabel" Text="Durée : 0:00" FontAttributes="Bold" HorizontalOptions="Center" />
 			<Button x:Name="btGo" Text="Start !" HorizontalOptions="Center" />
+			<Button x:Name="btScores" Text="Voir les scores" HorizontalOptions="Center" />
 			<AbsoluteLayout x:Name="absoluteLayout" HorizontalOptions="Center" VerticalOptions="Center">
 			</AbsoluteLayout>
 		</StackLayout>

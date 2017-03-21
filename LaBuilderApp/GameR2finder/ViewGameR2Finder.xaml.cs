@@ -40,11 +40,12 @@ namespace LaBuilderApp
 				isGameInProgress = false;
 
 				if (hasWon) {
+					DisplayWonAnimation ();
 					Tools.JobDone += Tools_JobDone;
 					Tools.PostScore (0, 0, (int)(DateTime.Now - gameStartTime).TotalSeconds);
-					DisplayWonAnimation ();
 				} else {
 					DisplayLostAnimation ();
+					Tools.LoadWinners (0, 0);
 				}
 			};
 
@@ -61,7 +62,9 @@ namespace LaBuilderApp
 			};
 
 			Tools.LoadWinners (0, 0);
-			Navigation.PushModalAsync (new ScoresPage (), true);
+			btScores.Clicked += (sender, e) => {
+				Navigation.PushModalAsync (new ScoresPage (), true);
+			};
 		}
 
 		~ViewGameR2Finder ()
@@ -77,7 +80,7 @@ namespace LaBuilderApp
 
 		void ShowRules ()
 		{
-			Global.MainAppPage.DisplayAlert ("Règles du jeu", "L'objectif de ta mission est de retrouver l'ensemble des unités Astromeccano qui se sont cachées dans la grille. Mais attention car l'Empire est présent !" +
+			Global.MainAppPage.DisplayAlert ("Règles du jeu", "L'objectif de ta mission est de retrouver l'ensemble des unités Astromeccano qui se sont cachées dans la grille. Il faut pour cela vider la grille. Mais attention car l'Empire est présent !" +
 											 " \r\n\r\nTouche une case pour poser ou enlever une unité Astromeccano. Fais un double-tap si tu penses que la case est vide." +
 											 " \r\n\r\nLe nombre qui apparaît t'indique le nombre d'unités Astromeccano présentes autour de cette case." +
 											 " \r\n\r\nSoit vigilant car l'Empire est fourbe !", "Ok");
@@ -195,6 +198,7 @@ namespace LaBuilderApp
 
 			double maxScale = board.Width / playAgainButtonWidth;
 			await playAgainButton.ScaleTo (maxScale, 1000, Easing.SpringOut);
+			Navigation.PushModalAsync (new ScoresPage (), true);
 		}
 
 		void OnplayAgainButtonClicked (object sender, object EventArgs)
