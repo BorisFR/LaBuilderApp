@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="LaBuilderApp.ScoresPage" 
+	xmlns:local="clr-namespace:LaBuilderApp" BackgroundColor="Transparent" Padding="{x:Static local:Global.PagePadding}">
+	<ContentPage.Content>
+		<RelativeLayout>
+			<Image x:Name="imgBackground" Source="{local:ImageResource fond_e12c.jpg}" Aspect="AspectFill" 
+                RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}"
+				RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height}"
+			/>
+			<ListView Margin="30" x:Name="lvScore" ItemsSource="{x:Static local:PlayerScore.DesignData}" BackgroundColor="Transparent" SeparatorVisibility="Default"
+				RelativeLayout.WidthConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Width, Constant=1}"
+	             RelativeLayout.HeightConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Height, Constant=1}">
+				<ListView.ItemTemplate>
+					<DataTemplate>
+							<ViewCell>
+								<ViewCell.View>
+									<StackLayout Orientation="Horizontal" Spacing="0" HeightRequest="100" BackgroundColor="#55FFFFFF">
+										<Image Source="{Binding AvatarImage}" WidthRequest="100" HeightRequest="100" Aspect="AspectFit" />
+										<StackLayout Orientation="Vertical" Spacing="0" HorizontalOptions="FillAndExpand" HeightRequest="100" WidthRequest="5000">
+											<Label Text="{Binding Builder, StringFormat=' {0}'}" YAlign="Center" HeightRequest="50" TextColor="White" FontSize="16" LineBreakMode="TailTruncation"/>
+											<Label Text="{Binding Score, StringFormat=' {0}'}" YAlign="Center" HeightRequest="50" TextColor="White" FontSize="16" />
+										</StackLayout>
+									</StackLayout>
+								</ViewCell.View>
+							</ViewCell>
+					</DataTemplate>
+				</ListView.ItemTemplate>
+			</ListView>
+		</RelativeLayout>
+	</ContentPage.Content>
+</ContentPage>

@@ -32,6 +32,7 @@ namespace LaBuilderApp
 	public delegate void Trigger ();
 	public delegate void TriggerObject (object sender, object e);
 	public delegate void JobDone (object sender, bool status, string result);
+	public delegate void ScoreDone (bool isFirst, int game, int level, int score, bool status, string result);
 
 
 	public static class Global

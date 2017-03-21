@@ -29,7 +29,8 @@ namespace LaBuilderApp
 				gameStartTime = DateTime.Now;
 
 				Device.StartTimer (TimeSpan.FromSeconds (1), () => {
-					timeLabel.Text = $"Durée : {(DateTime.Now - gameStartTime).ToString (timeFormat)}";
+					if (isGameInProgress)
+						timeLabel.Text = $"Durée : {(DateTime.Now - gameStartTime).ToString (timeFormat)}";
 					return isGameInProgress;
 				});
 			};
@@ -39,6 +40,8 @@ namespace LaBuilderApp
 				isGameInProgress = false;
 
 				if (hasWon) {
+					Tools.JobDone += Tools_JobDone;
+					Tools.PostScore (0, 0, (int)(DateTime.Now - gameStartTime).TotalSeconds);
 					DisplayWonAnimation ();
 				} else {
 					DisplayLostAnimation ();
@@ -56,11 +59,20 @@ namespace LaBuilderApp
 			btRules.Clicked += (sender, e) => {
 				ShowRules ();
 			};
+
+			Tools.LoadWinners (0, 0);
+			Navigation.PushModalAsync (new ScoresPage (), true);
 		}
 
 		~ViewGameR2Finder ()
 		{
 			var ignore = Tools.DelayedGCAsync ();
+		}
+
+		void Tools_JobDone (object sender, bool status, string result)
+		{
+			Tools.JobDone -= Tools_JobDone;
+			Tools.Trace ("Winners: " + result);
 		}
 
 		void ShowRules ()
@@ -84,6 +96,7 @@ namespace LaBuilderApp
 			timeLabel.Text = new TimeSpan ().ToString (timeFormat);
 			isGameInProgress = false;
 		}
+
 
 		/*
 		void OnMainContentViewSizeChanged (object sender, EventArgs args)

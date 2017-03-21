@@ -184,6 +184,9 @@
     <EmbeddedResource Include="Images\fond_e12c.jpg" />
     <EmbeddedResource Include="Images\astromech.png" />
     <EmbeddedResource Include="Images\1x1clear.png" />
+    <EmbeddedResource Include="Views\ScoresPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -282,6 +285,10 @@
     </Compile>
     <Compile Include="Views\ButtonImage.xaml.cs">
       <DependentUpon>ButtonImage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Model\PlayerScore.cs" />
+    <Compile Include="Views\ScoresPage.xaml.cs">
+      <DependentUpon>ScoresPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
