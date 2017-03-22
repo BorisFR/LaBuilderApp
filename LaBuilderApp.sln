@@ -14,6 +14,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConstructImage", "ConstructImage\ConstructImage.csproj", "{BD1D1394-B94F-4411-9F89-2C70985D6D7D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreateiBeacon", "CreateiBeacon\CreateiBeacon.csproj", "{C95BB04D-E04F-424F-ABF8-A6716086E31F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -72,6 +74,18 @@ Global
 		{BD1D1394-B94F-4411-9F89-2C70985D6D7D}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 		{BD1D1394-B94F-4411-9F89-2C70985D6D7D}.Debug|iPhone.ActiveCfg = Debug|Any CPU
 		{BD1D1394-B94F-4411-9F89-2C70985D6D7D}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{C95BB04D-E04F-424F-ABF8-A6716086E31F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C95BB04D-E04F-424F-ABF8-A6716086E31F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C95BB04D-E04F-424F-ABF8-A6716086E31F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C95BB04D-E04F-424F-ABF8-A6716086E31F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C95BB04D-E04F-424F-ABF8-A6716086E31F}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{C95BB04D-E04F-424F-ABF8-A6716086E31F}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{C95BB04D-E04F-424F-ABF8-A6716086E31F}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{C95BB04D-E04F-424F-ABF8-A6716086E31F}.Release|iPhone.Build.0 = Release|Any CPU
+		{C95BB04D-E04F-424F-ABF8-A6716086E31F}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{C95BB04D-E04F-424F-ABF8-A6716086E31F}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{C95BB04D-E04F-424F-ABF8-A6716086E31F}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{C95BB04D-E04F-424F-ABF8-A6716086E31F}.Debug|iPhone.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		version = 0.4
