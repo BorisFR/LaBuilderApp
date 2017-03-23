@@ -7,10 +7,10 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyTitle ("CreateiBeacon")]
 [assembly: AssemblyDescription ("")]
 [assembly: AssemblyConfiguration ("")]
-[assembly: AssemblyCompany ("Maxxing")]
+[assembly: AssemblyCompany ("BorisSoft")]
 [assembly: AssemblyProduct ("")]
-[assembly: AssemblyCopyright ("(c) 2012, 2013, 2014, 2015, 2016 - Stéphane Fardoux")]
-[assembly: AssemblyTrademark ("Maxxing")]
+[assembly: AssemblyCopyright ("(c) 2017 - Boris aka Stéphane Fardoux")]
+[assembly: AssemblyTrademark ("BorisSoft")]
 [assembly: AssemblyCulture ("")]
 
 // The assembly version has the format "{Major}.{Minor}.{Build}.{Revision}".

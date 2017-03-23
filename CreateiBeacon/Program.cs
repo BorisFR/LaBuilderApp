@@ -18,6 +18,7 @@ namespace CreateiBeacon
 
 	class MainClass
 	{
+		static Settings settings = new Settings ();
 		static List<string> availablePorts = null;
 		static Dictionary<int, List<string>> options = null;
 		static Dictionary<int, int> optionsSelected = null;
@@ -26,6 +27,9 @@ namespace CreateiBeacon
 
 		static bool showCursor = false;
 		static PositionCursor positionCursor = PositionCursor.Login;
+
+		static string login = string.Empty;
+		static string password = string.Empty;
 
 		public static void SetColorsStandard ()
 		{
@@ -59,6 +63,7 @@ namespace CreateiBeacon
 
 		public static void Main (string [] args)
 		{
+
 			Console.Title = "Create an iBeacon";
 			int width = Console.BufferWidth;
 			int height = Console.BufferHeight;
@@ -90,7 +95,11 @@ namespace CreateiBeacon
 			DoPositionCursor ();
 			ConsoleKeyInfo key = Console.ReadKey (true);
 			while (key.Key != ConsoleKey.Escape) {
+				if (key.Key == ConsoleKey.Enter && positionCursor == PositionCursor.ButtonLogin) {
+					key = new ConsoleKeyInfo ();
+				}
 				switch (key.Key) {
+				case ConsoleKey.Enter:
 				case ConsoleKey.Tab:
 					if (positionCursor == PositionCursor.Login)
 						positionCursor = PositionCursor.Password;
@@ -140,11 +149,53 @@ namespace CreateiBeacon
 						break;
 					}
 					break;
+				case ConsoleKey.Backspace:
+					switch (positionCursor) {
+					case PositionCursor.Login:
+						if (login.Length > 0) {
+							if (login.Length == 1)
+								login = string.Empty;
+							else
+								login = login.Substring (0, login.Length - 1);
+						}
+						ShowInput (login, 10, 4, 30);
+						break;
+					case PositionCursor.Password:
+						if (password.Length > 0) {
+							if (password.Length == 1)
+								password = string.Empty;
+							else
+								password = password.Substring (0, password.Length - 1);
+						}
+						ShowPassword ();
+						break;
+					}
+					break;
+				default:
+					switch (positionCursor) {
+					case PositionCursor.Login:
+						login += key.KeyChar;
+						ShowInput (login, 10, 4, 30);
+						break;
+					case PositionCursor.Password:
+						password += key.KeyChar;
+						ShowPassword ();
+						break;
+					}
+					break;
 				}
 				key = Console.ReadKey (true);
 			}
 
 			Console.SetCursorPosition (0, height - 2);
+		}
+
+		static void ShowPassword ()
+		{
+			string hide = string.Empty;
+			for (int i = 0; i < password.Length; i++)
+				hide += "*";
+			ShowInput (hide, 10, 6, 30);
 		}
 
 		static void MoveListDown (int index)
@@ -153,7 +204,7 @@ namespace CreateiBeacon
 			if (optionsSelected [index] >= options [index].Count)
 				optionsSelected [index] = 0;
 			ShowList (index, columns [index], 1);
-
+			DoSaveSelected (index);
 		}
 
 		static void MoveListUp (int index)
@@ -162,7 +213,26 @@ namespace CreateiBeacon
 			if (optionsSelected [index] < 0)
 				optionsSelected [index] = options [index].Count - 1;
 			ShowList (index, columns [index], 1);
+			DoSaveSelected (index);
+		}
 
+		static void DoSaveSelected (int index)
+		{
+			string value = options [index] [optionsSelected [index]];
+			switch (index) {
+			case 0:
+				settings.SetValue ("Port", value);
+				break;
+			case 1:
+				settings.SetValue ("Bauds", value);
+				break;
+			case 2:
+				settings.SetValue ("Parity", value);
+				break;
+			case 3:
+				settings.SetValue ("Data", value);
+				break;
+			}
 		}
 
 		static void DoPositionCursor ()
@@ -232,6 +302,7 @@ namespace CreateiBeacon
 		private static void PopulateOptions ()
 		{
 			options = new Dictionary<int, List<string>> ();
+			optionsSelected = new Dictionary<int, int> ();
 			options.Add (0, availablePorts);
 			List<string> baudrate = new List<string> ();
 			baudrate.Add ("9600");
@@ -253,12 +324,35 @@ namespace CreateiBeacon
 			List<string> data = new List<string> ();
 			data.Add ("8");
 			options.Add (3, data);
-			optionsSelected = new Dictionary<int, int> ();
-			optionsSelected.Add (0, 0);
-			optionsSelected.Add (1, 5);
-			optionsSelected.Add (2, 0);
-			optionsSelected.Add (3, 0);
+			SetDefautSelected (0, settings.ValueOf ("Port"));
+			SetDefautSelected (1, settings.ValueOf ("Bauds", "9600"));
+			SetDefautSelected (2, settings.ValueOf ("Parity", "none"));
+			SetDefautSelected (3, settings.ValueOf ("Data", "8"));
+			//optionsSelected.Add (0, 0);
+			//optionsSelected.Add (1, 5);
+			//optionsSelected.Add (2, 0);
+			//optionsSelected.Add (3, 0);
 
+		}
+
+		private static void SetDefautSelected (int index, string value)
+		{
+			if (value.Length == 0) {
+				optionsSelected.Add (index, 0);
+				return;
+			}
+			if (!options [index].Contains (value)) {
+				optionsSelected.Add (index, 0);
+				return;
+			}
+			int i = 0;
+			foreach (string s in options [index]) {
+				if (s.Equals (value)) {
+					optionsSelected.Add (index, i);
+					return;
+				}
+				i++;
+			}
 		}
 
 		private static void WriteTextOnSize (string text, int length, int x, int y)
@@ -357,6 +451,18 @@ namespace CreateiBeacon
 			for (int i = x; i <= (x + width); i++)
 				Console.Write (" ");
 			DrawLine (x, y + 1, width);
+			Console.SetCursorPosition (x, y);
+		}
+
+		private static void ShowInput (string text, int x, int y, int width)
+		{
+			SetColorsInput ();
+			Console.SetCursorPosition (x, y);
+			Console.Write (text);
+			for (int i = (x + text.Length); i <= (x + width); i++)
+				Console.Write (" ");
+			DrawLine (x, y + 1, width);
+			Console.SetCursorPosition (x + text.Length, y);
 		}
 
 		private static void ShowButton (string title, int x, int y)
