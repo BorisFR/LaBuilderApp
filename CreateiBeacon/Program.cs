@@ -12,6 +12,8 @@ namespace CreateiBeacon
 		ButtonLogin,
 		ButtonRead,
 		ButtonWrite,
+		ButtonReset,
+		ButtonReboot,
 		Port,
 		Bauds,
 		Parity,
@@ -76,17 +78,25 @@ namespace CreateiBeacon
 		static int posBtConnectX = 42; static int posBtConnectY = posUserY + 2;
 		static int posHardwareY = 11;
 		static int posBtReadX = 2; static int posBtReadY = posHardwareY + 2;
-		static int posBtWriteX = 11; static int posBtWriteY = posHardwareY + 2;
+		static int posBtWriteX = 13; static int posBtWriteY = posHardwareY + 2;
+		static int posBtResetX = 2; static int posBtResetY = posHardwareY + 5;
+		static int posBtRebootX = 13; static int posBtRebootY = posHardwareY + 5;
+
+		static int cWidth = 0;
+		static int cHeight = 0;
 
 		public static void Main (string [] args)
 		{
 
 			Console.Title = "Create an iBeacon";
-			int width = Console.BufferWidth;
-			int height = Console.BufferHeight;
-			Console.SetWindowSize (width, height);
-			SetColorsStandard ();
-			Console.Clear ();
+			cWidth = Console.BufferWidth;
+			cHeight = Console.BufferHeight;
+			Console.WriteLine ($"x:{cWidth}, y:{cHeight}");
+			if (cHeight > 200) {
+				cWidth = Console.WindowWidth;
+				cHeight = Console.WindowHeight;
+			}
+			Console.WriteLine ($"x:{cWidth}, y:{cHeight}");
 
 			availablePorts = new List<string> ();
 			Communication c = new Communication ();
@@ -94,17 +104,24 @@ namespace CreateiBeacon
 				if (s.Contains (".")) {
 					//Console.WriteLine (s);
 					availablePorts.Add (s);
+				} else {
+					//Console.WriteLine ($"Ignore: {s}");
 				}
 			}
+			//Console.ReadLine ();
+
+			Console.SetWindowSize (cWidth, cHeight);
+			SetColorsStandard ();
+			Console.Clear ();
 			PopulateOptions ();
 			columns = new Dictionary<int, int> ();
 			columns.Add (0, 1);
 			int br = MaxLength (1);
 			int pa = MaxLength (2);
 			//int br = MaxLength (3);
-			columns.Add (1, width - (4 + 2 + 2) - 2 - (pa + 2 + 2) - 0 - (br + 2 + 2));
-			columns.Add (2, width - (4 + 2 + 2) - 2 - (pa + 2 + 2));
-			columns.Add (3, width - (4 + 2 + 2)); // .DATA.
+			columns.Add (1, cWidth - (4 + 2 + 2) - 2 - (pa + 2 + 2) - 0 - (br + 2 + 2));
+			columns.Add (2, cWidth - (4 + 2 + 2) - 2 - (pa + 2 + 2));
+			columns.Add (3, cWidth - (4 + 2 + 2)); // .DATA.
 			DrawScreen ();
 
 			comm.ReceivedData += Comm_ReceivedData;
@@ -115,43 +132,95 @@ namespace CreateiBeacon
 			while (key.Key != ConsoleKey.Escape) {
 				if (key.Key == ConsoleKey.Enter && positionCursor == PositionCursor.ButtonLogin) {
 					key = new ConsoleKeyInfo ();
-				}
-				if (key.Key == ConsoleKey.Enter && positionCursor == PositionCursor.ButtonRead) {
-					key = new ConsoleKeyInfo ();
-					if (!comm.IsConnect) {
-						comm.SetInfo (options [0] [optionsSelected [0]],
-							options [1] [optionsSelected [1]],
-							"",
-							options [3] [optionsSelected [3]]);
-						comm.Connect ();
-						mustSendDataToWakeUp = true;
+					if (login.Length == 0 || password.Length == 0) {
+						ShowStatus ("Missing 'login' or 'password'!");
+					} else {
+						ClearUserData ();
+						ShowUser ();
 					}
+				}
+				if ((key.Key == ConsoleKey.Enter || key.Key == ConsoleKey.Spacebar) && positionCursor == PositionCursor.ButtonRead) {
+					key = new ConsoleKeyInfo ();
+					ClearReadData (); ShowiBeacon ();
+					StartComm ();
 					SendCommand ("AT+VERR?");
 				}
-				if (key.Key == ConsoleKey.Enter && positionCursor == PositionCursor.ButtonWrite) {
+				if ((key.Key == ConsoleKey.Enter || key.Key == ConsoleKey.Spacebar) && positionCursor == PositionCursor.ButtonWrite) {
 					key = new ConsoleKeyInfo ();
+					if (user.StartsWith ("?")) {
+						ShowStatus ("Must be connected! Missing user informations...");
+					} else {
+						ClearReadData (); ShowiBeacon ();
+						StartComm ();
+						SendCommand ("AT+VERS?");
+					}
+				}
+				if ((key.Key == ConsoleKey.Enter || key.Key == ConsoleKey.Spacebar) && positionCursor == PositionCursor.ButtonReset) {
+					key = new ConsoleKeyInfo ();
+					ClearReadData (); ShowiBeacon ();
+					StartComm ();
+					SendCommand ("AT+RENEW");
+					System.Threading.Thread.Sleep (3000);
+					SendCommand ("AT+VERR?");
+				}
+				if ((key.Key == ConsoleKey.Enter || key.Key == ConsoleKey.Spacebar) && positionCursor == PositionCursor.ButtonReboot) {
+					key = new ConsoleKeyInfo ();
+					ClearReadData (); ShowiBeacon ();
+					StartComm ();
+					SendCommand ("AT+RESET");
+					System.Threading.Thread.Sleep (3000);
+					SendCommand ("AT+VERR?");
 				}
 				switch (key.Key) {
 				case ConsoleKey.Enter:
 				case ConsoleKey.Tab:
-					if (positionCursor == PositionCursor.Login)
-						positionCursor = PositionCursor.Password;
-					else if (positionCursor == PositionCursor.Password)
-						positionCursor = PositionCursor.ButtonLogin;
-					else if (positionCursor == PositionCursor.ButtonLogin)
-						positionCursor = PositionCursor.ButtonRead;
-					else if (positionCursor == PositionCursor.ButtonRead)
-						positionCursor = PositionCursor.ButtonWrite;
-					else if (positionCursor == PositionCursor.ButtonWrite)
-						positionCursor = PositionCursor.Port;
-					else if (positionCursor == PositionCursor.Port)
-						positionCursor = PositionCursor.Bauds;
-					else if (positionCursor == PositionCursor.Bauds)
-						positionCursor = PositionCursor.Parity;
-					else if (positionCursor == PositionCursor.Parity)
-						positionCursor = PositionCursor.Data;
-					else if (positionCursor == PositionCursor.Data)
-						positionCursor = PositionCursor.Login;
+					if (key.Modifiers == ConsoleModifiers.Shift) {
+						if (positionCursor == PositionCursor.Login)
+							positionCursor = PositionCursor.Data;
+						else if (positionCursor == PositionCursor.Password)
+							positionCursor = PositionCursor.Login;
+						else if (positionCursor == PositionCursor.ButtonLogin)
+							positionCursor = PositionCursor.Password;
+						else if (positionCursor == PositionCursor.ButtonRead)
+							positionCursor = PositionCursor.ButtonLogin;
+						else if (positionCursor == PositionCursor.ButtonWrite)
+							positionCursor = PositionCursor.ButtonRead;
+						else if (positionCursor == PositionCursor.ButtonReset)
+							positionCursor = PositionCursor.ButtonWrite;
+						else if (positionCursor == PositionCursor.ButtonReboot)
+							positionCursor = PositionCursor.ButtonReset;
+						else if (positionCursor == PositionCursor.Port)
+							positionCursor = PositionCursor.ButtonReboot;
+						else if (positionCursor == PositionCursor.Bauds)
+							positionCursor = PositionCursor.Port;
+						else if (positionCursor == PositionCursor.Parity)
+							positionCursor = PositionCursor.Bauds;
+						else if (positionCursor == PositionCursor.Data)
+							positionCursor = PositionCursor.Parity;
+					} else {
+						if (positionCursor == PositionCursor.Login)
+							positionCursor = PositionCursor.Password;
+						else if (positionCursor == PositionCursor.Password)
+							positionCursor = PositionCursor.ButtonLogin;
+						else if (positionCursor == PositionCursor.ButtonLogin)
+							positionCursor = PositionCursor.ButtonRead;
+						else if (positionCursor == PositionCursor.ButtonRead)
+							positionCursor = PositionCursor.ButtonWrite;
+						else if (positionCursor == PositionCursor.ButtonWrite)
+							positionCursor = PositionCursor.ButtonReset;
+						else if (positionCursor == PositionCursor.ButtonReset)
+							positionCursor = PositionCursor.ButtonReboot;
+						else if (positionCursor == PositionCursor.ButtonReboot)
+							positionCursor = PositionCursor.Port;
+						else if (positionCursor == PositionCursor.Port)
+							positionCursor = PositionCursor.Bauds;
+						else if (positionCursor == PositionCursor.Bauds)
+							positionCursor = PositionCursor.Parity;
+						else if (positionCursor == PositionCursor.Parity)
+							positionCursor = PositionCursor.Data;
+						else if (positionCursor == PositionCursor.Data)
+							positionCursor = PositionCursor.Login;
+					}
 					DoPositionCursor ();
 					break;
 				case ConsoleKey.DownArrow:
@@ -227,7 +296,19 @@ namespace CreateiBeacon
 			comm.Disconnect ();
 			comm.ReceivedData -= Comm_ReceivedData;
 			comm = null;
-			Console.SetCursorPosition (0, height - 2);
+			Console.SetCursorPosition (0, cHeight - 2);
+		}
+
+		static void StartComm ()
+		{
+			if (!comm.IsConnect) {
+				comm.SetInfo (options [0] [optionsSelected [0]],
+					options [1] [optionsSelected [1]],
+					"",
+					options [3] [optionsSelected [3]]);
+				comm.Connect ();
+				mustSendDataToWakeUp = true;
+			}
 		}
 
 		static void SendCommand (string command)
@@ -244,7 +325,20 @@ namespace CreateiBeacon
 		static void Comm_ReceivedData (string lastCommand, string data)
 		{
 			ShowStatus ($"Command: {lastCommand} - {data}");
+
+			string cmduser = "AT+MARJ0x" + user;
+			string cmddroid = "AT+MINO0x" + country + idDroid;
+			if (lastCommand.Equals (cmduser)) {
+				SendCommand (cmddroid);
+				return;
+			}
+			if (lastCommand.Equals (cmddroid)) {
+				SendCommand ("AT+ADVI5");
+				return;
+			}
+
 			switch (lastCommand) {
+			// start READ
 			case "AT+VERR?":
 				version = "iBeacon: " + data;
 				ShowiBeacon ();
@@ -285,8 +379,76 @@ namespace CreateiBeacon
 			case "AT+NAME?":
 				region = data.Replace ("OK+NAME:", "");
 				ShowiBeacon ();
+				SendCommand ("AT+IBEA?");
+				break;
+			case "AT+IBEA?":
+				string temp3 = data.Replace ("OK+Get:", "");
+				if (temp3.Equals ("0"))
+					modeiBeacon = false;
+				else
+					modeiBeacon = true;
+				ShowiBeacon ();
+				break;
+
+			// start WRITE
+			case "AT+VERS?":
+				version = "iBeacon: " + data;
+				ShowiBeacon ();
+				SendCommand (cmduser);
+				break;
+			//case cmduser:
+			//	SendCommand ("AT+MINO0xFA01");
+			//	break;
+			//case "AT+MINO0xFA01":
+			//	SendCommand ("AT+ADVI5");
+			//	break;
+			// E5CAF8CF-590C-42DC-9CF0-2929552156A7
+			case "AT+ADVI5":
+				SendCommand ("AT+IBE0E5CAF8CF");
+				break;
+			case "AT+IBE0E5CAF8CF":
+				SendCommand ("AT+IBE1590C42DC");
+				break;
+			case "AT+IBE1590C42DC":
+				SendCommand ("AT+IBE29CF02929");
+				break;
+			case "AT+IBE29CF02929":
+				SendCommand ("AT+IBE3552156A7");
+				break;
+			case "AT+IBE3552156A7":
+				SendCommand ("AT+NAMEBuilders");
+				break;
+			case "AT+NAMEBuilders":
+				SendCommand ("AT+ADTY3");
+				break;
+			case "AT+ADTY3":
+				SendCommand ("AT+IBEA1");
+				break;
+			case "AT+IBEA1":
+				SendCommand ("AT+DELO2");
+				break;
+			case "AT+DELO2":
+				SendCommand ("AT+PWRM0");
+				break;
+			case "AT+PWRM0":
+				SendCommand ("AT+RESET");
+				System.Threading.Thread.Sleep (3000);
+				SendCommand ("AT+VERR?");
 				break;
 			}
+		}
+
+		static string country = "??";
+		static string user = "????";
+		static string idDroid = "??";
+		static string name = "Info user";
+
+		static void ClearUserData ()
+		{
+			country = "2F";
+			user = "2606";
+			idDroid = "01";
+			name = "Boris";
 		}
 
 		static void ShowPassword ()
@@ -345,39 +507,63 @@ namespace CreateiBeacon
 				Console.SetCursorPosition (10, posUserY + 1);
 				break;
 			case PositionCursor.Password:
+				ShowButton ("Connect", posBtConnectX, posBtConnectY);
+				showCursor = true;
+				Console.CursorVisible = true;
 				Console.SetCursorPosition (10, posUserY + 3);
 				break;
 			case PositionCursor.ButtonLogin:
 				showCursor = false;
 				Console.CursorVisible = false;
+				ShowButton (" Read ", posBtReadX, posBtReadY);
 				ShowButtonSelected ("Connect", posBtConnectX, posBtConnectY);
 				break;
 			case PositionCursor.ButtonRead:
 				ShowButton ("Connect", posBtConnectX, posBtConnectY);
-				ShowButtonSelected ("Read", posBtReadX, posBtReadY);
+				ShowButton ("Write ", posBtWriteX, posBtWriteY);
+				ShowButtonSelected (" Read ", posBtReadX, posBtReadY);
 				break;
 			case PositionCursor.ButtonWrite:
-				ShowButton ("Read", posBtReadX, posBtReadY);
-				ShowButtonSelected ("Write", posBtWriteX, posBtWriteY);
+				ShowButton (" Read ", posBtReadX, posBtReadY);
+				ShowButton ("Reset ", posBtResetX, posBtResetY);
+				ShowButtonSelected ("Write ", posBtWriteX, posBtWriteY);
+				break;
+			case PositionCursor.ButtonReset:
+				ShowButton ("Write ", posBtWriteX, posBtWriteY);
+				ShowButton ("Reboot", posBtRebootX, posBtRebootY);
+				ShowButtonSelected ("Reset ", posBtResetX, posBtResetY);
+				break;
+			case PositionCursor.ButtonReboot:
+				SetColorsChoice ();
+				ShowList (0, columns [0], 1);
+				ShowButton ("Write ", posBtWriteX, posBtWriteY);
+				ShowButton ("Reset ", posBtResetX, posBtResetY);
+				ShowButtonSelected ("Reboot", posBtRebootX, posBtRebootY);
 				break;
 			case PositionCursor.Port:
-				ShowButton ("Write", posBtWriteX, posBtWriteY);
+				ShowButton ("Reboot", posBtRebootX, posBtRebootY);
+				SetColorsChoice ();
+				ShowList (1, columns [1], 1);
 				SetColorsChoiceSelected ();
 				ShowList (0, columns [0], 1);
 				break;
 			case PositionCursor.Bauds:
 				SetColorsChoice ();
 				ShowList (0, columns [0], 1);
+				ShowList (2, columns [2], 1);
 				SetColorsChoiceSelected ();
 				ShowList (1, columns [1], 1);
 				break;
 			case PositionCursor.Parity:
 				SetColorsChoice ();
 				ShowList (1, columns [1], 1);
+				ShowList (3, columns [3], 1);
 				SetColorsChoiceSelected ();
 				ShowList (2, columns [2], 1);
 				break;
 			case PositionCursor.Data:
+				showCursor = false;
+				Console.CursorVisible = false;
 				SetColorsChoice ();
 				ShowList (2, columns [2], 1);
 				SetColorsChoiceSelected ();
@@ -555,9 +741,9 @@ namespace CreateiBeacon
 		{
 			SetColorsStandard ();
 			Console.SetCursorPosition (0, y);
-			for (int i = 0; i <= Console.BufferWidth; i++)
+			for (int i = 0; i <= cWidth; i++)
 				Console.Write ("─");
-			WriteText ($" {title} ", (int)((Console.BufferWidth + 0.5 - (title.Length + 2)) / 2), y);
+			WriteText ($" {title} ", (int)((cWidth + 0.5 - (title.Length + 2)) / 2), y);
 		}
 
 		private static void ShowInput (int x, int y, int width)
@@ -599,10 +785,10 @@ namespace CreateiBeacon
 		private static void ShowStatus (string text)
 		{
 			SetColorsStatus ();
-			Console.SetCursorPosition (0, Console.BufferHeight - 1);
+			Console.SetCursorPosition (0, cHeight - 1);
 			Console.Write (" ");
 			Console.Write (text);
-			for (int i = (1 + text.Length); i < Console.BufferWidth; i++)
+			for (int i = (1 + text.Length); i < cWidth; i++)
 				Console.Write (" ");
 		}
 
@@ -624,6 +810,7 @@ namespace CreateiBeacon
 			ShowList (3, columns [3], 1);
 
 			ShowTitle ("User", posUserY);
+			ShowUser ();
 			SetColorsStandard ();
 			Console.SetCursorPosition (0, posUserY + 1); Console.Write ("   Login:"); ShowInput (10, posUserY + 1, 30);
 			SetColorsStandard ();
@@ -632,12 +819,24 @@ namespace CreateiBeacon
 			ShowButton ("Connect", posBtConnectX, posBtConnectY);
 
 			ShowTitle ("Hardware", posHardwareY);
-			ShowBowDouble ("Commands", posBtReadX - 2, posBtReadY - 1, 20, 3);
-			ShowButton ("Read", posBtReadX, posBtReadY);
-			ShowButton ("Write", posBtWriteX, posBtWriteY);
+			ShowBowDouble ("Commands", posBtReadX - 2, posBtReadY - 1, 23, 6);
+			ShowButton (" Read ", posBtReadX, posBtReadY);
+			ShowButton ("Write ", posBtWriteX, posBtWriteY);
+			ShowButton ("Reset ", posBtResetX, posBtResetY);
+			ShowButton ("Reboot", posBtRebootX, posBtRebootY);
 
 			ShowStatus ("Ready");
 			ShowiBeacon ();
+		}
+
+		static void ShowUser ()
+		{
+			SetColorsStandard ();
+			ShowBowDouble (name, cWidth - 20, posUserY + 1, 18, 3);
+			WriteText ("Country:  0x" + country, cWidth - 19, posUserY + 2);
+			WriteText ("User ID:  0x" + user, cWidth - 19, posUserY + 3);
+			WriteText ("Droid ID: 0x" + idDroid, cWidth - 19, posUserY + 4);
+
 		}
 
 		static string uuid = "????????-????-????-????-????????????";
@@ -645,21 +844,43 @@ namespace CreateiBeacon
 		static string minor = "0x????";
 		static string major = "0x????";
 		static string version = "iBeacon";
+		static bool modeiBeacon = false;
+
+		private static void ClearReadData ()
+		{
+			uuid = "????????-????-????-????-????????????";
+			region = "????????";
+			minor = "0x????";
+			major = "0x????";
+			version = "iBeacon";
+			modeiBeacon = false;
+		}
 
 		private static void ShowiBeacon ()
 		{
 			SetColorsStandard ();
-			ShowBowDouble (version, Console.BufferWidth - 45, posBtReadY - 1, 43, 3);
-			WriteText ("UUID:  " + uuid, Console.BufferWidth - 44, posBtReadY);
-			WriteText ("Major: " + major, Console.BufferWidth - 44, posBtReadY + 1);
-			WriteText ("/ Minor: " + minor, Console.BufferWidth - 44 + 14, posBtReadY + 1);
-			WriteText ("Region name: " + region, Console.BufferWidth - 44, posBtReadY + 2);
+			ShowBowDouble (version, cWidth - 45, posBtReadY - 1, 43, 4);
+			WriteText ("UUID:  " + uuid, cWidth - 44, posBtReadY);
+			WriteText ("Major: " + major, cWidth - 44, posBtReadY + 1);
+			WriteText ("/ Minor: " + minor, cWidth - 44 + 14, posBtReadY + 1);
+			WriteText ("Region name: " + region, cWidth - 44, posBtReadY + 2);
+			WriteText ("Mode iBeacon:", cWidth - 44, posBtReadY + 3);
+			if (modeiBeacon) {
+				Console.ForegroundColor = ConsoleColor.Green;
+				WriteText ("Ok", cWidth - 44 + 14, posBtReadY + 3);
+			} else {
+				Console.ForegroundColor = ConsoleColor.Red;
+				WriteText ("No", cWidth - 44 + 14, posBtReadY + 3);
+			}
+			SetColorsStandard ();
 		}
 
 		private static void ShowList (int index, int x, int y)
 		{
-			int maxLength = MaxLength (index);
-			WriteTextOnSize (options [index] [optionsSelected [index]], maxLength, x, y);
+			try {
+				int maxLength = MaxLength (index);
+				WriteTextOnSize (options [index] [optionsSelected [index]], maxLength, x, y);
+			} catch (Exception) { }
 		}
 	}
 }
