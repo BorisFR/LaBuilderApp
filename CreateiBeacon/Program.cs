@@ -10,6 +10,7 @@ namespace CreateiBeacon
 		Login,
 		Password,
 		ButtonLogin,
+		DroidNumber,
 		ButtonRead,
 		ButtonWrite,
 		ButtonReset,
@@ -22,9 +23,10 @@ namespace CreateiBeacon
 
 	class MainClass
 	{
+		const string URL = "https://www.r2builders.fr/DroidBuilders.Fr/doiBeacon.php?login={0}&password={1}";
 		static Settings settings = new Settings ();
 		static Communication comm = new Communication ();
-		static bool mustSendDataToWakeUp = false;
+		static InfoWeb web = new InfoWeb ();
 
 		static List<string> availablePorts = null;
 		static Dictionary<int, List<string>> options = null;
@@ -76,6 +78,7 @@ namespace CreateiBeacon
 
 		static int posUserY = 4;
 		static int posBtConnectX = 42; static int posBtConnectY = posUserY + 2;
+		static int posDroidX = 10; static int posDroidY = posUserY + 5;
 		static int posHardwareY = 11;
 		static int posBtReadX = 2; static int posBtReadY = posHardwareY + 2;
 		static int posBtWriteX = 13; static int posBtWriteY = posHardwareY + 2;
@@ -98,6 +101,7 @@ namespace CreateiBeacon
 			}
 			Console.WriteLine ($"x:{cWidth}, y:{cHeight}");
 
+			web.JobDone += Web_JobDone;
 			availablePorts = new List<string> ();
 			Communication c = new Communication ();
 			foreach (string s in c.AvailablePorts ()) {
@@ -109,6 +113,9 @@ namespace CreateiBeacon
 				}
 			}
 			//Console.ReadLine ();
+
+			login = settings.ValueOf ("Login");
+			password = settings.ValueOf ("Password");
 
 			Console.SetWindowSize (cWidth, cHeight);
 			SetColorsStandard ();
@@ -122,7 +129,10 @@ namespace CreateiBeacon
 			columns.Add (1, cWidth - (4 + 2 + 2) - 2 - (pa + 2 + 2) - 0 - (br + 2 + 2));
 			columns.Add (2, cWidth - (4 + 2 + 2) - 2 - (pa + 2 + 2));
 			columns.Add (3, cWidth - (4 + 2 + 2)); // .DATA.
+			columns.Add (4, 14); //  droid number
 			DrawScreen ();
+			ShowInput (login, 10, posUserY + 1, 30);
+			ShowPassword ();
 
 			comm.ReceivedData += Comm_ReceivedData;
 
@@ -137,6 +147,7 @@ namespace CreateiBeacon
 					} else {
 						ClearUserData ();
 						ShowUser ();
+						web.DoDownload ("connect", string.Format (URL, login, password));
 					}
 				}
 				if ((key.Key == ConsoleKey.Enter || key.Key == ConsoleKey.Spacebar) && positionCursor == PositionCursor.ButtonRead) {
@@ -181,8 +192,10 @@ namespace CreateiBeacon
 							positionCursor = PositionCursor.Login;
 						else if (positionCursor == PositionCursor.ButtonLogin)
 							positionCursor = PositionCursor.Password;
-						else if (positionCursor == PositionCursor.ButtonRead)
+						else if (positionCursor == PositionCursor.DroidNumber)
 							positionCursor = PositionCursor.ButtonLogin;
+						else if (positionCursor == PositionCursor.ButtonRead)
+							positionCursor = PositionCursor.DroidNumber;
 						else if (positionCursor == PositionCursor.ButtonWrite)
 							positionCursor = PositionCursor.ButtonRead;
 						else if (positionCursor == PositionCursor.ButtonReset)
@@ -203,6 +216,8 @@ namespace CreateiBeacon
 						else if (positionCursor == PositionCursor.Password)
 							positionCursor = PositionCursor.ButtonLogin;
 						else if (positionCursor == PositionCursor.ButtonLogin)
+							positionCursor = PositionCursor.DroidNumber;
+						else if (positionCursor == PositionCursor.DroidNumber)
 							positionCursor = PositionCursor.ButtonRead;
 						else if (positionCursor == PositionCursor.ButtonRead)
 							positionCursor = PositionCursor.ButtonWrite;
@@ -237,6 +252,9 @@ namespace CreateiBeacon
 					case PositionCursor.Data:
 						MoveListDown (3);
 						break;
+					case PositionCursor.DroidNumber:
+						MoveListDown (4);
+						break;
 					}
 					break;
 				case ConsoleKey.UpArrow:
@@ -253,6 +271,9 @@ namespace CreateiBeacon
 					case PositionCursor.Data:
 						MoveListUp (3);
 						break;
+					case PositionCursor.DroidNumber:
+						MoveListUp (4);
+						break;
 					}
 					break;
 				case ConsoleKey.Backspace:
@@ -265,6 +286,7 @@ namespace CreateiBeacon
 								login = login.Substring (0, login.Length - 1);
 						}
 						ShowInput (login, 10, posUserY + 1, 30);
+						settings.SetValue ("Login", login);
 						break;
 					case PositionCursor.Password:
 						if (password.Length > 0) {
@@ -274,6 +296,7 @@ namespace CreateiBeacon
 								password = password.Substring (0, password.Length - 1);
 						}
 						ShowPassword ();
+						settings.SetValue ("Password", password);
 						break;
 					}
 					break;
@@ -282,10 +305,12 @@ namespace CreateiBeacon
 					case PositionCursor.Login:
 						login += key.KeyChar;
 						ShowInput (login, 10, posUserY + 1, 30);
+						settings.SetValue ("Login", login);
 						break;
 					case PositionCursor.Password:
 						password += key.KeyChar;
 						ShowPassword ();
+						settings.SetValue ("Password", password);
 						break;
 					}
 					break;
@@ -296,7 +321,27 @@ namespace CreateiBeacon
 			comm.Disconnect ();
 			comm.ReceivedData -= Comm_ReceivedData;
 			comm = null;
+			web.JobDone -= Web_JobDone;
 			Console.SetCursorPosition (0, cHeight - 2);
+		}
+
+		static void Web_JobDone (string state, bool status, string data)
+		{
+			if (state.Equals ("connect")) {
+				if (!status) {
+					ShowStatus ($"Connect: error - {data}");
+				} else {
+					if (!data.StartsWith ("{\"state\":true")) {
+						ShowStatus ($"Connect: problem - {data}");
+					} else {
+						country = web.GetValueFrom ("country", data);
+						user = web.GetValueFrom ("user", data);
+						name = web.GetValueFrom ("username", data);
+						//ShowStatus ($"Connect: {data}");
+						ShowUser ();
+					}
+				}
+			}
 		}
 
 		static void StartComm ()
@@ -307,7 +352,6 @@ namespace CreateiBeacon
 					"",
 					options [3] [optionsSelected [3]]);
 				comm.Connect ();
-				mustSendDataToWakeUp = true;
 			}
 		}
 
@@ -327,7 +371,7 @@ namespace CreateiBeacon
 			ShowStatus ($"Command: {lastCommand} - {data}");
 
 			string cmduser = "AT+MARJ0x" + user;
-			string cmddroid = "AT+MINO0x" + country + idDroid;
+			string cmddroid = "AT+MINO0x" + country + Convert.ToInt16 (options [4] [optionsSelected [4]]).ToString ("X2");
 			if (lastCommand.Equals (cmduser)) {
 				SendCommand (cmddroid);
 				return;
@@ -440,15 +484,13 @@ namespace CreateiBeacon
 
 		static string country = "??";
 		static string user = "????";
-		static string idDroid = "??";
 		static string name = "Info user";
 
 		static void ClearUserData ()
 		{
-			country = "2F";
-			user = "2606";
-			idDroid = "01";
-			name = "Boris";
+			country = "??";
+			user = "????";
+			name = "Info user";
 		}
 
 		static void ShowPassword ()
@@ -464,7 +506,10 @@ namespace CreateiBeacon
 			optionsSelected [index]++;
 			if (optionsSelected [index] >= options [index].Count)
 				optionsSelected [index] = 0;
-			ShowList (index, columns [index], 1);
+			if (index == 4)
+				ShowList (index, columns [index], posUserY + 5);
+			else
+				ShowList (index, columns [index], 1);
 			DoSaveSelected (index);
 		}
 
@@ -473,7 +518,10 @@ namespace CreateiBeacon
 			optionsSelected [index]--;
 			if (optionsSelected [index] < 0)
 				optionsSelected [index] = options [index].Count - 1;
-			ShowList (index, columns [index], 1);
+			if (index == 4)
+				ShowList (index, columns [index], posUserY + 5);
+			else
+				ShowList (index, columns [index], 1);
 			DoSaveSelected (index);
 		}
 
@@ -515,11 +563,19 @@ namespace CreateiBeacon
 			case PositionCursor.ButtonLogin:
 				showCursor = false;
 				Console.CursorVisible = false;
-				ShowButton (" Read ", posBtReadX, posBtReadY);
+				SetColorsChoice ();
+				ShowList (4, columns [4], posUserY + 5);
 				ShowButtonSelected ("Connect", posBtConnectX, posBtConnectY);
 				break;
-			case PositionCursor.ButtonRead:
+			case PositionCursor.DroidNumber:
 				ShowButton ("Connect", posBtConnectX, posBtConnectY);
+				ShowButton (" Read ", posBtReadX, posBtReadY);
+				SetColorsChoiceSelected ();
+				ShowList (4, columns [4], posUserY + 5);
+				break;
+			case PositionCursor.ButtonRead:
+				SetColorsChoice ();
+				ShowList (4, columns [4], posUserY + 5);
 				ShowButton ("Write ", posBtWriteX, posBtWriteY);
 				ShowButtonSelected (" Read ", posBtReadX, posBtReadY);
 				break;
@@ -618,15 +674,20 @@ namespace CreateiBeacon
 			List<string> data = new List<string> ();
 			data.Add ("8");
 			options.Add (3, data);
-			SetDefautSelected (0, settings.ValueOf ("Port"));
-			SetDefautSelected (1, settings.ValueOf ("Bauds", "9600"));
-			SetDefautSelected (2, settings.ValueOf ("Parity", "none"));
-			SetDefautSelected (3, settings.ValueOf ("Data", "8"));
 			//optionsSelected.Add (0, 0);
 			//optionsSelected.Add (1, 5);
 			//optionsSelected.Add (2, 0);
 			//optionsSelected.Add (3, 0);
+			List<string> numbers = new List<string> ();
+			for (int i = 1; i < 256; i++)
+				numbers.Add (i.ToString ());
+			options.Add (4, numbers);
 
+			SetDefautSelected (0, settings.ValueOf ("Port"));
+			SetDefautSelected (1, settings.ValueOf ("Bauds", "9600"));
+			SetDefautSelected (2, settings.ValueOf ("Parity", "none"));
+			SetDefautSelected (3, settings.ValueOf ("Data", "8"));
+			SetDefautSelected (4, settings.ValueOf ("DroidNumber", "1"));
 		}
 
 		private static void SetDefautSelected (int index, string value)
@@ -815,6 +876,8 @@ namespace CreateiBeacon
 			Console.SetCursorPosition (0, posUserY + 1); Console.Write ("   Login:"); ShowInput (10, posUserY + 1, 30);
 			SetColorsStandard ();
 			Console.SetCursorPosition (0, posUserY + 3); Console.Write ("Password:"); ShowInput (10, posUserY + 3, 30);
+			SetColorsStandard ();
+			Console.SetCursorPosition (0, posUserY + 5); Console.Write ("Droid Number:"); SetColorsChoice (); ShowList (4, columns [4], posUserY + 5);
 
 			ShowButton ("Connect", posBtConnectX, posBtConnectY);
 
@@ -832,10 +895,10 @@ namespace CreateiBeacon
 		static void ShowUser ()
 		{
 			SetColorsStandard ();
-			ShowBowDouble (name, cWidth - 20, posUserY + 1, 18, 3);
+			ShowBowDouble (name, cWidth - 20, posUserY + 1, 18, 2);
 			WriteText ("Country:  0x" + country, cWidth - 19, posUserY + 2);
 			WriteText ("User ID:  0x" + user, cWidth - 19, posUserY + 3);
-			WriteText ("Droid ID: 0x" + idDroid, cWidth - 19, posUserY + 4);
+			//WriteText ("Droid ID: 0x" + idDroid, cWidth - 19, posUserY + 4);
 
 		}
 
