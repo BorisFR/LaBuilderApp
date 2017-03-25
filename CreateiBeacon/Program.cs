@@ -72,18 +72,19 @@ namespace CreateiBeacon
 
 		public static void SetColorsStatus ()
 		{
-			Console.BackgroundColor = ConsoleColor.Gray;
-			Console.ForegroundColor = ConsoleColor.White;
+			Console.BackgroundColor = ConsoleColor.DarkGray;
+			Console.ForegroundColor = ConsoleColor.Cyan;
 		}
 
-		static int posUserY = 4;
+		static int posUserY = 0;
 		static int posBtConnectX = 42; static int posBtConnectY = posUserY + 2;
 		static int posDroidX = 10; static int posDroidY = posUserY + 5;
-		static int posHardwareY = 11;
+		static int posHardwareY = 6;
 		static int posBtReadX = 2; static int posBtReadY = posHardwareY + 2;
 		static int posBtWriteX = 13; static int posBtWriteY = posHardwareY + 2;
 		static int posBtResetX = 2; static int posBtResetY = posHardwareY + 5;
 		static int posBtRebootX = 13; static int posBtRebootY = posHardwareY + 5;
+		static int posCommY = 15;
 
 		static int cWidth = 0;
 		static int cHeight = 0;
@@ -105,11 +106,12 @@ namespace CreateiBeacon
 			availablePorts = new List<string> ();
 			Communication c = new Communication ();
 			foreach (string s in c.AvailablePorts ()) {
-				if (s.Contains (".")) {
-					//Console.WriteLine (s);
+				if (s.StartsWith ("/dev")) { // Un*x
+					if (s.Contains (".")) { // que ceux qui ont un '.'
+						availablePorts.Add (s);
+					}
+				} else { // Windows
 					availablePorts.Add (s);
-				} else {
-					//Console.WriteLine ($"Ignore: {s}");
 				}
 			}
 			//Console.ReadLine ();
@@ -117,7 +119,7 @@ namespace CreateiBeacon
 			login = settings.ValueOf ("Login");
 			password = settings.ValueOf ("Password");
 
-			Console.SetWindowSize (cWidth, cHeight);
+			//Console.SetWindowSize (cWidth, cHeight);
 			SetColorsStandard ();
 			Console.Clear ();
 			PopulateOptions ();
@@ -129,7 +131,7 @@ namespace CreateiBeacon
 			columns.Add (1, cWidth - (4 + 2 + 2) - 2 - (pa + 2 + 2) - 0 - (br + 2 + 2));
 			columns.Add (2, cWidth - (4 + 2 + 2) - 2 - (pa + 2 + 2));
 			columns.Add (3, cWidth - (4 + 2 + 2)); // .DATA.
-			columns.Add (4, 14); //  droid number
+			columns.Add (4, 10); //  droid number
 			DrawScreen ();
 			ShowInput (login, 10, posUserY + 1, 30);
 			ShowPassword ();
@@ -140,7 +142,7 @@ namespace CreateiBeacon
 			DoPositionCursor ();
 			ConsoleKeyInfo key = Console.ReadKey (true);
 			while (key.Key != ConsoleKey.Escape) {
-				if (key.Key == ConsoleKey.Enter && positionCursor == PositionCursor.ButtonLogin) {
+				if ((key.Key == ConsoleKey.Enter || key.Key == ConsoleKey.Spacebar) && positionCursor == PositionCursor.ButtonLogin) {
 					key = new ConsoleKeyInfo ();
 					if (login.Length == 0 || password.Length == 0) {
 						ShowStatus ("Missing 'login' or 'password'!");
@@ -173,6 +175,7 @@ namespace CreateiBeacon
 					SendCommand ("AT+RENEW");
 					System.Threading.Thread.Sleep (3000);
 					SendCommand ("AT+VERR?");
+					ShowStatus ("Ready");
 				}
 				if ((key.Key == ConsoleKey.Enter || key.Key == ConsoleKey.Spacebar) && positionCursor == PositionCursor.ButtonReboot) {
 					key = new ConsoleKeyInfo ();
@@ -181,6 +184,7 @@ namespace CreateiBeacon
 					SendCommand ("AT+RESET");
 					System.Threading.Thread.Sleep (3000);
 					SendCommand ("AT+VERR?");
+					ShowStatus ("Ready");
 				}
 				switch (key.Key) {
 				case ConsoleKey.Enter:
@@ -238,6 +242,7 @@ namespace CreateiBeacon
 					}
 					DoPositionCursor ();
 					break;
+				case ConsoleKey.RightArrow:
 				case ConsoleKey.DownArrow:
 					switch (positionCursor) {
 					case PositionCursor.Port:
@@ -257,6 +262,7 @@ namespace CreateiBeacon
 						break;
 					}
 					break;
+				case ConsoleKey.LeftArrow:
 				case ConsoleKey.UpArrow:
 					switch (positionCursor) {
 					case PositionCursor.Port:
@@ -337,7 +343,7 @@ namespace CreateiBeacon
 						country = web.GetValueFrom ("country", data);
 						user = web.GetValueFrom ("user", data);
 						name = web.GetValueFrom ("username", data);
-						//ShowStatus ($"Connect: {data}");
+						ShowStatus ($"Welcome {name}");
 						ShowUser ();
 					}
 				}
@@ -432,6 +438,7 @@ namespace CreateiBeacon
 				else
 					modeiBeacon = true;
 				ShowiBeacon ();
+				ShowStatus ("Ready");
 				break;
 
 			// start WRITE
@@ -478,6 +485,7 @@ namespace CreateiBeacon
 				SendCommand ("AT+RESET");
 				System.Threading.Thread.Sleep (3000);
 				SendCommand ("AT+VERR?");
+				ShowStatus ("Ready");
 				break;
 			}
 		}
@@ -509,7 +517,7 @@ namespace CreateiBeacon
 			if (index == 4)
 				ShowList (index, columns [index], posUserY + 5);
 			else
-				ShowList (index, columns [index], 1);
+				ShowList (index, columns [index], posCommY + 2);
 			DoSaveSelected (index);
 		}
 
@@ -521,7 +529,7 @@ namespace CreateiBeacon
 			if (index == 4)
 				ShowList (index, columns [index], posUserY + 5);
 			else
-				ShowList (index, columns [index], 1);
+				ShowList (index, columns [index], posCommY + 2);
 			DoSaveSelected (index);
 		}
 
@@ -549,16 +557,16 @@ namespace CreateiBeacon
 			switch (positionCursor) {
 			case PositionCursor.Login:
 				SetColorsChoice ();
-				ShowList (3, columns [3], 1);
+				ShowList (3, columns [3], posCommY + 2);
 				showCursor = true;
 				Console.CursorVisible = true;
-				Console.SetCursorPosition (10, posUserY + 1);
+				Console.SetCursorPosition (10 + login.Length, posUserY + 1);
 				break;
 			case PositionCursor.Password:
 				ShowButton ("Connect", posBtConnectX, posBtConnectY);
 				showCursor = true;
 				Console.CursorVisible = true;
-				Console.SetCursorPosition (10, posUserY + 3);
+				Console.SetCursorPosition (10 + password.Length, posUserY + 3);
 				break;
 			case PositionCursor.ButtonLogin:
 				showCursor = false;
@@ -591,7 +599,7 @@ namespace CreateiBeacon
 				break;
 			case PositionCursor.ButtonReboot:
 				SetColorsChoice ();
-				ShowList (0, columns [0], 1);
+				ShowList (0, columns [0], posCommY + 2);
 				ShowButton ("Write ", posBtWriteX, posBtWriteY);
 				ShowButton ("Reset ", posBtResetX, posBtResetY);
 				ShowButtonSelected ("Reboot", posBtRebootX, posBtRebootY);
@@ -599,31 +607,31 @@ namespace CreateiBeacon
 			case PositionCursor.Port:
 				ShowButton ("Reboot", posBtRebootX, posBtRebootY);
 				SetColorsChoice ();
-				ShowList (1, columns [1], 1);
+				ShowList (1, columns [1], posCommY + 2);
 				SetColorsChoiceSelected ();
-				ShowList (0, columns [0], 1);
+				ShowList (0, columns [0], posCommY + 2);
 				break;
 			case PositionCursor.Bauds:
 				SetColorsChoice ();
-				ShowList (0, columns [0], 1);
-				ShowList (2, columns [2], 1);
+				ShowList (0, columns [0], posCommY + 2);
+				ShowList (2, columns [2], posCommY + 2);
 				SetColorsChoiceSelected ();
-				ShowList (1, columns [1], 1);
+				ShowList (1, columns [1], posCommY + 2);
 				break;
 			case PositionCursor.Parity:
 				SetColorsChoice ();
-				ShowList (1, columns [1], 1);
-				ShowList (3, columns [3], 1);
+				ShowList (1, columns [1], posCommY + 2);
+				ShowList (3, columns [3], posCommY + 2);
 				SetColorsChoiceSelected ();
-				ShowList (2, columns [2], 1);
+				ShowList (2, columns [2], posCommY + 2);
 				break;
 			case PositionCursor.Data:
 				showCursor = false;
 				Console.CursorVisible = false;
 				SetColorsChoice ();
-				ShowList (2, columns [2], 1);
+				ShowList (2, columns [2], posCommY + 2);
 				SetColorsChoiceSelected ();
-				ShowList (3, columns [3], 1);
+				ShowList (3, columns [3], posCommY + 2);
 				break;
 			default:
 				showCursor = true;
@@ -855,20 +863,21 @@ namespace CreateiBeacon
 
 		private static void DrawScreen ()
 		{
-			ShowBowSimple ("Port", columns [0] - 1, 0, MaxLength (0), 1);
-			ShowList (0, columns [0], 1);
+			ShowTitle ("Communication", posCommY);
+			ShowBowSimple ("Port", columns [0] - 1, posCommY + 1, MaxLength (0), 1);
+			ShowList (0, columns [0], posCommY + 2);
 			//WriteText ("Bauds", columns [1], 0);
-			int decal = ShowBowSimple ("Bauds", columns [1] - 1, 0, MaxLength (1), 1);
+			int decal = ShowBowSimple ("Bauds", columns [1] - 1, posCommY + 1, MaxLength (1), 1);
 			columns [1] += decal;
-			ShowList (1, columns [1], 1);
+			ShowList (1, columns [1], posCommY + 2);
 			//WriteText ("Parity", columns [2], 0);
-			decal = ShowBowSimple ("Parity", columns [2] - 1, 0, MaxLength (2), 1);
+			decal = ShowBowSimple ("Parity", columns [2] - 1, posCommY + 1, MaxLength (2), 1);
 			columns [2] += decal;
-			ShowList (2, columns [2], 1);
+			ShowList (2, columns [2], posCommY + 2);
 			//WriteText ("Data", columns [3], 0);
-			decal = ShowBowSimple ("Data", columns [3] - 1, 0, MaxLength (3), 1);
+			decal = ShowBowSimple ("Data", columns [3] - 1, posCommY + 1, MaxLength (3), 1);
 			columns [3] += decal;
-			ShowList (3, columns [3], 1);
+			ShowList (3, columns [3], posCommY + 2);
 
 			ShowTitle ("User", posUserY);
 			ShowUser ();
@@ -877,7 +886,7 @@ namespace CreateiBeacon
 			SetColorsStandard ();
 			Console.SetCursorPosition (0, posUserY + 3); Console.Write ("Password:"); ShowInput (10, posUserY + 3, 30);
 			SetColorsStandard ();
-			Console.SetCursorPosition (0, posUserY + 5); Console.Write ("Droid Number:"); SetColorsChoice (); ShowList (4, columns [4], posUserY + 5);
+			Console.SetCursorPosition (0, posUserY + 5); Console.Write ("Droid ID:"); SetColorsChoice (); ShowList (4, columns [4], posUserY + 5);
 
 			ShowButton ("Connect", posBtConnectX, posBtConnectY);
 
@@ -895,9 +904,23 @@ namespace CreateiBeacon
 		static void ShowUser ()
 		{
 			SetColorsStandard ();
-			ShowBowDouble (name, cWidth - 20, posUserY + 1, 18, 2);
-			WriteText ("Country:  0x" + country, cWidth - 19, posUserY + 2);
-			WriteText ("User ID:  0x" + user, cWidth - 19, posUserY + 3);
+			ShowBowDouble (name, cWidth - 18, posUserY + 1, 16, 2);
+			WriteText ("Country: 0x" + country, cWidth - 17, posUserY + 2);
+			if (!country.Equals ("??")) {
+				Console.ForegroundColor = ConsoleColor.DarkGreen;
+			} else {
+				Console.ForegroundColor = ConsoleColor.Red;
+			}
+			WriteText (country, cWidth - 17 + 11, posUserY + 2);
+			SetColorsStandard ();
+
+			WriteText ("User ID: 0x" + user, cWidth - 17, posUserY + 3);
+			if (!user.Equals ("????")) {
+				Console.ForegroundColor = ConsoleColor.DarkGreen;
+			} else {
+				Console.ForegroundColor = ConsoleColor.Red;
+			}
+			WriteText (user, cWidth - 17 + 11, posUserY + 3);
 			//WriteText ("Droid ID: 0x" + idDroid, cWidth - 19, posUserY + 4);
 
 		}
@@ -924,12 +947,34 @@ namespace CreateiBeacon
 			SetColorsStandard ();
 			ShowBowDouble (version, cWidth - 45, posBtReadY - 1, 43, 4);
 			WriteText ("UUID:  " + uuid, cWidth - 44, posBtReadY);
+			if (uuid.Equals ("E5CAF8CF-590C-42DC-9CF0-2929552156A7")) {
+				Console.ForegroundColor = ConsoleColor.DarkGreen;
+			} else {
+				Console.ForegroundColor = ConsoleColor.Red;
+			}
+			WriteText (uuid, cWidth - 44 + 7, posBtReadY);
+			SetColorsStandard ();
 			WriteText ("Major: " + major, cWidth - 44, posBtReadY + 1);
+			Console.ForegroundColor = ConsoleColor.DarkCyan;
+			if (!major.Equals ("0x" + user))
+				Console.ForegroundColor = ConsoleColor.Red;
+			WriteText (major, cWidth - 44 + 7, posBtReadY + 1);
+			SetColorsStandard ();
 			WriteText ("/ Minor: " + minor, cWidth - 44 + 14, posBtReadY + 1);
-			WriteText ("Region name: " + region, cWidth - 44, posBtReadY + 2);
+			Console.ForegroundColor = ConsoleColor.DarkCyan;
+			WriteText (minor, cWidth - 44 + 14 + 9, posBtReadY + 1);
+			SetColorsStandard ();
+			WriteText ("Region name:  " + region, cWidth - 44, posBtReadY + 2);
+			if (region.Equals ("Builders\0")) {
+				Console.ForegroundColor = ConsoleColor.DarkGreen;
+			} else {
+				Console.ForegroundColor = ConsoleColor.Red;
+			}
+			WriteText (region, cWidth - 44 + 14, posBtReadY + 2);
+			SetColorsStandard ();
 			WriteText ("Mode iBeacon:", cWidth - 44, posBtReadY + 3);
 			if (modeiBeacon) {
-				Console.ForegroundColor = ConsoleColor.Green;
+				Console.ForegroundColor = ConsoleColor.DarkGreen;
 				WriteText ("Ok", cWidth - 44 + 14, posBtReadY + 3);
 			} else {
 				Console.ForegroundColor = ConsoleColor.Red;
