@@ -57,8 +57,12 @@ namespace LaBuilderApp
 		public static string DataUrl = "https://www.r2builders.fr/boris/data/";
 		public static CultureInfo CultureFrench = new CultureInfo ("fr-FR");
 
+		public static string iBeaconUUID = "E5CAF8CF-590C-42DC-9CF0-2929552156A7";
+		public static string iBeaconRegion = "Builders";
+
 		public static IFiles Files = null;
 		public static IScreenSize ScreenSize = null;
+		public static IBeacons Beacons = null;
 
 		public static Random Random;
 		public static Color DarkColor = Color.FromHex ("#11252D");
@@ -89,6 +93,11 @@ namespace LaBuilderApp
 			IsDoingInit = true;
 			Files = DependencyService.Get<IFiles> ();
 			ScreenSize = DependencyService.Get<IScreenSize> ();
+			Beacons = DependencyService.Get<IBeacons> ();
+			Beacons.FoundBeacons += Beacons_FoundBeacons;
+			Beacons.BeaconInfo += Beacons_BeaconInfo;
+			Beacons.Init (iBeaconUUID, iBeaconRegion);
+			Beacons.Start ();
 			Random = new Random (DateTime.Now.Millisecond);
 			CurrentLogin = CrossSettings.Current.GetValueOrDefault<string> ("userlogin", string.Empty);
 			CurrentPassword = CrossSettings.Current.GetValueOrDefault<string> ("userpassword", string.Empty);
@@ -112,6 +121,23 @@ namespace LaBuilderApp
 			IDataServer.ClearData ("thingstype");
 			IDataServer.ClearData ("events");
 			IDataServer.ClearData ("country");
+		}
+
+		static string ToHex4 (string text)
+		{
+			return Convert.ToInt32 (text).ToString ("X4");
+		}
+
+		static void Beacons_FoundBeacons (System.Collections.Generic.List<LaBuilderApp.OneBeacon> beacons)
+		{
+			foreach (OneBeacon b in beacons) {
+				Tools.Trace ($"******************************** Beacons: {ToHex4 (b.Major)}.{ToHex4 (b.Minor)} {b.Rssi}");
+			}
+		}
+
+		static void Beacons_BeaconInfo (string text)
+		{
+			Tools.Trace ($"******************************** Beacons Info: {text}");
 		}
 
 	}

@@ -130,6 +130,9 @@
     <Reference Include="Xamarin.Forms.CarouselView">
       <HintPath>..\packages\Xamarin.Forms.CarouselView.2.3.0-pre2\lib\Xamarin.iOS10\Xamarin.Forms.CarouselView.dll</HintPath>
     </Reference>
+    <Reference Include="Xamarin.Estimote.iOS">
+      <HintPath>..\packages\Xamarin.Estimote.iOS.4.7.3.2\lib\Xamarin.iOS10\Xamarin.Estimote.iOS.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LaBuilderApp\LaBuilderApp.csproj">
@@ -193,6 +196,7 @@
     <Compile Include="Code\Files.cs" />
     <Compile Include="Helpers\Settings.cs" />
     <Compile Include="Code\ScreenSize.cs" />
+    <Compile Include="Code\Beacons.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Aurek-Besh.ttf" />

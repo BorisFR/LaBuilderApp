@@ -290,6 +290,7 @@
     <Compile Include="Views\ScoresPage.xaml.cs">
       <DependentUpon>ScoresPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Component\IBeacons.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="project.json" />
