@@ -30,6 +30,7 @@ namespace LaBuilderApp
 				m.Detail = string.Empty;
 				m.Title = "Chargement des donnees";
 				m.Page = MyPage.FirstLoading;
+				m.Page = MyPage.Radar;
 				ShowPage (m);
 			}
 			Global.OnSleep = false;
@@ -101,27 +102,11 @@ namespace LaBuilderApp
 					theFrame.Content = null;
 					theFrame.Content = new ViewAureBesh ();
 					break;
-					/*			
-													case MyPage.Account:
-														theFrame.Content = null;
-														theFrame.Content = new ViewAccount ();
-														break;
-													case MyPage.MyBuilder:
-														theFrame.Content = null;
-														theFrame.Content = new ViewMyBuilder ();
-														break;
-													case MyPage.MyExhibitions:
-														theFrame.Content = null;
-														theFrame.Content = new ViewMyExhibitions ();
-														break;
-													case MyPage.AdminUsers:
-														theFrame.Content = null;
-														theFrame.Content = new ViewAdminUsers ();
-														break;
-													case MyPage.AdminBuilders:
-														theFrame.Content = null;
-														theFrame.Content = new ViewAdminBuilders ();
-														break;*/
+				case MyPage.Radar:
+					theFrame.Content = null;
+					theFrame.Content = new ViewRadar ();
+					break;
+
 				}
 			});
 		}

@@ -95,6 +95,13 @@ namespace LaBuilderApp
 				Icon = "info"
 			});
 			*/
+
+			mg.Add (new Menu () {
+				Page = MyPage.Radar,
+				Title = T ("Radar"),
+				Detail = T ("Radar"),
+				Icon = "univers"
+			});
 			All.Add (mg);
 
 			mg = new MenuGroup (T ("Builder"));
