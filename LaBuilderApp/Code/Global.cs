@@ -161,6 +161,7 @@ namespace LaBuilderApp
 			lock (BeaconsLock) {
 				CurrentBeacons.Clear ();
 				foreach (OneBeacon b in beacons) {
+					if (b.Rssi.Equals ("0")) continue;
 					major = ToHex4 (b.Major);
 					minor = ToHex4 (b.Minor);
 					id = major + "." + minor;
@@ -170,7 +171,7 @@ namespace LaBuilderApp
 					if (CurrentBeacons.ContainsKey (id))
 						CurrentBeacons [id] = b;
 					else CurrentBeacons.Add (id, b);
-					Tools.Trace ($"******************************** Beacons: {id} {b.Rssi}");
+					//Tools.Trace ($"******************************** Beacons: {id} {b.Rssi}");
 				}
 			}
 		}

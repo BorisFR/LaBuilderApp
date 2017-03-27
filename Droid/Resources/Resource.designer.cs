@@ -3024,6 +3024,15 @@ namespace LaBuilderApp.Droid
 			// aapt resource value: 0x7f070011
 			public const int character_counter_pattern = 2131165201;
 			
+			// aapt resource value: 0x7f070026
+			public const int error_no_bluetooth_enabled = 2131165222;
+			
+			// aapt resource value: 0x7f070027
+			public const int error_no_bluetooth_le = 2131165223;
+			
+			// aapt resource value: 0x7f070028
+			public const int error_no_location_permission = 2131165224;
+			
 			// aapt resource value: 0x7f070000
 			public const int mr_button_content_description = 2131165184;
 			
@@ -3069,6 +3078,24 @@ namespace LaBuilderApp.Droid
 			// aapt resource value: 0x7f07000e
 			public const int mr_user_route_category_name = 2131165198;
 			
+			// aapt resource value: 0x7f070029
+			public const int requesting_location_access = 2131165225;
+			
+			// aapt resource value: 0x7f07002a
+			public const int requesting_location_access_cancel = 2131165226;
+			
+			// aapt resource value: 0x7f07002b
+			public const int requesting_location_access_ok = 2131165227;
+			
+			// aapt resource value: 0x7f07002c
+			public const int requesting_location_access_rationale = 2131165228;
+			
+			// aapt resource value: 0x7f07002d
+			public const int requesting_location_permission = 2131165229;
+			
+			// aapt resource value: 0x7f07002e
+			public const int requesting_location_permission_rationale = 2131165230;
+			
 			// aapt resource value: 0x7f070025
 			public const int status_bar_notification_info_overflow = 2131165221;
 			
@@ -3100,8 +3127,8 @@ namespace LaBuilderApp.Droid
 			// aapt resource value: 0x7f0a001c
 			public const int Animation_Design_BottomSheetDialog = 2131361820;
 			
-			// aapt resource value: 0x7f0a0174
-			public const int AppCompatDialogStyle = 2131362164;
+			// aapt resource value: 0x7f0a0175
+			public const int AppCompatDialogStyle = 2131362165;
 			
 			// aapt resource value: 0x7f0a00be
 			public const int Base_AlertDialog_AppCompat = 2131361982;
@@ -3544,14 +3571,14 @@ namespace LaBuilderApp.Droid
 			// aapt resource value: 0x7f0a001a
 			public const int CardView_Light = 2131361818;
 			
-			// aapt resource value: 0x7f0a0172
-			public const int MyTheme = 2131362162;
-			
 			// aapt resource value: 0x7f0a0173
-			public const int MyTheme_Base = 2131362163;
+			public const int MyTheme = 2131362163;
 			
-			// aapt resource value: 0x7f0a0175
-			public const int MyTheme_Splash = 2131362165;
+			// aapt resource value: 0x7f0a0174
+			public const int MyTheme_Base = 2131362164;
+			
+			// aapt resource value: 0x7f0a0176
+			public const int MyTheme_Splash = 2131362166;
 			
 			// aapt resource value: 0x7f0a004b
 			public const int Platform_AppCompat = 2131361867;
@@ -3894,6 +3921,9 @@ namespace LaBuilderApp.Droid
 			
 			// aapt resource value: 0x7f0a0003
 			public const int Theme_MediaRouter_LightControlPanel = 2131361795;
+			
+			// aapt resource value: 0x7f0a0172
+			public const int Theme_Transparent = 2131362162;
 			
 			// aapt resource value: 0x7f0a0127
 			public const int ThemeOverlay_AppCompat = 2131362087;

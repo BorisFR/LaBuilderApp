@@ -190,6 +190,8 @@
     <EmbeddedResource Include="Views\ViewRadar.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="Images\circle_green.png" />
+    <EmbeddedResource Include="Images\circle_red.png" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
