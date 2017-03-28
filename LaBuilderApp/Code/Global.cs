@@ -65,6 +65,7 @@ namespace LaBuilderApp
 		public static string iBeaconUUID = "B9407F30-F5F8-466E-AFF9-25556B57FE6D";
 		//public static string iBeaconRegion = "Builders";
 		public static string iBeaconRegion = "Estimote";
+		public static BeaconStuff JobBeacon = new BeaconStuff ();
 
 		public static IFiles Files = null;
 		public static IScreenSize ScreenSize = null;
@@ -106,8 +107,9 @@ namespace LaBuilderApp
 			CurrentToken = CrossSettings.Current.GetValueOrDefault<string> ("usertoken", string.Empty);
 			if (CurrentPassword == string.Empty)
 				CurrentToken = string.Empty;
-			InitBeacon ();
+			JobBeacon.DoInit ();
 			MenuManager.Refresh ();
+			Tools.ClearAllWinners ();
 			Beacons.FoundBeacons += Beacons_FoundBeacons;
 			Beacons.BeaconInfo += Beacons_BeaconInfo;
 			Beacons.Init (iBeaconUUID, iBeaconRegion);
@@ -130,59 +132,19 @@ namespace LaBuilderApp
 			IDataServer.ClearData ("thingstype");
 			IDataServer.ClearData ("events");
 			IDataServer.ClearData ("country");
-		}
-
-		static string ToHex4 (string text)
-		{
-			return Convert.ToInt32 (text).ToString ("X4");
-		}
-
-		private static string major;
-		private static string minor;
-		private static string id;
-		public static object BeaconsLock = new Object ();
-		private static bool foundBeaconRegion = false;
-
-		static void InitBeacon ()
-		{
-			DateTime d = CrossSettings.Current.GetValueOrDefault<DateTime> ("FoundBeaconRegion", new DateTime (2000, 1, 1));
-			if (d.Year == DateTime.Now.Year && d.Month == DateTime.Now.Month && d.Day == DateTime.Now.Day) {
-				foundBeaconRegion = true;
-			}
+			Tools.ClearAllWinners ();
 		}
 
 		static void Beacons_FoundBeacons (System.Collections.Generic.List<LaBuilderApp.OneBeacon> beacons)
 		{
-			if (!foundBeaconRegion) {
-				foundBeaconRegion = true;
-				CrossSettings.Current.AddOrUpdateValue<DateTime> ("FoundBeaconRegion", DateTime.Now);
-				MainAppPage.DisplayAlert ("Droid Builders .Fr", "Il y a des Droid Builders dans les environs !", "Ok");
-			}
-			lock (BeaconsLock) {
-				CurrentBeacons.Clear ();
-				foreach (OneBeacon b in beacons) {
-					if (b.Rssi.Equals ("0")) continue;
-					major = ToHex4 (b.Major);
-					minor = ToHex4 (b.Minor);
-					id = major + "." + minor;
-					if (ViewedBeacons.ContainsKey (id))
-						ViewedBeacons [id] = b;
-					else ViewedBeacons.Add (id, b);
-					if (CurrentBeacons.ContainsKey (id))
-						CurrentBeacons [id] = b;
-					else CurrentBeacons.Add (id, b);
-					//Tools.Trace ($"******************************** Beacons: {id} {b.Rssi}");
-				}
-			}
+			JobBeacon.FoundBeacons (beacons);
+
 		}
 
 		static void Beacons_BeaconInfo (string text)
 		{
 			Tools.Trace ($"******************************** Beacons Info: {text}");
 		}
-
-		public static Dictionary<string, OneBeacon> CurrentBeacons = new Dictionary<string, OneBeacon> ();
-		public static Dictionary<string, OneBeacon> ViewedBeacons = new Dictionary<string, OneBeacon> ();
 
 	}
 }

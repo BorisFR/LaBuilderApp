@@ -299,6 +299,7 @@
     <Compile Include="Views\ViewRadar.xaml.cs">
       <DependentUpon>ViewRadar.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Code\BeaconStuff.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="project.json" />

@@ -107,6 +107,23 @@ namespace LaBuilderApp
 
 		public static string TheWinners = string.Empty;
 
+		private static async Task ClearOneWinners (int game, int level)
+		{
+			string fileName = $"game_{game.ToString ()}_{level.ToString ()}";
+			if (await Global.Files.IsExit (fileName)) {
+				try {
+					await Global.Files.DeleteFile (fileName);
+				} catch (Exception) {
+				}
+			}
+		}
+
+		public static async Task ClearAllWinners ()
+		{
+			await ClearOneWinners (0, 0);
+			await ClearOneWinners (1, 0);
+		}
+
 		public static async Task LoadWinners (int game, int level)
 		{
 			TheWinners = string.Empty;
