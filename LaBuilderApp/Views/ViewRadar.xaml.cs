@@ -48,10 +48,12 @@ namespace LaBuilderApp
 		public void GenerateFakeBeacons ()
 		{
 			Global.JobBeacon.CurrentBeacons.Clear ();
-			Global.JobBeacon.CurrentBeacons.Add ("1", new OneBeacon () { Major = $"{2500}", Minor = "2F01", Rssi = "-40" });
-			Global.JobBeacon.CurrentBeacons.Add ("1A", new OneBeacon () { Major = $"{3500}", Minor = "2F01", Rssi = "-41" });
-			Global.JobBeacon.CurrentBeacons.Add ("1B", new OneBeacon () { Major = $"{3500}", Minor = "2F01", Rssi = "-42" });
+			/*
+			Global.JobBeacon.CurrentBeacons.Add ("1", new OneBeacon () { Major = $"{0000}", Minor = "2F01", Rssi = "-40" });
+			Global.JobBeacon.CurrentBeacons.Add ("1A", new OneBeacon () { Major = $"{3000}", Minor = "2F01", Rssi = "-41" });
+			Global.JobBeacon.CurrentBeacons.Add ("1B", new OneBeacon () { Major = $"{4000}", Minor = "2F01", Rssi = "-42" });
 			Global.JobBeacon.CurrentBeacons.Add ("2", new OneBeacon () { Major = $"{5000}", Minor = "2F01", Rssi = "-45" });
+
 			Global.JobBeacon.CurrentBeacons.Add ("3", new OneBeacon () { Major = $"{10000}", Minor = "2F01", Rssi = "-50" });
 			Global.JobBeacon.CurrentBeacons.Add ("4", new OneBeacon () { Major = $"{15000}", Minor = "2F01", Rssi = "-55" });
 			Global.JobBeacon.CurrentBeacons.Add ("5", new OneBeacon () { Major = $"{20000}", Minor = "2F01", Rssi = "-60" });
@@ -65,8 +67,9 @@ namespace LaBuilderApp
 			Global.JobBeacon.CurrentBeacons.Add ("16", new OneBeacon () { Major = $"{45000}", Minor = "2F01", Rssi = "-75" });
 
 			return;
-			for (int i = 40; i <= 75; i += 5) {
-				Global.JobBeacon.CurrentBeacons.Add ($"{i * 500}", new OneBeacon () { Major = $"{i * 500}", Minor = "2F01", Rssi = $"-{i}" });
+			*/
+			for (int i = 40; i <= 100; i += 2) {
+				Global.JobBeacon.CurrentBeacons.Add ($"{i}", new OneBeacon () { Major = $"{(i - 39) * 800}", Minor = "2F01", Rssi = $"-{i}" });
 			}
 			//Global.CurrentBeacons.Add ("656B", new OneBeacon () { Major = "25963", Minor = "2F01", Rssi = $"-{50 + Global.Random.Next (30)}" });
 			return;
@@ -103,10 +106,20 @@ namespace LaBuilderApp
 			theLayout.Children.Clear ();
 			width = Constraint.RelativeToParent ((parent) => { return 32; });
 			height = Constraint.RelativeToParent ((parent) => { return 32; });
-			fullHeight = Global.ScreenSize.GetHeight () - 60;
+			fullHeight = Global.ScreenSize.GetHeight () - 100;
 			height13 = fullHeight / 3;
 			height23 = fullHeight * 2 / 3;
-
+			Tools.Trace ($"Xfull: {fullHeight} = 1/3 {height13} + 2/3 {height23} ");
+			log133 = Math.Log10 (1.0 / 33.0);
+			log127 = Math.Log10 (1.0 / 27.0);
+			/*
+			theLayout.SizeChanged += (sender, e) => {
+				fullHeight = (int)theLayout.Height - 50;
+				height13 = fullHeight / 3;
+				height23 = fullHeight * 2 / 3;
+				Tools.Trace ($"full: {fullHeight} = 1/3 {height13} + 2/3 {height23} ");
+			};
+			*/
 			//for (int i = 50; i < 101; i++) {
 			//	CalculateY ($"-{i.ToString ()}");
 			//}
@@ -116,7 +129,7 @@ namespace LaBuilderApp
 		bool DoJob ()
 		{
 			//if (Global.Random.Next (10) > 3)
-			GenerateFakeBeacons ();
+			//GenerateFakeBeacons ();
 			MoveBeacons ();
 			return true;
 		}
@@ -127,13 +140,15 @@ namespace LaBuilderApp
 			UInt64 num = ulong.Parse (key);
 			UInt64 res = num * (ulong)Global.ScreenSize.GetWidth () / 65535;
 			string x = num.ToString ("X4");
-			Tools.Trace ($"X {x} => {num} => {res}");
+			//Tools.Trace ($"X {x} => {num} => {res}");
 			return (int)res;
 		}
 
 		private double res;
 		private double logTemp;
 		private double temp;
+		private double log133;
+		private double log127;
 
 		private int CalculateY (string rssi)
 		{
@@ -180,20 +195,25 @@ namespace LaBuilderApp
 			if (num <= 33) {
 				temp = num / 33.0;
 				logTemp = Math.Log10 (temp);
-				temp = logTemp * height23;
-				res = -temp;
-				Tools.Trace ($"Y {rssi} => {num} => {logTemp} => {res}");
-				return (int)res;
+				temp = height13 * logTemp;
+				res = temp / log133;
+				//Tools.Trace ($"Y {rssi} => {num} => {logTemp} => {temp} => {res}");
+				return (int)res + height23;
 			}
 			num -= 33;
-			if (num > 67) num = 67;
-			temp = num / 67.0;
-			logTemp = Math.Log10 (temp);
-			temp = logTemp * height13;
-			res = Global.ScreenSize.GetHeight () - (Global.ScreenSize.GetHeight () - height13 + temp);
-			Tools.Trace ($"Y {rssi} => {num} => {logTemp} => {res}");
+			if (num > 60) num = 60;
+			temp = num / 27.0;
+			logTemp = Math.Log10 (1 + temp);
+			temp = logTemp * height23;
+			res = height23 + (temp / log127);
+			//Tools.Trace ($"Y {rssi} => {num} => {logTemp} => {temp} => {res}");
+			if (max > Convert.ToInt32 (res)) {
+				max = (int)res;
+				Tools.Trace ($"{rssi} => max= {max}");
+			}
 			return (int)res;
 		}
+		private int max = 1000;
 
 		private void MoveBeacons ()
 		{
@@ -204,9 +224,9 @@ namespace LaBuilderApp
 						radar [kvp.Key].Life = 100;
 						if (!radar [kvp.Key].RssiStart.Equals (kvp.Value.Rssi)) {
 							radar [kvp.Key].DestY = CalculateY (kvp.Value.Rssi);
-							if (kvp.Key.Equals ("85E1.940C")) {
-								Tools.Trace ($"{kvp.Value.Rssi} - {radar [kvp.Key].Y} > {radar [kvp.Key].DestY} : {radar [kvp.Key].DestY - radar [kvp.Key].Y} {kvp.Value.Description}");
-							}
+							//if (kvp.Key.Equals ("85E1.940C")) {
+							//Tools.Trace ($"{kvp.Value.Rssi} - {radar [kvp.Key].Y} > {radar [kvp.Key].DestY} : {radar [kvp.Key].DestY - radar [kvp.Key].Y} {kvp.Value.Description}");
+							//}
 						}
 					} else {
 						GfxBeacon o = CreateBeacon (kvp.Value.Rssi, CalculateX (kvp.Value.Major), CalculateY (kvp.Value.Rssi));
@@ -257,7 +277,8 @@ namespace LaBuilderApp
 			img.WidthRequest = 32;
 			img.HeightRequest = 32;
 			img.Aspect = Aspect.AspectFit;
-			if (Global.Random.Next (10) > 4)
+			//if (Global.Random.Next (10) > 4)
+			if (rssi.CompareTo ("-73") > 0)
 				img.Source = ImageSource.FromResource ("LaBuilderApp.Images.circle_red.png");
 			else
 				img.Source = ImageSource.FromResource ("LaBuilderApp.Images.circle_green.png");
