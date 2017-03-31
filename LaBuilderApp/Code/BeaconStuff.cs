@@ -50,6 +50,7 @@ namespace LaBuilderApp
 		{
 			CrossSettings.Current.AddOrUpdateValue<DateTime> ("FoundBeaconRegion", new DateTime (2000, 1, 1));
 			CrossSettings.Current.AddOrUpdateValue<DateTime> ("FoundedBeacons", new DateTime (2000, 1, 1));
+			DoInit ();
 		}
 
 		public void SaveFoundedBeacons ()
