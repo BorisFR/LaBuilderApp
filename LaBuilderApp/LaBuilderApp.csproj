@@ -192,6 +192,8 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Images\circle_green.png" />
     <EmbeddedResource Include="Images\circle_red.png" />
+    <EmbeddedResource Include="Images\circle_blue.png" />
+    <EmbeddedResource Include="Images\circle_yellow.png" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">

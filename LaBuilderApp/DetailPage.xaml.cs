@@ -30,7 +30,7 @@ namespace LaBuilderApp
 				m.Detail = string.Empty;
 				m.Title = "Chargement des donnees";
 				m.Page = MyPage.FirstLoading;
-				m.Page = MyPage.Radar;
+				//m.Page = MyPage.Radar;
 				ShowPage (m);
 			}
 			Global.OnSleep = false;

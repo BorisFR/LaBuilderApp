@@ -16,6 +16,7 @@ namespace LaBuilderApp
 
 	public class GfxBeacon
 	{
+		public string Key;
 		public string Index;
 		public int X;           // position initiale
 		public int Y;
@@ -32,7 +33,6 @@ namespace LaBuilderApp
 	{
 
 		//const int MAXHEIGHT = 400;
-		const int FOUNDRSSI = 57;
 		const int MINRSSI = 50;
 		const int MAXRSSI = 100;
 		const int LIMITRSSI = 87;
@@ -49,6 +49,7 @@ namespace LaBuilderApp
 
 		Dictionary<string, GfxBeacon> radar;
 		Dictionary<int, string> toRemove = new Dictionary<int, string> ();
+
 		int index = 0;
 		//Constraint posX;
 		//Constraint posY;
@@ -289,6 +290,9 @@ namespace LaBuilderApp
 						GfxBeacon o = CreateBeacon (kvp.Value.Rssi, CalculateX (kvp.Value.Major), CalculateY (kvp.Value.Rssi));
 						o.Index = kvp.Key;
 						o.LastRssi = int.Parse (kvp.Value.Rssi);
+						o.Key = kvp.Key;
+						if (Global.JobBeacon.FoundedBeacons.Contains (kvp.Key))
+							o.BeaconImageType = ChangeImage (o.Picture, o.LastRssi, BeaconImageType.Found);
 						radar.Add (kvp.Key, o);
 						//posX = Constraint.RelativeToParent ((parent) => { return o.X; });
 						//posY = Constraint.RelativeToParent ((parent) => { return o.Y; });
@@ -305,8 +309,9 @@ namespace LaBuilderApp
 				if (g.Life < 0.1)
 					toRemove.Add (pos, g.Index);
 				else {
-					if (g.BeaconImageType != BeaconImageType.Found)
-						g.BeaconImageType = ChangeImage ((Image)theLayout.Children [pos], g.LastRssi, g.BeaconImageType);
+					//if (g.BeaconImageType != BeaconImageType.Found) {
+					g.BeaconImageType = ChangeImage ((Image)theLayout.Children [pos], g.LastRssi, g.BeaconImageType);
+					//}
 					if (g.Y != g.DestY) {
 						//if (g.Index.Equals ("85E1.940C")) {
 						//	Tools.Trace ($"To {g.DestY} : {g.DestY - g.Y}");
@@ -333,26 +338,28 @@ namespace LaBuilderApp
 		private BeaconImageType ChangeImage (Image img, int rssi, BeaconImageType actual)
 		{
 			if (actual == BeaconImageType.Found) {
-				img.Source = ImageSource.FromResource ("LaBuilderApp.Images.circle_red.png");
+				img.Source = ImageSource.FromResource ("LaBuilderApp.Images.circle_green.png");
 				return BeaconImageType.Found;
 			}
+			if (rssi >= -BeaconStuff.FOUNDRSSI) {
+				if (actual == BeaconImageType.Found) return BeaconImageType.Found;
+				img.Source = ImageSource.FromResource ("LaBuilderApp.Images.circle_green.png");
+				return BeaconImageType.Found;
+			}
+
 			if (rssi < -LIMITRSSI) {
 				if (actual == BeaconImageType.Far) return BeaconImageType.Far;
 				img.Source = ImageSource.FromResource ("LaBuilderApp.Images.circle_red.png");
 				return BeaconImageType.Far;
 			}
-			if (rssi > -FOUNDRSSI) {
-				if (actual == BeaconImageType.Found) return BeaconImageType.Found;
-				img.Source = ImageSource.FromResource ("LaBuilderApp.Images.circle_green.png");
-				return BeaconImageType.Found;
-			}
+
 			if (rssi >= -LIMITRSSI) {
 				if (actual == BeaconImageType.Near) return BeaconImageType.Near;
-				img.Source = ImageSource.FromResource ("LaBuilderApp.Images.circle_green.png");
+				img.Source = ImageSource.FromResource ("LaBuilderApp.Images.circle_yellow.png");
 				return BeaconImageType.Near;
 			}
 			if (actual == BeaconImageType.Medium) return BeaconImageType.Medium;
-			img.Source = ImageSource.FromResource ("LaBuilderApp.Images.circle_red.png");
+			img.Source = ImageSource.FromResource ("LaBuilderApp.Images.circle_yellow.png");
 			return BeaconImageType.Medium;
 		}
 

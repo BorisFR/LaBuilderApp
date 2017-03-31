@@ -133,6 +133,7 @@ namespace LaBuilderApp
 			IDataServer.ClearData ("events");
 			IDataServer.ClearData ("country");
 			Tools.ClearAllWinners ();
+			JobBeacon.ClearCache ();
 		}
 
 		static void Beacons_FoundBeacons (System.Collections.Generic.List<LaBuilderApp.OneBeacon> beacons)
