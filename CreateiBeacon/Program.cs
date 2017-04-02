@@ -23,6 +23,7 @@ namespace CreateiBeacon
 
 	class MainClass
 	{
+		const string VERSION = "v1.0";
 		const string URL = "https://www.r2builders.fr/DroidBuilders.Fr/doiBeacon.php?login={0}&password={1}";
 		static Settings settings = new Settings ();
 		static Communication comm = new Communication ();
@@ -92,7 +93,7 @@ namespace CreateiBeacon
 		public static void Main (string [] args)
 		{
 
-			Console.Title = "Create an iBeacon";
+			Console.Title = $"Create an iBeacon - {VERSION}";
 			cWidth = Console.BufferWidth;
 			cHeight = Console.BufferHeight;
 			Console.WriteLine ($"x:{cWidth}, y:{cHeight}");
@@ -863,6 +864,10 @@ namespace CreateiBeacon
 
 		private static void DrawScreen ()
 		{
+			string copy = $"(c) 2017, R2-Builders.Fr - Made by Boris - {VERSION}";
+			Console.SetCursorPosition (cWidth - copy.Length, cHeight - 2);
+			Console.Write (copy);
+
 			ShowTitle ("Communication", posCommY);
 			ShowBowSimple ("Port", columns [0] - 1, posCommY + 1, MaxLength (0), 1);
 			ShowList (0, columns [0], posCommY + 2);
