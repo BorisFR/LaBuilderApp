@@ -142,6 +142,21 @@
     <Reference Include="TOCropBinding">
       <HintPath>..\packages\Wapps.TOCrop.0.1.2\lib\Xamarin.iOS\TOCropBinding.dll</HintPath>
     </Reference>
+    <Reference Include="Shim">
+      <HintPath>..\packages\shim.2.0.0\lib\Xamarin.iOS10\Shim.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge">
+      <HintPath>..\packages\portable.aforge.core.2.2.5.60302\lib\portable-net45+netcore45+wpa81\AForge.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Math">
+      <HintPath>..\packages\portable.aforge.math.2.2.5.60302\lib\portable-net45+netcore45+wpa81\AForge.Math.dll</HintPath>
+    </Reference>
+    <Reference Include="Shim.Drawing">
+      <HintPath>..\packages\shim.drawing.3.0.0\lib\Xamarin.iOS10\Shim.Drawing.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Imaging">
+      <HintPath>..\packages\portable.aforge.imaging.2.2.5.60302\lib\portable-net45+netcore45+wpa81\AForge.Imaging.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LaBuilderApp\LaBuilderApp.csproj">
