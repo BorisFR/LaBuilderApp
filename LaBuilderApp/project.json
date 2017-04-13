@@ -1,6 +1,7 @@
 ﻿{
   "dependencies": {
     "Newtonsoft.Json": "9.0.1",
+    "Plugin.ImageCropper": "1.0.1",
     "Xam.Plugin.AppInfo": "1.0.8",
     "Xam.Plugin.DeviceInfo": "2.1.2",
     "Xam.Plugin.Media": "2.6.2",

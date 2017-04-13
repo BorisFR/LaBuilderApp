@@ -31,6 +31,7 @@ namespace LaBuilderApp
 				m.Title = "Chargement des donnees";
 				m.Page = MyPage.FirstLoading;
 				//m.Page = MyPage.Radar;
+				m.Page = MyPage.Test;
 				ShowPage (m);
 			}
 			Global.OnSleep = false;
@@ -107,6 +108,10 @@ namespace LaBuilderApp
 					theFrame.Content = new ViewRadar ();
 					break;
 
+				case MyPage.Test:
+					theFrame.Content = null;
+					theFrame.Content = new ViewCropImage ();
+					break;
 				}
 			});
 		}

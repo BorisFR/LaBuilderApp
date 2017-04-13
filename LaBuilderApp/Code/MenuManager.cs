@@ -111,6 +111,15 @@ namespace LaBuilderApp
 				Detail = T ("Privilège des Builders..."),
 				Icon = "login"
 			});
+
+			mg.Add (new Menu () {
+				Page = MyPage.Test,
+				Title = T ("Crop"),
+				Detail = T ("Test"),
+				Icon = "login"
+			});
+
+
 			All.Add (mg);
 
 

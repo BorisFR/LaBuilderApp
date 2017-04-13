@@ -35,9 +35,9 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>NSCameraUsageDescription</key>
-	<string>This app needs access to the camera to take photos.</string>
+	<string>Je valide l&apos;accès à l&apos;appareil photo ;)</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>This app needs access to photos.</string>
+	<string>Je valide l&apos;accès à mes photos ;)</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSExceptionDomains</key>
@@ -66,11 +66,11 @@
 		<string>Star Jedi.ttf</string>
 	</array>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Afin de découvrir les Builders et leurs robots !</string>
+	<string>J&apos;active la géolocalisation afin de découvrir les Builders et leurs robots !</string>
 	<key>NSLocationUsageDescription</key>
-	<string>Afin de découvrir les Builders et leurs robots !</string>
+	<string>J&apos;active la géolocalisation afin de découvrir les Builders et leurs robots !</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Afin de découvrir les Builders et leurs robots !</string>
+	<string>J&apos;active la géolocalisation afin de découvrir les Builders et leurs robots ! Même quand mon téléphone est dans ma poche ;)</string>
 	<key>UIStatusBarHidden</key>
 	<true/>
 	<key>UIRequiresFullScreen</key>
@@ -82,8 +82,8 @@
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>CFBundleName</key>
-	<string>LaBuilderApp</string>
+	<string>Droid Builders .Fr</string>
 	<key>CFBundleDisplayName</key>
-	<string>Droid Builder .Fr</string>
+	<string>Droid Builders .Fr</string>
 </dict>
 </plist>

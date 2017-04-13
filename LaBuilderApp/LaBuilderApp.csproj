@@ -194,6 +194,10 @@
     <EmbeddedResource Include="Images\circle_red.png" />
     <EmbeddedResource Include="Images\circle_blue.png" />
     <EmbeddedResource Include="Images\circle_yellow.png" />
+    <EmbeddedResource Include="Views\ViewCropImage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\vierge43.png" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -302,6 +306,9 @@
       <DependentUpon>ViewRadar.xaml</DependentUpon>
     </Compile>
     <Compile Include="Code\BeaconStuff.cs" />
+    <Compile Include="Views\ViewCropImage.xaml.cs">
+      <DependentUpon>ViewCropImage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="project.json" />

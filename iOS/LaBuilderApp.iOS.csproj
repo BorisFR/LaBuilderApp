@@ -133,6 +133,15 @@
     <Reference Include="Xamarin.Forms.Xaml">
       <HintPath>..\packages\Xamarin.Forms.2.3.4.231\lib\Xamarin.iOS10\Xamarin.Forms.Xaml.dll</HintPath>
     </Reference>
+    <Reference Include="Plugin.ImageCropper.Abstractions">
+      <HintPath>..\packages\Plugin.ImageCropper.1.0.1\lib\Xamarin.iOS10\Plugin.ImageCropper.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.ImageCropper">
+      <HintPath>..\packages\Plugin.ImageCropper.1.0.1\lib\Xamarin.iOS10\Plugin.ImageCropper.dll</HintPath>
+    </Reference>
+    <Reference Include="TOCropBinding">
+      <HintPath>..\packages\Wapps.TOCrop.0.1.2\lib\Xamarin.iOS\TOCropBinding.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LaBuilderApp\LaBuilderApp.csproj">

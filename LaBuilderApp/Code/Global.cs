@@ -28,7 +28,8 @@ namespace LaBuilderApp
 		GameRuzzle,
 		Culture,
 		Alphabet,
-		Radar
+		Radar,
+		Test
 	}
 
 	public delegate void Trigger ();
