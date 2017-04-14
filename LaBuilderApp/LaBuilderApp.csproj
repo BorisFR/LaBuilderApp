@@ -309,6 +309,7 @@
     <Compile Include="Views\ViewCropImage.xaml.cs">
       <DependentUpon>ViewCropImage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Component\IMyPicture.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="project.json" />

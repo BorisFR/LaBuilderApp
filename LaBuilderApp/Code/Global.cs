@@ -71,6 +71,7 @@ namespace LaBuilderApp
 		public static IFiles Files = null;
 		public static IScreenSize ScreenSize = null;
 		public static IBeacons Beacons = null;
+		public static IMyPicture MyPicture = null;
 
 		public static Random Random;
 		public static Color DarkColor = Color.FromHex ("#11252D");
@@ -102,6 +103,7 @@ namespace LaBuilderApp
 			Files = DependencyService.Get<IFiles> ();
 			ScreenSize = DependencyService.Get<IScreenSize> ();
 			Beacons = DependencyService.Get<IBeacons> ();
+			MyPicture = DependencyService.Get<IMyPicture> ();
 			Random = new Random (DateTime.Now.Millisecond);
 			CurrentLogin = CrossSettings.Current.GetValueOrDefault<string> ("userlogin", string.Empty);
 			CurrentPassword = CrossSettings.Current.GetValueOrDefault<string> ("userpassword", string.Empty);

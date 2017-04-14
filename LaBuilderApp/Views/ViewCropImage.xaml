@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="LaBuilderApp.ViewCropImage">
 	<ContentView.Content>
-		<StackLayout Orientation="Vertical">
-			<Button x:Name="btTest" Text="test" />
-			<Image x:Name="theImage" Aspect="AspectFit"/>
-		</StackLayout>
+		<ScrollView Orientation="Vertical">
+			<StackLayout Orientation="Vertical">
+				<Button x:Name="btTest" Text="test" />
+				<Entry x:Name="theText" Keyboard="Text" />
+				<Image x:Name="theImage" Aspect="AspectFit"/>
+			</StackLayout>
+		</ScrollView>
 	</ContentView.Content>
 </ContentView>
