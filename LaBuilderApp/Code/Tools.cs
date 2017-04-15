@@ -2,6 +2,8 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 using Plugin.Settings;
+using System.IO;
+using System.Net.Http.Headers;
 
 namespace LaBuilderApp
 {
@@ -32,6 +34,29 @@ namespace LaBuilderApp
 			}
 		}
 
+		public static async Task<string> UploadImage (string name, Stream data)
+		{
+			try {
+				HttpClient client = new HttpClient ();
+				client.DefaultRequestHeaders.ExpectContinue = false;
+				client.BaseAddress = new Uri (Global.AppUrl);
+				MultipartFormDataContent form = new MultipartFormDataContent ();
+				HttpContent content = new StringContent ("theFile");
+				form.Add (content, "theFile");
+				//var stream = await file.OpenStreamForReadAsync ();
+				//content = new StreamContent (stream);
+				content = new StreamContent (data);
+				content.Headers.ContentDisposition = new ContentDispositionHeaderValue ("form-data") {
+					Name = "theFile",
+					FileName = name
+				};
+				form.Add (content);
+				var response = await client.PostAsync ("BuilderCardUpload.php", form);
+				return response.Content.ReadAsStringAsync ().Result;
+			} catch (Exception err) {
+				return err.Message;
+			}
+		}
 
 		public static async Task DoDownload (object sender, string fileName)
 		{

@@ -6,6 +6,7 @@
 				<Button x:Name="btTest" Text="test" />
 				<Entry x:Name="theText" Keyboard="Text" />
 				<Image x:Name="theImage" Aspect="AspectFit"/>
+				<Button x:Name="btSend" Text="Upload" />
 			</StackLayout>
 		</ScrollView>
 	</ContentView.Content>

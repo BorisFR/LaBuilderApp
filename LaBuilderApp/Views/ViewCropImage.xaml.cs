@@ -10,11 +10,26 @@ namespace LaBuilderApp
 {
 	public partial class ViewCropImage : ContentView
 	{
+		byte [] merged;
+
 		public ViewCropImage ()
 		{
 			InitializeComponent ();
 
 			btTest.Clicked += BtTest_Clicked;
+			btSend.Clicked += BtSend_Clicked;
+		}
+
+		~ViewCropImage ()
+		{
+			btTest.Clicked -= BtTest_Clicked;
+			btSend.Clicked -= BtSend_Clicked;
+		}
+
+		async void BtSend_Clicked (object sender, EventArgs e)
+		{
+			string res = await Tools.UploadImage ("2634", new MemoryStream (merged));
+			Global.MainAppPage.DisplayAlert ("Upload", res, "Ok");
 		}
 
 		void BtTest_Clicked (object sender, EventArgs e)
@@ -26,6 +41,7 @@ namespace LaBuilderApp
 		{
 
 			theImage.Source = ImageSource.FromResource ("LaBuilderApp.Images.1x1clear.png");
+			merged = null;
 
 			// 1 - on demande de choisir une image
 
@@ -74,7 +90,7 @@ namespace LaBuilderApp
 			string text = string.Empty;
 			if (theText != null && theText.Text != null)
 				text = theText.Text.Trim ();
-			var merged = Global.MyPicture.DoMerge (background, overlay, 45, 44, 1440 - 45 - 46, 1080 - 44 - 95, text, 255, 255, 255);
+			merged = Global.MyPicture.DoMerge (background, overlay, 45, 44, 1440 - 45 - 46, 1080 - 44 - 95, text, 255, 255, 255);
 			theImage.Source = ImageSource.FromStream (() => new MemoryStream (merged));
 		}
 
