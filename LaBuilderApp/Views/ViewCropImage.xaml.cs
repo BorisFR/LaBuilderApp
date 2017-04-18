@@ -65,13 +65,13 @@ namespace LaBuilderApp
 			// 2 - on demande à l'utilisateur de faire un crop
 
 			var cropService = CrossCropImageService.Current;
-			var selectedCropFile = await cropService.CropImageFromOriginalToBytes (selectedFile.Path, Plugin.ImageCropper.Abstractions.CropAspect.Custom);
-			if (selectedCropFile == null) return;
+			var background = await cropService.CropImageFromOriginalToBytes (selectedFile.Path, Plugin.ImageCropper.Abstractions.CropAspect.Custom);
+			if (background == null) return;
 
 			// 3 - on charge cette image
 
-			var tempMemoryStream = new MemoryStream (selectedCropFile);
-			byte [] background = tempMemoryStream.ToArray ();
+			//var tempMemoryStream = new MemoryStream (selectedCropFile);
+			//byte [] background = tempMemoryStream.ToArray ();
 
 			// 3 - on charge notre template
 
@@ -90,7 +90,7 @@ namespace LaBuilderApp
 			string text = string.Empty;
 			if (theText != null && theText.Text != null)
 				text = theText.Text.Trim ();
-			merged = Global.MyPicture.DoMerge (background, overlay, 45, 44, 1440 - 45 - 46, 1080 - 44 - 95, text, 255, 255, 255);
+			merged = Global.MyPicture.DoMerge (background, overlay, 42, 44, 1440 - 42 - 46, 1080 - 42 - 95, text, 255, 255, 255);
 			theImage.Source = ImageSource.FromStream (() => new MemoryStream (merged));
 		}
 

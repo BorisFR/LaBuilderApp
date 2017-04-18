@@ -64,6 +64,7 @@
 		<string>TIE-Wing.ttf</string>
 		<string>Aurek-Besh.ttf</string>
 		<string>Star Jedi.ttf</string>
+		<string>Roboto-Medium.ttf</string>
 	</array>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>J&apos;active la géolocalisation afin de découvrir les Builders et leurs robots !</string>
