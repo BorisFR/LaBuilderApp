@@ -29,7 +29,8 @@ namespace LaBuilderApp
 		Culture,
 		Alphabet,
 		Radar,
-		Test
+		CropCard,
+		ListCards
 	}
 
 	public delegate void Trigger ();
@@ -135,6 +136,7 @@ namespace LaBuilderApp
 			IDataServer.ClearData ("thingstype");
 			IDataServer.ClearData ("events");
 			IDataServer.ClearData ("country");
+			IDataServer.ClearData ("cards");
 			Tools.ClearAllWinners ();
 			JobBeacon.ClearCache ();
 		}

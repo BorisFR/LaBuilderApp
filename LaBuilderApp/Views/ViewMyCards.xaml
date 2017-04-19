@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="LaBuilderApp.ViewMyCards"
+	xmlns:local="clr-namespace:LaBuilderApp" Padding="{x:Static local:Global.PagePadding}">
+	<ContentView.Content>
+		<StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand" Padding="6">
+			<Button x:Name="btCreate" Text="Créer une nouvelle carte"/>
+			<local:AwesomeWrappanel x:Name="theList" Orientation="Horizontal" Spacing="6">
+				<local:AwesomeWrappanel.ItemTemplate>
+					<DataTemplate>
+						<Grid WidthRequest="180" HeightRequest="135" Padding="0" RowSpacing="0" ColumnSpacing="0">
+					        <Grid.ColumnDefinitions>
+					            <ColumnDefinition Width="180"/>
+					        </Grid.ColumnDefinitions>
+					        <Grid.RowDefinitions>
+					            <RowDefinition Height="135"/>
+					        </Grid.RowDefinitions>
+
+							<Image Source="{Binding GetSmallImage}" Aspect="AspectFit" WidthRequest="180" HeightRequest="135" Grid.Row="0" Grid.Column="0" />
+							<Button Text="" BackgroundColor="Transparent" CommandParameter="{Binding Id}" BorderColor="Transparent" BorderWidth="0" Grid.Row="0" Grid.Column="0" Clicked="ButtonClicked" />
+						</Grid>
+					</DataTemplate>
+				</local:AwesomeWrappanel.ItemTemplate>
+			</local:AwesomeWrappanel>
+		</StackLayout>
+	</ContentView.Content>
+</ContentView>

@@ -34,7 +34,19 @@ namespace LaBuilderApp
 			}
 		}
 
-		public static async Task<string> UploadImage (string name, Stream data)
+		public static void DeleteCard (string uuid)
+		{
+			try {
+				string url = string.Format ($"{Global.AppUrl}deleteCard.php?token={Global.CurrentToken}&uuid={uuid}");
+				Trace ("Url: " + url);
+				theHttpClient.GetStringAsync (url);
+				IDataServer.ClearData ("cards");
+			} catch (Exception err) {
+				Trace ("ERROR: " + err.Message);
+			}
+		}
+
+		public static async Task<string> UploadImage (Stream data)
 		{
 			try {
 				HttpClient client = new HttpClient ();
@@ -48,10 +60,11 @@ namespace LaBuilderApp
 				content = new StreamContent (data);
 				content.Headers.ContentDisposition = new ContentDispositionHeaderValue ("form-data") {
 					Name = "theFile",
-					FileName = name
+					FileName = Global.CurrentBuilderId.ToString ()
 				};
 				form.Add (content);
 				var response = await client.PostAsync ("BuilderCardUpload.php", form);
+				IDataServer.ClearData ("cards");
 				return response.Content.ReadAsStringAsync ().Result;
 			} catch (Exception err) {
 				return err.Message;

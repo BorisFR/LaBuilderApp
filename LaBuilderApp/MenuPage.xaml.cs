@@ -50,5 +50,18 @@ namespace LaBuilderApp
 			theList.SelectedItem = null;
 		}
 
+		public void Goto (MyPage page)
+		{
+			foreach (MenuGroup mg in MenuManager.All) {
+				foreach (Menu m in mg) {
+					if (m.Page == page) {
+						Global.GotoPage (m);
+						var ignore = Tools.DelayedGCAsync ();
+						UnselectMenu ();
+					}
+				}
+			}
+		}
+
 	}
 }

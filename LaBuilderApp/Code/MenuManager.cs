@@ -112,10 +112,17 @@ namespace LaBuilderApp
 				Icon = "login"
 			});
 
+			/*
 			mg.Add (new Menu () {
-				Page = MyPage.Test,
-				Title = T ("Crop"),
-				Detail = T ("Test"),
+				Page = MyPage.CropCard,
+				Title = T ("Créer une carte"),
+				Detail = T ("Créer une carte"),
+				Icon = "login"
+			});*/
+			mg.Add (new Menu () {
+				Page = MyPage.ListCards,
+				Title = T ("Mes cartes"),
+				Detail = T ("Gérer mes cartes"),
 				Icon = "login"
 			});
 

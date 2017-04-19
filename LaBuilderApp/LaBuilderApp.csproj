@@ -198,6 +198,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="Images\vierge43.png" />
+    <EmbeddedResource Include="Views\ViewMyCards.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -310,6 +313,10 @@
       <DependentUpon>ViewCropImage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Component\IMyPicture.cs" />
+    <Compile Include="Model\Cards.cs" />
+    <Compile Include="Views\ViewMyCards.xaml.cs">
+      <DependentUpon>ViewMyCards.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="project.json" />

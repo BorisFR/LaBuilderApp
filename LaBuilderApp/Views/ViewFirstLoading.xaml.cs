@@ -172,6 +172,28 @@ namespace LaBuilderApp
 			DataServer.AddToDo (things);
 
 
+
+			IDataServer cards = new IDataServer ("cards");
+			cards.StartWorking += () => {
+				AddText ("Loading cards");
+			};
+			cards.DataRefresh += (sender, status, result) => {
+				IDataServer x = sender as IDataServer;
+				if (status) {
+					AddText ("Cards done");
+					Tools.Trace ($"DataRefresh {x.FileName}: {result}");
+					Device.BeginInvokeOnMainThread (() => {
+						Cards.LoadData (result);
+						Cards.PopulateData ();
+					});
+				} else {
+					AddText ($"{x.FileName} error");
+				}
+			};
+			DataServer.AddToDo (cards);
+
+
+
 			IDataServer builders = new IDataServer ("builders");
 			//events.IgnoreLocalData = true;
 			builders.StartWorking += () => {

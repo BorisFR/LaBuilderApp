@@ -28,8 +28,10 @@ namespace LaBuilderApp
 
 		async void BtSend_Clicked (object sender, EventArgs e)
 		{
-			string res = await Tools.UploadImage ("2634", new MemoryStream (merged));
-			Global.MainAppPage.DisplayAlert ("Upload", res, "Ok");
+			string res = await Tools.UploadImage (new MemoryStream (merged));
+			Global.MainAppPage.DisplayAlert ("Information", "La sauvegarde est effectuée. Votre carte est maintenant disponible.", "Ok");
+			Cards.AddOne (res, Global.CurrentBuilderId);
+			Global.MenuPage.Goto (MyPage.ListCards);
 		}
 
 		void BtTest_Clicked (object sender, EventArgs e)

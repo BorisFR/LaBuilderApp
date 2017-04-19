@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Plugin.DeviceInfo;
 using Xamarin.Forms;
@@ -31,7 +31,7 @@ namespace LaBuilderApp
 				m.Title = "Chargement des donnees";
 				m.Page = MyPage.FirstLoading;
 				//m.Page = MyPage.Radar;
-				m.Page = MyPage.Test;
+				//m.Page = MyPage.CropCard;
 				ShowPage (m);
 			}
 			Global.OnSleep = false;
@@ -108,9 +108,13 @@ namespace LaBuilderApp
 					theFrame.Content = new ViewRadar ();
 					break;
 
-				case MyPage.Test:
+				case MyPage.CropCard:
 					theFrame.Content = null;
 					theFrame.Content = new ViewCropImage ();
+					break;
+				case MyPage.ListCards:
+					theFrame.Content = null;
+					theFrame.Content = new ViewMyCards ();
 					break;
 				}
 			});
