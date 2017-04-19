@@ -3,7 +3,7 @@
 	<ContentView.Content>
 		<ScrollView Orientation="Vertical">
 			<StackLayout Orientation="Vertical">
-				<Label Text="Légende de l'image" />
+				<Label Text="Légende de l'image" TextColor="White" />
 				<Entry x:Name="theText" Keyboard="Text" TextColor="White" BackgroundColor="Black" />
 				<Button x:Name="btTest" Text="Choisir l'image" />
 				<Image x:Name="theImage" Aspect="AspectFit"/>
