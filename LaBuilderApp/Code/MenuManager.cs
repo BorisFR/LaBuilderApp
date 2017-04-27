@@ -119,13 +119,23 @@ namespace LaBuilderApp
 				Detail = T ("Créer une carte"),
 				Icon = "login"
 			});*/
-			mg.Add (new Menu () {
-				Page = MyPage.ListCards,
-				Title = T ("Mes cartes"),
-				Detail = T ("Gérer mes cartes"),
-				Icon = "login"
-			});
 
+			if (Global.IsConnected) {
+
+				mg.Add (new Menu () {
+					Page = MyPage.ListCards,
+					Title = T ("Mes cartes"),
+					Detail = T ("Gérer mes cartes"),
+					Icon = "login"
+				});
+
+				mg.Add (new Menu () {
+					Page = MyPage.DebugBeacon,
+					Title = T ("Debug Beacon"),
+					Detail = T ("Debug pour les iBeacons"),
+					Icon = "login"
+				});
+			}
 
 			All.Add (mg);
 

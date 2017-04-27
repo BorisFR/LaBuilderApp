@@ -116,6 +116,10 @@ namespace LaBuilderApp
 					theFrame.Content = null;
 					theFrame.Content = new ViewMyCards ();
 					break;
+				case MyPage.DebugBeacon:
+					theFrame.Content = null;
+					theFrame.Content = new ViewDebugBeacon ();
+					break;
 				}
 			});
 		}

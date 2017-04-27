@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="LaBuilderApp.ViewDebugBeacon"
+	xmlns:local="clr-namespace:LaBuilderApp">
+	<ContentView.Content>
+		<StackLayout Orientation="Vertical">
+			<Button x:Name="btClearAll" Text="Clear all" TextColor="Black" BackgroundColor="White" BorderWidth="1" BorderRadius="10" BorderColor="Blue"/>
+			<Label Text="Niveau de détection (par défaut=57)" TextColor="White"/>
+			<StackLayout Orientation="Horizontal">
+				<Entry Keyboard="Numeric" x:Name="eRssi" WidthRequest="150" />
+				<Button x:Name="btRssi" Text=" Change " TextColor="Black" BackgroundColor="White" BorderWidth="1" BorderRadius="10" BorderColor="Blue"/>
+			</StackLayout>
+			<StackLayout Orientation="Horizontal">
+				<ListView x:Name="lvVisible">
+					<ListView.ItemTemplate>
+						<DataTemplate>
+							<TextCell Text="{Binding Info}" Detail="{Binding Description}"/>
+						</DataTemplate>
+					</ListView.ItemTemplate>
+				</ListView>
+				<ListView x:Name="lvFound">
+					<ListView.ItemTemplate>
+						<DataTemplate>
+							<TextCell Text="{Binding .}"/>
+						</DataTemplate>
+					</ListView.ItemTemplate>
+				</ListView>				
+			</StackLayout>
+		</StackLayout>
+	</ContentView.Content>
+</ContentView>

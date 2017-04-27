@@ -30,7 +30,8 @@ namespace LaBuilderApp
 		Alphabet,
 		Radar,
 		CropCard,
-		ListCards
+		ListCards,
+		DebugBeacon
 	}
 
 	public delegate void Trigger ();
@@ -52,7 +53,17 @@ namespace LaBuilderApp
 		public static bool IsDoingInit = false;
 		public static Menu CurrentMenu = null;
 
-		public static bool IsConnected = false;
+		private static bool isConnected = false;
+		public static bool IsConnected {
+			get { return isConnected; }
+			set {
+				if (isConnected == value) return;
+				isConnected = value;
+				Device.BeginInvokeOnMainThread (() => {
+					MenuManager.Refresh ();
+				});
+			}
+		}
 		//public static User ConnectedUser = null;
 
 
@@ -62,9 +73,9 @@ namespace LaBuilderApp
 		public static CultureInfo CultureFrench = new CultureInfo ("fr-FR");
 
 		// Builders
-		//public static string iBeaconUUID = "E5CAF8CF-590C-42DC-9CF0-2929552156A7"; 
+		public static string iBeaconUUID = "E5CAF8CF-590C-42DC-9CF0-2929552156A7";
 		// Estimote Maxxing
-		public static string iBeaconUUID = "B9407F30-F5F8-466E-AFF9-25556B57FE6D";
+		//public static string iBeaconUUID = "B9407F30-F5F8-466E-AFF9-25556B57FE6D";
 		//public static string iBeaconRegion = "Builders";
 		public static string iBeaconRegion = "Estimote";
 		public static BeaconStuff JobBeacon = new BeaconStuff ();

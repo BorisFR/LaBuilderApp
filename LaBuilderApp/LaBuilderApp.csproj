@@ -201,6 +201,9 @@
     <EmbeddedResource Include="Views\ViewMyCards.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\ViewDebugBeacon.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -316,6 +319,9 @@
     <Compile Include="Model\Cards.cs" />
     <Compile Include="Views\ViewMyCards.xaml.cs">
       <DependentUpon>ViewMyCards.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ViewDebugBeacon.xaml.cs">
+      <DependentUpon>ViewDebugBeacon.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
