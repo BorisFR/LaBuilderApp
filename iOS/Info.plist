@@ -5,9 +5,9 @@
 	<key>CFBundleIdentifier</key>
 	<string>com.boris.labuilderapp</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.58</string>
+	<string>1.60</string>
 	<key>CFBundleVersion</key>
-	<string>1.58</string>
+	<string>1.60</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>MinimumOSVersion</key>
@@ -86,5 +86,7 @@
 	<string>Droid Builders .Fr</string>
 	<key>CFBundleDisplayName</key>
 	<string>Droid Builders .Fr</string>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>J&apos;active la géolocalisation afin de découvrir les Builders et leurs robots !</string>
 </dict>
 </plist>

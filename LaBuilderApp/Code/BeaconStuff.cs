@@ -7,7 +7,7 @@ namespace LaBuilderApp
 {
 	public class BeaconStuff
 	{
-		public static int FOUNDRSSI = 57;
+		public static int FOUNDRSSI = 61;
 
 		public Dictionary<string, OneBeacon> CurrentBeacons = new Dictionary<string, OneBeacon> ();
 		//public Dictionary<string, OneBeacon> ViewedBeacons = new Dictionary<string, OneBeacon> ();
@@ -21,6 +21,16 @@ namespace LaBuilderApp
 		private string minor;
 		private string id;
 		private bool foundBeaconRegion = false;
+
+		public bool FoundRegion {
+			get { return foundBeaconRegion; }
+			set {
+				if (foundBeaconRegion == value)
+					return;
+				foundBeaconRegion = value;
+				MenuManager.Refresh ();
+			}
+		}
 
 		public BeaconStuff ()
 		{
@@ -38,7 +48,7 @@ namespace LaBuilderApp
 			AllFound.Clear ();
 			DateTime d = CrossSettings.Current.GetValueOrDefault<DateTime> ("FoundBeaconRegion", new DateTime (2000, 1, 1));
 			if (d.Year == DateTime.Now.Year && d.Month == DateTime.Now.Month && d.Day == DateTime.Now.Day) {
-				foundBeaconRegion = true;
+				FoundRegion = true;
 			}
 			d = CrossSettings.Current.GetValueOrDefault<DateTime> ("FoundedBeacons", new DateTime (2000, 1, 1));
 			if (d.Year == DateTime.Now.Year && d.Month == DateTime.Now.Month && d.Day == DateTime.Now.Day) {
@@ -79,8 +89,8 @@ namespace LaBuilderApp
 
 		public void FoundBeacons (List<OneBeacon> beacons)
 		{
-			if (!foundBeaconRegion) {
-				foundBeaconRegion = true;
+			if (!FoundRegion) {
+				FoundRegion = true;
 				CrossSettings.Current.AddOrUpdateValue<DateTime> ("FoundBeaconRegion", DateTime.Now);
 				Global.MainAppPage.DisplayAlert ("Droid Builders .Fr", "Il y a des Droid Builders dans les environs !", "Ok");
 			}

@@ -96,12 +96,15 @@ namespace LaBuilderApp
 			});
 			*/
 
-			mg.Add (new Menu () {
-				Page = MyPage.Radar,
-				Title = T ("Radar"),
-				Detail = T ("Radar"),
-				Icon = "univers"
-			});
+			if (Global.JobBeacon.FoundRegion) {
+				mg.Add (new Menu () {
+					Page = MyPage.Radar,
+					Title = T ("Radar"),
+					Detail = T ("À la recherche ..."),
+					Icon = "radar"
+				});
+			}
+
 			All.Add (mg);
 
 			mg = new MenuGroup (T ("Builder"));
@@ -126,14 +129,14 @@ namespace LaBuilderApp
 					Page = MyPage.ListCards,
 					Title = T ("Mes cartes"),
 					Detail = T ("Gérer mes cartes"),
-					Icon = "login"
+					Icon = "cards"
 				});
 
 				mg.Add (new Menu () {
 					Page = MyPage.DebugBeacon,
 					Title = T ("Debug Beacon"),
 					Detail = T ("Debug pour les iBeacons"),
-					Icon = "login"
+					Icon = "debug"
 				});
 			}
 

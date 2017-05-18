@@ -204,6 +204,9 @@
     <EmbeddedResource Include="Views\ViewDebugBeacon.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="Images\menu_c_radar.png" />
+    <EmbeddedResource Include="Images\menu_c_cards.png" />
+    <EmbeddedResource Include="Images\menu_c_debug.png" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
